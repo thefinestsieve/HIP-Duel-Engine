@@ -1,0 +1,8 @@
+#CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+######################################5_EVENTS;;;;;;;;;;;;;;x
+hde_battle.0.desc;Fighting across the field, you see an enemy soldier cut off from the others. While you can't tell who, it's clear that they must be a highborn noble.;Alors que vous vous battez sur le champ de bataille, vous apercevez un soldat ennemi s'extirper des rangs. Si vous n'arrivez pas à voir de qui il s'agit, vous êtes par contre sûr qu'il s'agit d'un noble de haute naissance.;;;Durante la batalla, ves a un soldado enemigo separado del resto. Aunque no sabes quién pueda ser, está claro que es de sangre noble.;;;;;;;;;x
+hde_battle.0.a;Charge!;A l'assaut !;;;¡A la carga!;;;;;;;;;x
+
+EVTDESC5556001;You were separated from your men in the chaos of battle, and now find yourself in the midst of war. As you scan the field and try to rejoin your forces, you see [From.GetBestName] break through the enemy ranks and charge you!;Dans le chaos des combats, vous avez été séparé de vos hommes et vous trouvez désormais en plein milieu de la bataille. Alors que vous tentez de rejoindre vos forces, vous apercevez [From.GetBestName] qui se fraye un chemin à travers les rangs ennemis avant de vous charger !;;;Fuiste separado de tus hombres en el caos de la batalla, y ahora te encuentras en el centro de la batalla. ¡Mientras buscas la forma de reunirte con tus hombres, ves a [From.GetBestName] abrirse paso entre el enemigo y cargar contra ti!;;;;;;;;;x
+
+

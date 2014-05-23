@@ -3,43 +3,57 @@ namespace = hde_core
 # Based loosely on work by Galle (Gregory Hayes) and jordarkelf
 
 ### CONTEXT FLAGS
+# Note that ALL duels are hostile (to the death) by default
+# Set flag_duel_friendly if you don't want to kill folks
 ## Duel Type
 # flag_duel_friendly
-# flag_duel_hostile
 ## Duel Flavor
 # flag_duel_battlefield
-# flag_duel_tourney
+# flag_duel_tourney (eventually?)
 
 ### MAIN EVENTS
 # hde_core.0	Referee decides between FROM and FROMFROM, flags winner and loser, target locks duelists, sends winner first handler event
+# hde_core.1	Bounce event to make sure localization works properly
 
 ### HANDLER EVENTS
 # These can call different flavor depending on the flavor flags
-# hde_core.1	Initial handler, random flavor events, lets participants decide whether to run or not
-# hde_core.2	First clash handler, random flavor events
-# hde_core.3	Combat handler, random flavor events, can be repeated, mid-fight wounding might happen here?
-# hde_core.4	Outcome handler, random flavor events
+# These all fire on ROOT, and the flavor events they trigger will pass the loser event by using the duel_target trait scope and accompanying opinion modifiers
+# hde_core.2	Initial handler, random flavor events, lets participants decide whether to run or not
+# hde_core.3	First clash handler, random flavor events
+# hde_core.4	Combat handler, random flavor events, can be repeated, mid-fight wounding might happen here?
+# hde_core.5	Outcome handler, random flavor events
+# hde_core.6	Cleanup handler, cleans up flags, traits, and opinion modifiers, also fires failure flavor
 
 # Outcome types: Loser is outright killed, loser is wounded, loser is subdued. If loser is wounded or subdued, they may be captured, killed, or let go. If loser is wounded but refuses to yield, repeat the loop, but with odds against the loser? (And risk of getting maimed.) If loser is subdued but refuses to yield, they get wounded, then the loop is repeated as before.
 
-# Question: How are we going to check for failure states? What if one of the characters dies for some other reason? We'll need a failure event ("You lost track of your opponent in the heat of battle" sort of thing) and we might need to check every step of the way?
+# Question: How are we going to check for failure states? What if one of the characters dies for some other reason? We'll need a failure event ("You lost track of your opponent in the heat of battle" sort of thing)?
 # Question: Will we need a safety catch cleanup event?
 
 ### FLAVOR EVENTS
-# These come in pairs, with winner and loser versions. The winner's version sends event to the loser and triggers the next handler
+# These come in pairs, with winner and loser versions.
+# If the event is sent to the winner, the winner's version sends an event to the loser, and the loser calls the handler again on the winner
+# (This way all the localizations work)
+# VERY IMPORTANT: Due to how this is designed, if the flavor events aren't sufficiently mixed up it might become possible for an observant player to tell whether they're going to win or lose by which flavor events they get
+# So it's very important that flavor is jumbled up, such as by swapping up winner/loser text sometimes
 # These will actually appear in a different file, but for reference purposes:
 # x.x	Initial flavor
 # x.x	First clash flavor
 # x.x	Combat flavor
 # x.x	Outcome flavor
+# x.x	Failure flavor
 
+### MAIN EVENTS
 character_event = {
 	id = hde_core.0
+	# This might eventually be a hide_window = yes type event, but not for now
 	desc = AI_EVENT
 	picture = GFX_evt_duel0
+	
+	is_triggered_only = yes
 
 	trigger = {
 		has_landed_title = e_rebels
+		# Probably should move everything below out of the event trigger and instead move it to the trigger of a special option which will fire failure and cleanup events
 		FROM = { is_alive = yes }
 		FROMFROM = { is_alive = yes }
 		NOT = {
@@ -262,14 +276,13 @@ character_event = {
 		FROM = {
 			set_character_flag = flag_duel_winner
 			add_trait = duel_target
-			# Send first handler event
-			character_event = { id = hde_core.1 }
 		}
 		FROMFROM = {
 			set_character_flag = flag_duel_loser
 			add_trait = duel_target
 			opinion = { who = FROM modifier = opinion_duel_target }
 			reverse_opinion = { who = FROM modifier = opinion_duel_target }
+			character_event = { id = hde_core.1 }
 		}
 	}
 	# FROMFROM wins
@@ -481,17 +494,78 @@ character_event = {
 			}
 		}
 		# Set flags and target lock
-		FROMFROM = {
-			set_character_flag = flag_duel_winner
-			add_trait = duel_target
-			# Send first handler event
-			character_event = { id = hde_core.1 }
-		}
 		FROM = {
 			set_character_flag = flag_duel_loser
 			add_trait = duel_target
 			opinion = { who = FROMFROM modifier = opinion_duel_target }
 			reverse_opinion = { who = FROMFROM modifier = opinion_duel_target }
+			character_event = { id = hde_core.1 }
+		}
+		FROMFROM = {
+			set_character_flag = flag_duel_winner
+			add_trait = duel_target
 		}
 	}
+}
+
+# Bounce event so localization works properly
+character_event = {
+	id = hde_core.1
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		duel_target = {
+			limit = {
+				has_opinion_modifier = { who = ROOT modifier = opinion_duel_target }
+				has_character_flag = flag_duel_winner
+			}
+			character_event = { id = hde_core.2 }
+		}
+	}
+	
+	option = {
+		name = OK
+	}
+}
+
+### HANDLER EVENTS
+# Initial handler, gives the duelists a chance to run away
+# Winner = ROOT, loser = FROM
+# These events are sent to the winner, so the subsequent event will be winner (ROOT) and loser (FROMFROM)
+character_event = {
+	id = hde_core.2
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		# There is no flavor flag, so default flavor (battlefield?)
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						has_character_flag = flag_duel_battlefield
+						# Insert all new flavor flags here
+					}
+				}
+			}
+			random_list = {
+				50 = { character_event = { id = x.x } }
+				50 = { character_event = { id = x.x } }
+			}
+		}
+		# Battlefield Flavor
+		if = {
+			limit = { has_character_flag = flag_duel_battlefield }
+			random_list = {
+				50 = { character_event = { id = x.x } }
+				50 = { character_event = { id = x.x } }
+			}
+		}
+		# Insert new flavor flag blocks here
+	}
+	
+	option = { name = OK }
 }

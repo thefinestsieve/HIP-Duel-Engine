@@ -1,0 +1,229 @@
+namespace = hde_battle
+
+### SETUP
+# These events are only required if there aren't already existing events to plug into
+# hde_battle.0		Begin the chain, triggered from on_actions
+# hde_battle.1		Pass along event, starts the actual fight
+
+### INITIAL FLAVOR
+# Winner charges first
+# hde_battle.2		Winner decides
+# hde_battle.3		Loser decides
+# hde_battle.4		Winner ran away
+# hde_battle.5		Loser ran away
+# Loser charges first
+# hde_battle.6		Winner decides
+# hde_battle.7		Loser decides
+# hde_battle.8		Winner ran away
+# hde_battle.9		Loser ran away
+
+character_event = {
+    id = hde_battle.0
+    hide_window = yes
+    
+    is_triggered_only = yes
+    
+    trigger = {
+        # Avoid crossing targets
+        FROM = {
+            liege = {
+                OR = {
+                    any_realm_character = {
+                        in_battle = yes
+                        at_location = ROOT
+                        NOT = { has_character_modifier = battlefield_fight }
+                    }
+					AND = {
+						in_battle = yes
+						at_location = ROOT
+						NOT = { has_character_modifier = battlefield_fight }
+					}
+                }
+            }
+        }
+        NOT = { has_character_modifier = battlefield_fight }
+    }
+    
+    weight_multiplier = {
+        days = 1
+        modifier = {
+            factor = 1.5
+            trait = trained_warrior
+        }
+        modifier = {
+            factor = 1.75
+            trait = skilled_warrior
+        }
+        modifier = {
+            factor = 2
+            trait = master_warrior
+        }
+        modifier = {
+            factor = 3
+            trait = duelist
+        }
+        modifier = {
+            factor = 1.5
+            trait = brave
+        }
+        modifier = {
+            factor = 0.5
+            trait = craven
+        }
+    }
+    
+    immediate = {
+        # Target lock
+        add_character_modifier = {
+            name = battlefield_fight
+            duration = 20
+        }
+        FROM = {
+            liege = {
+                if = {
+                    limit = {
+                        NOT = {
+                            in_battle = yes
+                            at_location = ROOT
+                            NOT = { has_character_modifier = battlefield_fight }
+                        }
+						any_realm_character = {
+							in_battle = yes
+							at_location = ROOT
+							NOT = { has_character_modifier = battlefield_fight }
+						}
+                    }
+                    random_realm_character = {
+                        limit = {
+                            in_battle = yes
+                            at_location = ROOT
+                            NOT = { has_character_modifier = battlefield_fight }
+                        }
+                        opinion = { who = ROOT modifier = opinion_battle_duel_target }
+                        reverse_opinion = { who = ROOT modifier = opinion_battle_duel_target }
+                        add_character_modifier = {
+                            name = battlefield_fight
+                            duration = 20
+                        }
+                    }
+                    ROOT = { set_character_flag = duel_engaged }
+                }
+                if = {
+                    limit = {
+                        NOT = {
+                            any_realm_character = {
+                                in_battle = yes
+                                at_location = ROOT
+                                NOT = { has_character_modifier = battlefield_fight }
+                            }
+                        }
+						in_battle = yes
+						at_location = ROOT
+						NOT = { has_character_modifier = battlefield_fight }
+                    }
+                    opinion = { who = ROOT modifier = opinion_battle_duel_target }
+                    reverse_opinion = { who = ROOT modifier = opinion_battle_duel_target }
+                    add_character_modifier = {
+                        name = battlefield_fight
+                        duration = 20
+                    }
+                    ROOT = { set_character_flag = duel_engaged }
+                }
+                if = {
+                    limit = {
+						NOT = { ROOT = { has_character_flag = duel_engaged } }
+						any_realm_character = {
+							in_battle = yes
+							at_location = ROOT
+							NOT = { has_character_modifier = battlefield_fight }
+						}
+						in_battle = yes
+						at_location = ROOT
+						NOT = { has_character_modifier = battlefield_fight }
+					}
+                    random_list = {
+                        10 = {
+                            opinion = { who = ROOT modifier = opinion_battle_duel_target }
+                            reverse_opinion = { who = ROOT modifier = opinion_battle_duel_target }
+                            add_character_modifier = {
+                                name = battlefield_fight
+                                duration = 20
+                            }
+                        }
+                        90 = {
+                            random_realm_character = {
+                                limit = {
+                                    in_battle = yes
+                                    at_location = ROOT
+                                    NOT = { has_character_modifier = battlefield_fight }
+                                }
+                                opinion = { who = ROOT modifier = opinion_battle_duel_target }
+                                reverse_opinion = { who = ROOT modifier = opinion_battle_duel_target }
+                                add_character_modifier = {
+                                    name = battlefield_fight
+                                    duration = 20
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        clr_character_flag = duel_engaged
+		FROM = {
+            liege = {
+                random_realm_character = {
+                    limit = { has_opinion_modifier = { who = ROOT modifier = opinion_battle_duel_target } }
+					hidden_tooltip = { character_event = { id = hde_battle.1 } }
+                }
+                if = {
+                    limit = { has_opinion_modifier = { who = ROOT modifier = opinion_battle_duel_target } }
+                    hidden_tooltip = { character_event = { id = hde_battle.1 } }
+                }
+            }
+        }
+    }
+    
+    option = {
+        name = OK
+    }
+}
+
+# Passing it right along...
+character_event = {
+	id = hde_battle.1
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	immediate = {
+		# Remove initial targeting information
+		remove_opinion = { who = FROM modifier = opinion_battle_duel_target }
+		reverse_remove_opinion = { who = FROM modifier = opinion_battle_duel_target }
+		
+		# Set duel type
+		set_character_flag = flag_battlefield_duel
+		FROM = { set_character_flag = flag_battlefield_duel }
+		
+		# Start this thing!
+		hidden_tooltip = { e_rebels = { holder_scope = { character_event = { id = hde_core.0 } } } }
+	}
+	
+	option = {
+		name = OK
+	}
+}
+
+### INITIAL FLAVOR
+character_event = {
+	id = hde_battle.2
+	desc = hde_battle.2
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		
+	}
+}
