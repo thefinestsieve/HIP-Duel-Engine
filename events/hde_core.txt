@@ -1,25 +1,33 @@
 namespace = hde_core
 
-# Based on work by Galle (Gregory Hayes) and jordarkelf
+# Based loosely on work by Galle (Gregory Hayes) and jordarkelf
 
 ### CONTEXT FLAGS
+## Duel Type
 # flag_duel_friendly
-# flag_duel_to_the_death
+# flag_duel_hostile
+## Duel Flavor
+# flag_duel_battlefield
+# flag_duel_tourney
 
 ### MAIN EVENTS
-# hde_core.0	Referee decides outcome of duel between FROM and FROMFROM
-# hde_core.1	Sent to winner, flags winner and loser, target locks duelists, sends winner first handler event
+# hde_core.0	Referee decides between FROM and FROMFROM, flags winner and loser, target locks duelists, sends winner first handler event
 
-### COMBAT EVENTS
-## Initial clash events
-# x.x	Initial clash handler event, randomly chooses from flavored events
-# x.x	Initial clash flavor: pairs of events w/ winner and loser, winner's version sends winner the next handler
-## Combat events (can be repeated if necessary)
-# x.x	Combat handler, randomly chooses from flavored events
-# x.x	Combat flavor: pairs of events w/ winner and loser, winner's version sends winner the next handler
-
-### OUTCOME EVENTS
-# x.x	Outcome handler, randomly chooses from flavored events
-# x.x	Outcome flavor: pairs of events w/ winner and loser
+### HANDLER EVENTS
+# These can call different flavor depending on the flavor flags
+# hde_core.1	Initial clash handler, randomly chooses from flavored events
+# hde_core.2	Combat handler, random flavor events, can be repeated, mid-fight wounding might happen here?
+# hde_core.3	Outcome handler, randomly chooses from flavored events
 
 # Outcome types: Loser is outright killed, loser is wounded, loser is subdued. If loser is wounded or subdued, they may be captured, killed, or let go.
+
+# Question: How to handle yield outcomes?? Can the loser choose to fight on?
+# Question: How are we going to check for failure states? What if one of the characters dies for some other reason? We'll need a failure event ("You lost track of your opponent in the heat of battle" sort of thing) and we might need to check every step of the way?
+# Question: Will we need a safety catch cleanup event?
+
+### FLAVOR EVENTS
+# These come in pairs, with winner and loser versions. The winner's version sends event to the loser and triggers the next handler
+# These will actually appear in a different file, but for reference purposes:
+# x.x	Initial clash flavor
+# x.x	Combat flavor
+# x.x	Outcome flavor
