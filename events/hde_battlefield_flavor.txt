@@ -1,22 +1,29 @@
 namespace = hde_battle
 
 ### SETUP
+## 0-99 reserved
 # These events are only required if there aren't already existing events to plug into
 # hde_battle.0		Begin the chain, triggered from on_actions
 # hde_battle.1		Pass along event, starts the actual fight
 
 ### INITIAL FLAVOR
-# Winner charges first
-# hde_battle.2		Winner decides
-# hde_battle.3		Loser decides
-# hde_battle.4		Winner ran away
-# hde_battle.5		Loser ran away
-# Loser charges first
-# hde_battle.6		Winner decides
-# hde_battle.7		Loser decides
-# hde_battle.8		Winner ran away
-# hde_battle.9		Loser ran away
+## 100-199 reserved
+# These come in two varieties: Sent to Winner, or Sent to Loser
+# If winner first, the loser sends the appropriate handler event back to the winner
+# If loser first, the winner calls the appropriate bounce event on the loser
+# If sent to the winner, winner = ROOT and loser = FROMFROM
+# If sent to the loser, loser = ROOT and winner = FROM
+# hde_battle.100	Winner decides
+# hde_battle.101	Loser decides
+# hde_battle.102	Winner ran away
+# hde_battle.103	Loser ran away
 
+### FIRST CLASH FLAVOR
+### COMBAT FLAVOR
+### OUTCOME FLAVOR
+### FAILURE FLAVOR
+
+### SETUP EVENTS
 character_event = {
     id = hde_battle.0
     hide_window = yes
@@ -214,16 +221,39 @@ character_event = {
 	}
 }
 
-### INITIAL FLAVOR
+### INITIAL FLAVOR EVENTS
+## Winner is Aggressive
+# Winner attacks or not!
 character_event = {
-	id = hde_battle.2
-	desc = hde_battle.2
+	id = hde_battle.100
+	desc = hde_battle.100.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
 	
 	is_triggered_only = yes
 	
 	option = {
-		
+		name = hde_battle.100.a # Charge!
+	}
+	
+	option = {
+		name = hde_battle.100.b # NOPE!
+	}
+}
+# Loser decides
+character_event = {
+	id = hde_battle.101
+	desc = hde_battle.101
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.101.a # Let's fight!
+	}
+	
+	option = {
+		name = hde_battle.101.b # I'm outta here!
 	}
 }

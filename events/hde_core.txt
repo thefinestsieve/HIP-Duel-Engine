@@ -17,12 +17,18 @@ namespace = hde_core
 
 ### HANDLER EVENTS
 # These can call different flavor depending on the flavor flags
-# These all fire on ROOT, and the flavor events they trigger will pass the loser event by using the duel_target trait scope and accompanying opinion modifiers
 # hde_core.2	Initial handler, random flavor events, lets participants decide whether to run or not
 # hde_core.3	First clash handler, random flavor events
-# hde_core.4	Combat handler, random flavor events, can be repeated, mid-fight wounding might happen here?
-# hde_core.5	Outcome handler, random flavor events
-# hde_core.6	Cleanup handler, cleans up flags, traits, and opinion modifiers, also fires failure flavor
+# hde_core.4	First Clash handler bounce event
+# hde_core.5	Combat handler, random flavor events
+# hde_core.6	Combat handler bounce event
+
+### OUTCOME EVENTS
+# The outcome event is fired from e_rebels due to requiring the AI weights in order to choose options
+# hde_core.7	Outcome handler, random flavor events
+# hde_core.8	Outcome handler bounce event
+# hde_core.9	Cleanup handler, cleans up flags, traits, and opinion modifiers, also fires failure flavor
+# hde_core.10	Cleanup handler bounce event (will this even be needed?)
 
 # Outcome types: Loser is outright killed, loser is wounded, loser is subdued. If loser is wounded or subdued, they may be captured, killed, or let go. If loser is wounded but refuses to yield, repeat the loop, but with odds against the loser? (And risk of getting maimed.) If loser is subdued but refuses to yield, they get wounded, then the loop is repeated as before.
 
@@ -31,7 +37,8 @@ namespace = hde_core
 
 ### FLAVOR EVENTS
 # These come in pairs, with winner and loser versions.
-# If the event is sent to the winner, the winner's version sends an event to the loser, and the loser calls the handler again on the winner
+# If the event is sent to the winner, the winner's version sends an event to the loser, and the loser calls the next handler on the winner
+# If the event is sent to the loser, the loser's version sends an event to the winner, and the winner calls the next handler's bounce event on the loser
 # (This way all the localizations work)
 # VERY IMPORTANT: Due to how this is designed, if the flavor events aren't sufficiently mixed up it might become possible for an observant player to tell whether they're going to win or lose by which flavor events they get
 # So it's very important that flavor is jumbled up, such as by swapping up winner/loser text sometimes
@@ -61,6 +68,17 @@ character_event = {
 				FROM = { has_landed_title = e_rebels }
 				FROMFROM = { has_landed_title = e_rebels }
 			}
+		}
+	}
+	
+	immediate = {
+		FROM = {
+			add_trait = duel_target
+		}
+		FROMFROM = {
+			add_trait = duel_target
+			opinion = { who = FROM modifier = opinion_duel_target }
+			reverse_opinion = { who = FROM modifier = opinion_duel_target }
 		}
 	}
 
@@ -275,13 +293,9 @@ character_event = {
 		# Set flags and target lock
 		FROM = {
 			set_character_flag = flag_duel_winner
-			add_trait = duel_target
 		}
 		FROMFROM = {
 			set_character_flag = flag_duel_loser
-			add_trait = duel_target
-			opinion = { who = FROM modifier = opinion_duel_target }
-			reverse_opinion = { who = FROM modifier = opinion_duel_target }
 			character_event = { id = hde_core.1 }
 		}
 	}
@@ -496,14 +510,10 @@ character_event = {
 		# Set flags and target lock
 		FROM = {
 			set_character_flag = flag_duel_loser
-			add_trait = duel_target
-			opinion = { who = FROMFROM modifier = opinion_duel_target }
-			reverse_opinion = { who = FROMFROM modifier = opinion_duel_target }
 			character_event = { id = hde_core.1 }
 		}
 		FROMFROM = {
 			set_character_flag = flag_duel_winner
-			add_trait = duel_target
 		}
 	}
 }
@@ -533,7 +543,9 @@ character_event = {
 ### HANDLER EVENTS
 # Initial handler, gives the duelists a chance to run away
 # Winner = ROOT, loser = FROM
-# These events are sent to the winner, so the subsequent event will be winner (ROOT) and loser (FROMFROM)
+# These events can be sent to the winner or the loser
+# If sent to the winner, the subsequent event will be winner (ROOT) and loser (FROMFROM)
+# If sent to the loser, the subsequent event will be loser (ROOT) and winner (FROM)
 character_event = {
 	id = hde_core.2
 	hide_window = yes
@@ -552,20 +564,246 @@ character_event = {
 				}
 			}
 			random_list = {
-				50 = { character_event = { id = x.x } }
-				50 = { character_event = { id = x.x } }
+				50 = { character_event = { id = hde_battle.100 } }
+				50 = { character_event = { id = hde_battle.100 } }
 			}
 		}
 		# Battlefield Flavor
 		if = {
 			limit = { has_character_flag = flag_duel_battlefield }
 			random_list = {
-				50 = { character_event = { id = x.x } }
-				50 = { character_event = { id = x.x } }
+				# Winner is aggressive
+				50 = { character_event = { id = hde_battle.100 } }
+				# Loser is aggressive
+				50 = { FROM = { character_event = { id = hde_battle.100 } } }
 			}
 		}
 		# Insert new flavor flag blocks here
 	}
 	
 	option = { name = OK }
+}
+
+# Initial Handler Bounce Event
+# Can probably delete this, it isn't going to be used, but the other handlers will need bounce events like this
+character_event = {
+	id = hde_core.200
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		FROM = {
+			character_event = { id = hde_core.2 }
+		}
+	}
+	
+	option = { name = OK }
+}
+
+### OUTCOME EVENTS
+
+# Outcome Handler
+character_event = {
+	id = hde_core.7
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = { has_landed_title = e_rebels }
+	
+	option = { # Wounding Blow
+		name = AI_EVENT
+		ai_chance = {
+			factor = 33
+			modifier = {
+				factor = 0.01
+				FROMFROM = { has_character_flag = flag_duel_friendly }
+			}
+			modifier = {
+				factor = 1.5
+				FROMFROM = { trait = cruel }
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { trait = wroth }
+			}
+			modifier = {
+				factor = 1.25
+				FROM = { trait = brave }
+			}
+			modifier = {
+				factor = 0.8
+				FROMFROM = { trait = patient }
+			}
+			modifier = {
+				factor = 0.5
+				FROMFROM = { trait = kind }
+			}
+		}
+		# call stuff here
+	}
+	
+	option = { # Subdued Opponent
+		name = AI_EVENT
+		ai_chance = {
+			factor = 34
+			# Needs Opponent Taken Alive
+			modifier = {
+				factor = 10
+				FROMFROM = {
+					OR = {
+						any_current_enemy = { character = FROM }
+						liege = { any_current_enemy = { character = FROM } }
+					}
+					NOT = {
+						OR = {
+							trait = lunatic
+							trait = possessed
+						}
+					}
+					NOT = {
+						OR = {
+							trait = wroth
+							trait = cruel
+							trait = paranoid
+						}
+					}
+					NOT = { #republic feuders
+						has_dynasty_flag = the_feuders
+						FROM = { has_dynasty_flag = the_victims }
+					}
+					NOT = {
+						has_dynasty_flag = the_victims
+						FROM = { has_dynasty_flag = the_feuders }
+					}
+				}	
+			}			
+			
+			# Personal Opinion Modifiers
+			modifier = {
+				factor = 1.25
+				FROMFROM = { opinion = { who = FROM value = 10 } }
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { opinion = { who = FROM value = 20 } }
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { opinion = { who = FROM value = 30 } }
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { opinion = { who = FROM value = 40 } }
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { opinion = { who = FROM value = 50 } }
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { opinion = { who = FROM value = 60 } } 
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { opinion = { who = FROM value = 70 } }
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { opinion = { who = FROM value = 80 } }
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { opinion = { who = FROM value = 90 } }
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { opinion = { who = FROM value = 100 } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { FROMFROM = { opinion = { who = FROM value = -9 } } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { FROMFROM = { opinion = { who = FROM value = -19 } } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { FROMFROM = { opinion = { who = FROM value = -29 } } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { FROMFROM = { opinion = { who = FROM value = -39 } } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { FROMFROM = { opinion = { who = FROM value = -49 } } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { FROMFROM = { opinion = { who = FROM value = -59 } } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { FROMFROM = { opinion = { who = FROM value = -69 } } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { FROMFROM = { opinion = { who = FROM value = -79 } } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { FROMFROM = { opinion = { who = FROM value = -89 } } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { FROMFROM = { opinion = { who = FROM value = -99 } } }
+			}
+			
+			modifier = {
+				factor = 2
+				FROMFROM = { trait = just }
+			}
+		}
+		# call stuff here
+	}
+	
+	option = { # Killing Blow
+		name = AI_EVENT
+		ai_chance = {
+			factor = 33
+			modifier = {
+				factor = 0.01
+				FROMFROM = { has_character_flag = flag_duel_friendly }
+			}
+			modifier = {
+				factor = 0.9
+				FROMFROM = { has_character_flag = flag_duel_tourney } # Remove this?
+			}
+			modifier = {
+				factor = 1.5
+				FROMFROM = { trait = cruel }
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { trait = wroth }
+			}
+			modifier = {
+				factor = 1.25
+				FROM = { trait = brave }
+			}
+			modifier = {
+				factor = 0.8
+				FROMFROM = { trait = patient }
+			}
+			modifier = {
+				factor = 0.5
+				FROMFROM = { trait = kind }
+			}
+		}
+		# call stuff here
+	}
+
 }
