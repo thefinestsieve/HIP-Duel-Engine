@@ -1,0 +1,25 @@
+namespace = hde_core
+
+# Based on work by Galle (Gregory Hayes) and jordarkelf
+
+### CONTEXT FLAGS
+# flag_duel_friendly
+# flag_duel_to_the_death
+
+### MAIN EVENTS
+# hde_core.0	Referee decides outcome of duel between FROM and FROMFROM
+# hde_core.1	Sent to winner, flags winner and loser, target locks duelists, sends winner first handler event
+
+### COMBAT EVENTS
+## Initial clash events
+# x.x	Initial clash handler event, randomly chooses from flavored events
+# x.x	Initial clash flavor: pairs of events w/ winner and loser, winner's version sends winner the next handler
+## Combat events (can be repeated if necessary)
+# x.x	Combat handler, randomly chooses from flavored events
+# x.x	Combat flavor: pairs of events w/ winner and loser, winner's version sends winner the next handler
+
+### OUTCOME EVENTS
+# x.x	Outcome handler, randomly chooses from flavored events
+# x.x	Outcome flavor: pairs of events w/ winner and loser
+
+# Outcome types: Loser is outright killed, loser is wounded, loser is subdued. If loser is wounded or subdued, they may be captured, killed, or let go.
