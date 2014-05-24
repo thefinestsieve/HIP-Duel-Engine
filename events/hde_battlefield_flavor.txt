@@ -21,6 +21,10 @@ namespace = hde_battle
 # hde_battle.102	Winner ran away
 # hde_battle.103	Loser ran away
 # 150-199: Loser first versions
+# hde_battle.150	Loser decides
+# hde_battle.151	Winner decides
+# hde_battle.152	Loser ran away
+# hde_battle.153	Winner ran away
 
 ## FIRST CLASH FLAVOR
 ## 200-299 reserved
@@ -46,6 +50,8 @@ character_event = {
     hide_window = yes
     
     is_triggered_only = yes
+	
+	# Filter out characters who are blind!
     
     trigger = {
         # Avoid crossing targets
@@ -241,6 +247,7 @@ character_event = {
 ### FLAVOR EVENTS
 ## Initial Flavor
 ## Winner First
+## I'd like to give cowards a chance to become brave if they choose to fight. Or at least a chance to lose craven.
 # Winner attacks or not!
 character_event = {
 	id = hde_battle.100
@@ -253,6 +260,46 @@ character_event = {
 	
 	option = {
 		name = hde_battle.100.a # Charge!
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 3
+				trait = poor_warrior
+			}
+			modifier = {
+				factor = 5
+				trait = trained_warrior
+			}
+			modifier = {
+				factor = 7
+				trait = skilled_warrior
+			}
+			modifier = {
+				factor = 9
+				trait = master_warrior
+			}
+			modifier = {
+				factor = 3
+				trait = duelist
+			}
+			modifier = {
+				factor = 10
+				trait = brave
+			}
+			modifier = {
+				factor = 5
+				trait = proud
+			}
+			modifier = {
+				factor = 1.5
+				trait = wroth
+			}
+			modifier = {
+				factor = 1.5
+				trait = strong
+			}
+		}
+		
 		FROMFROM = { # Send to loser
 			character_event = { id = hde_battle.101 tooltip = hde_battle.101.tt }
 		}
@@ -260,6 +307,146 @@ character_event = {
 	
 	option = {
 		name = hde_battle.100.b # NOPE!
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 2
+				FROMFROM = { trait = poor_warrior }
+			}
+			modifier = {
+				factor = 3
+				FROMFROM = { trait = trained_warrior }
+			}
+			modifier = {
+				factor = 4
+				FROMFROM = { trait = skilled_warrior }
+			}
+			modifier = {
+				factor = 5
+				FROMFROM = { trait = master_warrior }
+			}
+			modifier = {
+				factor = 3
+				FROMFROM = { trait = duelist }
+			}
+			modifier = {
+				factor = 2
+				FROMFROM = { trait = strong }
+			}
+			modifier = {
+				factor = 10
+				trait = craven
+			}
+			modifier = {
+				factor = 2
+				trait = paranoid
+			}
+			modifier = {
+				factor = 2
+				trait = weak
+			}
+			modifier = {
+				factor = 2
+				trait = dwarf
+			}
+			modifier = {
+				factor = 2
+				trait = hunchback
+			}
+			modifier = {
+				factor = 2
+				trait = leper
+			}
+			modifier = {
+				factor = 2
+				trait = wounded
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+			modifier = {
+				factor = 4
+				trait = maimed
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+			modifier = {
+				factor = 10
+				trait = blinded
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+		}
+
+		if = {
+			limit = {
+				FROMFROM = {
+					NOT = { trait = poor_warrior }
+					NOT = { trait = trained_warrior }
+					NOT = { trait = skilled_warrior }
+					NOT = { trait = master_warrior }
+				}
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 25
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROMFROM = {
+					trait = poor_warrior
+				}
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 20
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROMFROM = {
+					trait = trained_warrior
+				}
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 15
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROMFROM = {
+					trait = skilled_warrior
+				}
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 10
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROMFROM = {
+					trait = master_warrior
+				}
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 5
+				add_trait = craven
+			}
+		}
+		morale = -0.1
 		hidden_tooltip = {
 			FROMFROM = { # Send to loser
 				character_event = { id = hde_battle.102 }
@@ -278,6 +465,46 @@ character_event = {
 	
 	option = {
 		name = hde_battle.101.a # Let's fight!
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 3
+				trait = poor_warrior
+			}
+			modifier = {
+				factor = 5
+				trait = trained_warrior
+			}
+			modifier = {
+				factor = 7
+				trait = skilled_warrior
+			}
+			modifier = {
+				factor = 9
+				trait = master_warrior
+			}
+			modifier = {
+				factor = 3
+				trait = duelist
+			}
+			modifier = {
+				factor = 10
+				trait = brave
+			}
+			modifier = {
+				factor = 5
+				trait = proud
+			}
+			modifier = {
+				factor = 1.5
+				trait = wroth
+			}
+			modifier = {
+				factor = 1.5
+				trait = strong
+			}
+		}
+		
 		FROM = { # Send next handler to winner
 			character_event = { id = hde_core.3 tooltip = hde_core.3.tt }
 		}
@@ -285,6 +512,138 @@ character_event = {
 	
 	option = {
 		name = hde_battle.101.b # I'm outta here!
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 2
+				FROM = { trait = poor_warrior }
+			}
+			modifier = {
+				factor = 3
+				FROM = { trait = trained_warrior }
+			}
+			modifier = {
+				factor = 4
+				FROM = { trait = skilled_warrior }
+			}
+			modifier = {
+				factor = 5
+				FROM = { trait = master_warrior }
+			}
+			modifier = {
+				factor = 3
+				FROM = { trait = duelist }
+			}
+			modifier = {
+				factor = 2
+				FROM = { trait = strong }
+			}
+			modifier = {
+				factor = 10
+				trait = craven
+			}
+			modifier = {
+				factor = 2
+				trait = paranoid
+			}
+			modifier = {
+				factor = 2
+				trait = weak
+			}
+			modifier = {
+				factor = 2
+				trait = dwarf
+			}
+			modifier = {
+				factor = 2
+				trait = hunchback
+			}
+			modifier = {
+				factor = 2
+				trait = leper
+			}
+			modifier = {
+				factor = 2
+				trait = wounded
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+			modifier = {
+				factor = 4
+				trait = maimed
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+			modifier = {
+				factor = 10
+				trait = blinded
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+		}
+		
+		if = {
+			limit = {
+				FROM = {
+					NOT = { trait = poor_warrior }
+					NOT = { trait = trained_warrior }
+					NOT = { trait = skilled_warrior }
+					NOT = { trait = master_warrior }
+				}
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 25
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = poor_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 20
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = trained_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 15
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = skilled_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 10
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = master_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 5
+				add_trait = craven
+			}
+		}
+		morale = -0.1
 		hidden_tooltip = {
 			FROM = { # Send to winner
 				character_event = { id = hde_battle.103 }
@@ -292,7 +651,7 @@ character_event = {
 		}
 	}
 }
-# Winner chickens out
+# Winner chickens out (Loser's perspective)
 character_event = {
 	id = hde_battle.102
 	desc = hde_battle.102.desc
@@ -303,6 +662,7 @@ character_event = {
 	
 	option = {
 		name = hde_battle.102.a # Yeah, he'd better run!
+		morale = 0.1
 		hidden_tooltip = {
 			FROM = { # Send winner the cleanup event
 				character_event = { id = hde_core.9 }
@@ -310,7 +670,7 @@ character_event = {
 		}
 	}
 }
-# Loser chickens out
+# Loser chickens out (Winner's perspective)
 character_event = {
 	id = hde_battle.103
 	desc = hde_battle.103.desc
@@ -321,6 +681,7 @@ character_event = {
 	
 	option = {
 		name = hde_battle.103.a # Yeah, that's what I thought...
+		morale = 0.1
 		hidden_tooltip = {
 			FROM = { # Send loser the cleanup event
 				character_event = { id = hde_core.9 }
@@ -345,6 +706,46 @@ character_event = {
 	
 	option = {
 		name = hde_battle.100.a # Charge!
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 3
+				trait = poor_warrior
+			}
+			modifier = {
+				factor = 5
+				trait = trained_warrior
+			}
+			modifier = {
+				factor = 7
+				trait = skilled_warrior
+			}
+			modifier = {
+				factor = 9
+				trait = master_warrior
+			}
+			modifier = {
+				factor = 3
+				trait = duelist
+			}
+			modifier = {
+				factor = 10
+				trait = brave
+			}
+			modifier = {
+				factor = 5
+				trait = proud
+			}
+			modifier = {
+				factor = 1.5
+				trait = wroth
+			}
+			modifier = {
+				factor = 1.5
+				trait = strong
+			}
+		}
+
 		FROM = { # Send to winner
 			character_event = { id = hde_battle.151 tooltip = hde_battle.101.tt }
 		}
@@ -352,6 +753,138 @@ character_event = {
 	
 	option = {
 		name = hde_battle.100.b # NOPE!
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 2
+				FROM = { trait = poor_warrior }
+			}
+			modifier = {
+				factor = 3
+				FROM = { trait = trained_warrior }
+			}
+			modifier = {
+				factor = 4
+				FROM = { trait = skilled_warrior }
+			}
+			modifier = {
+				factor = 5
+				FROM = { trait = master_warrior }
+			}
+			modifier = {
+				factor = 3
+				FROM = { trait = duelist }
+			}
+			modifier = {
+				factor = 2
+				FROM = { trait = strong }
+			}
+			modifier = {
+				factor = 10
+				trait = craven
+			}
+			modifier = {
+				factor = 2
+				trait = paranoid
+			}
+			modifier = {
+				factor = 2
+				trait = weak
+			}
+			modifier = {
+				factor = 2
+				trait = dwarf
+			}
+			modifier = {
+				factor = 2
+				trait = hunchback
+			}
+			modifier = {
+				factor = 2
+				trait = leper
+			}
+			modifier = {
+				factor = 2
+				trait = wounded
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+			modifier = {
+				factor = 4
+				trait = maimed
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+			modifier = {
+				factor = 10
+				trait = blinded
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+		}
+		
+		if = {
+			limit = {
+				FROM = {
+					NOT = { trait = poor_warrior }
+					NOT = { trait = trained_warrior }
+					NOT = { trait = skilled_warrior }
+					NOT = { trait = master_warrior }
+				}
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 25
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = poor_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 20
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = trained_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 15
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = skilled_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 10
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = master_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 5
+				add_trait = craven
+			}
+		}
+		morale = -0.1
 		hidden_tooltip = {
 			FROM = { # Send to winner
 				character_event = { id = hde_battle.152 }
@@ -370,6 +903,46 @@ character_event = {
 	
 	option = {
 		name = hde_battle.101.a # Let's fight!
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 3
+				trait = poor_warrior
+			}
+			modifier = {
+				factor = 5
+				trait = trained_warrior
+			}
+			modifier = {
+				factor = 7
+				trait = skilled_warrior
+			}
+			modifier = {
+				factor = 9
+				trait = master_warrior
+			}
+			modifier = {
+				factor = 3
+				trait = duelist
+			}
+			modifier = {
+				factor = 10
+				trait = brave
+			}
+			modifier = {
+				factor = 5
+				trait = proud
+			}
+			modifier = {
+				factor = 1.5
+				trait = wroth
+			}
+			modifier = {
+				factor = 1.5
+				trait = strong
+			}
+		}
+
 		FROM = { # Send next handler bounce event to loser
 			character_event = { id = hde_core.4 tooltip = hde_core.4.tt }
 		}
@@ -377,6 +950,138 @@ character_event = {
 	
 	option = {
 		name = hde_battle.101.b # I'm outta here!
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 2
+				FROM = { trait = poor_warrior }
+			}
+			modifier = {
+				factor = 3
+				FROM = { trait = trained_warrior }
+			}
+			modifier = {
+				factor = 4
+				FROM = { trait = skilled_warrior }
+			}
+			modifier = {
+				factor = 5
+				FROM = { trait = master_warrior }
+			}
+			modifier = {
+				factor = 3
+				FROM = { trait = duelist }
+			}
+			modifier = {
+				factor = 2
+				FROM = { trait = strong }
+			}
+			modifier = {
+				factor = 10
+				trait = craven
+			}
+			modifier = {
+				factor = 2
+				trait = paranoid
+			}
+			modifier = {
+				factor = 2
+				trait = weak
+			}
+			modifier = {
+				factor = 2
+				trait = dwarf
+			}
+			modifier = {
+				factor = 2
+				trait = hunchback
+			}
+			modifier = {
+				factor = 2
+				trait = leper
+			}
+			modifier = {
+				factor = 2
+				trait = wounded
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+			modifier = {
+				factor = 4
+				trait = maimed
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+			modifier = {
+				factor = 10
+				trait = blinded
+				NOT = { trait = lunatic }
+				NOT = { trait = brave }
+				NOT = { trait = proud }
+				NOT = { trait = wroth }
+			}
+		}
+		
+		if = {
+			limit = {
+				FROM = {
+					NOT = { trait = poor_warrior }
+					NOT = { trait = trained_warrior }
+					NOT = { trait = skilled_warrior }
+					NOT = { trait = master_warrior }
+				}
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 25
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = poor_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 20
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = trained_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 15
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = skilled_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 10
+				add_trait = craven
+			}
+		}
+		if = {
+			limit = {
+				FROM = { trait = master_warrior }
+				NOT = { trait = craven }
+			}
+			random = {
+				chance = 5
+				add_trait = craven
+			}
+		}
+		morale = -0.1
 		hidden_tooltip = {
 			FROM = { # Send to loser
 				character_event = { id = hde_battle.153 }
@@ -384,7 +1089,7 @@ character_event = {
 		}
 	}
 }
-# Loser chickens out
+# Loser chickens out (Winner's perspective)
 character_event = {
 	id = hde_battle.152
 	desc = hde_battle.102.desc
@@ -395,6 +1100,7 @@ character_event = {
 	
 	option = {
 		name = hde_battle.102.a # Yeah, he'd better run!
+		morale = 0.1
 		hidden_tooltip = {
 			FROM = { # Send loser the cleanup event
 				character_event = { id = hde_core.9 }
@@ -402,7 +1108,7 @@ character_event = {
 		}
 	}
 }
-# Winner chickens out
+# Winner chickens out (Loser's perspective)
 character_event = {
 	id = hde_battle.153
 	desc = hde_battle.103.desc
@@ -413,6 +1119,7 @@ character_event = {
 	
 	option = {
 		name = hde_battle.103.a # Yeah, that's what I thought...
+		morale = 0.1
 		hidden_tooltip = {
 			FROM = { # Send winner the cleanup event
 				character_event = { id = hde_core.9 }
