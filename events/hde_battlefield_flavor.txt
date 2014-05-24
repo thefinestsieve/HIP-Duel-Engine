@@ -7,39 +7,30 @@ namespace = hde_battle
 # hde_battle.1		Pass along event, starts the actual fight
 
 ### FLAVOR EVENTS
+# Each of these need to have two header events, one for Winner = ROOT and one for Loser = ROOT
+# Opponent is FROMFROM in former, FROM in latter
+# But all subsequent events in the chain are interchangeable as long as they 
+
 # These come in two varieties: Winner first and loser first
 # If winner first, the loser sends the appropriate handler event back to the winner
 # If loser first, the winner calls the appropriate bounce event on the loser
 # If sent to the winner, winner = ROOT and loser = FROMFROM
 # If sent to the loser, loser = ROOT and winner = FROM
 
+# Localization for flavor events should be written in the roles of Aggressor and Defender
+# Localization is interchangeable except for the initial event, where the Winner's first event needs to reference FROMFROM as the opponent and the Loser's first event needs to reference FROM as the opponent
+
 ## INITIAL FLAVOR
 ## 100-199 reserved
-# 100-149: Winner first versions
-# hde_battle.100	Winner decides
-# hde_battle.101	Loser decides
-# hde_battle.102	Winner ran away
-# hde_battle.103	Loser ran away
-# 150-199: Loser first versions
-# hde_battle.150	Loser decides
-# hde_battle.151	Winner decides
-# hde_battle.152	Loser ran away
-# hde_battle.153	Winner ran away
 
-## FIRST CLASH FLAVOR
+## SIZING UP FLAVOR
 ## 200-299 reserved
-# 200-249: Winner first versions
-# 250-299: Loser first versions
 
 ## COMBAT FLAVOR
 ## 300-399 reserved
-# 300-349: Winner first versions
-# 350-399: Loser first versions
 
 ## OUTCOME FLAVOR
 ## 400-499 reserved
-# 400-449: Winner first versions
-# 450-499: Loser first versions
 
 ## FAILURE FLAVOR
 # Not sure if necessary yet
@@ -245,10 +236,12 @@ character_event = {
 }
 
 ### FLAVOR EVENTS
+#####################
 ## Initial Flavor
-## Winner First
-## I'd like to give cowards a chance to become brave if they choose to fight. Or at least a chance to lose craven.
-# Winner attacks or not!
+## I'd like to give cowards a chance to become brave if they choose to fight.
+## Or at least a chance to lose craven.
+# Note that all events in the sequence are interchangeable except the first, which may require its own localization
+# Aggressor attacks or not! (ROOT = Winner)
 character_event = {
 	id = hde_battle.100
 	desc = hde_battle.100.desc
@@ -301,7 +294,7 @@ character_event = {
 		}
 		
 		FROMFROM = { # Send to loser
-			character_event = { id = hde_battle.101 tooltip = hde_battle.101.tt }
+			character_event = { id = hde_battle.102 tooltip = hde_battle.102.tt }
 		}
 	}
 	
@@ -448,255 +441,15 @@ character_event = {
 		}
 		morale = -0.1
 		hidden_tooltip = {
-			FROMFROM = { # Send to loser
-				character_event = { id = hde_battle.102 }
-			}
-		}
-	}
-}
-# Loser decides
-character_event = {
-	id = hde_battle.101
-	desc = hde_battle.101.desc
-	picture = GFX_evt_battle
-	border = GFX_event_normal_frame_war
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = hde_battle.101.a # Let's fight!
-		ai_chance = {
-			factor = 100
-			modifier = {
-				factor = 3
-				trait = poor_warrior
-			}
-			modifier = {
-				factor = 5
-				trait = trained_warrior
-			}
-			modifier = {
-				factor = 7
-				trait = skilled_warrior
-			}
-			modifier = {
-				factor = 9
-				trait = master_warrior
-			}
-			modifier = {
-				factor = 3
-				trait = duelist
-			}
-			modifier = {
-				factor = 10
-				trait = brave
-			}
-			modifier = {
-				factor = 5
-				trait = proud
-			}
-			modifier = {
-				factor = 1.5
-				trait = wroth
-			}
-			modifier = {
-				factor = 1.5
-				trait = strong
-			}
-		}
-		
-		FROM = { # Send next handler to winner
-			character_event = { id = hde_core.3 tooltip = hde_core.3.tt }
-		}
-	}
-	
-	option = {
-		name = hde_battle.101.b # I'm outta here!
-		ai_chance = {
-			factor = 100
-			modifier = {
-				factor = 2
-				FROM = { trait = poor_warrior }
-			}
-			modifier = {
-				factor = 3
-				FROM = { trait = trained_warrior }
-			}
-			modifier = {
-				factor = 4
-				FROM = { trait = skilled_warrior }
-			}
-			modifier = {
-				factor = 5
-				FROM = { trait = master_warrior }
-			}
-			modifier = {
-				factor = 3
-				FROM = { trait = duelist }
-			}
-			modifier = {
-				factor = 2
-				FROM = { trait = strong }
-			}
-			modifier = {
-				factor = 10
-				trait = craven
-			}
-			modifier = {
-				factor = 2
-				trait = paranoid
-			}
-			modifier = {
-				factor = 2
-				trait = weak
-			}
-			modifier = {
-				factor = 2
-				trait = dwarf
-			}
-			modifier = {
-				factor = 2
-				trait = hunchback
-			}
-			modifier = {
-				factor = 2
-				trait = leper
-			}
-			modifier = {
-				factor = 2
-				trait = wounded
-				NOT = { trait = lunatic }
-				NOT = { trait = brave }
-				NOT = { trait = proud }
-				NOT = { trait = wroth }
-			}
-			modifier = {
-				factor = 4
-				trait = maimed
-				NOT = { trait = lunatic }
-				NOT = { trait = brave }
-				NOT = { trait = proud }
-				NOT = { trait = wroth }
-			}
-			modifier = {
-				factor = 10
-				trait = blinded
-				NOT = { trait = lunatic }
-				NOT = { trait = brave }
-				NOT = { trait = proud }
-				NOT = { trait = wroth }
-			}
-		}
-		
-		if = {
-			limit = {
-				FROM = {
-					NOT = { trait = poor_warrior }
-					NOT = { trait = trained_warrior }
-					NOT = { trait = skilled_warrior }
-					NOT = { trait = master_warrior }
-				}
-				NOT = { trait = craven }
-			}
-			random = {
-				chance = 25
-				add_trait = craven
-			}
-		}
-		if = {
-			limit = {
-				FROM = { trait = poor_warrior }
-				NOT = { trait = craven }
-			}
-			random = {
-				chance = 20
-				add_trait = craven
-			}
-		}
-		if = {
-			limit = {
-				FROM = { trait = trained_warrior }
-				NOT = { trait = craven }
-			}
-			random = {
-				chance = 15
-				add_trait = craven
-			}
-		}
-		if = {
-			limit = {
-				FROM = { trait = skilled_warrior }
-				NOT = { trait = craven }
-			}
-			random = {
-				chance = 10
-				add_trait = craven
-			}
-		}
-		if = {
-			limit = {
-				FROM = { trait = master_warrior }
-				NOT = { trait = craven }
-			}
-			random = {
-				chance = 5
-				add_trait = craven
-			}
-		}
-		morale = -0.1
-		hidden_tooltip = {
-			FROM = { # Send to winner
+			FROMFROM = { # Send to defender
 				character_event = { id = hde_battle.103 }
 			}
 		}
 	}
 }
-# Winner chickens out (Loser's perspective)
+# Aggressor attacks or not! (ROOT = Loser)
 character_event = {
-	id = hde_battle.102
-	desc = hde_battle.102.desc
-	picture = GFX_evt_battle
-	border = GFX_event_normal_frame_war
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = hde_battle.102.a # Yeah, he'd better run!
-		morale = 0.1
-		hidden_tooltip = {
-			FROM = { # Send winner the cleanup event
-				character_event = { id = hde_core.9 }
-			}
-		}
-	}
-}
-# Loser chickens out (Winner's perspective)
-character_event = {
-	id = hde_battle.103
-	desc = hde_battle.103.desc
-	picture = GFX_evt_battle
-	border = GFX_event_normal_frame_war
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = hde_battle.103.a # Yeah, that's what I thought...
-		morale = 0.1
-		hidden_tooltip = {
-			FROM = { # Send loser the cleanup event
-				character_event = { id = hde_core.9 }
-			}
-		}
-	}
-}
-
-## Loser First
-# Note that the first four events just reuse the same localization from the winner events.
-# You can't always do this (beware of screwing up the scopes!) but when you can it's handy.
-# The first event is the one where the scopes are different (becomes FROM instead of FROMFROM)
-# Loser attacks or not!
-character_event = {
-	id = hde_battle.150
+	id = hde_battle.101
 	desc = hde_battle.100.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
@@ -747,7 +500,7 @@ character_event = {
 		}
 
 		FROM = { # Send to winner
-			character_event = { id = hde_battle.151 tooltip = hde_battle.101.tt }
+			character_event = { id = hde_battle.102 tooltip = hde_battle.102.tt }
 		}
 	}
 	
@@ -886,23 +639,23 @@ character_event = {
 		}
 		morale = -0.1
 		hidden_tooltip = {
-			FROM = { # Send to winner
-				character_event = { id = hde_battle.152 }
+			FROM = { # Send to defender
+				character_event = { id = hde_battle.103 }
 			}
 		}
 	}
 }
-# Winner decides
+# Defender fights or not!
 character_event = {
-	id = hde_battle.151
-	desc = hde_battle.101.desc
+	id = hde_battle.102
+	desc = hde_battle.102.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
 	
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_battle.101.a # Let's fight!
+		name = hde_battle.102.a # Let's fight!
 		ai_chance = {
 			factor = 100
 			modifier = {
@@ -942,14 +695,23 @@ character_event = {
 				trait = strong
 			}
 		}
-
-		FROM = { # Send next handler bounce event to loser
-			character_event = { id = hde_core.4 tooltip = hde_core.4.tt }
+		
+		if = {
+			limit = { has_character_flag = flag_duel_loser }
+			FROM = { # Send handler to Winner
+				character_event = { id = hde_core.3 tooltip = hde_core.3.tt }
+			}
+		}
+		if = {
+			limit = { has_character_flag = flag_duel_winner }
+			FROM = { # Send handler bounce to Loser
+				character_event = { id = hde_core.4 tooltip = hde_core.4.tt }
+			}
 		}
 	}
 	
 	option = {
-		name = hde_battle.101.b # I'm outta here!
+		name = hde_battle.102.b # I'm outta here!
 		ai_chance = {
 			factor = 100
 			modifier = {
@@ -1083,34 +845,15 @@ character_event = {
 		}
 		morale = -0.1
 		hidden_tooltip = {
-			FROM = { # Send to loser
-				character_event = { id = hde_battle.153 }
+			FROM = { # Send to aggressor
+				character_event = { id = hde_battle.104 }
 			}
 		}
 	}
 }
-# Loser chickens out (Winner's perspective)
+# Aggressor chickens out
 character_event = {
-	id = hde_battle.152
-	desc = hde_battle.102.desc
-	picture = GFX_evt_battle
-	border = GFX_event_normal_frame_war
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = hde_battle.102.a # Yeah, he'd better run!
-		morale = 0.1
-		hidden_tooltip = {
-			FROM = { # Send loser the cleanup event
-				character_event = { id = hde_core.9 }
-			}
-		}
-	}
-}
-# Winner chickens out (Loser's perspective)
-character_event = {
-	id = hde_battle.153
+	id = hde_battle.103
 	desc = hde_battle.103.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
@@ -1118,11 +861,96 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_battle.103.a # Yeah, that's what I thought...
+		name = hde_battle.103.a # Yeah, he'd better run!
+
 		morale = 0.1
 		hidden_tooltip = {
-			FROM = { # Send winner the cleanup event
+			FROM = { # Time for cleanup
 				character_event = { id = hde_core.9 }
+			}
+		}
+	}
+}
+# Defender chickens out
+character_event = {
+	id = hde_battle.104
+	desc = hde_battle.104.desc
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.104.a # Yeah, that's what I thought...
+
+		morale = 0.1
+		hidden_tooltip = {
+			FROM = { # Time for cleanup
+				character_event = { id = hde_core.9 }
+			}
+		}
+	}
+}
+
+#####################
+## Sizing Up Flavor
+## Winner First
+# Aggressor circles... (ROOT = Winner)
+character_event = {
+	id = hde_battle.200
+	desc = hde_battle.200.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	
+	option = {
+		name = hde_battle.200.a
+		
+		hidden_tooltip = {
+			FROMFROM = { # Send to Loser
+				character_event = { id = hde_battle.201 }
+			}
+		}
+	}
+}
+# Aggressor circles... (ROOT = Loser)
+character_event = {
+	id = hde_battle.201
+	desc = hde_battle.200.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	
+	option = {
+		name = hde_battle.200.a
+		
+		hidden_tooltip = {
+			FROM = { # Send to Winner
+				character_event = { id = hde_battle.201 }
+			}
+		}
+	}
+}
+# Defender circles...
+character_event = {
+	id = hde_battle.202
+	desc = hde_battle.202.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	
+	option = {
+		name = hde_battle.202.a
+		if = {
+			limit = { has_character_flag = flag_duel_loser }
+			FROM = { # Send handler to Winner
+				character_event = { id = hde_core.5 tooltip = hde_core.5.tt }
+			}
+		}
+		if = {
+			limit = { has_character_flag = flag_duel_winner }
+			FROM = { # Send handler bounce to Loser
+				character_event = { id = hde_core.6 tooltip = hde_core.6.tt }
 			}
 		}
 	}

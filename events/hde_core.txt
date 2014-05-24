@@ -19,8 +19,8 @@ namespace = hde_core
 ### HANDLER EVENTS
 # These can call different flavor depending on the flavor flags
 # hde_core.2	Initial handler, random flavor events, lets participants decide whether to run or not
-# hde_core.3	First Clash handler, random flavor events
-# hde_core.4	First Clash handler bounce event
+# hde_core.3	Sizing Up handler, random flavor events
+# hde_core.4	Sizing Up handler bounce event
 # hde_core.5	Combat handler, random flavor events
 # hde_core.6	Combat handler bounce event
 
@@ -34,6 +34,8 @@ namespace = hde_core
 
 # Question: How are we going to check for failure states? What if one of the characters dies for some other reason? We'll need a failure event ("You lost track of your opponent in the heat of battle" sort of thing)?
 # Question: Will we need a safety catch cleanup event?
+# I want to be able to mark characters so we know they're on their second or third trip through the loop
+# This way the handlers can point them towards "tired" versions of flavor events
 
 ### FLAVOR EVENTS
 # These come in pairs, with winner and loser versions.
@@ -44,7 +46,7 @@ namespace = hde_core
 # So it's very important that flavor is jumbled up, such as by swapping up winner/loser text sometimes
 # These will actually appear in a different file, but for reference purposes:
 # x.x	Initial flavor
-# x.x	First clash flavor
+# x.x	Sizing Up flavor
 # x.x	Combat flavor
 # x.x	Outcome flavor
 # x.x	Failure flavor
@@ -541,7 +543,7 @@ character_event = {
 }
 
 ### HANDLER EVENTS
-# Initial Handler
+## Initial Handler
 # Gives the duelists a chance to run away
 # Winner = ROOT, loser = FROM
 # These events can be sent to the winner or the loser
@@ -554,7 +556,8 @@ character_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		# There is no flavor flag, so default flavor (battlefield?)
+		# There is no flavor flag, so default flavor
+		# We definitely need something else for default, since battlefield duels have special mechanics like morale
 		if = {
 			limit = {
 				NOT = {
@@ -568,7 +571,7 @@ character_event = {
 				# Winner is aggressive
 				50 = { character_event = { id = hde_battle.100 } }
 				# Loser is aggressive
-				50 = { FROM = { character_event = { id = hde_battle.150 } } }
+				50 = { FROM = { character_event = { id = hde_battle.101 } } }
 			}
 		}
 		# Battlefield Flavor
@@ -578,7 +581,7 @@ character_event = {
 				# Winner is aggressive
 				50 = { character_event = { id = hde_battle.100 } }
 				# Loser is aggressive
-				50 = { FROM = { character_event = { id = hde_battle.150 } } }
+				50 = { FROM = { character_event = { id = hde_battle.101 } } }
 			}
 		}
 		# Insert new flavor flag blocks here
@@ -587,24 +590,7 @@ character_event = {
 	option = { name = OK }
 }
 
-# Initial Handler Bounce Event
-# Can probably delete this, it isn't going to be used, but the other handlers will need bounce events like this
-character_event = {
-	id = hde_core.200
-	hide_window = yes
-	
-	is_triggered_only = yes
-	
-	immediate = {
-		FROM = {
-			character_event = { id = hde_core.2 }
-		}
-	}
-	
-	option = { name = OK }
-}
-
-# First Clash Handler
+## Sizing Up Handler
 # Winner = ROOT, loser = FROM
 # These events can be sent to the winner or the loser
 # If sent to the winner, the subsequent event will be winner (ROOT) and loser (FROMFROM)
@@ -616,7 +602,8 @@ character_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		# There is no flavor flag, so default flavor (battlefield?)
+		# There is no flavor flag, so default flavor
+		# We definitely need something else for default, since battlefield duels have special mechanics like morale
 		if = {
 			limit = {
 				NOT = {
@@ -627,8 +614,10 @@ character_event = {
 				}
 			}
 			random_list = {
-				50 = { character_event = { id = hde_battle.x } }
-				50 = { character_event = { id = hde_battle.x } }
+				# Winner is aggressive
+				50 = { character_event = { id = hde_battle.200 } }
+				# Loser is aggressive
+				50 = { FROM = { character_event = { id = hde_battle.201 } } }
 			}
 		}
 		# Battlefield Flavor
@@ -636,9 +625,9 @@ character_event = {
 			limit = { has_character_flag = flag_duel_battlefield }
 			random_list = {
 				# Winner is aggressive
-				50 = { character_event = { id = hde_battle.x } }
+				50 = { character_event = { id = hde_battle.200 } }
 				# Loser is aggressive
-				50 = { FROM = { character_event = { id = hde_battle.x } } }
+				50 = { FROM = { character_event = { id = hde_battle.201 } } }
 			}
 		}
 		# Insert new flavor flag blocks here
@@ -646,7 +635,7 @@ character_event = {
 	
 	option = { name = OK }
 }
-# First Clash Handler Bounce Event
+# Sizing Up Handler Bounce Event
 character_event = {
 	id = hde_core.4
 	hide_window = yes
@@ -662,7 +651,7 @@ character_event = {
 	option = { name = OK }
 }
 
-# Combat Handler
+## Combat Handler
 # Winner = ROOT, loser = FROM
 # These events can be sent to the winner or the loser
 # If sent to the winner, the subsequent event will be winner (ROOT) and loser (FROMFROM)
@@ -674,7 +663,8 @@ character_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		# There is no flavor flag, so default flavor (battlefield?)
+		# There is no flavor flag, so default flavor
+		# We definitely need something else for default, since battlefield duels have special mechanics like morale
 		if = {
 			limit = {
 				NOT = {
@@ -951,16 +941,24 @@ character_event = {
 	
 	immediate = {
 		FROM = {
+			# Winner/loser flags
+			clr_character_flag = flag_duel_winner
+			clr_character_flag = flag_duel_loser
+			# Targeting stuff
 			remove_trait = duel_target
-			# Duel Type:
+			# Duel Type
 			clr_character_flag = flag_duel_battlefield
 			# Duel Flavor
 			clr_character_flag = flag_duel_friendly
 		}
+		# Winner/loser flags
+		clr_character_flag = flag_duel_winner
+		clr_character_flag = flag_duel_loser
+		# Targeting stuff
 		remove_trait = duel_target
 		remove_opinion = { who = FROM modifier = opinion_duel_target }
 		reverse_remove_opinion = { who = FROM modifier = opinion_duel_target }
-		# Duel Type:
+		# Duel Type
 		clr_character_flag = flag_duel_battlefield
 		# Duel Flavor
 		clr_character_flag = flag_duel_friendly
