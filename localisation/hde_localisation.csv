@@ -1,8 +1,22 @@
 #CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
 ######################################5_EVENTS;;;;;;;;;;;;;;x
+############ Core;;;;;;;;;;;;;;x
+hde_core.3.tt;joins the battle;;;;;;;;;;;;;x
+hde_core.4.tt;prepares to attack;;;;;;;;;;;;;x
+############ Battlefield Flavor;;;;;;;;;;;;;;x
+# Winner Aggressive;;;;;;;;;;;;;;x
+# Winner attacks or not! Loser is FROMFROM
 hde_battle.100.desc;Fighting across the field, you see an enemy soldier cut off from the others. While you can't tell who, it's clear that they must be a highborn noble.;Alors que vous vous battez sur le champ de bataille, vous apercevez un soldat ennemi s'extirper des rangs. Si vous n'arrivez pas à voir de qui il s'agit, vous êtes par contre sûr qu'il s'agit d'un noble de haute naissance.;;;Durante la batalla, ves a un soldado enemigo separado del resto. Aunque no sabes quién pueda ser, está claro que es de sangre noble.;;;;;;;;;x
-hde_battle.0.a;Charge!;A l'assaut !;;;¡A la carga!;;;;;;;;;x
-
-EVTDESC5556001;You were separated from your men in the chaos of battle, and now find yourself in the midst of war. As you scan the field and try to rejoin your forces, you see [From.GetBestName] break through the enemy ranks and charge you!;Dans le chaos des combats, vous avez été séparé de vos hommes et vous trouvez désormais en plein milieu de la bataille. Alors que vous tentez de rejoindre vos forces, vous apercevez [From.GetBestName] qui se fraye un chemin à travers les rangs ennemis avant de vous charger !;;;Fuiste separado de tus hombres en el caos de la batalla, y ahora te encuentras en el centro de la batalla. ¡Mientras buscas la forma de reunirte con tus hombres, ves a [From.GetBestName] abrirse paso entre el enemigo y cargar contra ti!;;;;;;;;;x
-
-
+hde_battle.100.a;Charge!;A l'assaut !;;;¡A la carga!;;;;;;;;;x
+hde_battle.100.b;I need to get out of here!;Je dois foutre le camp d'ici!;;;¡Tengo que salir de aquí!;;;;;;;;;x
+# Loser decides: Winner is FROM
+hde_battle.101.tt;reacts;réagit;;;Reacciona;;;;;;;;;x
+hde_battle.101.desc;You were separated from your men in the chaos of battle, and now find yourself in the midst of war. As you scan the field and try to rejoin your forces, you see [From.GetBestName] break through the enemy ranks and charge you!;Dans le chaos des combats, vous avez été séparé de vos hommes et vous trouvez désormais en plein milieu de la bataille. Alors que vous tentez de rejoindre vos forces, vous apercevez [From.GetBestName] qui se fraye un chemin à travers les rangs ennemis avant de vous charger !;;;Fuiste separado de tus hombres en el caos de la batalla, y ahora te encuentras en el centro de la batalla. ¡Mientras buscas la forma de reunirte con tus hombres, ves a [From.GetBestName] abrirse paso entre el enemigo y cargar contra ti!;;;;;;;;;x
+hde_battle.101.a;Prepare to die, [From.GetOnlyDynastyName] scum!;Prépare toi à mourir, pourriture de [From.GetOnlyDynastyName]!;;;¡Prepárate a morir, escoria [From.GetOnlyDynastyName]!;;;;;;;;;x
+hde_battle.101.b;I need to get out of here!;Je dois foutre le camp d'ici !;;;¡Tengo que salir de aquí!;;;;;;;;;x
+# Winner chickens out (loser's perspective): Winner is FROM
+hde_battle.102.desc;You turn to face [From.GetTitle] [From.GetFirstName]… and [From.GetSheHe] breaks [From.GetHerHis] charge and flees. You pursue, but lose track of [From.GetHerHim] in the chaos.;Vous vous retournez pour faire face à [From.GetTitle] [From.GetFirstName] lorsqu' [From.GetSheHe] stoppe sa charge et s'enfuit. Vous le(a) poursuivez, mais perdez sa trace dans le chaos des combats.;;;Te giras para enfrentarte a [From.GetTitle] [From.GetFirstName]... cuando [From.GetSheHe] detiene su carga y huye. Le persigues, pero pierdes el rastro en el caos.;;;;;;;;;x
+hde_battle.102.a;That's right, coward, run back to [From.Capital.GetName]!;C'est ça, couard ! Retourne à [From.Capital.GetName] !;;;¡Está bien, cobarde! ¡Corre hasta [From.Capital.GetName]!;;;;;;;;;x
+# Loser chickens out (winner's perspective): Loser is FROM
+hde_battle.103.desc;As you get closer, you realize the enemy soldier is [From.GetBestName]. Seeing you charge across the field toward [From.GetHerHim], [From.GetSheHe] turns and flees. You pursue, but lose track of [From.GetHerHim] in the chaos.;En vous rapprochant, vous réalisez que le soldat est ennemi n'est autre que [From.GetBestName]. Remarquant votre charge à travers le champs de bataille pour l'affronter, [From.GetSheHe] se retourne et fuit. Vous le(a) poursuivez, mais perdez sa trace dans le chaos des combats. ;;;Al acercarte, te das cuenta de que el soldado enemigo es [From.GetBestName]. Al verte avanzar de ese modo, se da la vuelta y huye. Le persigues, pero pierdes el rastro en el caos.;;;;;;;;;x
+hde_battle.103.a;That's right, coward, run back to [From.Capital.GetName]!;C'est ça, couard ! Retourne à [From.Capital.GetName] !;;;¡Está bien, cobarde! ¡Corre hasta [From.Capital.GetName]!;;;;;;;;;x

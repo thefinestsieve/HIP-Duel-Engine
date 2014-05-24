@@ -565,8 +565,10 @@ character_event = {
 				}
 			}
 			random_list = {
+				# Winner is aggressive
 				50 = { character_event = { id = hde_battle.100 } }
-				50 = { character_event = { id = hde_battle.100 } }
+				# Loser is aggressive
+				50 = { FROM = { character_event = { id = hde_battle.150 } } }
 			}
 		}
 		# Battlefield Flavor
@@ -576,7 +578,7 @@ character_event = {
 				# Winner is aggressive
 				50 = { character_event = { id = hde_battle.100 } }
 				# Loser is aggressive
-				50 = { FROM = { character_event = { id = hde_battle.100 } } }
+				50 = { FROM = { character_event = { id = hde_battle.150 } } }
 			}
 		}
 		# Insert new flavor flag blocks here

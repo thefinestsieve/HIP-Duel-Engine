@@ -260,15 +260,17 @@ character_event = {
 	
 	option = {
 		name = hde_battle.100.b # NOPE!
-		FROMFROM = { # Send to loser
-			character_event = { id = hde_battle.102 tooltip = hde_battle.102.tt }
+		hidden_tooltip = {
+			FROMFROM = { # Send to loser
+				character_event = { id = hde_battle.102 }
+			}
 		}
 	}
 }
 # Loser decides
 character_event = {
 	id = hde_battle.101
-	desc = hde_battle.101
+	desc = hde_battle.101.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
 	
@@ -283,15 +285,17 @@ character_event = {
 	
 	option = {
 		name = hde_battle.101.b # I'm outta here!
-		FROM = { # Send to winner
-			character_event = { id = hde_battle.103 tooltip = hde_battle.103.tt }
+		hidden_tooltip = {
+			FROM = { # Send to winner
+				character_event = { id = hde_battle.103 }
+			}
 		}
 	}
 }
 # Winner chickens out
 character_event = {
 	id = hde_battle.102
-	desc = hde_battle.102
+	desc = hde_battle.102.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
 	
@@ -309,7 +313,7 @@ character_event = {
 # Loser chickens out
 character_event = {
 	id = hde_battle.103
-	desc = hde_battle.103
+	desc = hde_battle.103.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
 	
@@ -319,6 +323,98 @@ character_event = {
 		name = hde_battle.103.a # Yeah, that's what I thought...
 		hidden_tooltip = {
 			FROM = { # Send loser the cleanup event
+				character_event = { id = hde_core.9 }
+			}
+		}
+	}
+}
+
+## Loser First
+# Note that the first four events just reuse the same localization from the winner events.
+# You can't always do this (beware of screwing up the scopes!) but when you can it's handy.
+# The first event is the one where the scopes are different (becomes FROM instead of FROMFROM)
+# Loser attacks or not!
+character_event = {
+	id = hde_battle.150
+	desc = hde_battle.100.desc
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.100.a # Charge!
+		FROM = { # Send to winner
+			character_event = { id = hde_battle.151 tooltip = hde_battle.101.tt }
+		}
+	}
+	
+	option = {
+		name = hde_battle.100.b # NOPE!
+		hidden_tooltip = {
+			FROM = { # Send to winner
+				character_event = { id = hde_battle.152 }
+			}
+		}
+	}
+}
+# Winner decides
+character_event = {
+	id = hde_battle.151
+	desc = hde_battle.101.desc
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.101.a # Let's fight!
+		FROM = { # Send next handler bounce event to loser
+			character_event = { id = hde_core.4 tooltip = hde_core.4.tt }
+		}
+	}
+	
+	option = {
+		name = hde_battle.101.b # I'm outta here!
+		hidden_tooltip = {
+			FROM = { # Send to loser
+				character_event = { id = hde_battle.153 }
+			}
+		}
+	}
+}
+# Loser chickens out
+character_event = {
+	id = hde_battle.152
+	desc = hde_battle.102.desc
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.102.a # Yeah, he'd better run!
+		hidden_tooltip = {
+			FROM = { # Send loser the cleanup event
+				character_event = { id = hde_core.9 }
+			}
+		}
+	}
+}
+# Winner chickens out
+character_event = {
+	id = hde_battle.153
+	desc = hde_battle.103.desc
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.103.a # Yeah, that's what I thought...
+		hidden_tooltip = {
+			FROM = { # Send winner the cleanup event
 				character_event = { id = hde_core.9 }
 			}
 		}
