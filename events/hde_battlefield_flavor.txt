@@ -6,22 +6,39 @@ namespace = hde_battle
 # hde_battle.0		Begin the chain, triggered from on_actions
 # hde_battle.1		Pass along event, starts the actual fight
 
-### INITIAL FLAVOR
-## 100-199 reserved
-# These come in two varieties: Sent to Winner, or Sent to Loser
+### FLAVOR EVENTS
+# These come in two varieties: Winner first and loser first
 # If winner first, the loser sends the appropriate handler event back to the winner
 # If loser first, the winner calls the appropriate bounce event on the loser
 # If sent to the winner, winner = ROOT and loser = FROMFROM
 # If sent to the loser, loser = ROOT and winner = FROM
+
+## INITIAL FLAVOR
+## 100-199 reserved
+# 100-149: Winner first versions
 # hde_battle.100	Winner decides
 # hde_battle.101	Loser decides
 # hde_battle.102	Winner ran away
 # hde_battle.103	Loser ran away
+# 150-199: Loser first versions
 
-### FIRST CLASH FLAVOR
-### COMBAT FLAVOR
-### OUTCOME FLAVOR
-### FAILURE FLAVOR
+## FIRST CLASH FLAVOR
+## 200-299 reserved
+# 200-249: Winner first versions
+# 250-299: Loser first versions
+
+## COMBAT FLAVOR
+## 300-399 reserved
+# 300-349: Winner first versions
+# 350-399: Loser first versions
+
+## OUTCOME FLAVOR
+## 400-499 reserved
+# 400-449: Winner first versions
+# 450-499: Loser first versions
+
+## FAILURE FLAVOR
+# Not sure if necessary yet
 
 ### SETUP EVENTS
 character_event = {
@@ -221,23 +238,31 @@ character_event = {
 	}
 }
 
-### INITIAL FLAVOR EVENTS
-## Winner is Aggressive
+### FLAVOR EVENTS
+## Initial Flavor
+## Winner First
 # Winner attacks or not!
 character_event = {
 	id = hde_battle.100
 	desc = hde_battle.100.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
+	hide_from = yes
 	
 	is_triggered_only = yes
 	
 	option = {
 		name = hde_battle.100.a # Charge!
+		FROMFROM = { # Send to loser
+			character_event = { id = hde_battle.101 tooltip = hde_battle.101.tt }
+		}
 	}
 	
 	option = {
 		name = hde_battle.100.b # NOPE!
+		FROMFROM = { # Send to loser
+			character_event = { id = hde_battle.102 tooltip = hde_battle.102.tt }
+		}
 	}
 }
 # Loser decides
@@ -251,9 +276,51 @@ character_event = {
 	
 	option = {
 		name = hde_battle.101.a # Let's fight!
+		FROM = { # Send next handler to winner
+			character_event = { id = hde_core.3 tooltip = hde_core.3.tt }
+		}
 	}
 	
 	option = {
 		name = hde_battle.101.b # I'm outta here!
+		FROM = { # Send to winner
+			character_event = { id = hde_battle.103 tooltip = hde_battle.103.tt }
+		}
+	}
+}
+# Winner chickens out
+character_event = {
+	id = hde_battle.102
+	desc = hde_battle.102
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.102.a # Yeah, he'd better run!
+		hidden_tooltip = {
+			FROM = { # Send winner the cleanup event
+				character_event = { id = hde_core.9 }
+			}
+		}
+	}
+}
+# Loser chickens out
+character_event = {
+	id = hde_battle.103
+	desc = hde_battle.103
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.103.a # Yeah, that's what I thought...
+		hidden_tooltip = {
+			FROM = { # Send loser the cleanup event
+				character_event = { id = hde_core.9 }
+			}
+		}
 	}
 }

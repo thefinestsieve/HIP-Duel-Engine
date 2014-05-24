@@ -1,6 +1,7 @@
 namespace = hde_core
 
-# Based loosely on work by Galle (Gregory Hayes) and jordarkelf
+# By AnaxXiphos
+# Based on work by Galle (Gregory Hayes) and jordarkelf
 
 ### CONTEXT FLAGS
 # Note that ALL duels are hostile (to the death) by default
@@ -18,7 +19,7 @@ namespace = hde_core
 ### HANDLER EVENTS
 # These can call different flavor depending on the flavor flags
 # hde_core.2	Initial handler, random flavor events, lets participants decide whether to run or not
-# hde_core.3	First clash handler, random flavor events
+# hde_core.3	First Clash handler, random flavor events
 # hde_core.4	First Clash handler bounce event
 # hde_core.5	Combat handler, random flavor events
 # hde_core.6	Combat handler bounce event
@@ -28,7 +29,6 @@ namespace = hde_core
 # hde_core.7	Outcome handler, random flavor events
 # hde_core.8	Outcome handler bounce event
 # hde_core.9	Cleanup handler, cleans up flags, traits, and opinion modifiers, also fires failure flavor
-# hde_core.10	Cleanup handler bounce event (will this even be needed?)
 
 # Outcome types: Loser is outright killed, loser is wounded, loser is subdued. If loser is wounded or subdued, they may be captured, killed, or let go. If loser is wounded but refuses to yield, repeat the loop, but with odds against the loser? (And risk of getting maimed.) If loser is subdued but refuses to yield, they get wounded, then the loop is repeated as before.
 
@@ -541,7 +541,8 @@ character_event = {
 }
 
 ### HANDLER EVENTS
-# Initial handler, gives the duelists a chance to run away
+# Initial Handler
+# Gives the duelists a chance to run away
 # Winner = ROOT, loser = FROM
 # These events can be sent to the winner or the loser
 # If sent to the winner, the subsequent event will be winner (ROOT) and loser (FROMFROM)
@@ -601,8 +602,123 @@ character_event = {
 	option = { name = OK }
 }
 
-### OUTCOME EVENTS
+# First Clash Handler
+# Winner = ROOT, loser = FROM
+# These events can be sent to the winner or the loser
+# If sent to the winner, the subsequent event will be winner (ROOT) and loser (FROMFROM)
+# If sent to the loser, the subsequent event will be loser (ROOT) and winner (FROM)
+character_event = {
+	id = hde_core.3
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		# There is no flavor flag, so default flavor (battlefield?)
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						has_character_flag = flag_duel_battlefield
+						# Insert all new flavor flags here
+					}
+				}
+			}
+			random_list = {
+				50 = { character_event = { id = hde_battle.x } }
+				50 = { character_event = { id = hde_battle.x } }
+			}
+		}
+		# Battlefield Flavor
+		if = {
+			limit = { has_character_flag = flag_duel_battlefield }
+			random_list = {
+				# Winner is aggressive
+				50 = { character_event = { id = hde_battle.x } }
+				# Loser is aggressive
+				50 = { FROM = { character_event = { id = hde_battle.x } } }
+			}
+		}
+		# Insert new flavor flag blocks here
+	}
+	
+	option = { name = OK }
+}
+# First Clash Handler Bounce Event
+character_event = {
+	id = hde_core.4
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		FROM = {
+			character_event = { id = hde_core.3 }
+		}
+	}
+	
+	option = { name = OK }
+}
 
+# Combat Handler
+# Winner = ROOT, loser = FROM
+# These events can be sent to the winner or the loser
+# If sent to the winner, the subsequent event will be winner (ROOT) and loser (FROMFROM)
+# If sent to the loser, the subsequent event will be loser (ROOT) and winner (FROM)
+character_event = {
+	id = hde_core.5
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		# There is no flavor flag, so default flavor (battlefield?)
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						has_character_flag = flag_duel_battlefield
+						# Insert all new flavor flags here
+					}
+				}
+			}
+			random_list = {
+				50 = { character_event = { id = hde_battle.x } }
+				50 = { character_event = { id = hde_battle.x } }
+			}
+		}
+		# Battlefield Flavor
+		if = {
+			limit = { has_character_flag = flag_duel_battlefield }
+			random_list = {
+				# Winner is aggressive
+				50 = { character_event = { id = hde_battle.x } }
+				# Loser is aggressive
+				50 = { FROM = { character_event = { id = hde_battle.x } } }
+			}
+		}
+		# Insert new flavor flag blocks here
+	}
+	
+	option = { name = OK }
+}
+# Combat Handler Bounce Event
+character_event = {
+	id = hde_core.6
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		FROM = {
+			character_event = { id = hde_core.5 }
+		}
+	}
+	
+	option = { name = OK }
+}
+
+### OUTCOME EVENTS
 # Outcome Handler
 character_event = {
 	id = hde_core.7
@@ -805,5 +921,48 @@ character_event = {
 		}
 		# call stuff here
 	}
+}
 
+# Outcome Handler Bounce Event
+character_event = {
+	id = hde_core.8
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		FROM = {
+			character_event = { id = hde_core.7 }
+		}
+	}
+	
+	option = { name = OK }
+}
+
+# Cleanup Event
+# One duelist sends this to the other, then it cleans up both
+character_event = {
+	id = hde_core.9
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		FROM = {
+			remove_trait = duel_target
+			# Duel Type:
+			clr_character_flag = flag_duel_battlefield
+			# Duel Flavor
+			clr_character_flag = flag_duel_friendly
+		}
+		remove_trait = duel_target
+		remove_opinion = { who = FROM modifier = opinion_duel_target }
+		reverse_remove_opinion = { who = FROM modifier = opinion_duel_target }
+		# Duel Type:
+		clr_character_flag = flag_duel_battlefield
+		# Duel Flavor
+		clr_character_flag = flag_duel_friendly
+	}
+	
+	option = { name = OK }
 }
