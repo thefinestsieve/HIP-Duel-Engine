@@ -38,12 +38,10 @@ namespace = hde_core
 # This way the handlers can point them towards "tired" versions of flavor events
 
 ### FLAVOR EVENTS
-# These come in pairs, with winner and loser versions.
-# If the event is sent to the winner, the winner's version sends an event to the loser, and the loser calls the next handler on the winner
-# If the event is sent to the loser, the loser's version sends an event to the winner, and the winner calls the next handler's bounce event on the loser
-# (This way all the localizations work)
-# VERY IMPORTANT: Due to how this is designed, if the flavor events aren't sufficiently mixed up it might become possible for an observant player to tell whether they're going to win or lose by which flavor events they get
-# So it's very important that flavor is jumbled up, such as by swapping up winner/loser text sometimes
+# These are effectively mini-chains
+# The events can bounce back and forth as much as you like, so long as it ends with the loser calling the handler on the winner, or with the winner calling the handler bounce event on the loser
+# This is so the localization always works out properly
+# But generally they'll be very short; don't want to be sending participants a forest of events
 # These will actually appear in a different file, but for reference purposes:
 # x.x	Initial flavor
 # x.x	Sizing Up flavor

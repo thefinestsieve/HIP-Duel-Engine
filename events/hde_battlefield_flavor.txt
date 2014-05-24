@@ -895,6 +895,7 @@ character_event = {
 #####################
 ## Sizing Up Flavor
 ## Winner First
+# Going to add support here for "tired" versions by tagging characters who've been through the loop more than once
 # Aggressor circles... (ROOT = Winner)
 character_event = {
 	id = hde_battle.200
