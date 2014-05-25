@@ -73,6 +73,7 @@ character_event = {
 	}
 	
 	immediate = {
+		# Target Lock
 		FROM = {
 			add_trait = duel_target
 		}
@@ -80,6 +81,17 @@ character_event = {
 			add_trait = duel_target
 			opinion = { who = FROM modifier = opinion_duel_target }
 			reverse_opinion = { who = FROM modifier = opinion_duel_target }
+		}
+		# Randomize aggressor/defender
+		random_list = {
+			50 = {
+				FROM = { set_character_flag = flag_duel_aggressor }
+				FROMFROM = { set_character_flag = flag_duel_defender }
+			}
+			50 = {
+				FROM = { set_character_flag = flag_duel_defender }
+				FROMFROM = { set_character_flag = flag_duel_aggressor }
+			}
 		}
 	}
 
@@ -519,7 +531,7 @@ character_event = {
 	}
 }
 
-# Bounce event so localization works properly
+# Bounce event so the scopes work properly
 character_event = {
 	id = hde_core.1
 	hide_window = yes
@@ -566,21 +578,41 @@ character_event = {
 					}
 				}
 			}
-			random_list = {
-				# Winner is aggressive
-				50 = { character_event = { id = hde_battle.100 } }
-				# Loser is aggressive
-				50 = { FROM = { character_event = { id = hde_battle.101 } } }
+			# Winner is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_aggressor }
+				random_list = {
+					50 = { character_event = { id = hde_battle.100 } }
+					50 = { character_event = { id = hde_battle.100 } }
+				}
+			}
+			# Loser is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_defender }
+				random_list = {
+					50 = { FROM = { character_event = { id = hde_battle.101 } } }
+					50 = { FROM = { character_event = { id = hde_battle.101 } } }
+				}
 			}
 		}
 		# Battlefield Flavor
 		if = {
 			limit = { has_character_flag = flag_duel_battlefield }
-			random_list = {
-				# Winner is aggressive
-				50 = { character_event = { id = hde_battle.100 } }
-				# Loser is aggressive
-				50 = { FROM = { character_event = { id = hde_battle.101 } } }
+			# Winner is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_aggressor }
+				random_list = {
+					50 = { character_event = { id = hde_battle.100 } }
+					50 = { character_event = { id = hde_battle.100 } }
+				}
+			}
+			# Loser is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_defender }
+				random_list = {
+					50 = { FROM = { character_event = { id = hde_battle.101 } } }
+					50 = { FROM = { character_event = { id = hde_battle.101 } } }
+				}
 			}
 		}
 		# Insert new flavor flag blocks here
@@ -612,21 +644,41 @@ character_event = {
 					}
 				}
 			}
-			random_list = {
-				# Winner is aggressive
-				50 = { character_event = { id = hde_battle.200 } }
-				# Loser is aggressive
-				50 = { FROM = { character_event = { id = hde_battle.201 } } }
+			# Winner is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_aggressor }
+				random_list = {
+					50 = { character_event = { id = hde_battle.200 } }
+					50 = { character_event = { id = hde_battle.200 } }
+				}
+			}
+			# Loser is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_defender }
+				random_list = {
+					50 = { FROM = { character_event = { id = hde_battle.201 } } }
+					50 = { FROM = { character_event = { id = hde_battle.201 } } }
+				}
 			}
 		}
 		# Battlefield Flavor
 		if = {
 			limit = { has_character_flag = flag_duel_battlefield }
-			random_list = {
-				# Winner is aggressive
-				50 = { character_event = { id = hde_battle.200 } }
-				# Loser is aggressive
-				50 = { FROM = { character_event = { id = hde_battle.201 } } }
+			# Winner is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_aggressor }
+				random_list = {
+					50 = { character_event = { id = hde_battle.200 } }
+					50 = { character_event = { id = hde_battle.200 } }
+				}
+			}
+			# Loser is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_defender }
+				random_list = {
+					50 = { FROM = { character_event = { id = hde_battle.201 } } }
+					50 = { FROM = { character_event = { id = hde_battle.201 } } }
+				}
 			}
 		}
 		# Insert new flavor flag blocks here
@@ -673,21 +725,41 @@ character_event = {
 					}
 				}
 			}
-			random_list = {
-				# Winner is aggressive
-				50 = { character_event = { id = hde_battle.300 } }
-				# Loser is aggressive
-				50 = { FROM = { character_event = { id = hde_battle.301 } } }
+			# Winner is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_aggressor }
+				random_list = {
+					50 = { character_event = { id = hde_battle.300 } }
+					50 = { character_event = { id = hde_battle.300 } }
+				}
+			}
+			# Loser is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_defender }
+				random_list = {
+					50 = { FROM = { character_event = { id = hde_battle.301 } } }
+					50 = { FROM = { character_event = { id = hde_battle.301 } } }
+				}
 			}
 		}
 		# Battlefield Flavor
 		if = {
 			limit = { has_character_flag = flag_duel_battlefield }
-			random_list = {
-				# Winner is aggressive
-				50 = { character_event = { id = hde_battle.300 } }
-				# Loser is aggressive
-				50 = { FROM = { character_event = { id = hde_battle.301 } } }
+			# Winner is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_aggressor }
+				random_list = {
+					50 = { character_event = { id = hde_battle.300 } }
+					50 = { character_event = { id = hde_battle.300 } }
+				}
+			}
+			# Loser is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_defender }
+				random_list = {
+					50 = { FROM = { character_event = { id = hde_battle.301 } } }
+					50 = { FROM = { character_event = { id = hde_battle.301 } } }
+				}
 			}
 		}
 		# Insert new flavor flag blocks here
@@ -714,6 +786,8 @@ character_event = {
 ### OUTCOME EVENTS
 # Outcome Handler
 # FROM = Loser, FROMFROM = Winner
+# If sent to Winner, FROMFROM = Loser
+# If sent to Loser, FROMFROMFROM = Winner
 character_event = {
 	id = hde_core.7
 	hide_window = yes
@@ -945,27 +1019,35 @@ character_event = {
 	
 	immediate = {
 		FROM = {
-			# Winner/loser flags
+			# Aggressor/Defender flags
+			clr_character_flag = flag_duel_aggressor
+			clr_character_flag = flag_duel_defender
+			# Winner/Loser flags
 			clr_character_flag = flag_duel_winner
 			clr_character_flag = flag_duel_loser
 			# Targeting stuff
 			remove_trait = duel_target
-			# Duel Type
-			clr_character_flag = flag_duel_battlefield
 			# Duel Flavor
 			clr_character_flag = flag_duel_friendly
+			# Duel Type
+			clr_character_flag = flag_duel_battlefield
+			# Add new Duel Type flags here
 		}
-		# Winner/loser flags
+		# Aggressor/Defender flags
+		clr_character_flag = flag_duel_aggressor
+		clr_character_flag = flag_duel_defender
+		# Winner/Loser flags
 		clr_character_flag = flag_duel_winner
 		clr_character_flag = flag_duel_loser
 		# Targeting stuff
 		remove_trait = duel_target
 		remove_opinion = { who = FROM modifier = opinion_duel_target }
 		reverse_remove_opinion = { who = FROM modifier = opinion_duel_target }
-		# Duel Type
-		clr_character_flag = flag_duel_battlefield
 		# Duel Flavor
 		clr_character_flag = flag_duel_friendly
+		# Duel Type
+		clr_character_flag = flag_duel_battlefield
+		# Add new Duel Type flags here
 	}
 	
 	option = { name = OK }

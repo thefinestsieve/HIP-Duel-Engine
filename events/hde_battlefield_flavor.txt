@@ -13,9 +13,6 @@ namespace = hde_battle
 # In the case of Combat flavor, the event chains always end with the Winner winning, whether they're aggressor or defender. So they generally require more events (rather like Initial flavor)
 # Combat flavor that ends with the Loser getting the last event in the chain should send the Outcome handler to e_rebels, but if it ends with the Winner then the Outcome bounce event should be sent to the Loser
 
-## OUTCOME FLAVOR
-## 400-499 reserved
-
 ## FAILURE FLAVOR
 # Not sure if necessary yet
 
@@ -979,7 +976,7 @@ character_event = {
 		name = hde_battle.301.a
 		
 		hidden_tooltip = {
-			FROM = { # Send to winner
+			FROM = { # Send to Winner
 				character_event = { id = hde_battle.303 tooltip = hde_battle.303.tt }
 			}
 		}
@@ -1015,9 +1012,13 @@ character_event = {
 		name = hde_battle.303.a
 		
 		hidden_tooltip = {
-			FROM = { # Send bounce event to loser
+			FROM = { # Send bounce event to Loser
 				character_event = { id = hde_core.8 }
 			}
 		}
 	}
 }
+
+#####################
+## OUTCOME FLAVOR
+## 400-499 reserved
