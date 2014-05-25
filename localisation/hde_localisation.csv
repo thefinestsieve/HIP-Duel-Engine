@@ -11,6 +11,7 @@ hde_core.5.tt;prepares to attack;;;;;;;;;;;;;x
 hde_core.6.tt;readies [From.GetHerselfHimself] to strike;;;;;;;;;;;;;x
 ############ Battlefield Flavor;;;;;;;;;;;;;;x
 # Initial Flavor;;;;;;;;;;;;;;x
+# These events always start with meeting on the battlefield and end with either charge/chicken
 # Aggressor attacks or not! (ROOT = Winner, Opponent = FROMFROM)
 hde_battle.100.desc;Fighting across the field, you see an enemy soldier cut off from the others. While you can't tell who, it's clear that they must be a highborn noble.;Alors que vous vous battez sur le champ de bataille, vous apercevez un soldat ennemi s'extirper des rangs. Si vous n'arrivez pas à voir de qui il s'agit, vous êtes par contre sûr qu'il s'agit d'un noble de haute naissance.;;;Durante la batalla, ves a un soldado enemigo separado del resto. Aunque no sabes quién pueda ser, está claro que es de sangre noble.;;;;;;;;;x
 hde_battle.100.a;Charge!;A l'assaut !;;;¡A la carga!;;;;;;;;;x
@@ -56,6 +57,8 @@ hde_battle.302.a;Defend yourself!;Vous défendre !;;;¡Defiéndete!;;;;;;;;;x
 hde_battle.303.tt;tries to defend [From.GetHerHim]self!;essaye de se défendre !;;;¡intenta defenderse!;;;;;;;;;x
 hde_battle.303.desc;Before you have a chance to spot an opening, [From.GetBestName] launches a furious, frenzied attack!;Avant d'avoir eu la chance de trouver une ouverture, [From.GetBestName] se rue sur vous !;;;Antes de que puedas detectar una oportunidad, [From.GetBestName] lanza un furioso y frenético ataque.;;;;;;;;;x
 hde_battle.303.a;Defend yourself!;Vous défendre !;;;¡Defiéndete!;;;;;;;;;x
+# Outcome Flavor;;;;;;;;;;;;;;x
+EVTDESCDUEL111;You strike, but [FromFrom.GetBestName] rolls to the side, wounded but still very much alive. [FromFrom.GetSheHeCap] rises to [FromFrom.GetHerHis] feet and readies [FromFrom.GetHerHis] weapon once again.;Vous frappez, mais [FromFrom.GetBestName] roule sur le côté, blessé mais toujours bien vivant.  [FromFrom.GetSheHeCap] se remet sur ses jambes et empoigne à nouveau son arme.;;;Golpeas, pero [FromFrom.GetBestName] rueda por el suelo evitando parte del golpe. Se pone en pie con el arma lista de nuevo.;;;;;;;;;x
 
 
 

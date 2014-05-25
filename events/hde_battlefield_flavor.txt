@@ -27,7 +27,7 @@ character_event = {
     
     is_triggered_only = yes
 	
-	# Filter out characters who are blind!
+	# Filter out characters who are blind?
     
     trigger = {
         # Avoid crossing targets

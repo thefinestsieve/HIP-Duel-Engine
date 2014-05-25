@@ -93,6 +93,21 @@ character_event = {
 				FROMFROM = { set_character_flag = flag_duel_aggressor }
 			}
 		}
+		# No flavor flag? Oh noes!
+		if = {
+			limit = {
+				NOT = {
+					OR = {
+						FROM = { has_character_flag = flag_duel_battlefield }
+						FROMFROM = { has_character_flag = flag_duel_battlefield }
+						# Add new Duel Flavor flags here, for both FROM and FROMFROM
+					}
+				}
+			}
+			# Default to battlefield flavor for now
+			FROM = { set_character_flag = flag_duel_battlefield }
+			FROMFROM = { set_character_flag = flag_duel_battlefield }
+		}
 	}
 
 	# FROM wins
@@ -567,34 +582,6 @@ character_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		# There is no flavor flag, so default flavor
-		# We definitely need something else for default, since battlefield duels have special mechanics like morale
-		if = {
-			limit = {
-				NOT = {
-					AND = {
-						has_character_flag = flag_duel_battlefield
-						# Insert all new flavor flags here
-					}
-				}
-			}
-			# Winner is Aggressor
-			if = {
-				limit = { has_character_flag = flag_duel_aggressor }
-				random_list = {
-					50 = { character_event = { id = hde_battle.100 } }
-					50 = { character_event = { id = hde_battle.100 } }
-				}
-			}
-			# Loser is Aggressor
-			if = {
-				limit = { has_character_flag = flag_duel_defender }
-				random_list = {
-					50 = { FROM = { character_event = { id = hde_battle.101 } } }
-					50 = { FROM = { character_event = { id = hde_battle.101 } } }
-				}
-			}
-		}
 		# Battlefield Flavor
 		if = {
 			limit = { has_character_flag = flag_duel_battlefield }
@@ -633,34 +620,6 @@ character_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		# There is no flavor flag, so default flavor
-		# We definitely need something else for default, since battlefield duels have special mechanics like morale
-		if = {
-			limit = {
-				NOT = {
-					AND = {
-						has_character_flag = flag_duel_battlefield
-						# Insert all new flavor flags here
-					}
-				}
-			}
-			# Winner is Aggressor
-			if = {
-				limit = { has_character_flag = flag_duel_aggressor }
-				random_list = {
-					50 = { character_event = { id = hde_battle.200 } }
-					50 = { character_event = { id = hde_battle.200 } }
-				}
-			}
-			# Loser is Aggressor
-			if = {
-				limit = { has_character_flag = flag_duel_defender }
-				random_list = {
-					50 = { FROM = { character_event = { id = hde_battle.201 } } }
-					50 = { FROM = { character_event = { id = hde_battle.201 } } }
-				}
-			}
-		}
 		# Battlefield Flavor
 		if = {
 			limit = { has_character_flag = flag_duel_battlefield }
@@ -714,34 +673,6 @@ character_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		# There is no flavor flag, so default flavor
-		# We definitely need something else for default, since battlefield duels have special mechanics like morale
-		if = {
-			limit = {
-				NOT = {
-					AND = {
-						has_character_flag = flag_duel_battlefield
-						# Insert all new flavor flags here
-					}
-				}
-			}
-			# Winner is Aggressor
-			if = {
-				limit = { has_character_flag = flag_duel_aggressor }
-				random_list = {
-					50 = { character_event = { id = hde_battle.300 } }
-					50 = { character_event = { id = hde_battle.300 } }
-				}
-			}
-			# Loser is Aggressor
-			if = {
-				limit = { has_character_flag = flag_duel_defender }
-				random_list = {
-					50 = { FROM = { character_event = { id = hde_battle.301 } } }
-					50 = { FROM = { character_event = { id = hde_battle.301 } } }
-				}
-			}
-		}
 		# Battlefield Flavor
 		if = {
 			limit = { has_character_flag = flag_duel_battlefield }
@@ -784,10 +715,10 @@ character_event = {
 }
 
 ### OUTCOME EVENTS
-# Outcome Handler
+# Outcome Handler: Always sent to e_rebels from the Loser
 # FROM = Loser, FROMFROM = Winner
-# If sent to Winner, FROMFROM = Loser
-# If sent to Loser, FROMFROMFROM = Winner
+# Unlike other handlers, this always sends events to Winner who then passes them to Loser
+# Events sent to Winner: FROMFROM = Loser
 character_event = {
 	id = hde_core.7
 	hide_window = yes
@@ -795,38 +726,6 @@ character_event = {
 	is_triggered_only = yes
 	
 	trigger = { has_landed_title = e_rebels }
-	
-	option = { # Wounding Blow
-		name = AI_EVENT
-		ai_chance = {
-			factor = 33
-			modifier = {
-				factor = 0.01
-				FROMFROM = { has_character_flag = flag_duel_friendly }
-			}
-			modifier = {
-				factor = 1.5
-				FROMFROM = { trait = cruel }
-			}
-			modifier = {
-				factor = 1.25
-				FROMFROM = { trait = wroth }
-			}
-			modifier = {
-				factor = 1.25
-				FROM = { trait = brave }
-			}
-			modifier = {
-				factor = 0.8
-				FROMFROM = { trait = patient }
-			}
-			modifier = {
-				factor = 0.5
-				FROMFROM = { trait = kind }
-			}
-		}
-		# call stuff here
-	}
 	
 	option = { # Subdued Opponent
 		name = AI_EVENT
@@ -861,9 +760,8 @@ character_event = {
 						has_dynasty_flag = the_victims
 						FROM = { has_dynasty_flag = the_feuders }
 					}
-				}	
-			}			
-			
+				}
+			}
 			# Personal Opinion Modifiers
 			modifier = {
 				factor = 1.25
@@ -945,13 +843,81 @@ character_event = {
 				factor = 0.8
 				NOT = { FROMFROM = { opinion = { who = FROM value = -99 } } }
 			}
-			
+			# Trait Modifiers
 			modifier = {
 				factor = 2
 				FROMFROM = { trait = just }
 			}
 		}
-		# call stuff here
+		# Remember, we always send outcome events to the Winner
+		# Battlefield Flavor
+		if = {
+			limit = { has_character_flag = flag_duel_battlefield }
+			# Winner is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_aggressor }
+				random_list = {
+					50 = { character_event = { id = hde_battle.x } }
+					50 = { character_event = { id = hde_battle.x } }
+				}
+			}
+			# Winner is Defender
+			if = {
+				limit = { has_character_flag = flag_duel_defender }
+				random_list = {
+					50 = { character_event = { id = hde_battle.x } }
+					50 = { character_event = { id = hde_battle.x } }
+				}
+			}
+		}
+	}
+	
+	option = { # Wounding Blow
+		name = AI_EVENT
+		ai_chance = {
+			factor = 33
+			modifier = {
+				factor = 0.01
+				FROMFROM = { has_character_flag = flag_duel_friendly }
+			}
+			modifier = {
+				factor = 1.5
+				FROMFROM = { trait = cruel }
+			}
+			modifier = {
+				factor = 1.25
+				FROMFROM = { trait = wroth }
+			}
+			modifier = {
+				factor = 1.25
+				FROM = { trait = brave }
+			}
+			modifier = {
+				factor = 0.8
+				FROMFROM = { trait = patient }
+			}
+			modifier = {
+				factor = 0.5
+				FROMFROM = { trait = kind }
+			}
+		}
+		# Remember, we always send outcome events to the Winner
+		# Winner is Aggressor
+		if = {
+			limit = { has_character_flag = flag_duel_aggressor }
+			random_list = {
+				50 = { character_event = { id = hde_battle.x } }
+				50 = { character_event = { id = hde_battle.x } }
+			}
+		}
+		# Winner is Defender
+		if = {
+			limit = { has_character_flag = flag_duel_defender }
+			random_list = {
+				50 = { character_event = { id = hde_battle.x } }
+				50 = { character_event = { id = hde_battle.x } }
+			}
+		}
 	}
 	
 	option = { # Killing Blow
@@ -962,10 +928,10 @@ character_event = {
 				factor = 0.01
 				FROMFROM = { has_character_flag = flag_duel_friendly }
 			}
-			modifier = {
-				factor = 0.9
-				FROMFROM = { has_character_flag = flag_duel_tourney } # Remove this?
-			}
+			# modifier = {
+				# factor = 0.9
+				# FROMFROM = { has_character_flag = flag_duel_tourney }
+			# }
 			modifier = {
 				factor = 1.5
 				FROMFROM = { trait = cruel }
