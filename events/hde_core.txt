@@ -13,7 +13,7 @@ namespace = hde_core
 # flag_duel_tourney (eventually?)
 
 ### MAIN EVENTS
-# hde_core.0	Referee decides between FROM and FROMFROM, flags winner and loser, target locks duelists, sends winner first handler event
+# hde_core.0	Referee decides between FROM and FROMFROM, flags winner and loser, target locks duelists, starts dueling chain
 # hde_core.1	Bounce event to make sure localization works properly
 
 ### HANDLER EVENTS
@@ -34,6 +34,7 @@ namespace = hde_core
 
 # Question: How are we going to check for failure states? What if one of the characters dies for some other reason? We'll need a failure event ("You lost track of your opponent in the heat of battle" sort of thing)?
 # Question: Will we need a safety catch cleanup event?
+
 # I want to be able to mark characters so we know they're on their second or third trip through the loop
 # This way the handlers can point them towards "tired" versions of flavor events
 
@@ -673,8 +674,10 @@ character_event = {
 				}
 			}
 			random_list = {
-				50 = { character_event = { id = hde_battle.x } }
-				50 = { character_event = { id = hde_battle.x } }
+				# Winner is aggressive
+				50 = { character_event = { id = hde_battle.300 } }
+				# Loser is aggressive
+				50 = { FROM = { character_event = { id = hde_battle.301 } } }
 			}
 		}
 		# Battlefield Flavor
@@ -682,9 +685,9 @@ character_event = {
 			limit = { has_character_flag = flag_duel_battlefield }
 			random_list = {
 				# Winner is aggressive
-				50 = { character_event = { id = hde_battle.x } }
+				50 = { character_event = { id = hde_battle.300 } }
 				# Loser is aggressive
-				50 = { FROM = { character_event = { id = hde_battle.x } } }
+				50 = { FROM = { character_event = { id = hde_battle.301 } } }
 			}
 		}
 		# Insert new flavor flag blocks here
@@ -710,6 +713,7 @@ character_event = {
 
 ### OUTCOME EVENTS
 # Outcome Handler
+# FROM = Loser, FROMFROM = Winner
 character_event = {
 	id = hde_core.7
 	hide_window = yes
@@ -921,8 +925,10 @@ character_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		FROM = {
-			character_event = { id = hde_core.7 }
+		e_rebels = {
+			holder_scope = {
+				character_event = { id = hde_core.7 }
+			}
 		}
 	}
 	

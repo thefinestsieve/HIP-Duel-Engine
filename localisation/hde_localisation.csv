@@ -1,5 +1,7 @@
 #CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
 ######################################5_EVENTS;;;;;;;;;;;;;;x
+# All the event localization here eventually needs to be reworked to reflect the new system
+# Especially important is that the new system picks randomly from the available fight segments, so all localization needs to fit together reasonably well and shouldn't reference something in an earlier segment
 ############ Core;;;;;;;;;;;;;;x
 # Initial Flavor;;;;;;;;;;;;;;x
 hde_core.3.tt;steels [From.GetHerselfHimself] for combat;;;;;;;;;;;;;x
@@ -38,3 +40,24 @@ hde_battle.201.a;One mistake is all [From.GetSheHe]'ll get…;Une erreur c'est tou
 # Defender circles
 hde_battle.202.desc;You and [From.GetBestName] slowly circle each other, tense and focused. You scan [From.GetHerHim] for any sign of weakness, any opening in [From.GetHerHis] defense that you could possibly exploit.;Avec [From.GetBestName] vous vous tournez lentement autour, raidis et concentrés. Vous tentez de percevoir le moindre signe de faiblesse chez lui, la moindre ouverture dans sa défense que vous pourriez peut-être exploiter.;;;[From.GetBestName] y tú tanteáis lentamente al adversario, tensos y concentrados. Buscas cualquier signo de debilidad en [From.GetSheHe], cualquier apertura en su defensa que puedas aprovechar.;;;;;;;;;x
 hde_battle.202.a;One mistake is all [From.GetSheHe]'ll get…;Une erreur c'est tout ce qu'[From.GetSheHe] aura…;;;Un fallo es todo lo que conseguirá...;;;;;;;;;x
+# Combat Flavor;;;;;;;;;;;;;;x
+# The localization here needs to be reworked a bit to reflect the new structure
+# Aggressor Attacks! (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.300.desc;You see a weak spot, a vulnerability. It's not much, but it's all you need.;Vous apercevez une minuscule faille. Ce n'est pas grand-chose, mais c'est une erreur que [FromFrom.GetBestName] va payer cher…;;;Ves un punto débil. No es mucho, pero es todo lo que necesitas.;;;;;;;;;x
+hde_battle.300.a;Strike!;Prends ça, ordure !;;;¡Golpea!;;;;;;;;;x
+# Aggressor Attacks! (ROOT = Loser, Opponent = FROM)
+hde_battle.301.desc;You see a weak spot, a vulnerability. It's not much, but it's all you need.;Vous apercevez une minuscule faille. Ce n'est pas grand-chose, mais c'est une erreur que [From.GetBestName] va payer cher…;;;Ves un punto débil. No es mucho, pero es todo lo que necesitas.;;;;;;;;;x
+hde_battle.301.a;Strike!;Prends ça, ordure !;;;¡Golpea!;;;;;;;;;x
+# Defender fails save roll (Sent to Winner)
+hde_battle.302.tt;tries to defend [FromFrom.GetHerHim]self!;essaye de se défendre !;;;¡intenta defenderse!;;;;;;;;;x
+hde_battle.302.desc;Before you have a chance to spot an opening, [From.GetBestName] launches a furious, frenzied attack!;Avant d'avoir eu la chance de trouver une ouverture, [From.GetBestName] se rue sur vous !;;;Antes de que puedas detectar una oportunidad, [From.GetBestName] lanza un furioso y frenético ataque.;;;;;;;;;x
+hde_battle.302.a;Defend yourself!;Vous défendre !;;;¡Defiéndete!;;;;;;;;;x
+# Defender wins save roll (Sent to Loser)
+hde_battle.303.tt;tries to defend [From.GetHerHim]self!;essaye de se défendre !;;;¡intenta defenderse!;;;;;;;;;x
+hde_battle.303.desc;Before you have a chance to spot an opening, [From.GetBestName] launches a furious, frenzied attack!;Avant d'avoir eu la chance de trouver une ouverture, [From.GetBestName] se rue sur vous !;;;Antes de que puedas detectar una oportunidad, [From.GetBestName] lanza un furioso y frenético ataque.;;;;;;;;;x
+hde_battle.303.a;Defend yourself!;Vous défendre !;;;¡Defiéndete!;;;;;;;;;x
+
+
+
+
+
