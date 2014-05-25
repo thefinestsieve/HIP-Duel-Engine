@@ -1038,11 +1038,11 @@ character_event = {
 # Chain 2
 # Would be here, if Chain 2 existed
 
+### OUTCOME FLAVOR
 #####################
-## OUTCOME FLAVOR
-## 400-699 reserved
-# Unlike the other handlers, the winner always gets the first event
-## Subdued Outcomes: 400-499
+## SUBDUED OUTCOME FLAVOR
+## 400-499 reserved
+# Unlike the other handlers, in these the winner always gets the first event
 # Chain 1
 # Aggressor subdues Defender! (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
@@ -1155,11 +1155,13 @@ character_event = {
 	}
 	
 	option = { # Fight On
-		trigger = { NOT = { has_character_flag = flag_duel_friendly } }
+		trigger = {
+			NOT = { has_character_flag = flag_duel_friendly }
+		}
 		name = hde_battle.402.b
 		ai_chance = { factor = 50 }
 		
-		FROM = {
+		FROM = { # Send to Winner
 			character_event = {}
 		}
 		FROM = { character_event = { id = duel.112 tooltip = "EVTTOOLTIPDUEL112" } }
@@ -1392,7 +1394,7 @@ character_event = {
 		}
 	}
 	option = { # Kill Loser
-		name = "EVTOPTBDUEL107"
+		name = hde_battle.404.b
 		ai_chance = {
 			factor = 50
 			# Friendly Duels
@@ -1456,13 +1458,15 @@ character_event = {
 	
 	option = {
 		name = hde_battle.405.a
+
 		prestige = -10
 		FROM = { # Send to Winner
-			hidden_tooltip = {
+			hidden_tooltip = { # Cleanup!
 				character_event = { id = hde_core.9 }
 			}
+			character_event = {}
 		}
-		FROM = { character_event = { id = duel_output.1 tooltip = "EVTTOOLTIPDUELOUTPUT1" } }
+		# FROM = { character_event = { id = duel_output.1 tooltip = "EVTTOOLTIPDUELOUTPUT1" } }
 	}
 }
 # Loser informed of own death
@@ -1475,6 +1479,7 @@ character_event = {
 	
 	option = {
 		name = "EVTOPTADUEL109"
+
 		if = {
 			limit = { FROM = { is_close_relative = yes } }
 			FROM = { add_trait = kinslayer }
@@ -1483,7 +1488,6 @@ character_event = {
 			death_reason = death_duel
 			killer = FROM
 		}
-		set_variable = { which = duel_rounds value = 0 }
 		FROM = { character_event = { id = duel_output.1 tooltip = "EVTTOOLTIPDUELOUTPUT1" } }
 		hidden_tooltip = { FROM = { character_event = { id = duel.203 } } }
 	}
@@ -1492,5 +1496,12 @@ character_event = {
 # Chain 2
 # Would be here, if Chain 2 existed
 
-## Wounded Outcomes: 500-599
-## Killed Outcomes: 600-699
+#####################
+## WOUNDED OUTCOME FLAVOR
+## 500-599 reserved
+# Unlike the other handlers, in these the winner always gets the first event
+
+#####################
+## KILLED OUTCOME FLAVOR
+## 600-699 reserved
+# Unlike the other handlers, in these the winner always gets the first event

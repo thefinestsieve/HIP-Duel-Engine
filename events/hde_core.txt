@@ -33,6 +33,9 @@ namespace = hde_core
 
 # Question: How are we going to check for failure states? What if one of the characters dies for some other reason? We'll need a failure event ("You lost track of your opponent in the heat of battle" sort of thing)?
 # Question: Will we need a safety catch cleanup event?
+# Idea: If you the event fails, mark any viable character we can still find with a tag that makes them more likely to get another duel in the future?
+# Question: Do I want to farm out the yield, wound, and death events to their own specific handlers? That way they can be called easily, and the flavor can vary. It also wouldn't prevent a specific chain from inserting its own unique version of those events instead of calling the handler.
+# Alternatively: The outcome chains could each be written as one self-consistent chain, so when Chain 1 subdued is chosen, if the Loser doesn't yield, it would refer to the Chain 1 wounded event. That same Chain 1 wounded event might be called as part of the wounded outcome, and so forth.
 
 # I want to be able to mark characters so we know they're on their second or third trip through the loop
 # This way the handlers can point them towards "tired" versions of flavor events
@@ -42,12 +45,6 @@ namespace = hde_core
 # The events can bounce back and forth as much as you like, so long as it ends with the loser calling the handler on the winner, or with the winner calling the handler bounce event on the loser
 # This is so the localization always works out properly
 # But generally they'll be very short; don't want to be sending participants a forest of events
-# These will actually appear in a different file, but for reference purposes:
-# x.x	Initial flavor
-# x.x	Sizing Up flavor
-# x.x	Combat flavor
-# x.x	Outcome flavor
-# x.x	Failure flavor
 
 ### MAIN EVENTS
 character_event = {
@@ -991,7 +988,6 @@ character_event = {
 		}
 	}
 }
-
 # Outcome Handler Bounce Event
 character_event = {
 	id = hde_core.8

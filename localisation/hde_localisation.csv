@@ -60,8 +60,7 @@ hde_battle.302.a;Defend yourself!;Vous défendre !;;;¡Defiéndete!;;;;;;;;;x
 hde_battle.303.tt;tries to defend [From.GetHerHim]self!;essaye de se défendre !;;;¡intenta defenderse!;;;;;;;;;x
 hde_battle.303.desc;Before you have a chance to spot an opening, [From.GetBestName] launches a furious, frenzied attack!;Avant d'avoir eu la chance de trouver une ouverture, [From.GetBestName] se rue sur vous !;;;Antes de que puedas detectar una oportunidad, [From.GetBestName] lanza un furioso y frenético ataque.;;;;;;;;;x
 hde_battle.303.a;Defend yourself!;Vous défendre !;;;¡Defiéndete!;;;;;;;;;x
-### Outcome Flavor;;;;;;;;;;;;;;x
-# Subdued Outcomes;;;;;;;;;;;;;;x
+### Subdued Outcomes Flavor;;;;;;;;;;;;;;x
 # Chain 1
 # Aggressor subdues Defender! (ROOT = Winner, Opponent = FROMFROM)
 hde_battle.400.desc;You easily break through [FromFrom.GetBestName]'s guard and knock [FromFrom.GetHerHim] to the ground. [FromFrom.GetSheHeCap] lies sprawled at your feet, completely at your mercy.;Vous brisez facilement la garde de [FromFrom.GetBestName] et le mettez à terre. [FromFrom.GetSheHeCap] est à vos pieds, complètement à votre merci.;;;Consigues fácilmente atravesar la guardia de [FromFrom.GetBestName] y abatirle. [FromFrom.GetSheHeCap] yace despatarrado a tus pies, completamente a tu merced.;;;;;;;;;x
@@ -83,6 +82,7 @@ hde_battle.403.b;I'm not finished yet!;Je n'ai pas encore dit mon dernier mot!;;
 hde_battle.404.tt;considers your yield;tient compte de votre reddition;;;tiene en cuenta tu rendición;;;;;;;;;x
 hde_battle.404.desc;[From.GetBestName] drops [From.GetHerHis] weapon and throws up [From.GetHerHis] hands. "Yield! I yield!";[From.GetBestName] lâche son arme et lève ses mains. "Je me rends! Je me rends!";;;[From.GetBestName] arroja su arma y levanta sus brazos. “¡Me rindo! ¡Me rindo!”;;;;;;;;;x
 hde_battle.404.a;I accept. Back on your feet..;J'accepte. Relève toi…;;;De acuerdo. Puedes levantarte.;;;;;;;;;x
+hde_battle.404.b;No mercy for the vanquished.;Pas de pitié pour les vaincus.;;;Sin piedad para los vencidos.;;;;;;;;;x
 # Loser informed of being spared
 hde_battle.405.tt;is defeated.;est défait.;;;es vencido;;;;;;;;;x
 hde_battle.405.desc;[From.GetFirstName] lowers the point of [From.GetHerHis] weapon and extends a hand. "I accept," [From.GetSheHe] says, "back on your feet.";[From.GetFirstName] abaisse son arme et tend sa main. "J'accepte", dit-[From.GetSheHe], "Relève toi". ;;;[From.GetFirstName] baja el arma y te ofrece la mano. “Acepto -dice.- Póngase en pie”.;;;;;;;;;x
