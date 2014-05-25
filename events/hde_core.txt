@@ -4,10 +4,9 @@ namespace = hde_core
 # Based on work by Galle (Gregory Hayes) and jordarkelf
 
 ### CONTEXT FLAGS
-# Note that ALL duels are hostile (to the death) by default
-# Set flag_duel_friendly if you don't want to kill folks
 ## Duel Type
-# flag_duel_friendly
+# flag_duel_friendly			reduces death outcomes by 99%, forces yield
+# flag_duel_to_the_death		reduces yield outcomes by 100%
 ## Duel Flavor
 # flag_duel_battlefield
 # flag_duel_tourney (eventually?)
@@ -589,16 +588,18 @@ character_event = {
 			if = {
 				limit = { has_character_flag = flag_duel_aggressor }
 				random_list = {
-					50 = { character_event = { id = hde_battle.100 } }
-					50 = { character_event = { id = hde_battle.100 } }
+					50 = { character_event = { id = hde_battle.100 } } # Chain 1
+					50 = { character_event = { id = hde_battle.100 } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 			# Loser is Aggressor
 			if = {
 				limit = { has_character_flag = flag_duel_defender }
 				random_list = {
-					50 = { FROM = { character_event = { id = hde_battle.101 } } }
-					50 = { FROM = { character_event = { id = hde_battle.101 } } }
+					50 = { FROM = { character_event = { id = hde_battle.101 } } } # Chain 1
+					50 = { FROM = { character_event = { id = hde_battle.101 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 		}
@@ -627,16 +628,18 @@ character_event = {
 			if = {
 				limit = { has_character_flag = flag_duel_aggressor }
 				random_list = {
-					50 = { character_event = { id = hde_battle.200 } }
-					50 = { character_event = { id = hde_battle.200 } }
+					50 = { character_event = { id = hde_battle.200 } } # Chain 1
+					50 = { character_event = { id = hde_battle.200 } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 			# Loser is Aggressor
 			if = {
 				limit = { has_character_flag = flag_duel_defender }
 				random_list = {
-					50 = { FROM = { character_event = { id = hde_battle.201 } } }
-					50 = { FROM = { character_event = { id = hde_battle.201 } } }
+					50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
+					50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 		}
@@ -680,16 +683,18 @@ character_event = {
 			if = {
 				limit = { has_character_flag = flag_duel_aggressor }
 				random_list = {
-					50 = { character_event = { id = hde_battle.300 } }
-					50 = { character_event = { id = hde_battle.300 } }
+					50 = { character_event = { id = hde_battle.300 } } # Chain 1
+					50 = { character_event = { id = hde_battle.300 } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 			# Loser is Aggressor
 			if = {
 				limit = { has_character_flag = flag_duel_defender }
 				random_list = {
-					50 = { FROM = { character_event = { id = hde_battle.301 } } }
-					50 = { FROM = { character_event = { id = hde_battle.301 } } }
+					50 = { FROM = { character_event = { id = hde_battle.301 } } } # Chain 1
+					50 = { FROM = { character_event = { id = hde_battle.301 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 		}
@@ -857,16 +862,18 @@ character_event = {
 			if = {
 				limit = { has_character_flag = flag_duel_aggressor }
 				random_list = {
-					50 = { character_event = { id = hde_battle.x } }
-					50 = { character_event = { id = hde_battle.x } }
+					50 = { character_event = { id = hde_battle.400 } } # Chain 1
+					50 = { character_event = { id = hde_battle.400 } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 			# Winner is Defender
 			if = {
 				limit = { has_character_flag = flag_duel_defender }
 				random_list = {
-					50 = { character_event = { id = hde_battle.x } }
-					50 = { character_event = { id = hde_battle.x } }
+					50 = { character_event = { id = hde_battle.401 } } # Chain 1
+					50 = { character_event = { id = hde_battle.401 } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 		}
@@ -902,20 +909,26 @@ character_event = {
 			}
 		}
 		# Remember, we always send outcome events to the Winner
-		# Winner is Aggressor
+		# Battlefield Flavor
 		if = {
-			limit = { has_character_flag = flag_duel_aggressor }
-			random_list = {
-				50 = { character_event = { id = hde_battle.x } }
-				50 = { character_event = { id = hde_battle.x } }
+			limit = { has_character_flag = flag_duel_battlefield }
+			# Winner is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_aggressor }
+				random_list = {
+					50 = { character_event = { id = hde_battle.500 } } # Chain 1
+					50 = { character_event = { id = hde_battle.500 } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
+				}
 			}
-		}
-		# Winner is Defender
-		if = {
-			limit = { has_character_flag = flag_duel_defender }
-			random_list = {
-				50 = { character_event = { id = hde_battle.x } }
-				50 = { character_event = { id = hde_battle.x } }
+			# Winner is Defender
+			if = {
+				limit = { has_character_flag = flag_duel_defender }
+				random_list = {
+					50 = { character_event = { id = hde_battle.501 } } # Chain 1
+					50 = { character_event = { id = hde_battle.501 } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
+				}
 			}
 		}
 	}
@@ -953,7 +966,29 @@ character_event = {
 				FROMFROM = { trait = kind }
 			}
 		}
-		# call stuff here
+		# Remember, we always send outcome events to the Winner
+		# Battlefield Flavor
+		if = {
+			limit = { has_character_flag = flag_duel_battlefield }
+			# Winner is Aggressor
+			if = {
+				limit = { has_character_flag = flag_duel_aggressor }
+				random_list = {
+					50 = { character_event = { id = hde_battle.600 } } # Chain 1
+					50 = { character_event = { id = hde_battle.600 } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
+				}
+			}
+			# Winner is Defender
+			if = {
+				limit = { has_character_flag = flag_duel_defender }
+				random_list = {
+					50 = { character_event = { id = hde_battle.601 } } # Chain 1
+					50 = { character_event = { id = hde_battle.601 } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
+				}
+			}
+		}
 	}
 }
 

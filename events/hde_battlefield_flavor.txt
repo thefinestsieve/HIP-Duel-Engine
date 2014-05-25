@@ -224,8 +224,9 @@ character_event = {
 #####################
 ## INITIAL FLAVOR
 ## 100-199 reserved
-## I'd like to give cowards a chance to become brave if they choose to fight.
-## Or at least a chance to lose craven.
+# I'd like to give cowards a chance to become brave if they choose to fight.
+# Or at least a chance to lose craven.
+# Chain 1
 # Aggressor attacks or not! (ROOT = Winner)
 character_event = {
 	id = hde_battle.100
@@ -876,11 +877,14 @@ character_event = {
 		}
 	}
 }
+# Chain 2
+# Would be here, if Chain 2 existed
 
 #####################
 ## SIZING UP FLAVOR
 ## 200-299 reserved
 # Going to add support here for "tired" versions by tagging characters who've been through the loop more than once
+# Chain 1
 # Aggressor circles... (ROOT = Winner)
 character_event = {
 	id = hde_battle.200
@@ -888,6 +892,9 @@ character_event = {
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	hide_from = yes
+	show_from_from = yes
+	
+	is_triggered_only = yes
 	
 	option = {
 		name = hde_battle.200.a
@@ -906,6 +913,9 @@ character_event = {
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	hide_from = yes
+	show_from_from = yes
+	
+	is_triggered_only = yes
 	
 	option = {
 		name = hde_battle.200.a
@@ -923,7 +933,8 @@ character_event = {
 	desc = hde_battle.202.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
-	hide_from = yes
+	
+	is_triggered_only = yes
 	
 	option = {
 		name = hde_battle.202.a
@@ -941,12 +952,14 @@ character_event = {
 		}
 	}
 }
+# Chain 2
+# Would be here, if Chain 2 existed
 
 #####################
 ## COMBAT FLAVOR
 ## 300-399 reserved
-## Unlike the other handlers, this sends the
-# Aggressor Attacks! (ROOT = Winner, Opponent = FROMFROM)
+# Chain 1
+# Aggressor attacks! (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
 	id = hde_battle.300
 	desc = hde_battle.300.desc
@@ -954,17 +967,17 @@ character_event = {
 	border = GFX_event_normal_frame_war
 	hide_from = yes
 	
+	is_triggered_only = yes
+	
 	option = {
 		name = hde_battle.300.a
-		
-		hidden_tooltip = {
-			FROMFROM = { # Send to Loser
-				character_event = { id = hde_battle.302 tooltip = hde_battle.302.tt }
-			}
+
+		FROMFROM = { # Send to Loser
+			character_event = { id = hde_battle.302 tooltip = hde_battle.302.tt }
 		}
 	}
 }
-# Aggressor Attacks! (ROOT = Loser, Opponent = FROM)
+# Aggressor attacks! (ROOT = Loser, Opponent = FROM)
 character_event = {
 	id = hde_battle.301
 	desc = hde_battle.301.desc
@@ -972,13 +985,13 @@ character_event = {
 	border = GFX_event_normal_frame_war
 	hide_from = yes
 	
+	is_triggered_only = yes
+	
 	option = {
 		name = hde_battle.301.a
 		
-		hidden_tooltip = {
-			FROM = { # Send to Winner
-				character_event = { id = hde_battle.303 tooltip = hde_battle.303.tt }
-			}
+		FROM = { # Send to Winner
+			character_event = { id = hde_battle.303 tooltip = hde_battle.303.tt }
 		}
 	}
 }
@@ -988,6 +1001,8 @@ character_event = {
 	desc = hde_battle.302.desc
 	picture = GFX_evt_duel2
 	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
 
 	option = {
 		name = hde_battle.302.a
@@ -1007,6 +1022,8 @@ character_event = {
 	desc = hde_battle.303.desc
 	picture = GFX_evt_duel2
 	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
 
 	option = {
 		name = hde_battle.303.a
@@ -1018,7 +1035,462 @@ character_event = {
 		}
 	}
 }
+# Chain 2
+# Would be here, if Chain 2 existed
 
 #####################
 ## OUTCOME FLAVOR
-## 400-499 reserved
+## 400-699 reserved
+# Unlike the other handlers, the winner always gets the first event
+## Subdued Outcomes: 400-499
+# Chain 1
+# Aggressor subdues Defender! (ROOT = Winner, Opponent = FROMFROM)
+character_event = {
+	id = hde_battle.400
+	desc = hde_battle.400.desc
+	picture = GFX_evt_duel4
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	show_from_from = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.400.a
+		
+		FROMFROM = { # Send to Loser
+			character_event = { id = hde_battle.402 tooltip = hde_battle.402.tt }
+		}
+	}
+}
+# Defender subdues Aggressor! (ROOT = Winner, Opponent = FROMFROM)
+character_event = {
+	id = hde_battle.401
+	desc = hde_battle.401.desc
+	picture = GFX_evt_duel4
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	show_from_from = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.401.a
+		
+		FROMFROM = { # Send to Loser
+			character_event = { id = hde_battle.403 tooltip = hde_battle.403.tt }
+		}
+	}
+}
+# Defender gets overwhelmed!
+character_event = {
+	id = hde_battle.402
+	desc = hde_battle.402.desc
+	picture = GFX_evt_duel4
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	option = { # Yield
+		trigger = {
+			OR = {
+				has_character_flag = flag_duel_friendly
+				NOT = { has_character_flag = flag_duel_to_the_death }
+			}
+		}
+		name = hde_battle.402.a
+		ai_chance = {
+			factor = 50
+			# Nearly Beaten!
+			modifier = {
+				factor = 4
+				trait = maimed
+				NOT = { trait = lunatic }
+			}
+			modifier = {
+				factor = 2
+				trait = wounded
+				NOT = { trait = lunatic }
+			}
+			# Opponent Nearly Beaten!
+			modifier = {
+				factor = 0.25
+				FROM = { trait = maimed }
+				NOT = { trait = lunatic }
+			}
+			modifier = {
+				factor = 0.5
+				FROM = { trait = wounded }
+				NOT = { trait = lunatic }
+			}
+			# Personality Effects
+			modifier = {
+				factor = 5
+				trait = craven
+			}
+			modifier = {
+				factor = 2
+				trait = kind
+			}
+			modifier = {
+				factor = 1.25
+				trait = humble
+			}
+			modifier = {
+				factor = 0.5
+				trait = brave
+			}
+			modifier = {
+				factor = 0.8
+				trait = proud
+			}
+			modifier = {
+				factor = 0.2
+				trait = wroth
+			}
+		}
+		FROM = { # Send yield event to Winner
+			character_event = { id = hde_battle.404 tooltip = hde_battle.404.tt }
+		}
+	}
+	
+	option = { # Fight On
+		trigger = { NOT = { has_character_flag = flag_duel_friendly } }
+		name = hde_battle.402.b
+		ai_chance = { factor = 50 }
+		
+		FROM = {
+			character_event = {}
+		}
+		FROM = { character_event = { id = duel.112 tooltip = "EVTTOOLTIPDUEL112" } }
+	}
+}
+# Aggressor gets overwhelmed!
+character_event = {
+	id = hde_battle.403
+	desc = hde_battle.403.desc
+	picture = GFX_evt_duel4
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.403.a
+		
+		hidden_tooltip = {
+			FROMFROM = { # Send to Loser
+				character_event = { id = hde_battle.302 tooltip = hde_battle.302.tt }
+			}
+		}
+	}
+}
+# Winner considers Loser's yield
+character_event = {
+	id = hde_battle.404
+	desc = hde_battle.404.desc
+	picture = GFX_evt_duel4
+	border = GFX_event_normal_frame_war
+
+	is_triggered_only = yes
+	
+	option = { # Spare Loser
+		name = hde_battle.404.a
+		ai_chance = {
+			factor = 50
+			# Need Opponent Taken Alive
+			modifier = {
+				factor = 10
+				any_current_enemy = { character = FROM }
+				NOT = {
+					OR = {
+						trait = lunatic
+						trait = possessed
+					}
+				}
+				NOT = {
+					OR = {
+						trait = wroth
+						trait = cruel
+						trait = paranoid
+					}
+				}
+				NOT = { #republic feuders
+					has_dynasty_flag = the_feuders
+					FROM = { has_dynasty_flag = the_victims }
+				}
+				NOT = {
+					has_dynasty_flag = the_victims
+					FROM = { has_dynasty_flag = the_feuders }
+				}
+			}
+			# Nearly Beaten!
+			modifier = {
+				factor = 4
+				trait = maimed
+				NOT = { trait = lunatic }
+			}
+			modifier = {
+				factor = 2
+				trait = wounded
+				NOT = { trait = lunatic }
+			}
+			# Opponent Nearly Beaten!
+			modifier = {
+				factor = 0.25
+				FROM = { trait = maimed }
+				NOT = { trait = lunatic }
+			}
+			modifier = {
+				factor = 0.5
+				FROM = { trait = wounded }
+				NOT = { trait = lunatic }
+			}
+			# Personal Opinion Modifiers
+			modifier = {
+				factor = 1.25
+				opinion = { who = FROM value = 10 }
+			}
+			modifier = {
+				factor = 1.25
+				opinion = { who = FROM value = 20 }
+			}
+			modifier = {
+				factor = 1.25
+				opinion = { who = FROM value = 30 }
+			}
+			modifier = {
+				factor = 1.25
+				opinion = { who = FROM value = 40 }
+			}
+			modifier = {
+				factor = 1.25
+				opinion = { who = FROM value = 50 }
+			}
+			modifier = {
+				factor = 1.25
+				opinion = { who = FROM value = 60 }
+			}
+			modifier = {
+				factor = 1.25
+				opinion = { who = FROM value = 70 }
+			}
+			modifier = {
+				factor = 1.25
+				opinion = { who = FROM value = 80 }
+			}
+			modifier = {
+				factor = 1.25
+				opinion = { who = FROM value = 90 }
+			}
+			modifier = {
+				factor = 1.25
+				opinion = { who = FROM value = 100 }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { opinion = { who = FROM value = -9 } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { opinion = { who = FROM value = -19 } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { opinion = { who = FROM value = -29 } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { opinion = { who = FROM value = -39 } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { opinion = { who = FROM value = -49 } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { opinion = { who = FROM value = -59 } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { opinion = { who = FROM value = -69 } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { opinion = { who = FROM value = -79 } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { opinion = { who = FROM value = -89 } }
+			}
+			modifier = {
+				factor = 0.8
+				NOT = { opinion = { who = FROM value = -99 } }
+			}
+			# Would Be Kinslaying
+			modifier = {
+				factor = 10
+				FROM = { is_close_relative = ROOT }
+				NOT = { trait = arbitrary }
+			}
+			modifier = {
+				factor = 20
+				FROM = { is_close_relative = ROOT }
+				trait = just
+			}
+			# Personality Modifiers
+			modifier = {
+				factor = 5
+				trait = kind
+			}
+			modifier = {
+				factor = 2
+				trait = gregarious
+			}
+			modifier = {
+				factor = 1.25
+				trait = humble
+			}
+			modifier = {
+				factor = 1.25
+				trait = trusting
+			}
+			modifier = {
+				factor = 0.8
+				trait = paranoid
+			}
+			modifier = {
+				factor = 0.8
+				trait = proud
+			}
+			modifier = {
+				factor = 0.5
+				trait = wroth
+			}
+			modifier = {
+				factor = 0.2
+				trait = cruel
+			}
+			modifier = {
+				factor = 50
+				has_character_flag = flag_duel_friendly
+				NOT = {
+					OR = {
+						trait = lunatic
+						trait = possessed
+					}
+					OR = {
+						trait = cruel
+						trait = wroth
+					}
+				}
+			}
+		}
+		
+		prestige = 15
+		FROM = { # Send to Loser
+			character_event = { id = hde_battle.405 tooltip = hde_battle.405.tt }
+		}
+	}
+	option = { # Kill Loser
+		name = "EVTOPTBDUEL107"
+		ai_chance = {
+			factor = 50
+			# Friendly Duels
+			modifier = {
+				factor = 0
+				has_character_flag = flag_duel_friendly
+				NOT = {
+					OR = {
+						AND = {
+							OR = {
+								has_plot = plot_kill_character
+								has_plot = plot_kill_spouse
+							}
+							plot_target_char = { character = FROM }
+						}
+						any_backed_character = {
+							OR = {
+								has_plot = plot_kill_character
+								has_plot = plot_kill_spouse
+							}
+							plot_target_char = { character = FROM }
+						}
+						AND = { #republic feuders
+							has_dynasty_flag = the_feuders
+							FROM = { has_dynasty_flag = the_victims }
+						}
+						AND = {
+							has_dynasty_flag = the_victims
+							FROM = { has_dynasty_flag = the_feuders }
+						}
+						AND = {
+							OR = {
+								trait = envious
+								trait = ambitious
+							}
+							NOT = { trait = content }
+							OR = {
+								any_heir_title = { holder = ROOT }
+								any_pretender_title = { holder = ROOT }
+								any_pretender_title = { current_heir = { character = ROOT } }
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		FROM = { # Send to Loser
+			character_event = { id = hde_battle.406 tooltip = hde_battle.406.tt }
+		}
+	}
+}
+# Loser informed of being spared
+character_event = {
+	id = hde_battle.405
+	desc = hde_battle.405.desc
+	picture = GFX_evt_duel4
+	border = GFX_event_normal_frame_war
+
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.405.a
+		prestige = -10
+		FROM = { # Send to Winner
+			hidden_tooltip = {
+				character_event = { id = hde_core.9 }
+			}
+		}
+		FROM = { character_event = { id = duel_output.1 tooltip = "EVTTOOLTIPDUELOUTPUT1" } }
+	}
+}
+# Loser informed of own death
+character_event = {
+	id = hde_battle.406
+	desc = "EVTDESCDUEL109"
+	picture = GFX_evt_duel5
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "EVTOPTADUEL109"
+		if = {
+			limit = { FROM = { is_close_relative = yes } }
+			FROM = { add_trait = kinslayer }
+		}
+		death = {
+			death_reason = death_duel
+			killer = FROM
+		}
+		set_variable = { which = duel_rounds value = 0 }
+		FROM = { character_event = { id = duel_output.1 tooltip = "EVTTOOLTIPDUELOUTPUT1" } }
+		hidden_tooltip = { FROM = { character_event = { id = duel.203 } } }
+	}
+}
+
+# Chain 2
+# Would be here, if Chain 2 existed
+
+## Wounded Outcomes: 500-599
+## Killed Outcomes: 600-699
