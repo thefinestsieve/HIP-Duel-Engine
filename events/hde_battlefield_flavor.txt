@@ -852,7 +852,7 @@ character_event = {
 		morale = 0.1
 		hidden_tooltip = {
 			FROM = { # Time for cleanup
-				character_event = { id = hde_core.9 }
+				character_event = { id = hde_core.10 }
 			}
 		}
 	}
@@ -872,11 +872,12 @@ character_event = {
 		morale = 0.1
 		hidden_tooltip = {
 			FROM = { # Time for cleanup
-				character_event = { id = hde_core.9 }
+				character_event = { id = hde_core.10 }
 			}
 		}
 	}
 }
+
 # Chain 2
 # Would be here, if Chain 2 existed
 
@@ -952,6 +953,7 @@ character_event = {
 		}
 	}
 }
+
 # Chain 2
 # Would be here, if Chain 2 existed
 
@@ -1035,6 +1037,7 @@ character_event = {
 		}
 	}
 }
+
 # Chain 2
 # Would be here, if Chain 2 existed
 
@@ -1083,7 +1086,7 @@ character_event = {
 		}
 	}
 }
-# Defender gets overwhelmed!
+# Defender gets overwhelmed! (Loser = FROM)
 character_event = {
 	id = hde_battle.402
 	desc = hde_battle.402.desc
@@ -1150,6 +1153,7 @@ character_event = {
 				trait = wroth
 			}
 		}
+
 		FROM = { # Winner considers yield
 			character_event = { id = hde_battle.404 tooltip = hde_battle.404.tt }
 		}
@@ -1163,12 +1167,11 @@ character_event = {
 		ai_chance = { factor = 50 }
 		
 		FROM = { # Send to Winner
-			character_event = {}
+			character_event = { id = hde_battle.407 tooltip = hde_battle.407.tt }
 		}
-		FROM = { character_event = { id = duel.112 tooltip = "EVTTOOLTIPDUEL112" } }
 	}
 }
-# Aggressor gets overwhelmed!
+# Aggressor gets overwhelmed! (Loser = FROM)
 character_event = {
 	id = hde_battle.403
 	desc = hde_battle.403.desc
@@ -1177,17 +1180,83 @@ character_event = {
 	
 	is_triggered_only = yes
 	
-	option = {
-		name = hde_battle.403.a
-		
-		hidden_tooltip = {
-			FROMFROM = { # Send to Loser
-				character_event = { id = hde_battle.302 tooltip = hde_battle.302.tt }
+	option = { # Yield
+		trigger = {
+			OR = {
+				has_character_flag = flag_duel_friendly
+				NOT = { has_character_flag = flag_duel_to_the_death }
 			}
+		}
+		name = hde_battle.403.a
+		ai_chance = {
+			factor = 50
+			# Nearly Beaten!
+			modifier = {
+				factor = 4
+				trait = maimed
+				NOT = { trait = lunatic }
+			}
+			modifier = {
+				factor = 2
+				trait = wounded
+				NOT = { trait = lunatic }
+			}
+			# Opponent Nearly Beaten!
+			modifier = {
+				factor = 0.25
+				FROM = { trait = maimed }
+				NOT = { trait = lunatic }
+			}
+			modifier = {
+				factor = 0.5
+				FROM = { trait = wounded }
+				NOT = { trait = lunatic }
+			}
+			# Personality Effects
+			modifier = {
+				factor = 5
+				trait = craven
+			}
+			modifier = {
+				factor = 2
+				trait = kind
+			}
+			modifier = {
+				factor = 1.25
+				trait = humble
+			}
+			modifier = {
+				factor = 0.5
+				trait = brave
+			}
+			modifier = {
+				factor = 0.8
+				trait = proud
+			}
+			modifier = {
+				factor = 0.2
+				trait = wroth
+			}
+		}
+
+		FROM = { # Winner considers yield
+			character_event = { id = hde_battle.404 tooltip = hde_battle.404.tt }
+		}
+	}
+	
+	option = { # Fight On
+		trigger = {
+			NOT = { has_character_flag = flag_duel_friendly }
+		}
+		name = hde_battle.403.b
+		ai_chance = { factor = 50 }
+		
+		FROM = { # Send to Winner
+			character_event = { id = hde_battle.407 tooltip = hde_battle.407.tt }
 		}
 	}
 }
-# Winner considers Loser's yield
+# Winner considers Loser's yield (Loser = FROM)
 character_event = {
 	id = hde_battle.404
 	desc = hde_battle.404.desc
@@ -1389,6 +1458,7 @@ character_event = {
 			}
 		}
 		
+		set_character_flag = flag_duel_spared_opponent
 		prestige = 15
 		FROM = { # Send to Loser
 			character_event = { id = hde_battle.405 tooltip = hde_battle.405.tt }
@@ -1443,12 +1513,13 @@ character_event = {
 			}
 		}
 		
+		set_character_flag = flag_duel_killed_opponent
 		FROM = { # Send to Loser
 			character_event = { id = hde_battle.406 tooltip = hde_battle.406.tt }
 		}
 	}
 }
-# Loser informed of being spared
+# Loser informed of being spared (Winner = FROM)
 character_event = {
 	id = hde_battle.405
 	desc = hde_battle.405.desc
@@ -1461,38 +1532,72 @@ character_event = {
 		name = hde_battle.405.a
 
 		prestige = -10
-		FROM = { # Send to Winner
-			hidden_tooltip = { # Cleanup!
-				character_event = { id = hde_core.9 }
-			}
-			character_event = {}
+		FROM = { # Send Output to Winner
+			character_event = { id = hde_core.9 tooltip = hde_core.9.tt }
 		}
-		# FROM = { character_event = { id = duel_output.1 tooltip = "EVTTOOLTIPDUELOUTPUT1" } }
 	}
 }
-# Loser informed of own death
+# Loser informed of own death (Winner = FROM)
 character_event = {
 	id = hde_battle.406
-	desc = "EVTDESCDUEL109"
+	desc = hde_battle.406.desc
 	picture = GFX_evt_duel5
 
 	is_triggered_only = yes
 	
 	option = {
-		name = "EVTOPTADUEL109"
+		name = hde_battle.406.a
 
 		if = {
-			limit = { FROM = { is_close_relative = yes } }
+			limit = {
+				FROM = { is_close_relative = yes }
+			}
 			FROM = { add_trait = kinslayer }
 		}
 		death = {
 			death_reason = death_duel
 			killer = FROM
 		}
-		FROM = { character_event = { id = duel_output.1 tooltip = "EVTTOOLTIPDUELOUTPUT1" } }
-		hidden_tooltip = { FROM = { character_event = { id = duel.203 } } }
+		FROM = { # Send Output to Winner
+			character_event = { id = hde_core.9 tooltip = hde_core.9.tt }
+		}
+		# hidden_tooltip = { FROM = { character_event = { id = duel.203 } } }
 	}
 }
+# Winner injures subdued, unyielding Loser (FROM = Loser)
+character_event = {
+	id = hde_battle.407
+	desc = hde_battle.407.desc
+	picture = GFX_evt_duel3
+	border = GFX_event_normal_frame_war
+
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.407.a
+
+		if = {
+			limit = {
+				FROMFROM = {
+					NOT = { trait = wounded }
+					NOT = { trait = maimed }
+				}
+			}
+			FROMFROM = { # Send to wounded event to Loser
+				character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt }
+			}
+		}
+		if = {
+			limit = {
+				FROMFROM = { trait = wounded }
+			}
+			FROMFROM = { # Send maimed event to Loser
+				character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt }
+			}
+		}
+	}
+}
+
 # Chain 2
 # Would be here, if Chain 2 existed
 
@@ -1752,7 +1857,140 @@ character_event = {
 	}
 }
 
+# Chain 2
+
 #####################
 ## KILLED OUTCOME FLAVOR
 ## 600-699 reserved
 # Unlike the other handlers, in these the winner always gets the first event
+# Aggressor kills Defender! (ROOT = Winner, Opponent = FROMFROM)
+character_event = {
+	id = duel.201
+	desc = "EVTDESCDUEL201"
+	picture = GFX_evt_duel3
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	show_from_from = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "EVTOPTADUEL201"
+
+		FROMFROM = { character_event = { id = duel.202 tooltip = "EVTTOOLTIPDUEL202" } }
+	}
+}
+# Defender kills Aggressor! (ROOT = Winner, Opponent = FROMFROM)
+character_event = {
+	id = duel.201
+	desc = "EVTDESCDUEL201"
+	picture = GFX_evt_duel3
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	show_from_from = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "EVTOPTADUEL201"
+
+		FROMFROM = { character_event = { id = duel.202 tooltip = "EVTTOOLTIPDUEL202" } }
+	}
+}
+# Loser is killed (FROM = Winner)
+character_event = {
+	id = duel.202
+	desc = "EVTDESCDUEL202"
+	picture = GFX_evt_duel3
+	is_triggered_only = yes
+	
+	option = {
+		name = "EVTOPTADUEL202"
+
+		if = {
+			limit = {
+				FROM = { is_close_relative = yes }
+			}
+			FROM = { add_trait = kinslayer }
+		}
+		death = {
+			death_reason = death_duel
+			killer = FROM
+		}
+		FROM = { set_character_flag = flag_killed_opponent }
+		FROM = { # Send Output to Winner
+			character_event = { id = duel_output.1 tooltip = "EVTTOOLTIPDUELOUTPUT1" }
+		}
+		# hidden_tooltip = { FROM = { character_event = { id = duel.203 } } }
+	}
+}
+
+### OUTPUT FLAVOR
+#####################
+## OUTPUT FLAVOR
+## 700-799 reserved
+# Chain 1
+# Winner killed Loser (Loser = FROMFROM)
+character_event = {
+	id = hde_battle.700
+	desc = "EVTDESC5556100"
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "EVTOPTA5556100"
+		
+		prestige = 25
+		random_current_enemy = {
+			limit = { at_location = ROOT }
+			morale = -0.2
+		}
+	}
+}
+# Winner spared Loser (Loser = FROMFROM)
+character_event = {
+	id = hde_battle.701
+	desc = "EVTDESC5556101"
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "EVTOPTA5556101"
+		
+		hidden_tooltip = {
+			FROMFROM = {
+				character_event = { id = hde_battle.702 }
+			}
+		}
+	}
+}
+# Loser is imprisoned (Winner = FROM)
+character_event = {
+	id = hde_battle.702
+	desc = "EVTDESC5556102"
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+
+	is_triggered_only = yes
+	
+	option = {
+		name = "EVTOPTA5556102"
+		
+		imprison = FROM
+		# set_character_flag = captured_in_battle
+		hidden_tooltip = {
+			FROM = {
+				character_event = { 
+					id = 50020 # "imprisoned_events.txt"
+				}
+			}
+		}
+	}
+}
+
+# Chain 2
+# Would be here, if Chain 2 existed

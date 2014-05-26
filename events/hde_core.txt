@@ -10,6 +10,11 @@ namespace = hde_core
 ## Duel Flavor
 # flag_duel_battlefield
 # flag_duel_tourney (eventually?)
+## Output flags
+# flag_duel_spared_opponent
+# flag_duel_wounded_opponent
+# flag_duel_maimed_opponent
+# flag_duel_killed_opponent
 
 ### MAIN EVENTS
 # hde_core.0	Referee decides between FROM and FROMFROM, flags winner and loser, target locks duelists, starts dueling chain
@@ -716,7 +721,7 @@ character_event = {
 }
 
 ### OUTCOME EVENTS
-# Outcome Handler: Always sent to e_rebels from the Loser
+## Outcome Handler: Always sent to e_rebels from the Loser
 # FROM = Loser, FROMFROM = Winner
 # Unlike other handlers, this always sends events to Winner who then passes them to Loser
 # Events sent to Winner: FROMFROM = Loser
@@ -1005,10 +1010,40 @@ character_event = {
 	option = { name = OK }
 }
 
-# Cleanup Event
-# One duelist sends this to the other, then it cleans up both
+### OUTPUT EVENTS
+## Output Handler
+# This is always sent from the Loser to the Winner (FROM = Loser)
+# Primary function is to hand out appropriate end of duel flavor and pass along events required to connect to non-HDE event chains
 character_event = {
 	id = hde_core.9
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		# Battlefield Flavor
+		if = {
+			limit = { has_character_flag = flag_duel_battlefield }
+
+			if = {
+				limit = {}
+				
+			}
+		}
+		# Cleanup!
+		FROM = {
+			character_event = { id = hde_core.10 }
+		}
+	}
+	
+	option = { name = OK }
+}
+
+# Cleanup Event
+# One duelist sends this to the other, then it cleans up both
+# This only needs to be used in cases where the Output Handler isn't called instead
+character_event = {
+	id = hde_core.10
 	hide_window = yes
 	
 	is_triggered_only = yes

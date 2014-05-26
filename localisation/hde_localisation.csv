@@ -9,6 +9,8 @@ hde_core.4.tt;visibly gathers [From.GetHerHis] courage;;;;;;;;;;;;;x
 # Sizing Up Flavor;;;;;;;;;;;;;;x
 hde_core.5.tt;prepares to attack;;;;;;;;;;;;;x
 hde_core.6.tt;readies [From.GetHerselfHimself] to strike;;;;;;;;;;;;;x
+# Output Flavor;;;;;;;;;;;;;;x
+hde_core.9.tt;is victorious!;est victorieux !;;;¡sale victorioso!;;;;;;;;;x
 ############ Battlefield Flavor;;;;;;;;;;;;;;x
 ### Initial Flavor;;;;;;;;;;;;;;x
 # These events always start with meeting on the battlefield and end with either charge/chicken
@@ -89,6 +91,11 @@ hde_battle.405.desc;[From.GetFirstName] lowers the point of [From.GetHerHis] wea
 hde_battle.405.a;Your battle, fairly won.;Votre bataille, remportée honorablement.;;;Has vencido justamente.;;;;;;;;;x
 # Loser informed of own death (FROM = Winner)
 hde_battle.406.tt;is slain!;est tué !;;;¡es abatido!;;;;;;;;;x
+hde_battle.406.desc;[From.GetFirstName] looks down at you without a hint of emotion on [From.GetHerHis] face.\n"No."\nAll goes dark.;[From.GetFirstName] vous regarde de haut sans la moindre émotion sur son visage.\n"La mort pour seule récompense !"\nTout devient noir.;;;[From.GetFirstName] te mira sin emoción en su cara.\n“No.” \nDe repente, todo se vuelve oscuro.;;;;;;;;;x
+hde_battle.406.a;Aaargh!;Aaargh!;;;¡Aaargh!;;;;;;;;;x
+# Winner injures subdued, unyielding Loser (FROM = Loser)
+hde_battle.407.desc;[From.GetBestName] is beaten to the ground, unable to withstand your attack. You have wounded [From.GetHerHim], but [From.GetBestName] stands back up, determined to fight on.;[From.GetBestName] est au sol, incapable de résister à votre attaque. Vous l'avez blessé, mais [From.GetBestName] se relève, déterminé à combattre.;;;[From.GetBestName] es derribado al suelo, incapaz de hacer frente a tu ataque. Le has herido, pero se vuelve a levantar, dispuesto a continuar.;;;;;;;;;x
+hde_battle.407.a;You should have yielded when you had the chance…;Vous auriez du vous rendre quand vous en aviez la possibilité…;;;Rendirse no fue una buena idea...;;;;;;;;;x
 # Wounded Outcomes Flavor;;;;;;;;;;;;;;x
 # Chain 1
 # Aggressor injures Defender! (ROOT = Winner, Opponent = FROMFROM)
@@ -108,7 +115,10 @@ hde_battle.502.desc;Slowed by your injury, you still manage to dodge away from [
 hde_battle.503.a;I will not surrender to the likes of you!;;;;;;;;;;;;;x
 hde_battle.503.b;Yield! Yield! I am through!;;;;;;;;;;;;;x
 # Killed Outcomes Flavor;;;;;;;;;;;;;;x
-
+# Output Flavor;;;;;;;;;;;;;;x
+hde_battle.700.desc;
+EVTDESC5556100;As [FromFrom.GetBestName] falls before you, [FromFrom.GetHerHis] soldiers look on and begin to lose hope.;Alors que vous venez de défaire [FromFrom.GetBestName], ses soldats commence à douter et à perdre espoir.;;;Mientras [FromFrom.GetBestName] cae ante ti, sus soldados se quedan mirando y empiezan a perder la esperanza.;;;;;;;;;x
+EVTDESCDUEL203;[From.GetBestName] crumples to the ground, lifeless. You wipe [From.GetHerHis] blood from your weapon. The deed is done. [From.GetSheHeCap] is dead.;[From.GetBestName] gît à terre, du sang s'écoulant de la blessure fatale que vous lui avez infligé. Vous essuyez votre arme avec de la terre. C'est fait. [From.GetSheHeCap] est mort.;;;[From.GetBestName] se derrumba, inerte. Limpias su sangre de tu arma. Asunto concluido. [From.GetSheHeCap] muere.;;;;;;;;;x
 
 
 
