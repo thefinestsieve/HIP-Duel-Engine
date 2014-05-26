@@ -208,8 +208,8 @@ character_event = {
 		reverse_remove_opinion = { who = FROM modifier = opinion_battle_duel_target }
 		
 		# Set duel type
-		set_character_flag = flag_battlefield_duel
-		FROM = { set_character_flag = flag_battlefield_duel }
+		set_character_flag = flag_duel_battlefield
+		FROM = { set_character_flag = flag_duel_battlefield }
 		
 		# Start this thing!
 		hidden_tooltip = { e_rebels = { holder_scope = { character_event = { id = hde_core.0 } } } }
@@ -227,7 +227,7 @@ character_event = {
 # I'd like to give cowards a chance to become brave if they choose to fight.
 # Or at least a chance to lose craven.
 # Chain 1
-# Aggressor attacks or not! (ROOT = Winner)
+# Aggressor attacks or not! (ROOT = Winner, FROMFROM = Loser)
 character_event = {
 	id = hde_battle.100
 	desc = hde_battle.100.desc
@@ -433,7 +433,7 @@ character_event = {
 		}
 	}
 }
-# Aggressor attacks or not! (ROOT = Loser)
+# Aggressor attacks or not! (ROOT = Loser, FROM = Winner)
 character_event = {
 	id = hde_battle.101
 	desc = hde_battle.100.desc
