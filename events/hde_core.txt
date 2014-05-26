@@ -32,23 +32,24 @@ namespace = hde_core
 # The outcome event is fired from e_rebels due to requiring the AI weights in order to choose options
 # hde_core.7	Outcome handler, random flavor events
 # hde_core.8	Outcome handler bounce event
-# hde_core.9	Cleanup handler, cleans up flags, traits, and opinion modifiers, also fires failure flavor
+# hde_core.9	Output handler
+# hde_core.10	Cleanup handler
 
-# Outcome types: Loser is outright killed, loser is wounded, loser is subdued. If loser is wounded or subdued, they may be captured, killed, or let go. If loser is wounded but refuses to yield, repeat the loop, but with odds against the loser? (And risk of getting maimed.) If loser is subdued but refuses to yield, they get wounded, then the loop is repeated as before.
-
-# Question: How are we going to check for failure states? What if one of the characters dies for some other reason? We'll need a failure event ("You lost track of your opponent in the heat of battle" sort of thing)?
-# Question: Will we need a safety catch cleanup event?
 # Idea: If you the event fails, mark any viable character we can still find with a tag that makes them more likely to get another duel in the future?
-# Alternatively: The outcome chains could each be written as one self-consistent chain, so when Chain 1 subdued is chosen, if the Loser doesn't yield, it would refer to the Chain 1 wounded event. That same Chain 1 wounded event might be called as part of the wounded outcome, and so forth.
 
-# I want to be able to mark characters so we know they're on their second or third trip through the loop
-# This way the handlers can point them towards "tired" versions of flavor events
+# Still TODO:
+# Update/change/improve event pictures
+# Add in flavor for other kinds of duels
+# Hook other duel types into output event
+# Add "tired" versions of some of the flavor events, along with support for marking characters who've been through the loop more than once
+# Update the trait references to include any new VIET traits in PB and VIET
 
 ### FLAVOR EVENTS
 # These are effectively mini-chains
 # The events can bounce back and forth as much as you like, so long as it ends with the loser calling the handler on the winner, or with the winner calling the handler bounce event on the loser
 # This is so the localization always works out properly
 # But generally they'll be very short; don't want to be sending participants a forest of events
+# The exception is the outcome chains, which are written as one self-consistent chain. So when Chain 1 subdued is chosen, if the Loser doesn't yield, it refers to the Chain 1 wounded event. That same Chain 1 wounded event might be called more directly as part of the wounded outcome, and so forth.
 
 ### MAIN EVENTS
 character_event = {
@@ -1024,11 +1025,25 @@ character_event = {
 		# Battlefield Flavor
 		if = {
 			limit = { has_character_flag = flag_duel_battlefield }
-
 			if = {
-				limit = {}
-				
+				limit = { has_character_flag = flag_duel_killed_opponent }
+				random_list = {
+					50 = { character_event = { id = hde_battle.700 } } # Chain 1
+					50 = { character_event = { id = hde_battle.700 } } # Chain 1
+				}
 			}
+			if = {
+				limit = { has_character_flag = flag_duel_spared_opponent }
+				random_list = {
+					50 = { character_event = { id = hde_battle.701 } } # Chain 1
+					50 = { character_event = { id = hde_battle.701 } } # Chain 1
+				}
+			}
+		}
+		# Insert additional flavor blocks here
+		# CTA Victory forwarder
+		FROM = { # Send bounce to Loser
+			character_event = { id = cta.11 }
 		}
 		# Cleanup!
 		FROM = {
@@ -1050,6 +1065,11 @@ character_event = {
 	
 	immediate = {
 		FROM = {
+			# Output flags
+			clr_character_flag = flag_duel_spared_opponent
+			clr_character_flag = flag_duel_wounded_opponent
+			clr_character_flag = flag_duel_maimed_opponent
+			clr_character_flag = flag_duel_killed_opponent
 			# Aggressor/Defender flags
 			clr_character_flag = flag_duel_aggressor
 			clr_character_flag = flag_duel_defender
@@ -1064,6 +1084,11 @@ character_event = {
 			clr_character_flag = flag_duel_battlefield
 			# Add new Duel Type flags here
 		}
+		# Output flags
+		clr_character_flag = flag_duel_spared_opponent
+		clr_character_flag = flag_duel_wounded_opponent
+		clr_character_flag = flag_duel_maimed_opponent
+		clr_character_flag = flag_duel_killed_opponent
 		# Aggressor/Defender flags
 		clr_character_flag = flag_duel_aggressor
 		clr_character_flag = flag_duel_defender

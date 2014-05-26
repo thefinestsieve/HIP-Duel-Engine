@@ -902,7 +902,7 @@ character_event = {
 		
 		hidden_tooltip = {
 			FROMFROM = { # Send to Loser
-				character_event = { id = hde_battle.201 }
+				character_event = { id = hde_battle.202 }
 			}
 		}
 	}
@@ -923,7 +923,7 @@ character_event = {
 		
 		hidden_tooltip = {
 			FROM = { # Send to Winner
-				character_event = { id = hde_battle.201 }
+				character_event = { id = hde_battle.202 }
 			}
 		}
 	}
@@ -1858,6 +1858,7 @@ character_event = {
 }
 
 # Chain 2
+# Would be here, if Chain 2 existed
 
 #####################
 ## KILLED OUTCOME FLAVOR
@@ -1865,8 +1866,8 @@ character_event = {
 # Unlike the other handlers, in these the winner always gets the first event
 # Aggressor kills Defender! (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
-	id = duel.201
-	desc = "EVTDESCDUEL201"
+	id = hde_battle.600
+	desc = hde_battle.600.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -1875,15 +1876,17 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = "EVTOPTADUEL201"
+		name = hde_battle.600.a
 
-		FROMFROM = { character_event = { id = duel.202 tooltip = "EVTTOOLTIPDUEL202" } }
+		FROMFROM = { # Send to Loser
+			character_event = { id = hde_battle.602 tooltip = hde_battle.602.tt }
+		}
 	}
 }
 # Defender kills Aggressor! (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
-	id = duel.201
-	desc = "EVTDESCDUEL201"
+	id = hde_battle.601
+	desc = hde_battle.601.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -1894,18 +1897,21 @@ character_event = {
 	option = {
 		name = "EVTOPTADUEL201"
 
-		FROMFROM = { character_event = { id = duel.202 tooltip = "EVTTOOLTIPDUEL202" } }
+		FROMFROM = { # Send to Loser
+			character_event = { id = hde_battle.602 tooltip = hde_battle.602.tt }
+		}
 	}
 }
 # Loser is killed (FROM = Winner)
 character_event = {
-	id = duel.202
-	desc = "EVTDESCDUEL202"
+	id = hde_battle.602
+	desc = hde_battle.602.desc
 	picture = GFX_evt_duel3
+
 	is_triggered_only = yes
 	
 	option = {
-		name = "EVTOPTADUEL202"
+		name = hde_battle.602.a
 
 		if = {
 			limit = {
@@ -1917,13 +1923,16 @@ character_event = {
 			death_reason = death_duel
 			killer = FROM
 		}
-		FROM = { set_character_flag = flag_killed_opponent }
 		FROM = { # Send Output to Winner
-			character_event = { id = duel_output.1 tooltip = "EVTTOOLTIPDUELOUTPUT1" }
+			set_character_flag = flag_killed_opponent
+			character_event = { id = hde_core.9 tooltip = hde_core.9.tt }
 		}
 		# hidden_tooltip = { FROM = { character_event = { id = duel.203 } } }
 	}
 }
+
+# Chain 2
+# Would be here, if Chain 2 existed
 
 ### OUTPUT FLAVOR
 #####################
@@ -1952,14 +1961,14 @@ character_event = {
 # Winner spared Loser (Loser = FROMFROM)
 character_event = {
 	id = hde_battle.701
-	desc = "EVTDESC5556101"
+	desc = hde_battle.701.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
 
 	is_triggered_only = yes
 	
 	option = {
-		name = "EVTOPTA5556101"
+		name = hde_battle.701.a
 		
 		hidden_tooltip = {
 			FROMFROM = {
@@ -1971,14 +1980,14 @@ character_event = {
 # Loser is imprisoned (Winner = FROM)
 character_event = {
 	id = hde_battle.702
-	desc = "EVTDESC5556102"
+	desc = hde_battle.702.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
 
 	is_triggered_only = yes
 	
 	option = {
-		name = "EVTOPTA5556102"
+		name = hde_battle.702.a
 		
 		imprison = FROM
 		# set_character_flag = captured_in_battle

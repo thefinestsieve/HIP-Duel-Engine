@@ -628,7 +628,8 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = "EVTOPTA5556100"
+		name = hde_battle.700.a
+
 		random_current_enemy = {
 			limit = { at_location = ROOT }
 			morale = -0.2
@@ -645,6 +646,7 @@ character_event = {
 	
 	option = {
 		name = "EVTOPTA5556101"
+
 		hidden_tooltip = {
 			FROMFROM = { character_event = { id = duel_be.102 } }
 		}
