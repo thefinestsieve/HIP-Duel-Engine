@@ -631,7 +631,7 @@ character_event = {
 		}
 	}
 }
-# Defender fights or not!
+# Defender fights or not! (Sent to Winner or Loser)
 character_event = {
 	id = hde_battle.102
 	desc = hde_battle.102.desc
@@ -837,7 +837,7 @@ character_event = {
 		}
 	}
 }
-# Aggressor chickens out
+# Aggressor chickens out (Sent to Winner or Loser)
 character_event = {
 	id = hde_battle.103
 	desc = hde_battle.103.desc
@@ -857,7 +857,7 @@ character_event = {
 		}
 	}
 }
-# Defender chickens out
+# Defender chickens out (Sent to Winner or Loser)
 character_event = {
 	id = hde_battle.104
 	desc = hde_battle.104.desc
@@ -1039,6 +1039,7 @@ character_event = {
 # Would be here, if Chain 2 existed
 
 ### OUTCOME FLAVOR
+# The chains for this are larger and intended to be self-consistent, so if Chain 1 subdued event is called, it's going to reference the Chain 1 yield event and, if the Loser won't yield, the Chain 1 wounded event. If the Loser does yield, and Winner kills the Loser, it'll reference the Chain 1 death event. Those wounded and death events are the same ones called directly if the Chain 1 wounded or death outcomes are chosen by the handler. This should prevent redundant events while also making sure the flavor for each chain is consistent with itself.
 #####################
 ## SUBDUED OUTCOME FLAVOR
 ## 400-499 reserved
@@ -1149,7 +1150,7 @@ character_event = {
 				trait = wroth
 			}
 		}
-		FROM = { # Send yield event to Winner
+		FROM = { # Winner considers yield
 			character_event = { id = hde_battle.404 tooltip = hde_battle.404.tt }
 		}
 	}
@@ -1492,7 +1493,6 @@ character_event = {
 		hidden_tooltip = { FROM = { character_event = { id = duel.203 } } }
 	}
 }
-
 # Chain 2
 # Would be here, if Chain 2 existed
 
@@ -1500,6 +1500,257 @@ character_event = {
 ## WOUNDED OUTCOME FLAVOR
 ## 500-599 reserved
 # Unlike the other handlers, in these the winner always gets the first event
+# Chain 1
+# Aggressor injures Defender! (ROOT = Winner, Opponent = FROMFROM)
+character_event = {
+	id = hde_battle.500
+	desc = hde_battle.500.desc
+	picture = GFX_evt_duel3
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	show_from_from = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.500.a
+		
+		if = {
+			limit = {
+				FROMFROM = {
+					NOT = { trait = wounded }
+					NOT = { trait = maimed }
+				}
+			}
+			FROMFROM = { # Send to wounded event to Loser
+				character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt }
+			}
+		}
+		if = {
+			limit = {
+				FROMFROM = { trait = wounded }
+			}
+			FROMFROM = { # Send maimed event to Loser
+				character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt }
+			}
+		}
+	}
+}
+# Defender injures Aggressor! (ROOT = Winner, Opponent = FROMFROM)
+character_event = {
+	id = hde_battle.501
+	desc = hde_battle.501.desc
+	picture = GFX_evt_duel3
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	show_from_from = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.501.a
+
+		if = {
+			limit = {
+				FROMFROM = {
+					NOT = { trait = wounded }
+					NOT = { trait = maimed }
+				}
+			}
+			FROMFROM = { # Send to wounded event to Loser
+				character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt }
+			}
+		}
+		if = {
+			limit = {
+				FROMFROM = { trait = wounded }
+			}
+			FROMFROM = { # Send maimed event to Loser
+				character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt }
+			}
+		}
+	}
+}
+# Loser is injured (FROM = Winner)
+character_event = {
+	id = hde_battle.502
+	desc = hde_battle.502.desc
+	picture = GFX_evt_duel3
+	border = GFX_event_normal_frame_war
+
+	is_triggered_only = yes
+	
+	immediate = {
+		FROM = { set_character_flag = flag_duel_wounded_opponent }
+	}
+	
+	option = { # Fight On
+		trigger = {
+			NOT = { has_character_flag = flag_duel_friendly }
+		}
+		name = hde_battle.502.a
+		ai_chance = { factor = 70 }
+		
+		add_trait = wounded
+		# Restart the fight
+		hidden_tooltip = { e_rebels = { holder_scope = { character_event = { id = hde_core.0 } } } }
+	}
+	option = { # Yield
+		trigger = {
+			OR = {
+				has_character_flag = flag_duel_friendly
+				NOT = { has_character_flag = flag_duel_to_the_death }
+			}
+		}
+		name = hde_battle.502.b
+		ai_chance = {
+			factor = 30
+			# Nearly Beaten!
+			modifier = {
+				factor = 4
+				trait = maimed
+				NOT = { trait = lunatic }
+			}
+			modifier = {
+				factor = 2
+				trait = wounded
+				NOT = { trait = lunatic }
+			}
+			# Opponent Nearly Beaten!
+			modifier = {
+				factor = 0.25
+				FROM = { trait = maimed }
+				NOT = { trait = lunatic }
+			}
+			modifier = {
+				factor = 0.5
+				FROM = { trait = wounded }
+				NOT = { trait = lunatic }
+			}
+			# Personality Effects
+			modifier = {
+				factor = 5
+				trait = craven
+			}
+			modifier = {
+				factor = 2
+				trait = kind
+			}
+			modifier = {
+				factor = 1.25
+				trait = humble
+			}
+			modifier = {
+				factor = 0.5
+				trait = brave
+			}
+			modifier = {
+				factor = 0.8
+				trait = proud
+			}
+			modifier = {
+				factor = 0.2
+				trait = wroth
+			}
+		}
+
+		add_trait = wounded
+		prestige = -10
+		FROM = { # Winner considers yield
+			character_event = { id = hde_battle.404 tooltip = hde_battle.404.tt }
+		}
+	}
+}
+# Loser is maimed (FROM = Winner)
+character_event = {
+	id = hde_battle.503
+	desc = hde_battle.503.desc
+	picture = GFX_evt_duel3
+	border = GFX_event_normal_frame_war
+
+	is_triggered_only = yes
+	
+	immediate = {
+		FROM = { set_character_flag = flag_duel_maimed_opponent }
+	}
+	
+	option = { # Fight On
+		trigger = {
+			NOT = { has_character_flag = flag_duel_friendly }
+		}
+		name = hde_battle.503.a
+		ai_chance = { factor = 70 }
+		
+		add_trait = maimed
+		# Restart the fight
+		hidden_tooltip = { e_rebels = { holder_scope = { character_event = { id = hde_core.0 } } } }
+	}
+	option = { # Yield
+		trigger = {
+			OR = {
+				has_character_flag = flag_duel_friendly
+				NOT = { has_character_flag = flag_duel_to_the_death }
+			}
+		}
+		name = hde_battle.503.b
+		ai_chance = {
+			factor = 30
+			# Nearly Beaten!
+			modifier = {
+				factor = 4
+				trait = maimed
+				NOT = { trait = lunatic }
+			}
+			modifier = {
+				factor = 2
+				trait = wounded
+				NOT = { trait = lunatic }
+			}
+			# Opponent Nearly Beaten!
+			modifier = {
+				factor = 0.25
+				FROM = { trait = maimed }
+				NOT = { trait = lunatic }
+			}
+			modifier = {
+				factor = 0.5
+				FROM = { trait = wounded }
+				NOT = { trait = lunatic }
+			}
+			# Personality Effects
+			modifier = {
+				factor = 5
+				trait = craven
+			}
+			modifier = {
+				factor = 2
+				trait = kind
+			}
+			modifier = {
+				factor = 1.25
+				trait = humble
+			}
+			modifier = {
+				factor = 0.5
+				trait = brave
+			}
+			modifier = {
+				factor = 0.8
+				trait = proud
+			}
+			modifier = {
+				factor = 0.2
+				trait = wroth
+			}
+		}
+
+		add_trait = maimed
+		prestige = -10
+		FROM = { # Winner considers yield
+			character_event = { id = hde_battle.404 tooltip = hde_battle.404.tt }
+		}
+	}
+}
 
 #####################
 ## KILLED OUTCOME FLAVOR
