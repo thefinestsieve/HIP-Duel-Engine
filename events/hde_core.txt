@@ -75,14 +75,14 @@ character_event = {
 	
 	immediate = {
 		# Target Lock
-		FROM = {
-			add_trait = duel_target
-		}
-		FROMFROM = {
-			add_trait = duel_target
-			opinion = { who = FROM modifier = opinion_duel_target }
-			reverse_opinion = { who = FROM modifier = opinion_duel_target }
-		}
+		# FROM = {
+			# add_trait = duel_target
+		# }
+		# FROMFROM = {
+			# add_trait = duel_target
+			# opinion = { who = FROM modifier = opinion_duel_target }
+			# reverse_opinion = { who = FROM modifier = opinion_duel_target }
+		# }
 		# Randomize aggressor/defender
 		random_list = {
 			50 = {
@@ -547,11 +547,11 @@ character_event = {
 	}
 }
 
-# Bounce event so the scopes work properly
+# Bounce event off the Loser so the scopes work properly
 character_event = {
 	id = hde_core.1
 	hide_window = yes
-	
+
 	is_triggered_only = yes
 	
 	immediate = {
@@ -564,9 +564,7 @@ character_event = {
 		}
 	}
 	
-	option = {
-		name = OK
-	}
+	option = { name = OK }
 }
 
 ### HANDLER EVENTS
@@ -864,8 +862,8 @@ character_event = {
 			if = {
 				limit = { has_character_flag = flag_duel_aggressor }
 				random_list = {
-					50 = { character_event = { id = hde_battle.400 } } # Chain 1
-					50 = { character_event = { id = hde_battle.400 } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.400 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.400 } } } # Chain 1
 					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
@@ -873,8 +871,8 @@ character_event = {
 			if = {
 				limit = { has_character_flag = flag_duel_defender }
 				random_list = {
-					50 = { character_event = { id = hde_battle.401 } } # Chain 1
-					50 = { character_event = { id = hde_battle.401 } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.401 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.401 } } } # Chain 1
 					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
@@ -918,8 +916,8 @@ character_event = {
 			if = {
 				limit = { has_character_flag = flag_duel_aggressor }
 				random_list = {
-					50 = { character_event = { id = hde_battle.500 } } # Chain 1
-					50 = { character_event = { id = hde_battle.500 } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.500 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.500 } } } # Chain 1
 					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
@@ -927,8 +925,8 @@ character_event = {
 			if = {
 				limit = { has_character_flag = flag_duel_defender }
 				random_list = {
-					50 = { character_event = { id = hde_battle.501 } } # Chain 1
-					50 = { character_event = { id = hde_battle.501 } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.501 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.501 } } } # Chain 1
 					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
@@ -976,8 +974,8 @@ character_event = {
 			if = {
 				limit = { has_character_flag = flag_duel_aggressor }
 				random_list = {
-					50 = { character_event = { id = hde_battle.600 } } # Chain 1
-					50 = { character_event = { id = hde_battle.600 } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.600 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.600 } } } # Chain 1
 					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
@@ -985,8 +983,8 @@ character_event = {
 			if = {
 				limit = { has_character_flag = flag_duel_defender }
 				random_list = {
-					50 = { character_event = { id = hde_battle.601 } } # Chain 1
-					50 = { character_event = { id = hde_battle.601 } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.601 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.601 } } } # Chain 1
 					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
