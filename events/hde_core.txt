@@ -52,12 +52,29 @@ namespace = hde_core
 # The exception is the outcome chains, which are written as one self-consistent chain. So when Chain 1 subdued is chosen, if the Loser doesn't yield, it refers to the Chain 1 wounded event. That same Chain 1 wounded event might be called more directly as part of the wounded outcome, and so forth.
 
 ### MAIN EVENTS
+# Hideous forwarder hack due to issues with setting the targeting opinions in the referee event
 character_event = {
 	id = hde_core.0
-	# This might eventually be a hide_window = yes type event, but not for now
-	desc = AI_EVENT
-	picture = GFX_evt_duel0
+	hide_window = yes
+	is_triggered_only = yes
 	
+	immediate = {
+		# Target Lock
+		add_trait = duel_target
+		FROM = {
+			add_trait = duel_target
+			opinion = { who = ROOT modifier = opinion_duel_target }
+			reverse_opinion = { who = ROOT modifier = opinion_duel_target }
+		}
+		hidden_tooltip = { e_rebels = { holder_scope = { character_event = { id = hde_core.1 } } } }
+	}
+	
+	option = { name = OK }
+}
+# Actual main event
+character_event = {
+	id = hde_core.1
+	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
@@ -74,15 +91,11 @@ character_event = {
 	}
 	
 	immediate = {
-		# Target Lock
-		# FROM = {
-			# add_trait = duel_target
-		# }
-		# FROMFROM = {
-			# add_trait = duel_target
-			# opinion = { who = FROM modifier = opinion_duel_target }
-			# reverse_opinion = { who = FROM modifier = opinion_duel_target }
-		# }
+		# Already been through the loop? Clear those flags!
+		clr_character_flag = flag_duel_aggressor
+		clr_character_flag = flag_duel_defender
+		clr_character_flag = flag_duel_winner
+		clr_character_flag = flag_duel_loser
 		# Randomize aggressor/defender
 		random_list = {
 			50 = {
@@ -325,7 +338,7 @@ character_event = {
 		}
 		FROMFROM = {
 			set_character_flag = flag_duel_loser
-			character_event = { id = hde_core.1 }
+			character_event = { id = hde_core.2 }
 		}
 	}
 	# FROMFROM wins
@@ -539,7 +552,7 @@ character_event = {
 		# Set flags and target lock
 		FROM = {
 			set_character_flag = flag_duel_loser
-			character_event = { id = hde_core.1 }
+			character_event = { id = hde_core.2 }
 		}
 		FROMFROM = {
 			set_character_flag = flag_duel_winner
@@ -549,7 +562,7 @@ character_event = {
 
 # Bounce event off the Loser so the scopes work properly
 character_event = {
-	id = hde_core.1
+	id = hde_core.2
 	hide_window = yes
 
 	is_triggered_only = yes
@@ -560,7 +573,7 @@ character_event = {
 				has_opinion_modifier = { who = ROOT modifier = opinion_duel_target }
 				has_character_flag = flag_duel_winner
 			}
-			character_event = { id = hde_core.2 }
+			character_event = { id = hde_core.3 }
 		}
 	}
 	
@@ -575,7 +588,7 @@ character_event = {
 # If sent to the winner, the subsequent event will be winner (ROOT) and loser (FROMFROM)
 # If sent to the loser, the subsequent event will be loser (ROOT) and winner (FROM)
 character_event = {
-	id = hde_core.2
+	id = hde_core.3
 	hide_window = yes
 	
 	is_triggered_only = yes
@@ -615,7 +628,7 @@ character_event = {
 # If sent to the winner, the subsequent event will be winner (ROOT) and loser (FROMFROM)
 # If sent to the loser, the subsequent event will be loser (ROOT) and winner (FROM)
 character_event = {
-	id = hde_core.3
+	id = hde_core.4
 	hide_window = yes
 	
 	is_triggered_only = yes
@@ -650,14 +663,14 @@ character_event = {
 }
 # Sizing Up Handler Bounce Event
 character_event = {
-	id = hde_core.4
+	id = hde_core.5
 	hide_window = yes
 	
 	is_triggered_only = yes
 	
 	immediate = {
 		FROM = {
-			character_event = { id = hde_core.3 }
+			character_event = { id = hde_core.4 }
 		}
 	}
 	
@@ -670,7 +683,7 @@ character_event = {
 # If sent to the winner, the subsequent event will be winner (ROOT) and loser (FROMFROM)
 # If sent to the loser, the subsequent event will be loser (ROOT) and winner (FROM)
 character_event = {
-	id = hde_core.5
+	id = hde_core.6
 	hide_window = yes
 	
 	is_triggered_only = yes
@@ -705,14 +718,14 @@ character_event = {
 }
 # Combat Handler Bounce Event
 character_event = {
-	id = hde_core.6
+	id = hde_core.7
 	hide_window = yes
 	
 	is_triggered_only = yes
 	
 	immediate = {
 		FROM = {
-			character_event = { id = hde_core.5 }
+			character_event = { id = hde_core.6 }
 		}
 	}
 	
@@ -725,7 +738,7 @@ character_event = {
 # Unlike other handlers, this always sends events to Winner who then passes them to Loser
 # Events sent to Winner: FROMFROM = Loser
 character_event = {
-	id = hde_core.7
+	id = hde_core.8
 	hide_window = yes
 	
 	is_triggered_only = yes
@@ -993,7 +1006,7 @@ character_event = {
 }
 # Outcome Handler Bounce Event
 character_event = {
-	id = hde_core.8
+	id = hde_core.9
 	hide_window = yes
 	
 	is_triggered_only = yes
@@ -1001,7 +1014,7 @@ character_event = {
 	immediate = {
 		e_rebels = {
 			holder_scope = {
-				character_event = { id = hde_core.7 }
+				character_event = { id = hde_core.8 }
 			}
 		}
 	}
@@ -1014,7 +1027,7 @@ character_event = {
 # This is always sent from the Loser to the Winner (FROM = Loser)
 # Primary function is to hand out appropriate end of duel flavor and pass along events required to connect to non-HDE event chains
 character_event = {
-	id = hde_core.9
+	id = hde_core.10
 	hide_window = yes
 	
 	is_triggered_only = yes
@@ -1045,7 +1058,7 @@ character_event = {
 		}
 		# Cleanup!
 		FROM = {
-			character_event = { id = hde_core.10 }
+			character_event = { id = hde_core.11 }
 		}
 	}
 	
@@ -1056,7 +1069,7 @@ character_event = {
 # One duelist sends this to the other, then it cleans up both
 # This only needs to be used in cases where the Output Handler isn't called instead
 character_event = {
-	id = hde_core.10
+	id = hde_core.11
 	hide_window = yes
 	
 	is_triggered_only = yes

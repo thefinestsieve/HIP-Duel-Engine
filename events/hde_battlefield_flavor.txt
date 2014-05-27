@@ -211,16 +211,8 @@ character_event = {
 		set_character_flag = flag_duel_battlefield
 		FROM = { set_character_flag = flag_duel_battlefield }
 		
-		# Target Lock
-		add_trait = duel_target
-		FROM = {
-			add_trait = duel_target
-			opinion = { who = ROOT modifier = opinion_duel_target }
-			reverse_opinion = { who = ROOT modifier = opinion_duel_target }
-		}
-		
 		# Start this thing!
-		hidden_tooltip = { e_rebels = { holder_scope = { character_event = { id = hde_core.0 } } } }
+		hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
 	}
 	
 	option = {
@@ -693,13 +685,13 @@ character_event = {
 		if = {
 			limit = { has_character_flag = flag_duel_loser }
 			FROM = { # Send handler to Winner
-				character_event = { id = hde_core.3 tooltip = hde_core.3.tt }
+				character_event = { id = hde_core.4 tooltip = hde_core.4.tt }
 			}
 		}
 		if = {
 			limit = { has_character_flag = flag_duel_winner }
 			FROM = { # Send handler bounce to Loser
-				character_event = { id = hde_core.4 tooltip = hde_core.4.tt }
+				character_event = { id = hde_core.5 tooltip = hde_core.5.tt }
 			}
 		}
 	}
@@ -860,7 +852,7 @@ character_event = {
 		morale = 0.1
 		hidden_tooltip = {
 			FROM = { # Time for cleanup
-				character_event = { id = hde_core.10 }
+				character_event = { id = hde_core.11 }
 			}
 		}
 	}
@@ -880,7 +872,7 @@ character_event = {
 		morale = 0.1
 		hidden_tooltip = {
 			FROM = { # Time for cleanup
-				character_event = { id = hde_core.10 }
+				character_event = { id = hde_core.11 }
 			}
 		}
 	}
@@ -950,13 +942,13 @@ character_event = {
 		if = {
 			limit = { has_character_flag = flag_duel_loser }
 			FROM = { # Send handler to Winner
-				character_event = { id = hde_core.5 tooltip = hde_core.5.tt }
+				character_event = { id = hde_core.6 tooltip = hde_core.6.tt }
 			}
 		}
 		if = {
 			limit = { has_character_flag = flag_duel_winner }
 			FROM = { # Send handler bounce to Loser
-				character_event = { id = hde_core.6 tooltip = hde_core.6.tt }
+				character_event = { id = hde_core.7 tooltip = hde_core.7.tt }
 			}
 		}
 	}
@@ -1020,7 +1012,7 @@ character_event = {
 		hidden_tooltip = {
 			e_rebels = { # Send handler to referee
 				holder_scope = {
-					character_event = { id = hde_core.7 }
+					character_event = { id = hde_core.8 }
 				}
 			}
 		}
@@ -1040,7 +1032,7 @@ character_event = {
 		
 		hidden_tooltip = {
 			FROM = { # Send bounce event to Loser
-				character_event = { id = hde_core.8 }
+				character_event = { id = hde_core.9 }
 			}
 		}
 	}
@@ -1541,7 +1533,7 @@ character_event = {
 
 		prestige = -10
 		FROM = { # Send Output to Winner
-			character_event = { id = hde_core.9 tooltip = hde_core.9.tt }
+			character_event = { id = hde_core.10 tooltip = hde_core.10.tt }
 		}
 	}
 }
@@ -1567,9 +1559,8 @@ character_event = {
 			killer = FROM
 		}
 		FROM = { # Send Output to Winner
-			character_event = { id = hde_core.9 tooltip = hde_core.9.tt }
+			character_event = { id = hde_core.10 tooltip = hde_core.10.tt }
 		}
-		# hidden_tooltip = { FROM = { character_event = { id = duel.203 } } }
 	}
 }
 # Winner injures subdued, unyielding Loser (FROM = Loser)
@@ -1706,7 +1697,7 @@ character_event = {
 		
 		add_trait = wounded
 		# Restart the fight
-		hidden_tooltip = { e_rebels = { holder_scope = { character_event = { id = hde_core.0 } } } }
+		hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
 	}
 	option = { # Yield
 		trigger = {
@@ -1796,7 +1787,7 @@ character_event = {
 		
 		add_trait = maimed
 		# Restart the fight
-		hidden_tooltip = { e_rebels = { holder_scope = { character_event = { id = hde_core.0 } } } }
+		hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
 	}
 	option = { # Yield
 		trigger = {
@@ -1933,9 +1924,8 @@ character_event = {
 		}
 		FROM = { # Send Output to Winner
 			set_character_flag = flag_killed_opponent
-			character_event = { id = hde_core.9 tooltip = hde_core.9.tt }
+			character_event = { id = hde_core.10 tooltip = hde_core.10.tt }
 		}
-		# hidden_tooltip = { FROM = { character_event = { id = duel.203 } } }
 	}
 }
 
