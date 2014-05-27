@@ -14,25 +14,26 @@ hde_core.10.tt;is victorious!;est victorieux !;;;¡sale victorioso!;;;;;;;;;x
 ### Initial Flavor;;;;;;;;;;;;;;x
 # These events always start with meeting on the battlefield and end with either charge/chicken
 # Chain 1
-# Aggressor attacks or not! (ROOT = Winner, Opponent = FROMFROM)
+# Aggressor sees Defender across the field (ROOT = Winner, Opponent = FROMFROM)
+# Aggressor sees Defender across the field (ROOT = Loser, Opponent = FROM)
+# These can share localization due to their unique nature (no dynamic localization)
 hde_battle.100.desc;Fighting across the field, you see an enemy soldier cut off from the others. While you can't tell who, it's clear that they must be a highborn noble.;Alors que vous vous battez sur le champ de bataille, vous apercevez un soldat ennemi s'extirper des rangs. Si vous n'arrivez pas à voir de qui il s'agit, vous êtes par contre sûr qu'il s'agit d'un noble de haute naissance.;;;Durante la batalla, ves a un soldado enemigo separado del resto. Aunque no sabes quién pueda ser, está claro que es de sangre noble.;;;;;;;;;x
 hde_battle.100.a;Charge!;A l'assaut !;;;¡A la carga!;;;;;;;;;x
 hde_battle.100.b;I need to get out of here!;Je dois foutre le camp d'ici!;;;¡Tengo que salir de aquí!;;;;;;;;;x
-# Aggressor attacks or not! (ROOT = Loser, Opponent = FROM)
-hde_battle.100.desc;Fighting across the field, you see an enemy soldier cut off from the others. While you can't tell who, it's clear that they must be a highborn noble.;Alors que vous vous battez sur le champ de bataille, vous apercevez un soldat ennemi s'extirper des rangs. Si vous n'arrivez pas à voir de qui il s'agit, vous êtes par contre sûr qu'il s'agit d'un noble de haute naissance.;;;Durante la batalla, ves a un soldado enemigo separado del resto. Aunque no sabes quién pueda ser, está claro que es de sangre noble.;;;;;;;;;x
-hde_battle.100.a;Charge!;A l'assaut !;;;¡A la carga!;;;;;;;;;x
-hde_battle.100.b;I need to get out of here!;Je dois foutre le camp d'ici!;;;¡Tengo que salir de aquí!;;;;;;;;;x
-# Defender fights or not!
-hde_battle.102.tt;reacts;réagit;;;Reacciona;;;;;;;;;x
+# Defender fights or not! (Sent to Winner or Loser, Opponent = FROM)
 hde_battle.102.desc;You were separated from your men in the chaos of battle, and now find yourself in the midst of war. As you scan the field and try to rejoin your forces, you see [From.GetBestName] break through the enemy ranks and charge you!;Dans le chaos des combats, vous avez été séparé de vos hommes et vous trouvez désormais en plein milieu de la bataille. Alors que vous tentez de rejoindre vos forces, vous apercevez [From.GetBestName] qui se fraye un chemin à travers les rangs ennemis avant de vous charger !;;;Fuiste separado de tus hombres en el caos de la batalla, y ahora te encuentras en el centro de la batalla. ¡Mientras buscas la forma de reunirte con tus hombres, ves a [From.GetBestName] abrirse paso entre el enemigo y cargar contra ti!;;;;;;;;;x
 hde_battle.102.a;Prepare to die, [From.GetOnlyDynastyName] scum!;Prépare toi à mourir, pourriture de [From.GetOnlyDynastyName]!;;;¡Prepárate a morir, escoria [From.GetOnlyDynastyName]!;;;;;;;;;x
 hde_battle.102.b;I need to get out of here!;Je dois foutre le camp d'ici !;;;¡Tengo que salir de aquí!;;;;;;;;;x
-# Aggressor chickens out
-hde_battle.103.desc;You turn to face [From.GetTitle] [From.GetFirstName]… and [From.GetSheHe] breaks [From.GetHerHis] charge and flees. You pursue, but lose track of [From.GetHerHim] in the chaos.;Vous vous retournez pour faire face à [From.GetTitle] [From.GetFirstName] lorsqu' [From.GetSheHe] stoppe sa charge et s'enfuit. Vous le(a) poursuivez, mais perdez sa trace dans le chaos des combats.;;;Te giras para enfrentarte a [From.GetTitle] [From.GetFirstName]... cuando [From.GetSheHe] detiene su carga y huye. Le persigues, pero pierdes el rastro en el caos.;;;;;;;;;x
-hde_battle.103.a;That's right, coward, run back to [From.Capital.GetName]!;C'est ça, couard ! Retourne à [From.Capital.GetName] !;;;¡Está bien, cobarde! ¡Corre hasta [From.Capital.GetName]!;;;;;;;;;x
+# Aggressor fights or not! (Sent to Winner or Loser, Opponent = FROM)
+hde_battle.103.tt;reacts;réagit;;;reacciona;;;;;;;;;x
+hde_battle.103.desc;As you get closer, you realize the enemy soldier is [From.GetBestName].;En vous rapprochant, vous réalisez que le soldat ennemi n'est autre que [From.GetBestName].;;;Al acercarte, te das cuenta de que el soldado enemigo es [From.GetBestName].;;;;;;;;;x
+hde_battle.103.a;Prepare to die, [From.GetOnlyDynastyName] scum!;Prépare toi à mourir, pourriture de [From.GetOnlyDynastyName]!;;;¡Prepárate a morir, escoria [From.GetOnlyDynastyName]!;;;;;;;;;x
 # Defender chickens out
 hde_battle.104.desc;As you get closer, you realize the enemy soldier is [From.GetBestName]. Seeing you charge across the field toward [From.GetHerHim], [From.GetSheHe] turns and flees. You pursue, but lose track of [From.GetHerHim] in the chaos.;En vous rapprochant, vous réalisez que le soldat est ennemi n'est autre que [From.GetBestName]. Remarquant votre charge à travers le champs de bataille pour l'affronter, [From.GetSheHe] se retourne et fuit. Vous le(a) poursuivez, mais perdez sa trace dans le chaos des combats. ;;;Al acercarte, te das cuenta de que el soldado enemigo es [From.GetBestName]. Al verte avanzar de ese modo, se da la vuelta y huye. Le persigues, pero pierdes el rastro en el caos.;;;;;;;;;x
 hde_battle.104.a;That's right, coward, run back to [From.Capital.GetName]!;C'est ça, couard ! Retourne à [From.Capital.GetName] !;;;¡Está bien, cobarde! ¡Corre hasta [From.Capital.GetName]!;;;;;;;;;x
+# Aggressor chickens out
+hde_battle.105.desc;You turn to face [From.GetTitle] [From.GetFirstName]… and [From.GetSheHe] breaks [From.GetHerHis] charge and flees. You pursue, but lose track of [From.GetHerHim] in the chaos.;Vous vous retournez pour faire face à [From.GetTitle] [From.GetFirstName] lorsqu' [From.GetSheHe] stoppe sa charge et s'enfuit. Vous le(a) poursuivez, mais perdez sa trace dans le chaos des combats.;;;Te giras para enfrentarte a [From.GetTitle] [From.GetFirstName]... cuando [From.GetSheHe] detiene su carga y huye. Le persigues, pero pierdes el rastro en el caos.;;;;;;;;;x
+hde_battle.105.a;That's right, coward, run back to [From.Capital.GetName]!;C'est ça, couard ! Retourne à [From.Capital.GetName] !;;;¡Está bien, cobarde! ¡Corre hasta [From.Capital.GetName]!;;;;;;;;;x
 ### Sizing Up Flavor;;;;;;;;;;;;;;x
 # Chain 1
 # Aggressor circles (ROOT = Winner, Opponent = FROMFROM)

@@ -581,37 +581,29 @@ character_event = {
 	is_triggered_only = yes
 	
 	immediate = {
-		# Testing block
-		set_character_flag = core2LOSE
-		
-		duel_target = {
-			if = {
-				limit = {
-					has_opinion_modifier = { who = ROOT modifier = opinion_duel_target }
-					has_character_flag = flag_duel_winner
-					NOT = { has_character_flag = flag_duel_round_2 }
-				}
-				character_event = { id = hde_core.3 }
-				# Testing Block
-				set_character_flag = core2WIN
-			}
-			if = {
-				limit = {
-					has_opinion_modifier = { who = ROOT modifier = opinion_duel_target }
-					has_character_flag = flag_duel_winner
-					has_character_flag = flag_duel_round_2
-				}
+		if = {
+			limit = { has_character_flag = flag_duel_round_2 }
+			# Testing block
+			set_character_flag = core2LOSEtired
+			duel_target = {
+				limit = { has_opinion_modifier = { who = ROOT modifier = opinion_duel_target } }
 				character_event = { id = hde_core.4 }
 				# Testing Block
 				set_character_flag = core2WINtired
 			}
-			# limit = {
-				# has_opinion_modifier = { who = ROOT modifier = opinion_duel_target }
-				# has_character_flag = flag_duel_winner
-			# }
-			# character_event = { id = hde_core.3 }
-			# Testing Block
-			# set_character_flag = core2WIN
+		}
+		if = {
+			limit = {
+				NOT = { has_character_flag = flag_duel_round_2 }
+			}
+			# Testing block
+			set_character_flag = core2LOSE
+			duel_target = {
+				limit = { has_opinion_modifier = { who = ROOT modifier = opinion_duel_target } }
+				character_event = { id = hde_core.3 }
+				# Testing Block
+				set_character_flag = core2WIN
+			}
 		}
 	}
 	
@@ -921,27 +913,25 @@ character_event = {
 			}
 		}
 		# Remember, we always send outcome events to the Winner, hence the FROMFROM scope
-		FROMFROM = {
-			# Battlefield Flavor
+		# Battlefield Flavor
+		if = {
+			limit = { FROMFROM = { has_character_flag = flag_duel_battlefield } }
+			# Winner is Aggressor
 			if = {
-				limit = { has_character_flag = flag_duel_battlefield }
-				# Winner is Aggressor
-				if = {
-					limit = { has_character_flag = flag_duel_aggressor }
-					random_list = {
-						50 = { character_event = { id = hde_battle.400 } } # Chain 1
-						50 = { character_event = { id = hde_battle.400 } } # Chain 1
-						# Add new flavor events here. Make sure to adjust weights!
-					}
+				limit = { FROMFROM = { has_character_flag = flag_duel_aggressor } }
+				random_list = {
+					50 = { FROMFROM = { character_event = { id = hde_battle.400 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.400 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
-				# Winner is Defender
-				if = {
-					limit = { has_character_flag = flag_duel_defender }
-					random_list = {
-						50 = { character_event = { id = hde_battle.401 } } # Chain 1
-						50 = { character_event = { id = hde_battle.401 } } # Chain 1
-						# Add new flavor events here. Make sure to adjust weights!
-					}
+			}
+			# Winner is Defender
+			if = {
+				limit = { FROMFROM = { has_character_flag = flag_duel_defender } }
+				random_list = {
+					50 = { FROMFROM = { character_event = { id = hde_battle.401 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.401 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 		}
@@ -977,27 +967,25 @@ character_event = {
 			}
 		}
 		# Remember, we always send outcome events to the Winner, hence the FROMFROM scope
-		FROMFROM = {
 		# Battlefield Flavor
+		if = {
+			limit = { FROMFROM = { has_character_flag = flag_duel_battlefield } }
+			# Winner is Aggressor
 			if = {
-				limit = { has_character_flag = flag_duel_battlefield }
-				# Winner is Aggressor
-				if = {
-					limit = { has_character_flag = flag_duel_aggressor }
-					random_list = {
-						50 = { character_event = { id = hde_battle.500 } } # Chain 1
-						50 = { character_event = { id = hde_battle.500 } } # Chain 1
-						# Add new flavor events here. Make sure to adjust weights!
-					}
+				limit = { FROMFROM = { has_character_flag = flag_duel_aggressor } }
+				random_list = {
+					50 = { FROMFROM = { character_event = { id = hde_battle.500 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.500 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
-				# Winner is Defender
-				if = {
-					limit = { has_character_flag = flag_duel_defender }
-					random_list = {
-						50 = { character_event = { id = hde_battle.501 } } # Chain 1
-						50 = { character_event = { id = hde_battle.501 } } # Chain 1
-						# Add new flavor events here. Make sure to adjust weights!
-					}
+			}
+			# Winner is Defender
+			if = {
+				limit = { FROMFROM = { has_character_flag = flag_duel_defender } }
+				random_list = {
+					50 = { FROMFROM = { character_event = { id = hde_battle.501 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.501 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 		}
@@ -1037,27 +1025,25 @@ character_event = {
 			}
 		}
 		# Remember, we always send outcome events to the Winner, hence the FROMFROM scope
-		FROMFROM = {
-			# Battlefield Flavor
+		# Battlefield Flavor
+		if = {
+			limit = { FROMFROM = { has_character_flag = flag_duel_battlefield } }
+			# Winner is Aggressor
 			if = {
-				limit = { has_character_flag = flag_duel_battlefield }
-				# Winner is Aggressor
-				if = {
-					limit = { has_character_flag = flag_duel_aggressor }
-					random_list = {
-						50 = { character_event = { id = hde_battle.600 } } # Chain 1
-						50 = { character_event = { id = hde_battle.600 } } # Chain 1
-						# Add new flavor events here. Make sure to adjust weights!
-					}
+				limit = { FROMFROM = { has_character_flag = flag_duel_aggressor } }
+				random_list = {
+					50 = { FROMFROM = { character_event = { id = hde_battle.600 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.600 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
-				# Winner is Defender
-				if = {
-					limit = { has_character_flag = flag_duel_defender }
-					random_list = {
-						50 = { character_event = { id = hde_battle.601 } } # Chain 1
-						50 = { character_event = { id = hde_battle.601 } } # Chain 1
-						# Add new flavor events here. Make sure to adjust weights!
-					}
+			}
+			# Winner is Defender
+			if = {
+				limit = { FROMFROM = { has_character_flag = flag_duel_defender } }
+				random_list = {
+					50 = { FROMFROM = { character_event = { id = hde_battle.601 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_battle.601 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 		}
@@ -1146,6 +1132,8 @@ character_event = {
 		# Winner/Loser flags
 		clr_character_flag = flag_duel_winner
 		clr_character_flag = flag_duel_loser
+		# Round flags
+		clr_character_flag = flag_duel_round_2
 		# Duel Type
 		clr_character_flag = flag_duel_friendly
 		# Duel Flavor
