@@ -292,6 +292,10 @@ character_event = {
 		name = hde_battle.102.a # Let's fight!
 		ai_chance = {
 			factor = 100
+			modifier = { 			# TEMPORARY ONLY
+				factor = 1000		# TEMPORARY ONLY
+				trait = blinded		# TEMPORARY ONLY
+			}						# TEMPORARY ONLY
 			modifier = {
 				factor = 3
 				trait = poor_warrior
@@ -488,6 +492,10 @@ character_event = {
 		name = hde_battle.103.a # Charge!
 		ai_chance = {
 			factor = 100
+			modifier = { 			# TEMPORARY ONLY
+				factor = 1000		# TEMPORARY ONLY
+				trait = blinded		# TEMPORARY ONLY
+			}						# TEMPORARY ONLY
 			modifier = {
 				factor = 3
 				trait = poor_warrior
@@ -1419,21 +1427,21 @@ character_event = {
 	border = GFX_event_normal_frame_war
 
 	is_triggered_only = yes
-	
-	option = {
-		name = hde_battle.407.a
 
-		if = { # Send wounded event to Loser
-			limit = {
-				NOT = { FROMFROM = { trait = wounded } }
-				NOT = { FROMFROM = { trait = maimed } }
-			}
-			FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt } }
+	option = {
+		trigger = {
+			NOT = { FROMFROM = { trait = wounded } }
+			NOT = { FROMFROM = { trait = maimed } }
 		}
-		if = { # Send maimed event to Loser
-			limit = { FROMFROM = { trait = wounded } }
-			FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt } }
+		name = hde_battle.407.a
+		FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt } }
+	}
+	option = {
+		trigger = {
+			FROMFROM = { trait = wounded }
 		}
+		name = hde_battle.407.a
+		FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt } }
 	}
 }
 
@@ -1453,26 +1461,24 @@ character_event = {
 	border = GFX_event_normal_frame_war
 	hide_from = yes
 	show_from_from = yes
-
 	is_triggered_only = yes
 	
+	# Eventually I need to add a special case where you've already wounded and maimed your opponent
+	# Either you automatically subdue or you render them incapable or something
 	option = {
-		name = hde_battle.500.a
-		
-		if = { # Send wounded event to Loser
-			limit = {
-				NOT = { FROMFROM = { trait = wounded } }
-				NOT = { FROMFROM = { trait = maimed } }
-			}
-			FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt } }
+		trigger = {
+			NOT = { FROMFROM = { trait = wounded } }
+			NOT = { FROMFROM = { trait = maimed } }
 		}
-		if = { # Send maimed event to Loser
-			limit = { FROMFROM = { trait = wounded } }
-			FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt } }
-			character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt }
+		name = hde_battle.501.a
+		FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt } }
+	}
+	option = {
+		trigger = {
+			FROMFROM = { trait = wounded }
 		}
-		# Eventually I need to add a special case where you've already wounded and maimed your opponent
-		# Either you automatically subdue or you render them incapable or something
+		name = hde_battle.501.a
+		FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt } }
 	}
 }
 # Defender injures Aggressor! (ROOT = Winner, Opponent = FROMFROM)
@@ -1483,24 +1489,22 @@ character_event = {
 	border = GFX_event_normal_frame_war
 	hide_from = yes
 	show_from_from = yes
-
 	is_triggered_only = yes
-	
-	option = {
-		name = hde_battle.501.a
 
-		if = { # Send wounded event to Loser
-			limit = {
-				NOT = { FROMFROM = { trait = wounded } }
-				NOT = { FROMFROM = { trait = maimed } }
-			}
-			FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt } }
+	option = {
+		trigger = {
+			NOT = { FROMFROM = { trait = wounded } }
+			NOT = { FROMFROM = { trait = maimed } }
 		}
-		if = { # Send maimed event to Loser
-			limit = { FROMFROM = { trait = wounded } }
-			FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt } }
-			character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt }
+		name = hde_battle.501.a
+		FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt } }
+	}
+	option = {
+		trigger = {
+			FROMFROM = { trait = wounded }
 		}
+		name = hde_battle.501.a
+		FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt } }
 	}
 }
 # Loser is injured (FROM = Winner)
@@ -1526,7 +1530,10 @@ character_event = {
 		add_trait = wounded
 		# Restart the fight
 		set_character_flag = flag_duel_round_2
-		hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
+		custom_tooltip = {
+			text = battle_continues_tt
+			hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
+		}
 	}
 	option = { # Yield
 		trigger = {
@@ -1617,7 +1624,10 @@ character_event = {
 		add_trait = maimed
 		# Restart the fight
 		set_character_flag = flag_duel_round_2
-		hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
+		custom_tooltip = {
+			text = battle_continues_tt
+			hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
+		}
 	}
 	option = { # Yield
 		trigger = {

@@ -11,6 +11,8 @@ hde_core.7.tt;readies [From.GetHerselfHimself] to strike;;;;;;;;;;;;;x
 # Output Flavor;;;;;;;;;;;;;;x
 hde_core.10.tt;is victorious!;est victorieux !;;;¡sale victorioso!;;;;;;;;;x
 ############ Battlefield Flavor;;;;;;;;;;;;;;x
+### Custom Tooltips;;;;;;;;;;;;;;x
+battle_continues_tt;But the battle will continue.;;;;;;;;;;;;;x
 ### Initial Flavor;;;;;;;;;;;;;;x
 # These events always start with meeting on the battlefield and end with either charge/chicken
 # Chain 1
@@ -19,7 +21,6 @@ hde_core.10.tt;is victorious!;est victorieux !;;;¡sale victorioso!;;;;;;;;;x
 # These can share localization due to their unique nature (no dynamic localization)
 hde_battle.100.desc;Fighting across the field, you see an enemy soldier cut off from the others. While you can't tell who, it's clear that they must be a highborn noble.;Alors que vous vous battez sur le champ de bataille, vous apercevez un soldat ennemi s'extirper des rangs. Si vous n'arrivez pas à voir de qui il s'agit, vous êtes par contre sûr qu'il s'agit d'un noble de haute naissance.;;;Durante la batalla, ves a un soldado enemigo separado del resto. Aunque no sabes quién pueda ser, está claro que es de sangre noble.;;;;;;;;;x
 hde_battle.100.a;Charge!;A l'assaut !;;;¡A la carga!;;;;;;;;;x
-hde_battle.100.b;I need to get out of here!;Je dois foutre le camp d'ici!;;;¡Tengo que salir de aquí!;;;;;;;;;x
 # Defender fights or not! (Sent to Winner or Loser, Opponent = FROM)
 hde_battle.102.desc;You were separated from your men in the chaos of battle, and now find yourself in the midst of war. As you scan the field and try to rejoin your forces, you see [From.GetBestName] break through the enemy ranks and charge you!;Dans le chaos des combats, vous avez été séparé de vos hommes et vous trouvez désormais en plein milieu de la bataille. Alors que vous tentez de rejoindre vos forces, vous apercevez [From.GetBestName] qui se fraye un chemin à travers les rangs ennemis avant de vous charger !;;;Fuiste separado de tus hombres en el caos de la batalla, y ahora te encuentras en el centro de la batalla. ¡Mientras buscas la forma de reunirte con tus hombres, ves a [From.GetBestName] abrirse paso entre el enemigo y cargar contra ti!;;;;;;;;;x
 hde_battle.102.a;Prepare to die, [From.GetOnlyDynastyName] scum!;Prépare toi à mourir, pourriture de [From.GetOnlyDynastyName]!;;;¡Prepárate a morir, escoria [From.GetOnlyDynastyName]!;;;;;;;;;x
@@ -28,6 +29,7 @@ hde_battle.102.b;I need to get out of here!;Je dois foutre le camp d'ici !;;;¡Te
 hde_battle.103.tt;reacts;réagit;;;reacciona;;;;;;;;;x
 hde_battle.103.desc;As you get closer, you realize the enemy soldier is [From.GetBestName].;En vous rapprochant, vous réalisez que le soldat ennemi n'est autre que [From.GetBestName].;;;Al acercarte, te das cuenta de que el soldado enemigo es [From.GetBestName].;;;;;;;;;x
 hde_battle.103.a;Prepare to die, [From.GetOnlyDynastyName] scum!;Prépare toi à mourir, pourriture de [From.GetOnlyDynastyName]!;;;¡Prepárate a morir, escoria [From.GetOnlyDynastyName]!;;;;;;;;;x
+hde_battle.103.b;I need to get out of here!;Je dois foutre le camp d'ici !;;;¡Tengo que salir de aquí!;;;;;;;;;x
 # Defender chickens out
 hde_battle.104.desc;As you get closer, you realize the enemy soldier is [From.GetBestName]. Seeing you charge across the field toward [From.GetHerHim], [From.GetSheHe] turns and flees. You pursue, but lose track of [From.GetHerHim] in the chaos.;En vous rapprochant, vous réalisez que le soldat est ennemi n'est autre que [From.GetBestName]. Remarquant votre charge à travers le champs de bataille pour l'affronter, [From.GetSheHe] se retourne et fuit. Vous le(a) poursuivez, mais perdez sa trace dans le chaos des combats. ;;;Al acercarte, te das cuenta de que el soldado enemigo es [From.GetBestName]. Al verte avanzar de ese modo, se da la vuelta y huye. Le persigues, pero pierdes el rastro en el caos.;;;;;;;;;x
 hde_battle.104.a;That's right, coward, run back to [From.Capital.GetName]!;C'est ça, couard ! Retourne à [From.Capital.GetName] !;;;¡Está bien, cobarde! ¡Corre hasta [From.Capital.GetName]!;;;;;;;;;x
@@ -103,7 +105,7 @@ hde_battle.407.a;You should have yielded when you had the chance…;Vous auriez du
 hde_battle.500.desc;You strike, but [FromFrom.GetBestName] rolls to the side, wounded but still very much alive. [FromFrom.GetSheHeCap] rises to [FromFrom.GetHerHis] feet and readies [FromFrom.GetHerHis] weapon once again.;Vous frappez, mais [FromFrom.GetBestName] roule sur le côté, blessé mais toujours bien vivant. [FromFrom.GetSheHeCap] se remet sur ses jambes et empoigne à nouveau son arme.;;;Golpeas, pero [FromFrom.GetBestName] rueda por el suelo evitando parte del golpe. Se pone en pie con el arma lista de nuevo.;;;;;;;;;x
 hde_battle.500.a;Why won't you just DIE?!;Mais vas-tu CREVER ?!;;;¿Por qué no te mueres de una vez?;;;;;;;;;x
 # Defender injures Aggressor! (ROOT = Winner, Opponent = FROMFROM)
-hde_battle.501.desc;[FromFrom.GetBestName]'s last attack narrowly misses, leaving [FromFrom.GetHerHim] off-balance. You strike, but [FromFrom.GetBestName] rolls to the side, wounded but still quite alive. [FromFrom.GetSheHeCap] staggers to [FromFrom.GetHerHis] feet and readies [FromFrom.GetHerHis] weapon once again.;;;;;;;;;;;;;x
+hde_battle.501.desc;[FromFrom.GetBestName]'s last attack narrowly misses, leaving [FromFrom.GetHerHim] off-balance. You strike, but [FromFrom.GetBestName] rolls to the side, wounded though still quite alive. [FromFrom.GetSheHeCap] staggers to [FromFrom.GetHerHis] feet and readies [FromFrom.GetHerHis] weapon once again.;;;;;;;;;;;;;x
 hde_battle.501.a;Why won't you just DIE?!;Mais vas-tu CREVER ?!;;;¿Por qué no te mueres de una vez?;;;;;;;;;x
 # Loser is injured (FROM = Winner)
 hde_battle.502.tt;reacts to being wounded;;;;;;;;;;;;;x
