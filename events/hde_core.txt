@@ -17,23 +17,24 @@ namespace = hde_core
 # flag_duel_killed_opponent
 
 ### MAIN EVENTS
-# hde_core.0	Referee decides between FROM and FROMFROM, flags winner and loser, target locks duelists, starts dueling chain
-# hde_core.1	Bounce event to make sure localization works properly
+# hde_core.0	Stupid forwarder required due to issues with setting opinions in hde_core.1
+# hde_core.1	Referee decides between FROM and FROMFROM, flags winner and loser, target locks duelists, starts dueling chain
+# hde_core.2	Bounce event to make sure localization works properly
 
 ### HANDLER EVENTS
 # These can call different flavor depending on the flavor flags
-# hde_core.2	Initial handler, random flavor events, lets participants decide whether to run or not
-# hde_core.3	Sizing Up handler, random flavor events
-# hde_core.4	Sizing Up handler bounce event
-# hde_core.5	Combat handler, random flavor events
-# hde_core.6	Combat handler bounce event
+# hde_core.3	Initial handler, random flavor events, lets participants decide whether to run or not
+# hde_core.4	Sizing Up handler, random flavor events
+# hde_core.5	Sizing Up handler bounce event
+# hde_core.6	Combat handler, random flavor events
+# hde_core.7	Combat handler bounce event
 
 ### OUTCOME EVENTS
 # The outcome event is fired from e_rebels due to requiring the AI weights in order to choose options
-# hde_core.7	Outcome handler, random flavor events
-# hde_core.8	Outcome handler bounce event
-# hde_core.9	Output handler
-# hde_core.10	Cleanup handler
+# hde_core.8	Outcome handler, random flavor events
+# hde_core.9	Outcome handler bounce event
+# hde_core.10	Output handler
+# hde_core.11	Cleanup handler
 
 # Idea: If you the event fails, mark any viable character we can still find with a tag that makes them more likely to get another duel in the future?
 
@@ -66,7 +67,7 @@ character_event = {
 			opinion = { who = ROOT modifier = opinion_duel_target }
 			reverse_opinion = { who = ROOT modifier = opinion_duel_target }
 		}
-		hidden_tooltip = { e_rebels = { holder_scope = { character_event = { id = hde_core.1 } } } }
+		e_rebels = { holder_scope = { character_event = { id = hde_core.1 } } }
 	}
 	
 	option = { name = OK }
