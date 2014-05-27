@@ -279,7 +279,7 @@ character_event = {
 			}
 		}
 		
-		FROMFROM = { # Send to loser
+		FROMFROM = { # Send to Loser
 			character_event = { id = hde_battle.102 tooltip = hde_battle.102.tt }
 		}
 	}
@@ -427,7 +427,7 @@ character_event = {
 		}
 		morale = -0.1
 		hidden_tooltip = {
-			FROMFROM = { # Send to defender
+			FROMFROM = { # Send to Loser
 				character_event = { id = hde_battle.103 }
 			}
 		}
@@ -485,7 +485,7 @@ character_event = {
 			}
 		}
 
-		FROM = { # Send to winner
+		FROM = { # Send to Winner
 			character_event = { id = hde_battle.102 tooltip = hde_battle.102.tt }
 		}
 	}
@@ -625,7 +625,7 @@ character_event = {
 		}
 		morale = -0.1
 		hidden_tooltip = {
-			FROM = { # Send to defender
+			FROM = { # Send to Winner
 				character_event = { id = hde_battle.103 }
 			}
 		}
@@ -850,10 +850,9 @@ character_event = {
 		name = hde_battle.103.a # Yeah, he'd better run!
 
 		morale = 0.1
-		hidden_tooltip = {
-			FROM = { # Time for cleanup
-				character_event = { id = hde_core.11 }
-			}
+		hidden_tooltip = { # Time for cleanup
+			character_event = { id = hde_core.11 }
+			FROM = { character_event = { id = hde_core.11 } }
 		}
 	}
 }
@@ -870,10 +869,9 @@ character_event = {
 		name = hde_battle.104.a # Yeah, that's what I thought...
 
 		morale = 0.1
-		hidden_tooltip = {
-			FROM = { # Time for cleanup
-				character_event = { id = hde_core.11 }
-			}
+		hidden_tooltip = { # Time for cleanup
+			character_event = { id = hde_core.11 }
+			FROM = { character_event = { id = hde_core.11 } }
 		}
 	}
 }
@@ -1894,7 +1892,7 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = "EVTOPTADUEL201"
+		name = hde_battle.601.a
 
 		FROMFROM = { # Send to Loser
 			character_event = { id = hde_battle.602 tooltip = hde_battle.602.tt }
@@ -1923,7 +1921,7 @@ character_event = {
 			killer = FROM
 		}
 		FROM = { # Send Output to Winner
-			set_character_flag = flag_killed_opponent
+			set_character_flag = flag_duel_killed_opponent
 			character_event = { id = hde_core.10 tooltip = hde_core.10.tt }
 		}
 	}
