@@ -1573,22 +1573,16 @@ character_event = {
 	option = {
 		name = hde_battle.407.a
 
-		if = {
-			limit = {
-				FROMFROM = {
+		FROMFROM = {
+			if = { # Send wounded event to Loser
+				limit = {
 					NOT = { trait = wounded }
 					NOT = { trait = maimed }
 				}
-			}
-			FROMFROM = { # Send to wounded event to Loser
 				character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt }
 			}
-		}
-		if = {
-			limit = {
-				FROMFROM = { trait = wounded }
-			}
-			FROMFROM = { # Send maimed event to Loser
+			if = { # Send maimed event to Loser
+				limit = { trait = wounded }
 				character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt }
 			}
 		}
@@ -1617,22 +1611,16 @@ character_event = {
 	option = {
 		name = hde_battle.500.a
 		
-		if = {
-			limit = {
-				FROMFROM = {
+		FROMFROM = {
+			if = { # Send wounded event to Loser
+				limit = {
 					NOT = { trait = wounded }
 					NOT = { trait = maimed }
 				}
-			}
-			FROMFROM = { # Send to wounded event to Loser
 				character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt }
 			}
-		}
-		if = {
-			limit = {
-				FROMFROM = { trait = wounded }
-			}
-			FROMFROM = { # Send maimed event to Loser
+			if = { # Send maimed event to Loser
+				limit = { trait = wounded }
 				character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt }
 			}
 		}
@@ -1652,22 +1640,16 @@ character_event = {
 	option = {
 		name = hde_battle.501.a
 
-		if = {
-			limit = {
-				FROMFROM = {
+		FROMFROM = {
+			if = { # Send wounded event to Loser
+				limit = {
 					NOT = { trait = wounded }
 					NOT = { trait = maimed }
 				}
-			}
-			FROMFROM = { # Send to wounded event to Loser
 				character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt }
 			}
-		}
-		if = {
-			limit = {
-				FROMFROM = { trait = wounded }
-			}
-			FROMFROM = { # Send maimed event to Loser
+			if = { # Send maimed event to Loser
+				limit = { trait = wounded }
 				character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt }
 			}
 		}
@@ -1695,6 +1677,7 @@ character_event = {
 		
 		add_trait = wounded
 		# Restart the fight
+		set_character_flag = flag_duel_round_2
 		hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
 	}
 	option = { # Yield
@@ -1785,6 +1768,7 @@ character_event = {
 		
 		add_trait = maimed
 		# Restart the fight
+		set_character_flag = flag_duel_round_2
 		hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
 	}
 	option = { # Yield

@@ -42,8 +42,9 @@ namespace = hde_core
 # Update/change/improve event pictures
 # Add in flavor for other kinds of duels
 # Hook other duel types into output event
-# Add "tired" versions of some of the flavor events, along with support for marking characters who've been through the loop more than once
 # Update the trait references to include any new VIET traits in PB and VIET
+
+# I've added flag_duel_round_2 for the tired versions. Right now it only prevents a second run through the initial events. It's also a temporary solution for testing purposes.
 
 ### FLAVOR EVENTS
 # These are effectively mini-chains
@@ -96,10 +97,18 @@ character_event = {
 		FROM = { set_character_flag = core1FROM }
 		FROMFROM = { set_character_flag = core1FROMFROM }
 		# Already been through the loop? Clear those flags!
-		clr_character_flag = flag_duel_aggressor
-		clr_character_flag = flag_duel_defender
-		clr_character_flag = flag_duel_winner
-		clr_character_flag = flag_duel_loser
+		FROM = {
+			clr_character_flag = flag_duel_aggressor
+			clr_character_flag = flag_duel_defender
+			clr_character_flag = flag_duel_winner
+			clr_character_flag = flag_duel_loser
+		}
+		FROMFROM = {
+			clr_character_flag = flag_duel_aggressor
+			clr_character_flag = flag_duel_defender
+			clr_character_flag = flag_duel_winner
+			clr_character_flag = flag_duel_loser
+		}
 		# Randomize aggressor/defender
 		random_list = {
 			50 = {
@@ -569,7 +578,6 @@ character_event = {
 character_event = {
 	id = hde_core.2
 	hide_window = yes
-
 	is_triggered_only = yes
 	
 	immediate = {
@@ -577,13 +585,33 @@ character_event = {
 		set_character_flag = core2LOSE
 		
 		duel_target = {
-			limit = {
-				has_opinion_modifier = { who = ROOT modifier = opinion_duel_target }
-				has_character_flag = flag_duel_winner
+			if = {
+				limit = {
+					has_opinion_modifier = { who = ROOT modifier = opinion_duel_target }
+					has_character_flag = flag_duel_winner
+					NOT = { has_character_flag = flag_duel_round_2 }
+				}
+				character_event = { id = hde_core.3 }
+				# Testing Block
+				set_character_flag = core2WIN
 			}
-			character_event = { id = hde_core.3 }
+			if = {
+				limit = {
+					has_opinion_modifier = { who = ROOT modifier = opinion_duel_target }
+					has_character_flag = flag_duel_winner
+					has_character_flag = flag_duel_round_2
+				}
+				character_event = { id = hde_core.4 }
+				# Testing Block
+				set_character_flag = core2WINtired
+			}
+			# limit = {
+				# has_opinion_modifier = { who = ROOT modifier = opinion_duel_target }
+				# has_character_flag = flag_duel_winner
+			# }
+			# character_event = { id = hde_core.3 }
 			# Testing Block
-			set_character_flag = core2WIN
+			# set_character_flag = core2WIN
 		}
 	}
 	
@@ -892,26 +920,28 @@ character_event = {
 				FROMFROM = { trait = just }
 			}
 		}
-		# Remember, we always send outcome events to the Winner
-		# Battlefield Flavor
-		if = {
-			limit = { FROMFROM = { has_character_flag = flag_duel_battlefield } }
-			# Winner is Aggressor
+		# Remember, we always send outcome events to the Winner, hence the FROMFROM scope
+		FROMFROM = {
+			# Battlefield Flavor
 			if = {
-				limit = { FROMFROM = { has_character_flag = flag_duel_aggressor } }
-				random_list = {
-					50 = { FROMFROM = { character_event = { id = hde_battle.400 } } } # Chain 1
-					50 = { FROMFROM = { character_event = { id = hde_battle.400 } } } # Chain 1
-					# Add new flavor events here. Make sure to adjust weights!
+				limit = { has_character_flag = flag_duel_battlefield }
+				# Winner is Aggressor
+				if = {
+					limit = { has_character_flag = flag_duel_aggressor }
+					random_list = {
+						50 = { character_event = { id = hde_battle.400 } } # Chain 1
+						50 = { character_event = { id = hde_battle.400 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
 				}
-			}
-			# Winner is Defender
-			if = {
-				limit = { FROMFROM = { has_character_flag = flag_duel_defender } }
-				random_list = {
-					50 = { FROMFROM = { character_event = { id = hde_battle.401 } } } # Chain 1
-					50 = { FROMFROM = { character_event = { id = hde_battle.401 } } } # Chain 1
-					# Add new flavor events here. Make sure to adjust weights!
+				# Winner is Defender
+				if = {
+					limit = { has_character_flag = flag_duel_defender }
+					random_list = {
+						50 = { character_event = { id = hde_battle.401 } } # Chain 1
+						50 = { character_event = { id = hde_battle.401 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
 				}
 			}
 		}
@@ -946,26 +976,28 @@ character_event = {
 				FROMFROM = { trait = kind }
 			}
 		}
-		# Remember, we always send outcome events to the Winner
+		# Remember, we always send outcome events to the Winner, hence the FROMFROM scope
+		FROMFROM = {
 		# Battlefield Flavor
-		if = {
-			limit = { FROMFROM = { has_character_flag = flag_duel_battlefield } }
-			# Winner is Aggressor
 			if = {
-				limit = { FROMFROM = { has_character_flag = flag_duel_aggressor } }
-				random_list = {
-					50 = { FROMFROM = { character_event = { id = hde_battle.500 } } } # Chain 1
-					50 = { FROMFROM = { character_event = { id = hde_battle.500 } } } # Chain 1
-					# Add new flavor events here. Make sure to adjust weights!
+				limit = { has_character_flag = flag_duel_battlefield }
+				# Winner is Aggressor
+				if = {
+					limit = { has_character_flag = flag_duel_aggressor }
+					random_list = {
+						50 = { character_event = { id = hde_battle.500 } } # Chain 1
+						50 = { character_event = { id = hde_battle.500 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
 				}
-			}
-			# Winner is Defender
-			if = {
-				limit = { FROMFROM = { has_character_flag = flag_duel_defender } }
-				random_list = {
-					50 = { FROMFROM = { character_event = { id = hde_battle.501 } } } # Chain 1
-					50 = { FROMFROM = { character_event = { id = hde_battle.501 } } } # Chain 1
-					# Add new flavor events here. Make sure to adjust weights!
+				# Winner is Defender
+				if = {
+					limit = { has_character_flag = flag_duel_defender }
+					random_list = {
+						50 = { character_event = { id = hde_battle.501 } } # Chain 1
+						50 = { character_event = { id = hde_battle.501 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
 				}
 			}
 		}
@@ -1004,26 +1036,28 @@ character_event = {
 				FROMFROM = { trait = kind }
 			}
 		}
-		# Remember, we always send outcome events to the Winner
-		# Battlefield Flavor
-		if = {
-			limit = { FROMFROM = { has_character_flag = flag_duel_battlefield } }
-			# Winner is Aggressor
+		# Remember, we always send outcome events to the Winner, hence the FROMFROM scope
+		FROMFROM = {
+			# Battlefield Flavor
 			if = {
-				limit = { FROMFROM = { has_character_flag = flag_duel_aggressor } }
-				random_list = {
-					50 = { FROMFROM = { character_event = { id = hde_battle.600 } } } # Chain 1
-					50 = { FROMFROM = { character_event = { id = hde_battle.600 } } } # Chain 1
-					# Add new flavor events here. Make sure to adjust weights!
+				limit = { has_character_flag = flag_duel_battlefield }
+				# Winner is Aggressor
+				if = {
+					limit = { has_character_flag = flag_duel_aggressor }
+					random_list = {
+						50 = { character_event = { id = hde_battle.600 } } # Chain 1
+						50 = { character_event = { id = hde_battle.600 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
 				}
-			}
-			# Winner is Defender
-			if = {
-				limit = { FROMFROM = { has_character_flag = flag_duel_defender } }
-				random_list = {
-					50 = { FROMFROM = { character_event = { id = hde_battle.601 } } } # Chain 1
-					50 = { FROMFROM = { character_event = { id = hde_battle.601 } } } # Chain 1
-					# Add new flavor events here. Make sure to adjust weights!
+				# Winner is Defender
+				if = {
+					limit = { has_character_flag = flag_duel_defender }
+					random_list = {
+						50 = { character_event = { id = hde_battle.601 } } # Chain 1
+						50 = { character_event = { id = hde_battle.601 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
 				}
 			}
 		}
@@ -1112,11 +1146,11 @@ character_event = {
 		# Winner/Loser flags
 		clr_character_flag = flag_duel_winner
 		clr_character_flag = flag_duel_loser
-		# Duel Flavor
-		clr_character_flag = flag_duel_friendly
 		# Duel Type
+		clr_character_flag = flag_duel_friendly
+		# Duel Flavor
 		clr_character_flag = flag_duel_battlefield
-		# Add new Duel Type flags here
+		# Add new Duel Type or Flavor flags here
 	}
 	
 	option = { name = OK }
