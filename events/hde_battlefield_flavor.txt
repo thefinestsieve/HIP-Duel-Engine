@@ -13,9 +13,7 @@ namespace = hde_battle
 # In the case of Combat flavor, the event chains always end with the Winner winning, whether they're aggressor or defender. So they generally require more events (rather like Initial flavor)
 # Combat flavor that ends with the Loser getting the last event in the chain should send the Outcome handler to e_rebels, but if it ends with the Winner then the Outcome bounce event should be sent to the Loser
 
-## FAILURE FLAVOR
-# Not sure if necessary yet
-
+# Testing event, REMOVE LATER
 character_event = {
 	id = hde_battle.2000
 	hide_window = yes
@@ -43,10 +41,10 @@ character_event = {
 character_event = {
     id = hde_battle.0
     hide_window = yes
-    
     is_triggered_only = yes
 	
 	# Filter out characters who are blind?
+	# Send them their own special flavor branch?
     
     trigger = {
         # Avoid crossing targets
@@ -95,6 +93,7 @@ character_event = {
             factor = 0.5
             trait = craven
         }
+		# Flag to increase chances for characters who've had a lot of failed duels?
     }
     
     immediate = {
@@ -131,7 +130,7 @@ character_event = {
                             duration = 20
                         }
                     }
-                    ROOT = { set_character_flag = duel_engaged }
+                    ROOT = { set_character_flag = flag_duel_engaged }
                 }
                 if = {
                     limit = {
@@ -152,11 +151,11 @@ character_event = {
                         name = battlefield_fight
                         duration = 20
                     }
-                    ROOT = { set_character_flag = duel_engaged }
+                    ROOT = { set_character_flag = flag_duel_engaged }
                 }
                 if = {
                     limit = {
-						NOT = { ROOT = { has_character_flag = duel_engaged } }
+						NOT = { ROOT = { has_character_flag = flag_duel_engaged } }
 						any_realm_character = {
 							in_battle = yes
 							at_location = ROOT
@@ -194,19 +193,22 @@ character_event = {
                 }
             }
         }
-        clr_character_flag = duel_engaged
+        clr_character_flag = flag_duel_engaged
 		FROM = {
             liege = {
                 random_realm_character = {
                     limit = { has_opinion_modifier = { who = ROOT modifier = opinion_battle_duel_target } }
-					hidden_tooltip = { character_event = { id = hde_battle.1 } }
+					character_event = { id = hde_battle.1 }
                 }
                 if = {
                     limit = { has_opinion_modifier = { who = ROOT modifier = opinion_battle_duel_target } }
-                    hidden_tooltip = { character_event = { id = hde_battle.1 } }
+                    character_event = { id = hde_battle.1 }
                 }
             }
         }
+		# Send cleanup event to prevent loose flags from screwing things up
+		# Disabled for now, since I want to find bugs
+		# character_event = { id = hde_core.11 }
     }
     
     option = { name = OK }
@@ -216,10 +218,13 @@ character_event = {
 character_event = {
 	id = hde_battle.1
 	hide_window = yes
-
 	is_triggered_only = yes
 	
 	immediate = {
+		# Send cleanup event to prevent loose flags from screwing things up
+		# Disabled for now, since I want to find bugs
+		# character_event = { id = hde_core.11 }
+
 		# Remove initial targeting information
 		remove_opinion = { who = FROM modifier = opinion_battle_duel_target }
 		reverse_remove_opinion = { who = FROM modifier = opinion_battle_duel_target }
@@ -229,7 +234,7 @@ character_event = {
 		FROM = { set_character_flag = flag_duel_battlefield }
 		
 		# Start this thing!
-		hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
+		FROM = { character_event = { id = hde_core.0 } }
 	}
 	
 	option = { name = OK }
@@ -711,7 +716,6 @@ character_event = {
 		morale = 0.1
 		hidden_tooltip = { # Time for cleanup
 			character_event = { id = hde_core.11 }
-			FROM = { character_event = { id = hde_core.11 } }
 		}
 	}
 }
@@ -729,7 +733,6 @@ character_event = {
 		morale = 0.1
 		hidden_tooltip = { # Time for cleanup
 			character_event = { id = hde_core.11 }
-			FROM = { character_event = { id = hde_core.11 } }
 		}
 	}
 }
@@ -742,6 +745,7 @@ character_event = {
 ## 200-299 reserved
 # Going to add support here for "tired" versions by tagging characters who've been through the loop more than once
 # Chain 1
+# First Round
 # Aggressor circles... (ROOT = Winner)
 character_event = {
 	id = hde_battle.200
@@ -809,6 +813,8 @@ character_event = {
 		}
 	}
 }
+# Second Round
+# Third Round
 
 # Chain 2
 # Would be here, if Chain 2 existed
@@ -1529,7 +1535,6 @@ character_event = {
 		
 		add_trait = wounded
 		# Restart the fight
-		set_character_flag = flag_duel_round_2
 		custom_tooltip = {
 			text = battle_continues_tt
 			hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
@@ -1623,7 +1628,6 @@ character_event = {
 		
 		add_trait = maimed
 		# Restart the fight
-		set_character_flag = flag_duel_round_2
 		custom_tooltip = {
 			text = battle_continues_tt
 			hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }

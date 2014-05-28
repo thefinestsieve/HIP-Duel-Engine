@@ -582,19 +582,8 @@ character_event = {
 	
 	immediate = {
 		if = {
-			limit = { has_character_flag = flag_duel_round_2 }
-			# Testing block
-			set_character_flag = core2LOSEtired
-			duel_target = {
-				limit = { has_opinion_modifier = { who = ROOT modifier = opinion_duel_target } }
-				character_event = { id = hde_core.4 }
-				# Testing Block
-				set_character_flag = core2WINtired
-			}
-		}
-		if = {
 			limit = {
-				NOT = { has_character_flag = flag_duel_round_2 }
+				NOT = { check_variable = { which = duel_rounds value = 1 } } # Round 1
 			}
 			# Testing block
 			set_character_flag = core2LOSE
@@ -603,6 +592,17 @@ character_event = {
 				character_event = { id = hde_core.3 }
 				# Testing Block
 				set_character_flag = core2WIN
+			}
+		}
+		if = {
+			limit = { check_variable = { which = duel_rounds value = 1 } } # Round 2 or later
+			# Testing block
+			set_character_flag = core2LOSEtired
+			duel_target = {
+				limit = { has_opinion_modifier = { who = ROOT modifier = opinion_duel_target } }
+				character_event = { id = hde_core.4 }
+				# Testing Block
+				set_character_flag = core2WINtired
 			}
 		}
 	}
@@ -634,8 +634,7 @@ character_event = {
 		# Battlefield Flavor
 		if = {
 			limit = { has_character_flag = flag_duel_battlefield }
-			# Winner is Aggressor
-			if = {
+			if = { # Winner is Aggressor
 				limit = { has_character_flag = flag_duel_aggressor }
 				random_list = {
 					50 = { character_event = { id = hde_battle.100 } } # Chain 1
@@ -643,8 +642,7 @@ character_event = {
 					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
-			# Loser is Aggressor
-			if = {
+			if = { # Loser is Aggressor
 				limit = { has_character_flag = flag_duel_defender }
 				random_list = {
 					50 = { FROM = { character_event = { id = hde_battle.101 } } } # Chain 1
@@ -676,22 +674,92 @@ character_event = {
 		# Battlefield Flavor
 		if = {
 			limit = { has_character_flag = flag_duel_battlefield }
-			# Winner is Aggressor
-			if = {
-				limit = { has_character_flag = flag_duel_aggressor }
-				random_list = {
-					50 = { character_event = { id = hde_battle.200 } } # Chain 1
-					50 = { character_event = { id = hde_battle.200 } } # Chain 1
-					# Add new flavor events here. Make sure to adjust weights!
+			if = { # Round 1 Flavor
+				limit = {
+					OR = {
+						NOT = { check_variable = { which = duel_rounds value = 1 } } # Round 1
+						AND = {
+							check_variable = { which = duel_rounds value = 3 } # Round 4
+							NOT = { check_variable = { which = duel_rounds value = 4 } }
+						}
+						check_variable = { which = duel_rounds value = 6 } # Round 7 or later
+					}
+				}
+				if = { # Winner is Aggressor
+					limit = { has_character_flag = flag_duel_aggressor }
+					random_list = {
+						50 = { character_event = { id = hde_battle.200 } } # Chain 1
+						50 = { character_event = { id = hde_battle.200 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
+				}
+				if = { # Loser is Aggressor
+					limit = { has_character_flag = flag_duel_defender }
+					random_list = {
+						50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
+						50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
 				}
 			}
-			# Loser is Aggressor
-			if = {
-				limit = { has_character_flag = flag_duel_defender }
-				random_list = {
-					50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
-					50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
-					# Add new flavor events here. Make sure to adjust weights!
+			if = { # Round 2 Flavor
+				limit = {
+					OR = {
+						AND = {
+							check_variable = { which = duel_rounds value = 1 } # Round 2
+							NOT = { check_variable = { which = duel_rounds value = 2 } }
+						}
+						AND = {
+							check_variable = { which = duel_rounds value = 4 } # Round 5
+							NOT = { check_variable = { which = duel_rounds value = 5 } }
+						}
+					}
+				}
+				if = { # Winner is Aggressor
+					limit = { has_character_flag = flag_duel_aggressor }
+					random_list = {
+						50 = { character_event = { id = hde_battle.200 } } # Chain 1
+						50 = { character_event = { id = hde_battle.200 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
+				}
+				if = { # Loser is Aggressor
+					limit = { has_character_flag = flag_duel_defender }
+					random_list = {
+						50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
+						50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
+				}
+			}
+			if = { # Round 3 Flavor
+				limit = {
+					OR = {
+						AND = {
+							check_variable = { which = duel_rounds value = 2 } # Round 3
+							NOT = { check_variable = { which = duel_rounds value = 3 } }	
+						}
+						AND = {
+							check_variable = { which = duel_rounds value = 5 } # Round 6
+							NOT = { check_variable = { which = duel_rounds value = 6 } }
+						}
+					}
+				}
+				if = { # Winner is Aggressor
+					limit = { has_character_flag = flag_duel_aggressor }
+					random_list = {
+						50 = { character_event = { id = hde_battle.200 } } # Chain 1
+						50 = { character_event = { id = hde_battle.200 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
+				}
+				if = { # Loser is Aggressor
+					limit = { has_character_flag = flag_duel_defender }
+					random_list = {
+						50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
+						50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
 				}
 			}
 		}
@@ -784,6 +852,8 @@ character_event = {
 	trigger = { has_landed_title = e_rebels }
 	
 	immediate = {
+		FROM = { change_variable = { which = duel_rounds value = 1 } }
+		FROMFROM = { change_variable = { which = duel_rounds value = 1 } }
 		# Testing block
 		FROM = { set_character_flag = core8LOSE }
 		FROMFROM = { set_character_flag = core8WIN }
@@ -1099,28 +1169,51 @@ character_event = {
 		}
 		# Insert additional flavor blocks here
 		
-		# NOTE! This is currently broken, and it's probably broken in NDE as well. Sending stuff to the loser requires the loser to be alive. If he isn't, any FROMs here will break!
+		# NOTE! This is currently broken, and it's probably broken in NDE as well. Sending stuff to the Loser requires the Loser to be alive. If he isn't, any FROMs here will break!
 		# CTA Victory forwarder
 		FROM = { # Send bounce to Loser
 			character_event = { id = cta.11 }
 		}
 		# Cleanup!
 		character_event = { id = hde_core.11 }
-		FROM = { character_event = { id = hde_core.11 } }
 	}
 	
 	option = { name = OK }
 }
 
 # Cleanup Event
-# Make sure to send it to everyone who needs to be cleaned up
-# This only needs to be used in cases where the Output Handler isn't called instead
+# This only needs to be used directly in cases where the Output Handler isn't called instead
+# Characters should send this to themselves in an event where FROM is the other duelist
 character_event = {
 	id = hde_core.11
 	hide_window = yes
 	is_triggered_only = yes
 	
 	immediate = {
+		FROMFROM = {
+			# Variable
+			set_variable = { which = duel_rounds value = 0 }
+			# Output flags
+			clr_character_flag = flag_duel_spared_opponent
+			clr_character_flag = flag_duel_wounded_opponent
+			clr_character_flag = flag_duel_maimed_opponent
+			clr_character_flag = flag_duel_killed_opponent
+			# Aggressor/Defender flags
+			clr_character_flag = flag_duel_aggressor
+			clr_character_flag = flag_duel_defender
+			# Winner/Loser flags
+			clr_character_flag = flag_duel_winner
+			clr_character_flag = flag_duel_loser
+			# Round flags
+			clr_character_flag = flag_duel_round_2
+			# Duel Type
+			clr_character_flag = flag_duel_friendly
+			# Duel Flavor
+			clr_character_flag = flag_duel_battlefield
+			# Add new Duel Type or Flavor flags here
+		}
+		# Variable
+		set_variable = { which = duel_rounds value = 0 }
 		# Output flags
 		clr_character_flag = flag_duel_spared_opponent
 		clr_character_flag = flag_duel_wounded_opponent
