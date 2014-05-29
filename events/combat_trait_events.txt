@@ -1,3 +1,9 @@
+# Future updates:
+# Let you duel your instructor (friendly only)? You know, learn by doing and all that.
+# Would need to do new flavor chain for it.
+# Could pack in a lot of neat flavor related to practicing fighting with your own children
+# Also accidentally injuring/killing them, whoops.
+
 ###################################
 ######Combat Trait Events##########
 ###Event Numbers 5550100-5551100###
