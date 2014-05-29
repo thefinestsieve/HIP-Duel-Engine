@@ -38,6 +38,7 @@ hde_battle.105.desc;You turn to face [From.GetTitle] [From.GetFirstName]… and [F
 hde_battle.105.a;That's right, coward, run back to [From.Capital.GetName]!;C'est ça, couard ! Retourne à [From.Capital.GetName] !;;;¡Está bien, cobarde! ¡Corre hasta [From.Capital.GetName]!;;;;;;;;;x
 ### Sizing Up Flavor;;;;;;;;;;;;;;x
 # Chain 1
+# Round 1
 # Aggressor circles (ROOT = Winner, Opponent = FROMFROM)
 hde_battle.200.desc;You and [FromFrom.GetBestName] slowly circle each other, tense and focused. You scan [FromFrom.GetHerHim] for any sign of weakness, any opening in [FromFrom.GetHerHis] defense that you could possibly exploit.;Avec [FromFrom.GetBestName] vous vous tournez lentement autour, raidis et concentrés. Vous tentez de percevoir le moindre signe de faiblesse chez lui, la moindre ouverture dans sa défense que vous pourriez peut-être exploiter.;;;[FromFrom.GetBestName] y tú tanteáis lentamente al adversario, tensos y concentrados. Buscas cualquier signo de debilidad en [FromFrom.GetSheHe], cualquier apertura en su defensa que puedas aprovechar.;;;;;;;;;x
 hde_battle.200.a;One mistake is all [FromFrom.GetSheHe]'ll get…;Une erreur c'est tout ce qu'[FromFrom.GetSheHe] aura…;;;Un fallo es todo lo que conseguirá...;;;;;;;;;x
@@ -47,6 +48,26 @@ hde_battle.201.a;One mistake is all [From.GetSheHe]'ll get…;Une erreur c'est tou
 # Defender circles
 hde_battle.202.desc;You and [From.GetBestName] slowly circle each other, tense and focused. You scan [From.GetHerHim] for any sign of weakness, any opening in [From.GetHerHis] defense that you could possibly exploit.;Avec [From.GetBestName] vous vous tournez lentement autour, raidis et concentrés. Vous tentez de percevoir le moindre signe de faiblesse chez lui, la moindre ouverture dans sa défense que vous pourriez peut-être exploiter.;;;[From.GetBestName] y tú tanteáis lentamente al adversario, tensos y concentrados. Buscas cualquier signo de debilidad en [From.GetSheHe], cualquier apertura en su defensa que puedas aprovechar.;;;;;;;;;x
 hde_battle.202.a;One mistake is all [From.GetSheHe]'ll get…;Une erreur c'est tout ce qu'[From.GetSheHe] aura…;;;Un fallo es todo lo que conseguirá...;;;;;;;;;x
+# Round 2
+# Aggressor wearily begins fight again (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.203.desc;You and [FromFrom.GetBestName] recover from the furious fight, and are ready for another round. You scan [FromFrom.GetHerHim] to see if [FromFrom.GetSheHe] is getting tired yet.;You and [FromFrom.GetBestName] recover from the furious fight, and are ready for another round. You scan [FromFrom.GetHerHim] to see if [FromFrom.GetSheHe] is getting tired yet.;;;[FromFrom.GetBestName] y tú os recuperáis del furioso combate, listos para el siguiente asalto. Le miras tratando de descubrir si se está cansando ya.;;;;;;;;;x
+hde_battle.203.a;Soon [From.GetSheHe]'ll make a mistake.;;;;;;;;;;;;;x
+# Aggressor wearily begins fight again (ROOT = Loser, Opponent = FROM)
+hde_battle.204.desc;You and [From.GetBestName] recover from the furious fight, and are ready for another round. You scan [From.GetHerHim] to see if [From.GetSheHe] is getting tired yet.;You and [From.GetBestName] recover from the furious fight, and are ready for another round. You scan [From.GetHerHim] to see if [From.GetSheHe] is getting tired yet.;;;[From.GetBestName] y tú os recuperáis del furioso combate, listos para el siguiente asalto. Le miras tratando de descubrir si se está cansando ya.;;;;;;;;;x
+hde_battle.204.a;Soon [From.GetSheHe]'ll make a mistake.;;;;;;;;;;;;;x
+# Defender wearily begins fight again
+hde_battle.205.desc;You and [From.GetBestName] recover from the furious fight, and are ready for another round. You scan [From.GetHerHim] to see if [From.GetSheHe] is getting tired yet.;You and [From.GetBestName] recover from the furious fight, and are ready for another round. You scan [From.GetHerHim] to see if [From.GetSheHe] is getting tired yet.;;;[From.GetBestName] y tú os recuperáis del furioso combate, listos para el siguiente asalto. Le miras tratando de descubrir si se está cansando ya.;;;;;;;;;x
+hde_battle.205.a;Soon [From.GetSheHe]'ll make a mistake.;;;;;;;;;;;;;x
+# Round 3
+# Aggressor getting exhausted (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.206.desc;You and [FromFrom.GetBestName] are getting ready to cross arms yet another time. Surely [FromFrom.GetSheHe] must be nearly beaten now?;You and [FromFrom.GetBestName] are getting ready to cross arms yet another time. Surely [FromFrom.GetSheHe] must be nearly beaten now?;;;[FromFrom.GetBestName] y tú os preparáis para cruzar las armas de nuevo. Está casi vencido, ¿verdad?;;;;;;;;;x
+hde_battle.206.a;How much longer can [From.GetSheHe] stand against me?;;;;;;;;;;;;;x
+# Aggressor getting exhausted (ROOT = Loser, Opponent = FROM)
+hde_battle.207.desc;You and [From.GetBestName] are getting ready to cross arms yet another time. Surely [From.GetSheHe] must be nearly beaten now?;You and [From.GetBestName] are getting ready to cross arms yet another time. Surely [From.GetSheHe] must be nearly beaten now?;;;[From.GetBestName] y tú os preparáis para cruzar las armas de nuevo. Está casi vencido, ¿verdad?;;;;;;;;;x
+hde_battle.207.a;How much longer can [From.GetSheHe] stand against me?;;;;;;;;;;;;;x
+# Defender getting exhausted
+hde_battle.208.desc;You and [From.GetBestName] are getting ready to cross arms yet another time. Surely [From.GetSheHe] must be nearly beaten now?;You and [From.GetBestName] are getting ready to cross arms yet another time. Surely [From.GetSheHe] must be nearly beaten now?;;;[From.GetBestName] y tú os preparáis para cruzar las armas de nuevo. Está casi vencido, ¿verdad?;;;;;;;;;x
+hde_battle.208.a;How much longer can [From.GetSheHe] stand against me?;;;;;;;;;;;;;x
 ### Combat Flavor;;;;;;;;;;;;;;x
 # The localization here needs to be reworked a bit to reflect the new structure
 # Chain 1

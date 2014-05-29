@@ -17,7 +17,7 @@ namespace = hde_core
 # flag_duel_killed_opponent
 
 ### MAIN EVENTS
-# hde_core.0	Stupid forwarder required due to issues with setting opinions in hde_core.1
+# hde_core.0	Stupid forwarder required due to issues with setting opinions in hde_core.1 (stupid FROMs in FROMFROM)
 # hde_core.1	Referee decides between FROM and FROMFROM, flags winner and loser, target locks duelists, starts dueling chain
 # hde_core.2	Bounce event to make sure localization works properly
 
@@ -718,16 +718,16 @@ character_event = {
 				if = { # Winner is Aggressor
 					limit = { has_character_flag = flag_duel_aggressor }
 					random_list = {
-						50 = { character_event = { id = hde_battle.200 } } # Chain 1
-						50 = { character_event = { id = hde_battle.200 } } # Chain 1
+						50 = { character_event = { id = hde_battle.203 } } # Chain 1
+						50 = { character_event = { id = hde_battle.203 } } # Chain 1
 						# Add new flavor events here. Make sure to adjust weights!
 					}
 				}
 				if = { # Loser is Aggressor
 					limit = { has_character_flag = flag_duel_defender }
 					random_list = {
-						50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
-						50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
+						50 = { FROM = { character_event = { id = hde_battle.204 } } } # Chain 1
+						50 = { FROM = { character_event = { id = hde_battle.204 } } } # Chain 1
 						# Add new flavor events here. Make sure to adjust weights!
 					}
 				}
@@ -748,16 +748,16 @@ character_event = {
 				if = { # Winner is Aggressor
 					limit = { has_character_flag = flag_duel_aggressor }
 					random_list = {
-						50 = { character_event = { id = hde_battle.200 } } # Chain 1
-						50 = { character_event = { id = hde_battle.200 } } # Chain 1
+						50 = { character_event = { id = hde_battle.206 } } # Chain 1
+						50 = { character_event = { id = hde_battle.206 } } # Chain 1
 						# Add new flavor events here. Make sure to adjust weights!
 					}
 				}
 				if = { # Loser is Aggressor
 					limit = { has_character_flag = flag_duel_defender }
 					random_list = {
-						50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
-						50 = { FROM = { character_event = { id = hde_battle.201 } } } # Chain 1
+						50 = { FROM = { character_event = { id = hde_battle.207 } } } # Chain 1
+						50 = { FROM = { character_event = { id = hde_battle.207 } } } # Chain 1
 						# Add new flavor events here. Make sure to adjust weights!
 					}
 				}

@@ -33,8 +33,9 @@ character_event = {
 	option = { name = OK }
 }
 
+#####################
 ### SETUP
-## 0-99 reserved
+### 0-99 reserved
 # These events are only required if there aren't already existing events to plug into
 # hde_battle.0		Begin the chain, triggered from on_actions
 # hde_battle.1		Pass along event, starts the actual fight
@@ -240,13 +241,14 @@ character_event = {
 	option = { name = OK }
 }
 
-### FLAVOR EVENTS
 #####################
-## INITIAL FLAVOR
-## 100-199 reserved
+### INITIAL FLAVOR
+### 100-199 reserved
 # I'd like to give cowards a chance to become brave if they choose to fight.
 # Or at least a chance to lose craven.
-# Chain 1
+## Chain 1
+# These first two events share localization for now, because in the NDE you didn't have access to the opponent
+# But that isn't required here
 # Aggressor sees Defender across the field (ROOT = Winner, FROMFROM = Loser)
 character_event = {
 	id = hde_battle.100
@@ -737,16 +739,15 @@ character_event = {
 	}
 }
 
-# Chain 2
+## Chain 2
 # Would be here, if Chain 2 existed
 
 #####################
-## SIZING UP FLAVOR
-## 200-299 reserved
-# Going to add support here for "tired" versions by tagging characters who've been through the loop more than once
-# Chain 1
-# First Round
-# Aggressor circles... (ROOT = Winner)
+### SIZING UP FLAVOR
+### 200-299 reserved
+## Chain 1
+## First Round
+# Aggressor circles (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
 	id = hde_battle.200
 	desc = hde_battle.200.desc
@@ -754,7 +755,6 @@ character_event = {
 	border = GFX_event_normal_frame_war
 	hide_from = yes
 	show_from_from = yes
-	
 	is_triggered_only = yes
 	
 	option = {
@@ -767,19 +767,18 @@ character_event = {
 		}
 	}
 }
-# Aggressor circles... (ROOT = Loser)
+# Aggressor circles (ROOT = Loser, Opponent = FROM)
 character_event = {
 	id = hde_battle.201
-	desc = hde_battle.200.desc
+	desc = hde_battle.201.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	hide_from = yes
 	show_from_from = yes
-	
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_battle.200.a
+		name = hde_battle.201.a
 		
 		hidden_tooltip = {
 			FROM = { # Send to Winner
@@ -794,7 +793,6 @@ character_event = {
 	desc = hde_battle.202.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
-	
 	is_triggered_only = yes
 	
 	option = {
@@ -813,16 +811,144 @@ character_event = {
 		}
 	}
 }
-# Second Round
-# Third Round
+## Second Round
+# Aggressor wearily begins fight again (ROOT = Winner, Opponent = FROMFROM)
+character_event = {
+	id = hde_battle.203
+	desc = hde_battle.203.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	show_from_from = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.203.a
+		
+		hidden_tooltip = {
+			FROMFROM = { # Send to Loser
+				character_event = { id = hde_battle.205 }
+			}
+		}
+	}
+}
+# Aggressor wearily begins fight again (ROOT = Loser, Opponent = FROM)
+character_event = {
+	id = hde_battle.204
+	desc = hde_battle.204.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	show_from_from = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.204.a
+		
+		hidden_tooltip = {
+			FROM = { # Send to Winner
+				character_event = { id = hde_battle.205 }
+			}
+		}
+	}
+}
+# Defender circles...
+character_event = {
+	id = hde_battle.205
+	desc = hde_battle.205.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.205.a
+		if = {
+			limit = { has_character_flag = flag_duel_loser }
+			FROM = { # Send handler to Winner
+				character_event = { id = hde_core.6 tooltip = hde_core.6.tt }
+			}
+		}
+		if = {
+			limit = { has_character_flag = flag_duel_winner }
+			FROM = { # Send handler bounce to Loser
+				character_event = { id = hde_core.7 tooltip = hde_core.7.tt }
+			}
+		}
+	}
+}
+## Third Round
+# Aggressor getting exhausted (ROOT = Winner, Opponent = FROMFROM)
+character_event = {
+	id = hde_battle.206
+	desc = hde_battle.206.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	show_from_from = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.206.a
+		
+		hidden_tooltip = {
+			FROMFROM = { # Send to Loser
+				character_event = { id = hde_battle.208 }
+			}
+		}
+	}
+}
+# Aggressor getting exhausted (ROOT = Loser, Opponent = FROM)
+character_event = {
+	id = hde_battle.207
+	desc = hde_battle.207.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	show_from_from = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.207.a
+		
+		hidden_tooltip = {
+			FROM = { # Send to Winner
+				character_event = { id = hde_battle.208 }
+			}
+		}
+	}
+}
+# Defender getting exhausted
+character_event = {
+	id = hde_battle.208
+	desc = hde_battle.208.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.208.a
+		if = {
+			limit = { has_character_flag = flag_duel_loser }
+			FROM = { # Send handler to Winner
+				character_event = { id = hde_core.6 tooltip = hde_core.6.tt }
+			}
+		}
+		if = {
+			limit = { has_character_flag = flag_duel_winner }
+			FROM = { # Send handler bounce to Loser
+				character_event = { id = hde_core.7 tooltip = hde_core.7.tt }
+			}
+		}
+	}
+}
 
-# Chain 2
+## Chain 2
 # Would be here, if Chain 2 existed
 
 #####################
-## COMBAT FLAVOR
-## 300-399 reserved
-# Chain 1
+### COMBAT FLAVOR
+### 300-399 reserved
+## Chain 1
 # Aggressor attacks! (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
 	id = hde_battle.300
@@ -900,16 +1026,16 @@ character_event = {
 	}
 }
 
-# Chain 2
+## Chain 2
 # Would be here, if Chain 2 existed
 
 ### OUTCOME FLAVOR
 # The chains for this are larger and intended to be self-consistent, so if Chain 1 subdued event is called, it's going to reference the Chain 1 yield event and, if the Loser won't yield, the Chain 1 wounded event. If the Loser does yield, and Winner kills the Loser, it'll reference the Chain 1 death event. Those wounded and death events are the same ones called directly if the Chain 1 wounded or death outcomes are chosen by the handler. This should prevent redundant events while also making sure the flavor for each chain is consistent with itself.
 #####################
-## SUBDUED OUTCOME FLAVOR
-## 400-499 reserved
+### SUBDUED OUTCOME FLAVOR
+### 400-499 reserved
 # Unlike the other handlers, in these the winner always gets the first event
-# Chain 1
+## Chain 1
 # Aggressor subdues Defender! (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
 	id = hde_battle.400
@@ -1451,14 +1577,14 @@ character_event = {
 	}
 }
 
-# Chain 2
+## Chain 2
 # Would be here, if Chain 2 existed
 
 #####################
-## WOUNDED OUTCOME FLAVOR
-## 500-599 reserved
+### WOUNDED OUTCOME FLAVOR
+### 500-599 reserved
 # Unlike the other handlers, in these the winner always gets the first event
-# Chain 1
+## Chain 1
 # Aggressor injures Defender! (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
 	id = hde_battle.500
@@ -1700,12 +1826,12 @@ character_event = {
 	}
 }
 
-# Chain 2
+## Chain 2
 # Would be here, if Chain 2 existed
 
 #####################
-## KILLED OUTCOME FLAVOR
-## 600-699 reserved
+### KILLED OUTCOME FLAVOR
+### 600-699 reserved
 # Unlike the other handlers, in these the winner always gets the first event
 # Aggressor kills Defender! (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
@@ -1773,13 +1899,13 @@ character_event = {
 	}
 }
 
-# Chain 2
+## Chain 2
 # Would be here, if Chain 2 existed
 
 ### OUTPUT FLAVOR
 #####################
-## OUTPUT FLAVOR
-## 700-799 reserved
+### OUTPUT FLAVOR
+### 700-799 reserved
 # Chain 1
 # Winner killed Loser (Loser = FROMFROM)
 character_event = {
@@ -1843,5 +1969,5 @@ character_event = {
 	}
 }
 
-# Chain 2
+## Chain 2
 # Would be here, if Chain 2 existed
