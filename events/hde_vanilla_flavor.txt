@@ -1,0 +1,247 @@
+namespace = hde_vanilla
+
+# If I end up doing it, this will be a file for holding modified versions of vanilla events
+# These versions will replace events in vanilla event chains like feasts, regency duels, prison escapes, etc
+# This way, the number of changes to vanilla files will be minimal
+
+### FEAST DUELS
+### 0-99 reserved
+
+# I believe the craven stuff in this is possibly too harsh?
+#Duel: Accept or Decline
+character_event = {
+	id = 72031
+	desc = "EVTDESC72031"
+	picture = GFX_evt_melee
+
+	is_triggered_only = yes
+
+	option = {
+		name = EVTOPTA72031 #Accept
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 2
+				trait = poor_warrior
+			}
+			modifier = {
+				factor = 3
+				trait = trained_warrior
+			}
+			modifier = {
+				factor = 4
+				trait = skilled_warrior
+			}
+			modifier = {
+				factor = 5
+				trait = master_warrior
+			}
+			modifier = {
+				factor = 5
+				trait = duelist
+			}
+			modifier = {
+				factor = 2
+				trait = brave
+			}
+			modifier = {
+				factor = 2
+				trait = proud
+			}
+			modifier = {
+				factor = 1.5
+				trait = wroth
+			}
+			modifier = {
+				factor = 1.5
+				trait = strong
+			}
+		}
+
+		# Set Duel Type
+		set_character_flag = flag_duel_feast
+		FROM = { set_character_flag = flag_duel_feast }
+		
+		# Start this thing!
+		FROM = { character_event = { id = hde_core.0 } }
+	}
+	option = {
+		name = EVTOPTB72031 #Decline
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 2
+				FROM = { trait = poor_warrior }
+			}
+			modifier = {
+				factor = 3
+				FROM = { trait = trained_warrior }
+			}
+			modifier = {
+				factor = 4
+				FROM = { trait = skilled_warrior }
+			}
+			modifier = {
+				factor = 5
+				FROM = { trait = master_warrior }
+			}
+			modifier = {
+				factor = 5
+				FROM = { trait = duelist }
+			}
+			modifier = {
+				factor = 2
+				FROM = { trait = strong }
+			}
+			modifier = {
+				factor = 2
+				trait = craven
+			}
+			modifier = {
+				factor = 2
+				trait = paranoid
+			}
+			modifier = {
+				factor = 2
+				trait = weak
+			}
+			modifier = {
+				factor = 2
+				trait = dwarf
+			}
+			modifier = {
+				factor = 2
+				trait = hunchback
+			}
+			modifier = {
+				factor = 2
+				trait = leper
+			}
+			modifier = {
+				factor = 2
+				trait = wounded
+			}
+			modifier = {
+				factor = 4
+				trait = maimed
+			}
+		}
+		
+		prestige = -10
+		if = {
+			limit = { NOT = { trait = craven } }
+			random = {
+				chance = 25
+				add_trait = craven
+			}
+		}
+	}
+}
+
+# This will be rewritten
+# It will be called directly from output event
+# So winner = ROOT and loser = FROMFROM
+# The flags need to be replaced with the appropriate flags
+# And I need to add a new option for flag_duel_spared_opponent which fires 72034 on the liege
+#Duel
+character_event = {
+	id = 72033
+	desc = "EVTDESC72033"
+	picture = GFX_evt_melee
+
+	is_triggered_only = yes
+
+	option = {
+		name = "EVTOPTA72033"
+		trigger = {
+			has_character_flag = wounded_opponent
+		}
+		FROM = {
+			clr_character_flag = wounded_opponent
+			clr_character_flag = maimed_opponent
+		}
+		any_liege = {
+			limit = {
+				has_character_flag = host_feast_started
+				has_character_modifier = holding_large_feast
+			}
+			character_event = {
+				id = 72036
+				tooltip = "EVTTOOLTIP72036"
+			}
+		}
+		clr_character_flag = wounded_opponent
+		change_martial = 1
+	}
+
+	option = {
+		name = "EVTOPTB72033"
+		trigger = {
+			has_character_flag = maimed_opponent
+		}
+		FROM = {
+			clr_character_flag = wounded_opponent
+			clr_character_flag = maimed_opponent
+		}
+		any_liege = {
+			limit = {
+				has_character_flag = host_feast_started
+				has_character_modifier = holding_large_feast
+			}
+			character_event = {
+				id = 72037
+				tooltip = "EVTTOOLTIP72037"
+			}
+		}
+		clr_character_flag = maimed_opponent
+		change_martial = 2
+	}
+
+	option = {
+		name = "EVTOPTC72033"
+		trigger = {
+			has_character_flag = killed_opponent
+		}
+		clr_character_flag = killed_opponent
+		change_martial = 3
+		any_liege = {
+			limit = {
+				has_character_flag = host_feast_started
+				has_character_modifier = holding_large_feast
+			}
+			character_event = {
+				id = 72035
+				tooltip = "EVTTOOLTIP72035"
+			}
+		}
+	}
+}
+
+# I want to rewrite this so you have an option to have a variety of different reactions
+# It also needs new description text
+#Duel: The End
+character_event = {
+	id = 72034
+	desc = "EVTDESC72034"
+	picture = GFX_evt_melee
+
+	is_triggered_only = yes
+
+	option = {
+		name = "EVTOPTA72034"
+		opinion = {
+			modifier = opinion_dislike
+			who = FROM
+			years = 10
+		}
+		FROM = {
+			FROM = {
+				reverse_opinion = {
+					modifier = opinion_dislike
+					who = Root
+					years = 10
+				}
+			}
+		}
+	}
+}

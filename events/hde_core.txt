@@ -9,7 +9,9 @@ namespace = hde_core
 # flag_duel_to_the_death		reduces yield outcomes by 100%
 ## Duel Flavor
 # flag_duel_battlefield
-# flag_duel_tourney (eventually?)
+# flag_duel_feast
+# flag_duel_tourney (eventually)
+# flag_duel_regent (eventually)
 ## Output flags
 # flag_duel_spared_opponent
 # flag_duel_wounded_opponent
@@ -44,7 +46,14 @@ namespace = hde_core
 # Hook other duel types into output event
 # Update the trait references to include any new VIET traits in PB and VIET
 
-# I've added flag_duel_round_2 for the tired versions. Right now it only prevents a second run through the initial events. It's also a temporary solution for testing purposes.
+# Some THOUGHTS on other flavor stuff:
+# First, regency/feast duels: I can either write a single set of indoor duel flavor and have both of them use it, or I can write specific flavor for both. Having both using the same flavor would save time, so it's the likely option for now. So both context flags would get the same flavor, but they'd get different output as required to plug into the vanilla events
+# In fact, while I want to do up as much unique flavor as possible, it's likely that it will get boiled down to just the key stuff. So all of the following, each with hopefully a few different chains:
+# Battlefield
+# Indoor
+# Practice duels (for use with guardian/ward duels, perhaps?)
+# Tournaments
+# Remember that some flavor sets will never be friendly, nor to the death (like battlefield), so certain assumptions can be made; while the tournament and practice sets will always be friendly; and the indoor set needs to be adaptable, so it should have different options flavor throughout (controlled with option triggers) and also different outcomes flavor depending on what type of duel it is.
 
 ### FLAVOR EVENTS
 # These are effectively mini-chains
