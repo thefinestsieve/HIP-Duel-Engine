@@ -1,19 +1,20 @@
-namespace = hde_vanilla
+namespace = hde_feast
 
 # If I end up doing it, this will be a file for holding modified versions of vanilla events
 # These versions will replace events in vanilla event chains like feasts, regency duels, prison escapes, etc
 # This way, the number of changes to vanilla files will be minimal
 
-### FEAST DUELS
+#####################
+### SETUP
 ### 0-99 reserved
 
+# This event is called from the event 72030 and hijacks the event chain
 # I believe the craven stuff in this is possibly too harsh?
 #Duel: Accept or Decline
 character_event = {
-	id = 72031
+	id = hde_feast.0
 	desc = "EVTDESC72031"
 	picture = GFX_evt_melee
-
 	is_triggered_only = yes
 
 	option = {
@@ -61,7 +62,6 @@ character_event = {
 		# Set Duel Type
 		set_character_flag = flag_duel_feast
 		FROM = { set_character_flag = flag_duel_feast }
-		
 		# Start this thing!
 		FROM = { character_event = { id = hde_core.0 } }
 	}
@@ -138,27 +138,18 @@ character_event = {
 	}
 }
 
-# This will be rewritten
-# It will be called directly from output event
-# So winner = ROOT and loser = FROMFROM
-# The flags need to be replaced with the appropriate flags
-# And I need to add a new option for flag_duel_spared_opponent which fires 72034 on the liege
-#Duel
+# Feast Duel Outcomes
+# Winner = ROOT, Loser = FROMFROM
 character_event = {
-	id = 72033
-	desc = "EVTDESC72033"
+	id = hde_feast.1
+	desc = hde_feast.1.desc
 	picture = GFX_evt_melee
-
 	is_triggered_only = yes
 
 	option = {
 		name = "EVTOPTA72033"
 		trigger = {
-			has_character_flag = wounded_opponent
-		}
-		FROM = {
-			clr_character_flag = wounded_opponent
-			clr_character_flag = maimed_opponent
+			has_character_flag = flag_duel_wounded_opponent
 		}
 		any_liege = {
 			limit = {
@@ -170,18 +161,13 @@ character_event = {
 				tooltip = "EVTTOOLTIP72036"
 			}
 		}
-		clr_character_flag = wounded_opponent
 		change_martial = 1
 	}
 
 	option = {
 		name = "EVTOPTB72033"
 		trigger = {
-			has_character_flag = maimed_opponent
-		}
-		FROM = {
-			clr_character_flag = wounded_opponent
-			clr_character_flag = maimed_opponent
+			has_character_flag = flag_duel_maimed_opponent
 		}
 		any_liege = {
 			limit = {
@@ -193,17 +179,14 @@ character_event = {
 				tooltip = "EVTTOOLTIP72037"
 			}
 		}
-		clr_character_flag = maimed_opponent
 		change_martial = 2
 	}
 
 	option = {
 		name = "EVTOPTC72033"
 		trigger = {
-			has_character_flag = killed_opponent
+			has_character_flag = flag_duel_killed_opponent
 		}
-		clr_character_flag = killed_opponent
-		change_martial = 3
 		any_liege = {
 			limit = {
 				has_character_flag = host_feast_started
@@ -214,11 +197,63 @@ character_event = {
 				tooltip = "EVTTOOLTIP72035"
 			}
 		}
+		change_martial = 3
+	}
+	option = {
+		name = hde_feast.1.d
+		trigger = {
+			has_character_flag = flag_duel_spared_opponent
+		}
+		clr_character_flag = flag_duel_spared_opponent
+		any_liege = {
+			limit = {
+				has_character_flag = host_feast_started
+				has_character_modifier = holding_large_feast
+			}
+			character_event = {
+				id = hde_feast.2
+				tooltip = hde_feast.2.tt
+			}
+		}
+		change_martial = 1
 	}
 }
 
 # I want to rewrite this so you have an option to have a variety of different reactions
 # It also needs new description text
+# Liege reacts to nobody being hurt
+character_event = {
+	id = hde_feast.2
+	desc = hde_feast.2.desc
+	picture = GFX_evt_melee
+	is_triggered_only = yes
+
+	option = {
+		name = "EVTOPTA72035"
+		opinion = {
+			modifier = opinion_dislike
+			who = FROM
+			years = 10
+		}
+	}
+	option = {
+		name = "EVTOPTB72035"
+		opinion = {
+			modifier = opinion_satisfied
+			who = FROM
+			years = 10
+		}
+	}
+	option = {
+		name = "EVTOPTC72035"
+		reverse_opinion = {
+			modifier = opinion_dislike
+			who = FROM
+			years = 10
+		}
+	}
+}
+
 #Duel: The End
 character_event = {
 	id = 72034

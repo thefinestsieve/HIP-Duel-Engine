@@ -2062,7 +2062,7 @@ character_event = {
 					}
 				}
 				character_event = {
-					id = 72031
+					id = hde_vanilla.0 # HDE: Hijack the event chain
 					tooltip = "EVTTOOLTIP72031"
 				}
 			}
@@ -2083,276 +2083,177 @@ character_event = {
 	is_triggered_only = yes
 
 	option = {
-		name = EVTOPTA72031 #Accept
-		ai_chance = {
-			factor = 100
-			modifier = {
-				factor = 2
-				trait = poor_warrior
+		name = "EVTOPTA72031" #Accept
+		random_list = {
+			35 = {
+				add_trait = wounded
+				hidden_tooltip = {
+					FROM = {
+						set_character_flag = wounded_opponent
+						character_event = {
+							id = 72032
+						}
+					}
+				}
 			}
-			modifier = {
-				factor = 3
-				trait = trained_warrior
+			35 = {
+				add_trait = maimed
+				hidden_tooltip = {
+					FROM = {
+						set_character_flag = maimed_opponent
+						character_event = {
+							id = 72032
+						}
+					}
+				}
 			}
-			modifier = {
-				factor = 4
-				trait = skilled_warrior
+			10 = {
+				death = { death_reason = death_duel }
+				hidden_tooltip = {
+					FROM = {
+						set_character_flag = killed_opponent
+						character_event = {
+							id = 72033
+						}
+					}
+				}
 			}
-			modifier = {
-				factor = 5
-				trait = master_warrior
-			}
-			modifier = {
-				factor = 5
-				trait = duelist
-			}
-			modifier = {
-				factor = 2
-				trait = brave
-			}
-			modifier = {
-				factor = 2
-				trait = proud
-			}
-			modifier = {
-				factor = 1.5
-				trait = wroth
-			}
-			modifier = {
-				factor = 1.5
-				trait = strong
+			20 = {
+				any_liege = {
+					limit = {
+						has_character_flag = host_feast_started
+						has_character_modifier = holding_large_feast
+					}
+					character_event = {
+						id = 72034
+						tooltip = "EVTTOOLTIP72034"
+					}
+				}
 			}
 		}
-
-		# Set Duel Type
-		set_character_flag = flag_duel_feast
-		FROM = { set_character_flag = flag_duel_feast }
-		
-		# Start this thing!
-		FROM = { character_event = { id = hde_core.0 } }
 	}
 	option = {
-		name = EVTOPTB72031 #Decline
-		ai_chance = {
-			factor = 100
-			modifier = {
-				factor = 2
-				FROM = { trait = poor_warrior }
-			}
-			modifier = {
-				factor = 3
-				FROM = { trait = trained_warrior }
-			}
-			modifier = {
-				factor = 4
-				FROM = { trait = skilled_warrior }
-			}
-			modifier = {
-				factor = 5
-				FROM = { trait = master_warrior }
-			}
-			modifier = {
-				factor = 5
-				FROM = { trait = duelist }
-			}
-			modifier = {
-				factor = 2
-				FROM = { trait = strong }
-			}
-			modifier = {
-				factor = 2
-				trait = craven
-			}
-			modifier = {
-				factor = 2
-				trait = paranoid
-			}
-			modifier = {
-				factor = 2
-				trait = weak
-			}
-			modifier = {
-				factor = 2
-				trait = dwarf
-			}
-			modifier = {
-				factor = 2
-				trait = hunchback
-			}
-			modifier = {
-				factor = 2
-				trait = leper
-			}
-			modifier = {
-				factor = 2
-				trait = wounded
-			}
-			modifier = {
-				factor = 4
-				trait = maimed
-			}
-		}
-		
+		name = "EVTOPTB72031" #Decline
 		prestige = -10
-		if = {
-			limit = { NOT = { trait = craven } }
-			random = {
-				chance = 25
-				add_trait = craven
-			}
-		}
 	}
 }
 
 #Duel: Opponent is killed/maimed/wounded/nothing
-#character_event = {
-#	id = 72032
-#	desc = EVTDESC72032
-#	picture = GFX_evt_melee
-#	
-#	is_triggered_only = yes
-#	
-#	option = {
-#		name = EVTOPTA72032
-#		trigger = {
-#			has_character_flag = wounded_opponent
-#			always = no #DISABLED
-#		}
-#		tooltip = {
-#			FROM = {
-#				character_event = {
-#					id = 72033
-#					tooltip = EVTTOOLTIP72033
-#				}
-#			}
-#		}
-#		random_list = {
-#			10 = {
-#				death = {
-#					death_reason = death_duel
-#					killer = FROM
-#				}
-#				hidden_tooltip = {
-#					FROM = {
-#						set_character_flag = killed_opponent
-#						character_event = {
-#							id = 72033
-#							tooltip = EVTTOOLTIP72033
-#						}
-#					}
-#				}
-#			}
-#			20 = {
-#				add_trait = maimed
-#				hidden_tooltip = {
-#					character_event = {
-#						id = 38281 #Notify Maimed
-#					}
-#				}
-#				hidden_tooltip = {
-#					FROM = {
-#						set_character_flag = maimed_opponent
-#						character_event = {
-#							id = 72033
-#						}
-#					}
-#				}
-#			}
-#			30 = {
-#				add_trait = wounded
-#				hidden_tooltip = {
-#					character_event = {
-#						id = 38280 #Notify Wounded
-#					}
-#				}
-#				hidden_tooltip = {
-#FROM = {
-#						set_character_flag = wounded_opponent
-#						character_event = {
-#							id = 72033
-#						}
-#					}
-#				}
-#			}
-#			40 = {
-#				any_liege = {
-#					limit = {
-#						has_character_flag = host_feast_started
-#						has_character_modifier = holding_large_feast
-#					}
-#					character_event = {
-#						id = 72034
-#						tooltip = EVTTOOLTIP72034
-#					}
-#				}
-#			}
-#		}
-#	}
-#
-#	option = {
-#		name = EVTOPTB72032
-#		trigger = {
-#			has_character_flag = maimed_opponent
-#		}
-#		random_list = {
-#			1 = {
-#death = {
-#					death_reason = death_duel
-#					killer = FROM
-#				}
-#				FROM = {
-#					set_character_flag = killed_opponent
-#					character_event = {
-#						id = 72033
-#						tooltip = EVTTOOLTIP72033
-#					}
-#				}
-#			}
-#			10 = {
-#				add_trait = maimed
-#				hidden_tooltip = {
-#					character_event = {
-#						id = 38281 #Notify Maimed
-#					}
-#				}
-#				FROM = {
-#					set_character_flag = maimed_opponent
-#					character_event = {
-#						id = 72033
-#						tooltip = EVTTOOLTIP72033
-#					}
-#				}
-#			}
-#			19 = {
-#				add_trait = wounded
-#				hidden_tooltip = {
-#					character_event = {
-#						id = 38280 #Notify Wounded
-#					}
-#				}
-#				FROM = {
-#					set_character_flag = wounded_opponent
-#					character_event = {
-#						id = 72033
-#						tooltip = EVTTOOLTIP72033
-#					}
-#				}
-#			}
-#			70 = {
-#				any_liege = {
-#					limit = {
-#						has_character_flag = host_feast_started
-#						has_character_modifier = holding_large_feast
-#					}
-#					character_event = {
-#						id = 72034
-#						tooltip = EVTTOOLTIP72034
-#					}
-#				}
-#			}
-#		}
-#	}
-#}
+character_event = {
+	id = 72032
+	desc = "EVTDESC72032"
+	picture = GFX_evt_melee
+
+	is_triggered_only = yes
+
+	option = {
+		name = "EVTOPTA72032"
+		trigger = {
+			has_character_flag = wounded_opponent
+		}
+		random_list = {
+			10 = {
+				death = { death_reason = death_duel }
+				hidden_tooltip = {
+					FROM = {
+						set_character_flag = killed_opponent
+						character_event = {
+							id = 72033
+							tooltip = "EVTTOOLTIP72033"
+						}
+					}
+				}
+			}
+			20 = {
+				add_trait = maimed
+				hidden_tooltip = {
+					FROM = {
+						set_character_flag = maimed_opponent
+						character_event = {
+							id = 72033
+							tooltip = "EVTTOOLTIP72033"
+						}
+					}
+				}
+			}
+			30 = {
+				add_trait = wounded
+				hidden_tooltip = {
+					FROM = {
+						set_character_flag = wounded_opponent
+						character_event = {
+							id = 72033
+							tooltip = "EVTTOOLTIP72033"
+						}
+					}
+				}
+			}
+			40 = {
+				any_liege = {
+					limit = {
+						has_character_flag = host_feast_started
+						has_character_modifier = holding_large_feast
+					}
+					character_event = {
+						id = 72034
+						tooltip = "EVTTOOLTIP72034"
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "EVTOPTB72032"
+		trigger = {
+			has_character_flag = maimed_opponent
+		}
+		random_list = {
+			1 = {
+				death = { death_reason = death_duel }
+				FROM = {
+					set_character_flag = killed_opponent
+					character_event = {
+						id = 72033
+						tooltip = "EVTTOOLTIP72033"
+					}
+				}
+			}
+			10 = {
+				add_trait = maimed
+				FROM = {
+					set_character_flag = maimed_opponent
+					character_event = {
+						id = 72033
+						tooltip = "EVTTOOLTIP72033"
+					}
+				}
+			}
+			19 = {
+				add_trait = wounded
+				FROM = {
+					set_character_flag = wounded_opponent
+					character_event = {
+						id = 72033
+						tooltip = "EVTTOOLTIP72033"
+					}
+				}
+			}
+			70 = {
+				any_liege = {
+					limit = {
+						has_character_flag = host_feast_started
+						has_character_modifier = holding_large_feast
+					}
+					character_event = {
+						id = 72034
+						tooltip = "EVTTOOLTIP72034"
+					}
+				}
+			}
+		}
+	}
+}
 
 #Duel
 character_event = {

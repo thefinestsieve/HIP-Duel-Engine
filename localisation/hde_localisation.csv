@@ -1,6 +1,5 @@
 #CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
 ######################################5_EVENTS;;;;;;;;;;;;;;x
-# All the event localization here might eventually need to be reworked to reflect the new system
 ############ Core;;;;;;;;;;;;;;x
 # Initial Flavor;;;;;;;;;;;;;;x
 hde_core.4.tt;steels [From.GetHerselfHimself] for combat;;;;;;;;;;;;;x
@@ -10,7 +9,17 @@ hde_core.6.tt;prepares to attack;;;;;;;;;;;;;x
 hde_core.7.tt;readies [From.GetHerselfHimself] to strike;;;;;;;;;;;;;x
 # Output Flavor;;;;;;;;;;;;;;x
 hde_core.10.tt;is victorious!;est victorieux !;;;¡sale victorioso!;;;;;;;;;x
+############ Feast Flavor;;;;;;;;;;;;;;x
+# Output Flavor;;;;;;;;;;;;;;x
+# Chain 1
+# Winner (Winner = ROOT, Loser = FROMFROM)
+hde_feast.1.desc;The duel is over and my opponent [FromFrom.GetTitledFirstName] lies...;Le duel est terminé et mon adversaire, [FromFrom.GetTitledFirstName], ...;Das Duell ist vorbei, und mein Gegner [FromFrom.GetTitledFirstName] liegt ...;;El duelo ha acabado y mi rival, [FromFrom.GetTitledFirstName], yace...;;;;;;;;;x
+hde_feast.1.d;...(insert something here about opponent yielding);;;;;;;;;;;;;x
+# Liege discovers (Winner = FROM)
+hde_feast.2.tt;[This.GetTitledFirstName] is notified about the duel;;;;;;;;;;;;;x
+hde_feast.2.desc;By the time I arrived, the duel was already over and [From.GetTitledFirstName]'s opponent had yielded.;;;;;;;;;;;;;x
 ############ Battlefield Flavor;;;;;;;;;;;;;;x
+# All the event localization here might eventually need to be reworked to reflect the new system
 ### Custom Tooltips;;;;;;;;;;;;;;x
 battle_continues_tt;But the battle will continue.;;;;;;;;;;;;;x
 ### Initial Flavor;;;;;;;;;;;;;;x

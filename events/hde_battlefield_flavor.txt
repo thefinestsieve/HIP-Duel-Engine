@@ -36,9 +36,7 @@ character_event = {
 #####################
 ### SETUP
 ### 0-99 reserved
-# These events are only required if there aren't already existing events to plug into
-# hde_battle.0		Begin the chain, triggered from on_actions
-# hde_battle.1		Pass along event, starts the actual fight
+# Begin the chain, triggered from on_actions
 character_event = {
     id = hde_battle.0
     hide_window = yes
@@ -215,7 +213,7 @@ character_event = {
     option = { name = OK }
 }
 
-# Passing it right along...
+# Pass along event, starts the actual fight
 character_event = {
 	id = hde_battle.1
 	hide_window = yes
@@ -225,15 +223,12 @@ character_event = {
 		# Send cleanup event to prevent loose flags from screwing things up
 		# Disabled for now, since I want to find bugs
 		# character_event = { id = hde_core.11 }
-
 		# Remove initial targeting information
 		remove_opinion = { who = FROM modifier = opinion_battle_duel_target }
 		reverse_remove_opinion = { who = FROM modifier = opinion_battle_duel_target }
-		
 		# Set duel type
 		set_character_flag = flag_duel_battlefield
 		FROM = { set_character_flag = flag_duel_battlefield }
-		
 		# Start this thing!
 		FROM = { character_event = { id = hde_core.0 } }
 	}
@@ -246,9 +241,10 @@ character_event = {
 ### 100-199 reserved
 # I'd like to give cowards a chance to become brave if they choose to fight.
 # Or at least a chance to lose craven.
+# Maybe soften up craven chances a bit, but steal some prestige?
 ## Chain 1
 # These first two events share localization for now, because in the NDE you didn't have access to the opponent
-# But that isn't required here
+# But that is no longer a requirement
 # Aggressor sees Defender across the field (ROOT = Winner, FROMFROM = Loser)
 character_event = {
 	id = hde_battle.100
