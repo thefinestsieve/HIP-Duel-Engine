@@ -1,0 +1,62 @@
+spriteTypes = {
+	### TRAITS ###
+	spriteType = {
+		name = "GFX_trait_master_warrior"
+		texturefile = "gfx/traits/master_warrior.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx/FX/buttonstate.lua"
+	}
+	spriteType = {
+		name = "GFX_trait_skilled_warrior"
+		texturefile = "gfx/traits/skilled_warrior.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx/FX/buttonstate.lua"
+	}
+	spriteType = {
+		name = "GFX_trait_trained_warrior"
+		texturefile = "gfx/traits/trained_warrior.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx/FX/buttonstate.lua"
+	}
+	spriteType = {
+		name = "GFX_trait_poor_warrior"
+		texturefile = "gfx/traits/poor_warrior.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx/FX/buttonstate.lua"
+	}
+	### EVENT PICTURES ###
+	spriteType = {
+		name = "GFX_evt_duel0"
+		texturefile = "gfx\\event_pictures\duel0.tga"
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_duel1"
+		texturefile = "gfx\\event_pictures\duel1.tga"
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_duel2"
+		texturefile = "gfx\\event_pictures\duel2.tga"
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_duel3"
+		texturefile = "gfx\\event_pictures\duel3.tga"
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_duel4"
+		texturefile = "gfx\\event_pictures\duel4.tga"
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_duel5"
+		texturefile = "gfx\\event_pictures\duel3.tga"
+		allwaystransparent = yes
+	}
+}
