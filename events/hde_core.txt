@@ -43,17 +43,23 @@ namespace = hde_core
 # Still TODO:
 # Update/change/improve event pictures
 # Add in flavor for other kinds of duels
-# Hook other duel types into output event
+# Hook other duel types into output event (feast is done)
 # Update the trait references to include any new VIET traits in PB and VIET
+# Perhaps change to the red background version of the trait icons?
+# Add an event which replicates the PB startup assignment of traits for use without PB and/or on newly generated characters (such as in employment decisions)
+# Review battlefield duel targeting code
+# Trial by combat?
+# Duels when sieging?
+# Duels for escaping prison?
 
 # Some THOUGHTS on other flavor stuff:
-# First, regency/feast duels: I can either write a single set of indoor duel flavor and have both of them use it, or I can write specific flavor for both. Having both using the same flavor would save time, so it's the likely option for now. So both context flags would get the same flavor, but they'd get different output as required to plug into the vanilla events
-# In fact, while I want to do up as much unique flavor as possible, it's likely that it will get boiled down to just the key stuff. So all of the following, each with hopefully a few different chains:
-# Battlefield
-# Indoor
-# Practice duels (for use with guardian/ward duels, perhaps?)
-# Tournaments
+# My current plan is to write specific flavor for every duel flavor option. While this has some drawbacks, I like the idea of being able to flavor text customized to the setting.
 # Remember that some flavor sets will never be friendly, nor to the death (like battlefield), so certain assumptions can be made; while the tournament and practice sets will always be friendly; and the indoor set needs to be adaptable, so it should have different options flavor throughout (controlled with option triggers) and also different outcomes flavor depending on what type of duel it is.
+
+# Notes on tournament stuff:
+# I'm no longer as worried about calling tournament flavor from inside the main events here, but that does depend on exactly what kind of functionality the tournament events end up needing.
+# I also need to investigate whether I want to add the tournament version of the targeting trait. I'm currently leaning towards doing so just to avoid any potential issues.
+# But much depends on what kind of model I embrace for the tournaments
 
 ### FLAVOR EVENTS
 # These are effectively mini-chains
