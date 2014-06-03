@@ -12,12 +12,12 @@ hde_core.10.tt;is victorious!;est victorieux !;;;¡sale victorioso!;;;;;;;;;x
 ############ Feast Flavor;;;;;;;;;;;;;;x
 # Output Flavor;;;;;;;;;;;;;;x
 # Chain 1
-# Winner (Winner = ROOT, Loser = FROMFROM)
-hde_feast.1.desc;The duel is over and my opponent [FromFrom.GetTitledFirstName] lies...;Le duel est terminé et mon adversaire, [FromFrom.GetTitledFirstName], ...;Das Duell ist vorbei, und mein Gegner [FromFrom.GetTitledFirstName] liegt ...;;El duelo ha acabado y mi rival, [FromFrom.GetTitledFirstName], yace...;;;;;;;;;x
-hde_feast.1.d;...(insert something here about opponent yielding);;;;;;;;;;;;;x
-# Liege discovers (Winner = FROM)
-hde_feast.2.tt;[This.GetTitledFirstName] is notified about the duel;;;;;;;;;;;;;x
-hde_feast.2.desc;By the time I arrived, the duel was already over and [From.GetTitledFirstName]'s opponent had yielded.;;;;;;;;;;;;;x
+# Winner duel outcomes (Winner = ROOT, Loser = FROMFROM)
+hde_feast.700.desc;The duel is over and my opponent [FromFrom.GetTitledFirstName] lies...;Le duel est terminé et mon adversaire, [FromFrom.GetTitledFirstName], ...;Das Duell ist vorbei, und mein Gegner [FromFrom.GetTitledFirstName] liegt ...;;El duelo ha acabado y mi rival, [FromFrom.GetTitledFirstName], yace...;;;;;;;;;x
+hde_feast.700.d;...(insert something here about opponent yielding);;;;;;;;;;;;;x
+# Liege reacts to nobody being hurt (Winner = FROM)
+hde_feast.701.tt;[This.GetTitledFirstName] is notified about the duel;;;;;;;;;;;;;x
+hde_feast.701.desc;By the time I arrived, the duel was already over and [From.GetTitledFirstName]'s opponent had yielded.;;;;;;;;;;;;;x
 ############ Battlefield Flavor;;;;;;;;;;;;;;x
 # All the event localization here might eventually need to be reworked to reflect the new system
 ### Custom Tooltips;;;;;;;;;;;;;;x

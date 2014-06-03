@@ -130,6 +130,7 @@ character_event = {
 			}
 		}
 		# No flavor flag? Oh noes!
+		# I should probably remove this; I'd rather forgetting to set flavor flags failed so it gets fixed
 		if = {
 			limit = {
 				NOT = {
@@ -149,7 +150,7 @@ character_event = {
 	# Need to add special options here if there's a failure state
 	# FROM wins
 	option = {
-		name = AI_EVENT
+		name = OK
 		ai_chance = {
 			factor = 50
 			# Skill-at-Arms Effects
@@ -366,7 +367,7 @@ character_event = {
 	}
 	# FROMFROM wins
 	option = {
-		name = AI_EVENT
+		name = OK
 		ai_chance = {
 			factor = 50
 			# Skill-at-Arms Effects
@@ -869,7 +870,7 @@ character_event = {
 	}
 	
 	option = { # Subdued Opponent
-		name = AI_EVENT
+		name = OK
 		# The AI stuff here should really check the value of the opponent as a hostage, just in case it needs cash
 		ai_chance = {
 			factor = 34
@@ -1017,7 +1018,7 @@ character_event = {
 	}
 	
 	option = { # Wounding Blow
-		name = AI_EVENT
+		name = OK
 		ai_chance = {
 			factor = 33
 			modifier = {
@@ -1071,7 +1072,7 @@ character_event = {
 	}
 	
 	option = { # Killing Blow
-		name = AI_EVENT
+		name = OK
 		ai_chance = {
 			factor = 33
 			modifier = {
@@ -1174,6 +1175,14 @@ character_event = {
 					50 = { character_event = { id = hde_battle.701 } } # Chain 1
 					50 = { character_event = { id = hde_battle.701 } } # Chain 1
 				}
+			}
+		}
+		# Feast Flavor
+		if = {
+			limit = { has_character_flag = flag_duel_feast }
+			random_list = {
+				50 = { character_event = { id = hde_feast.700 } } # Chain 1
+				50 = { character_event = { id = hde_feast.700 } } # Chain 1
 			}
 		}
 		# Insert additional flavor blocks here

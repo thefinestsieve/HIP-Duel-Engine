@@ -1025,8 +1025,7 @@ character_event = {
 ## Chain 2
 # Would be here, if Chain 2 existed
 
-### OUTCOME FLAVOR
-# The chains for this are larger and intended to be self-consistent, so if Chain 1 subdued event is called, it's going to reference the Chain 1 yield event and, if the Loser won't yield, the Chain 1 wounded event. If the Loser does yield, and Winner kills the Loser, it'll reference the Chain 1 death event. Those wounded and death events are the same ones called directly if the Chain 1 wounded or death outcomes are chosen by the handler. This should prevent redundant events while also making sure the flavor for each chain is consistent with itself.
+# The chains for outcome flavor are larger and intended to be self-consistent, so if Chain 1 subdued event is called, it's going to reference the Chain 1 yield event and, if the Loser won't yield, the Chain 1 wounded event. If the Loser does yield, and Winner kills the Loser, it'll reference the Chain 1 death event. Those wounded and death events are the same ones called directly if the Chain 1 wounded or death outcomes are chosen by the handler. This should prevent redundant events while also making sure the flavor for each chain is consistent with itself.
 #####################
 ### SUBDUED OUTCOME FLAVOR
 ### 400-499 reserved
@@ -1898,7 +1897,6 @@ character_event = {
 ## Chain 2
 # Would be here, if Chain 2 existed
 
-### OUTPUT FLAVOR
 #####################
 ### OUTPUT FLAVOR
 ### 700-799 reserved

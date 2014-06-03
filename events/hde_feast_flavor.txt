@@ -7,7 +7,6 @@ namespace = hde_feast
 #####################
 ### SETUP
 ### 0-99 reserved
-
 # This event is called from the event 72030 and hijacks the event chain
 # I believe the craven stuff in this is possibly too harsh?
 #Duel: Accept or Decline
@@ -138,11 +137,40 @@ character_event = {
 	}
 }
 
-# Feast Duel Outcomes
-# Winner = ROOT, Loser = FROMFROM
+#####################
+### INITIAL FLAVOR
+### 100-199 reserved
+### There is no Initial Flavor for feast duels
+
+#####################
+### SIZING UP FLAVOR
+### 200-299 reserved
+
+#####################
+### COMBAT FLAVOR
+### 300-399 reserved
+
+#####################
+### SUBDUED OUTCOME FLAVOR
+### 400-499 reserved
+
+#####################
+### WOUNDED OUTCOME FLAVOR
+### 500-599 reserved
+
+#####################
+### KILLED OUTCOME FLAVOR
+### 600-699 reserved
+
+#####################
+### OUTPUT FLAVOR
+### 700-799 reserved
+## Chain 1
+# Winner duel outcomes (Winner = ROOT, Loser = FROMFROM)
+# Send something to the loser?
 character_event = {
-	id = hde_feast.1
-	desc = hde_feast.1.desc
+	id = hde_feast.700
+	desc = hde_feast.700.desc
 	picture = GFX_evt_melee
 	is_triggered_only = yes
 
@@ -200,7 +228,7 @@ character_event = {
 		change_martial = 3
 	}
 	option = {
-		name = hde_feast.1.d
+		name = hde_feast.700.d
 		trigger = {
 			has_character_flag = flag_duel_spared_opponent
 		}
@@ -211,20 +239,17 @@ character_event = {
 				has_character_modifier = holding_large_feast
 			}
 			character_event = {
-				id = hde_feast.2
-				tooltip = hde_feast.2.tt
+				id = hde_feast.701
+				tooltip = hde_feast.701.tt
 			}
 		}
 		change_martial = 1
 	}
 }
-
-# I want to rewrite this so you have an option to have a variety of different reactions
-# It also needs new description text
 # Liege reacts to nobody being hurt
 character_event = {
-	id = hde_feast.2
-	desc = hde_feast.2.desc
+	id = hde_feast.701
+	desc = hde_feast.701.desc
 	picture = GFX_evt_melee
 	is_triggered_only = yes
 
@@ -250,33 +275,6 @@ character_event = {
 			modifier = opinion_dislike
 			who = FROM
 			years = 10
-		}
-	}
-}
-
-#Duel: The End
-character_event = {
-	id = 72034
-	desc = "EVTDESC72034"
-	picture = GFX_evt_melee
-
-	is_triggered_only = yes
-
-	option = {
-		name = "EVTOPTA72034"
-		opinion = {
-			modifier = opinion_dislike
-			who = FROM
-			years = 10
-		}
-		FROM = {
-			FROM = {
-				reverse_opinion = {
-					modifier = opinion_dislike
-					who = Root
-					years = 10
-				}
-			}
 		}
 	}
 }
