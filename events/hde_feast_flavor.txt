@@ -140,7 +140,70 @@ character_event = {
 #####################
 ### INITIAL FLAVOR
 ### 100-199 reserved
-### There is no Initial Flavor for feast duels
+### Since choosing whether to run or not is done in the introduction events, these are pure flavor
+# Aggressor taunts Defender (ROOT = Winner, FROMFROM = Loser)
+character_event = {
+	id = hde_feast.100
+	desc = hde_feast.100.desc
+	picture = GFX_evt_melee
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_feast.100.
+		
+		hidden_tooltip = {
+			FROMFROM = { # Send event to Loser
+				character_event = { id = hde_feast.x }
+			}
+		}
+	}
+}
+# Aggressor taunts Defender (ROOT = Loser, FROM = Winner)
+character_event = {
+	id = hde_feast.101
+	desc = hde_feast.101.desc
+	picture = GFX_evt_melee
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_feast.101.a
+		
+		hidden_tooltip = {
+			FROM = { # Send event to Winner
+				character_event = { id = hde_feast.x }
+			}
+		}
+	}
+}
+# Defender responds (Sent to Winner or Loser)
+character_event = {
+	id = hde_feast.102
+	desc = hde_feast.102.desc
+	picture = GFX_evt_melee
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_feast.102.a
+		
+		if = {
+			limit = { has_character_flag = flag_duel_loser }
+			FROM = { # Send handler to Winner
+				character_event = { id = hde_core.4 tooltip = hde_core.4.tt }
+			}
+		}
+		if = {
+			limit = { has_character_flag = flag_duel_winner }
+			FROM = { # Send handler bounce to Loser
+				character_event = { id = hde_core.5 tooltip = hde_core.5.tt }
+			}
+		}
+	}
+}
 
 #####################
 ### SIZING UP FLAVOR
