@@ -142,21 +142,21 @@ character_event = {
 ### 100-199 reserved
 ### Since choosing whether to run or not is done in the introduction events, these are pure flavor
 # Aggressor taunts Defender (ROOT = Winner, FROMFROM = Loser)
+# Pull some flavor from Monkey Island for these?
 character_event = {
 	id = hde_feast.100
 	desc = hde_feast.100.desc
 	picture = GFX_evt_melee
 	border = GFX_event_normal_frame_war
 	hide_from = yes
+	show_from_from = yes
 	is_triggered_only = yes
 	
 	option = {
 		name = hde_feast.100.
 		
-		hidden_tooltip = {
-			FROMFROM = { # Send event to Loser
-				character_event = { id = hde_feast.x }
-			}
+		FROMFROM = { # Send event to Loser
+			character_event = { id = hde_feast.102 tooltip = hde_feast.102.tt }
 		}
 	}
 }
@@ -166,16 +166,13 @@ character_event = {
 	desc = hde_feast.101.desc
 	picture = GFX_evt_melee
 	border = GFX_event_normal_frame_war
-	hide_from = yes
 	is_triggered_only = yes
 	
 	option = {
 		name = hde_feast.101.a
 		
-		hidden_tooltip = {
-			FROM = { # Send event to Winner
-				character_event = { id = hde_feast.x }
-			}
+		FROM = { # Send event to Winner
+			character_event = { id = hde_feast.102 tooltip = hde_feast.102.tt }
 		}
 	}
 }

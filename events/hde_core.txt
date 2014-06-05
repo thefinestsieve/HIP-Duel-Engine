@@ -43,6 +43,7 @@ namespace = hde_core
 # Still TODO:
 # Update/change/improve event pictures
 # Add in flavor for other kinds of duels
+# Update the battlefield flavor (Locate it on the battlefield and change it to first person) (Should it also be changed to past tense? The rest of the game seems to fairly consistently use past tense.)
 # Hook other duel types into output event (feast is done)
 # Update the trait references to include any new VIET traits in PB and VIET
 # Perhaps change to the red background version of the trait icons?

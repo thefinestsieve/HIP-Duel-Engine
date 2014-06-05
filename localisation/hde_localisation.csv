@@ -10,10 +10,27 @@ hde_core.7.tt;readies [From.GetHerselfHimself] to strike;;;;;;;;;;;;;x
 # Output Flavor;;;;;;;;;;;;;;x
 hde_core.10.tt;is victorious!;est victorieux !;;;¡sale victorioso!;;;;;;;;;x
 ############ Feast Flavor;;;;;;;;;;;;;;x
+I saw my mortal enemy as soon as I stepped into [Root.Liege.GetTitledFirstName]'s castle. His presence was almost more than I could bear and I longed to pick up my sword and impale him with it!
+
+When [From.GetTitledFirstName] challenged me to a duel in front of everyone at the feast I felt almost ashamed for [From.GetHerHim], to challenge someone when both are guests in another man's house is unheard of!
+
+(FROM and FROMFROM versions needed)
+I was prepared to begin the battle right there in front of [Root.Liege.GetTitledFirstName]'s guests, but [FromFrom.GetBestName] held up [FromFrom.GetHerHis] hand and suggested we move outside first.
+OPTA: Very well. You first.
+
+[From.GetBestName] seemed ready to attack me immediately, but I raised my hand against it.\n\n"Surely we should not blacken [Root.Liege.GetTitledFirstName]'s hall with our spat?"
+OPTA: Perhaps we should move outside?
+
+With several curious onlookers trailing behind us, [From.GetBestName] and I went out to the gardens near the castle. 
+
 ### Initial Flavor;;;;;;;;;;;;;;x
 # Aggressor taunts Defender (ROOT = Winner, FROMFROM = Loser)
+hde_feast.100.desc;;;;;;;;;;;;;;x
 # Aggressor taunts Defender (ROOT = Loser, FROM = Winner)
+hde_feast.101.desc;x;;;;;;;;;;;;;x
 # Defender responds (Sent to Winner or Loser)
+hde_feast.102.tt;[This.GetTitledFirstName] responds to your insult;;;;;;;;;;;;;x
+hde_feast.102.desc;x;;;;;;;;;;;;;x
 # Output Flavor;;;;;;;;;;;;;;x
 ## Chain 1
 # Winner duel outcomes (Winner = ROOT, Loser = FROMFROM)
@@ -161,7 +178,7 @@ hde_battle.601.desc;[FromFrom.GetBestName] tries to overcome your defenses, but 
 hde_battle.601.a;DIE!;MEURS !;;;¡MUERE!;;;;;;;;;x
 # Loser is killed (FROM = Winner)
 hde_battle.602.tt;is slain!;est tué!;;;¡es abatido!;;;;;;;;;x
-hde_battle.602.desc;You try to hold [From.GetBestName] back, but [From.GetHerHis] onslaught is unstoppable! You only slip once, but once is all [From.GetSheHe] needs…;Vous essayez de repousser [From.GetBestName], mais son attaque est imparable ! Vous êtes déstabilisé pendant une seconde, et une seconde c'est tout ce dont [From.GetSheHe] a besoin…;;;¡Intentas mantener a [From.GetBestName] a raya, pero su hostigamiento es imparable! Sólo te descuidas una vez, pero un fallo es todo lo que necesita...;;;;;;;;;x
+hde_battle.602.desc;You try to hold [From.GetBestName] back, but [From.GetHerHis] onslaught is unstoppable! You only slip once, but once is all [From.GetSheHe] needs...;Vous essayez de repousser [From.GetBestName], mais son attaque est imparable ! Vous êtes déstabilisé pendant une seconde, et une seconde c'est tout ce dont [From.GetSheHe] a besoin...;;;¡Intentas mantener a [From.GetBestName] a raya, pero su hostigamiento es imparable! Sólo te descuidas una vez, pero un fallo es todo lo que necesita...;;;;;;;;;x
 hde_battle.602.a;Aaaaargh!;Aaaaargh!;;;¡Aaaaargh!;;;;;;;;;x
 # Output Flavor;;;;;;;;;;;;;;x
 ## Chain 1
