@@ -14,23 +14,44 @@ I saw my mortal enemy as soon as I stepped into [Root.Liege.GetTitledFirstName]'
 
 When [From.GetTitledFirstName] challenged me to a duel in front of everyone at the feast I felt almost ashamed for [From.GetHerHim], to challenge someone when both are guests in another man's house is unheard of!
 
+Initial:
+Aggressor:
 (FROM and FROMFROM versions needed)
-I was prepared to begin the battle right there in front of [Root.Liege.GetTitledFirstName]'s guests, but [FromFrom.GetBestName] held up [FromFrom.GetHerHis] hand and suggested we move outside first.
-OPTA: Very well. You first.
+I was prepared to do battle right there in front of [Root.Liege.GetTitledFirstName]'s guests, but [FromFrom.GetBestName] held up [FromFrom.GetHerHis] hand and suggested we move outside first.
+OPTA: Very well.
 
-[From.GetBestName] seemed ready to attack me immediately, but I raised my hand against it.\n\n"Surely we should not blacken [Root.Liege.GetTitledFirstName]'s hall with our spat?"
+Defender:
+Compounding [From.GetHerHis] shameful behavior, [From.GetBestName] seemed ready to attack me immediately, but I raised my hand against it.\n\n"Surely we should not blacken [Root.Liege.GetTitledFirstName]'s hall with our spat?"
 OPTA: Perhaps we should move outside?
 
-With several curious onlookers trailing behind us, [From.GetBestName] and I went out to the gardens near the castle. 
+Aggressor:
+With several curious onlookers trailing behind us, [From.GetBestName] and I went out to the gardens near the castle. Neither of us wasted any time in drawing our swords, and I laughed at the defensive posture adopted by my opponent.
+OPTA: I have never seen such clumsy swordplay.
+
+Defender:
+With our contest safely relocated to the gardens outside the castle, we drew our swords. I adopted a guarded stance, and [From.GetBestName] mocked me, saying that [From.GetSheHe]'d never seen such clumsy swordplay.
+OPTA: You would have if you weren't always running away!
+
+Sizing up:
+Aggressor:
+(FROM and FROMFROM versions needed)
+
+Defender:
 
 ### Initial Flavor;;;;;;;;;;;;;;x
-# Aggressor taunts Defender (ROOT = Winner, FROMFROM = Loser)
-hde_feast.100.desc;;;;;;;;;;;;;;x
-# Aggressor taunts Defender (ROOT = Loser, FROM = Winner)
+# Aggressor wants to fight (ROOT = Winner, FROMFROM = Loser)
+hde_feast.100.desc;x;;;;;;;;;;;;;x
+hde_feast.100.a;x;;;;;;;;;;;;;x
+# Aggressor wants to fight (ROOT = Loser, FROM = Winner)
 hde_feast.101.desc;x;;;;;;;;;;;;;x
+hde_feast.101.a;x;;;;;;;;;;;;;x
+# Defender delays (Sent to Winner or Loser)
+hde_feast.102.desc;x;;;;;;;;;;;;;x
+hde_feast.102.a;x;;;;;;;;;;;;;x
+# Aggressor taunts (Sent to Winner or Loser)
 # Defender responds (Sent to Winner or Loser)
 hde_feast.102.tt;[This.GetTitledFirstName] responds to your insult;;;;;;;;;;;;;x
-hde_feast.102.desc;x;;;;;;;;;;;;;x
+
 # Output Flavor;;;;;;;;;;;;;;x
 ## Chain 1
 # Winner duel outcomes (Winner = ROOT, Loser = FROMFROM)

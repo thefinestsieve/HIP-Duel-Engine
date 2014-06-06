@@ -142,7 +142,6 @@ character_event = {
 ### 100-199 reserved
 ### Since choosing whether to run or not is done in the introduction events, these are pure flavor
 # Aggressor taunts Defender (ROOT = Winner, FROMFROM = Loser)
-# Pull some flavor from Monkey Island for these?
 character_event = {
 	id = hde_feast.100
 	desc = hde_feast.100.desc
