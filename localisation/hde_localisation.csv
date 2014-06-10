@@ -29,14 +29,47 @@ With several curious onlookers trailing behind us, [From.GetBestName] and I went
 OPTA: I have never seen such clumsy swordplay.
 
 Defender:
-With our contest safely relocated to the gardens outside the castle, we drew our swords. I adopted a guarded stance, and [From.GetBestName] mocked me, saying that [From.GetSheHe]'d never seen such clumsy swordplay.
+With our contest relocated to the gardens outside the castle, we drew our swords. I adopted a guarded stance, and [From.GetBestName] mocked me, saying that [From.GetSheHe]'d never seen such clumsy swordplay.
 OPTA: You would have if you weren't always running away!
 
 Sizing up:
 Aggressor:
 (FROM and FROMFROM versions needed)
+[FromFrom.GetBestName] and I circled each other
+Opening moves, checking for weakness
 
 Defender:
+Respond with own opening moves, defensive posture
+
+Combat:
+Aggressor attacks!:
+(FROM and FROMFROM versions needed)
+You think you see an opening
+
+Defender loses:
+You make a mistake and your opponent launches an attack
+
+Defender wins:
+You feint, pretending to leave an opening, and your opponent launches an attack
+
+Outcome:
+Aggressor disarms Defender:
+Defender disarms Aggressor:
+Defender gets overwhelmed:
+Aggressor gets overwhelmed:
+Winner considers Loser's yield:
+Loser informed of being spared:
+Loser informed of own death
+Winner injures subdued, unyielding Loser
+
+Aggressor injures Defender:
+Defender injures Aggressor:
+Loser is injured:
+Loser is maimed:
+
+Aggressor kills Defender:
+Defender kills Aggressor:
+Loser is killed:
 
 ### Initial Flavor;;;;;;;;;;;;;;x
 # Aggressor wants to fight (ROOT = Winner, FROMFROM = Loser)

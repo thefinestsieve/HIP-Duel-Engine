@@ -41,6 +41,8 @@ namespace = hde_core
 # Idea: If you the event fails, mark any viable character we can still find with a tag that makes them more likely to get another duel in the future?
 
 # Still TODO:
+# Possibly add the ability to have battlefield fights end with disengagement? Perhaps giving the previous round's winner a chance to disengage?
+# Flavor type events with special circumstances that could crop up sometimes? (For example, random event where duelists are about to get trampled; they can either stay in the fight and risk getting trampled to death or disengage and end the fight but avoid the chance of instant death)
 # Update/change/improve event pictures
 # Add in flavor for other kinds of duels
 # Update the battlefield flavor (Locate it on the battlefield and change it to first person) (Should it also be changed to past tense? The rest of the game seems to fairly consistently use past tense.)
