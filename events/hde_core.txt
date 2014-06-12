@@ -47,7 +47,7 @@ namespace = hde_core
 # Add in flavor for other kinds of duels
 # Update the battlefield flavor (Locate it on the battlefield and change it to first person) (Should it also be changed to past tense? The rest of the game seems to fairly consistently use past tense.)
 # Hook other duel types into output event (feast is done)
-# Update the trait references to include any new VIET traits in PB and VIET
+# Update the trait modifiers to include any new VIET traits in PB and VIET
 # Perhaps change to the red background version of the trait icons?
 # Add an event which replicates the PB startup assignment of traits for use without PB and/or on newly generated characters (such as in employment decisions)
 # Review battlefield duel targeting code
@@ -58,6 +58,7 @@ namespace = hde_core
 # Some THOUGHTS on other flavor stuff:
 # My current plan is to write specific flavor for every duel flavor option. While this has some drawbacks, I like the idea of being able to flavor text customized to the setting.
 # Remember that some flavor sets will never be friendly, nor to the death (like battlefield), so certain assumptions can be made; while the tournament and practice sets will always be friendly; and the indoor set needs to be adaptable, so it should have different options flavor throughout (controlled with option triggers) and also different outcomes flavor depending on what type of duel it is.
+# I'd also like customized options to reflect personality characteristics and such, so that patient characters won't be yelling and so forth
 
 # Notes on tournament stuff:
 # I'm no longer as worried about calling tournament flavor from inside the main events here, but that does depend on exactly what kind of functionality the tournament events end up needing.

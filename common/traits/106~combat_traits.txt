@@ -1,4 +1,4 @@
-### WARRIOR TRAITS ###
+###Combat Traits###
 poor_warrior = {
 	martial = 1
 	#monthly_character_prestige = 0.1
@@ -10,6 +10,7 @@ poor_warrior = {
 	customizer = yes
 	random = no
 }
+
 trained_warrior = {
 	martial = 2
 	#monthly_character_prestige = 0.2
@@ -21,6 +22,7 @@ trained_warrior = {
 	customizer = yes
 	random = no
 }
+
 skilled_warrior = {
 	martial = 3
 	monthly_character_prestige = 0.05 #0.8
@@ -35,6 +37,7 @@ skilled_warrior = {
 	customizer = yes
 	random = no
 }
+
 master_warrior = {
 	martial = 4
 	monthly_character_prestige = 0.1 #1
@@ -47,11 +50,5 @@ master_warrior = {
 		skilled_warrior
 	}
 	customizer = yes
-	random = no
-}
-### TARGETING TRAITS ###
-duel_target = {
-	cached = yes
-	customizer = no
 	random = no
 }
