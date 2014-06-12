@@ -33,24 +33,26 @@ With our contest relocated to the gardens outside the castle, we drew our swords
 OPTA: You would have if you weren't always running away!
 
 Sizing up:
-Aggressor:
+Aggressor advances, looks for weakness:
 (FROM and FROMFROM versions needed)
-[FromFrom.GetBestName] and I circled each other
-Opening moves, checking for weakness
+I advanced on [FromFrom.GetBestName], looking for any vulnerability in [FromFrom.GetHerHis] defense. I hoped only to bring the fight to a close as swiftly as possible.
+OPTA: And I will surely be victorious.
 
 Defender:
 Respond with own opening moves, defensive posture
+[From.GetBestName] looked eager for battle as [From.GetSheHe] approached me. I could only gather my courage and hope that I could goad [From.GetHerHim] into making a mistake.
+OPTA: Overconfidence is [From.GetHerHis] weakness.
 
 Combat:
-Aggressor attacks!:
+Aggressor thinks he sees an opening:
 (FROM and FROMFROM versions needed)
-You think you see an opening
+As the distance between us shrank, [FromFrom.GetBestName] appeared to falter. [FromFrom.GetHerHis] sword wavered and left [FromFrom.GetHerHis] side unprotected.
+OPTA: Attack!
 
-Defender loses:
-You make a mistake and your opponent launches an attack
+Defender makes a mistake and gets attacked:
 
-Defender wins:
-You feint, pretending to leave an opening, and your opponent launches an attack
+
+Defender pretends to leave an opening and gets attacked:
 
 Outcome:
 Aggressor disarms Defender:
