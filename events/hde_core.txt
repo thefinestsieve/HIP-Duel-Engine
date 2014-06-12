@@ -655,6 +655,26 @@ character_event = {
 				}
 			}
 		}
+		# Feast Flavor
+		if = {
+			limit = { has_character_flag = flag_duel_feast }
+			if = { # Winner is Aggressor
+				limit = { has_character_flag = flag_duel_aggressor }
+				random_list = {
+					50 = { character_event = { id = hde_x.x } } # Chain 1
+					50 = { character_event = { id = hde_x.x } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
+				}
+			}
+			if = { # Loser is Aggressor
+				limit = { has_character_flag = flag_duel_defender }
+				random_list = {
+					50 = { FROM = { character_event = { id = hde_x.x } } } # Chain 1
+					50 = { FROM = { character_event = { id = hde_x.x } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
+				}
+			}
+		}
 		# Insert new flavor flag blocks here
 	}
 	
