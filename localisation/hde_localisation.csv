@@ -10,6 +10,10 @@ hde_core.7.tt;readies [From.GetHerselfHimself] to strike;;;;;;;;;;;;;x
 # Output Flavor;;;;;;;;;;;;;;x
 hde_core.10.tt;is victorious!;est victorieux !;;;¡sale victorioso!;;;;;;;;;x
 ############ Feast Flavor;;;;;;;;;;;;;;x
+Basic pattern of flavor, to be followed by all alternatives, initial flavor probably exempt:
+Sizing Up: Aggressor moves at Defender
+Combat: Aggressor thinks he sees an opening, Defender either screwed up or set a trap
+
 I saw my mortal enemy as soon as I stepped into [Root.Liege.GetTitledFirstName]'s castle. His presence was almost more than I could bear and I longed to pick up my sword and impale him with it!
 
 When [From.GetTitledFirstName] challenged me to a duel in front of everyone at the feast I felt almost ashamed for [From.GetHerHim], to challenge someone when both are guests in another man's house is unheard of!
@@ -30,35 +34,38 @@ OPTA: I have never seen such clumsy swordplay.
 OPTB: Enough delays. Let us begin.
 
 Defender from OPTA:
-With our contest relocated to the gardens outside the castle, we drew our swords, and I swung my blade through the air several times as I tested its weight. [From.GetBestName] responded by saying that [From.GetSheHe]'d never seen such clumsy swordplay.
+With our contest relocated to the gardens outside the castle, we drew our swords, and I swung mine through the air several times as I tested its weight. [From.GetBestName] responded by saying that [From.GetSheHe]'d never seen such clumsy swordplay.
 OPTA: You would have if you weren't always running away!
 
 Defender from OPTB:
-With our contest relocated to the gardens outside the castle, we drew our swords. I swung my blade several times, testing its weight in my hand. But [From.GetBestName] seemed impatient and urged me to begin the duel.
+With our contest relocated to the gardens outside the castle, we drew our swords. I swung my own blade several times, testing its weight in my hand. But [From.GetBestName] seemed impatient and urged me to begin the duel.
 OPTA: I'm ready.
 
 Sizing up:
 Aggressor advances, looks for weakness:
 (FROM and FROMFROM versions needed)
-I advanced on [FromFrom.GetBestName] with my blade raised. [FromFrom.GetSheHe] took a defensive stance, and I searched [From.GetHerHim] for any sign of vulnerability
+I advanced towards [FromFrom.GetBestName] with my blade raised and ready, watching [FromFrom.GetHerHim] for any sign of weakness. [FromFrom.GetSheHeCap] responded by taking a defensive posture and waiting.
 OPTA: I will surely be victorious.
 
 Defender adopts defensive posture:
-[From.GetBestName] looked eager for battle as [From.GetSheHe] approached me. I adopted a guarded stance and prepared myself for the inevitable attack.
+[From.GetBestName] looked eager for battle as [From.GetSheHe] approached me, [From.GetHerHis] weapon ready to strike. I adopted a guarded stance and prepared myself for the inevitable attack.
 OPTA: Overconfidence is surely [From.GetHerHis] weakness.
 
 Combat:
 Aggressor thinks he sees an opening:
 (FROM and FROMFROM versions needed)
-As the distance between us shrank, [FromFrom.GetBestName] appeared to falter. [FromFrom.GetHerHis] sword wavered and a for a moment left [FromFrom.GetHerHis] side unprotected.
+The very moment I was within range to strike, [FromFrom.GetBestName] appeared to falter. [FromFrom.GetHerHisCap] sword wavered and left [FromFrom.GetHerHim] momentarily unprotected.
 OPTA: Attack!
 
 Defender makes a mistake and gets attacked:
 (Sent to Loser)
-As [From.GetBestName] got closer
+My sword dropped for but a moment, a brief mistake, but [From.GetBestName] promptly took advantage and launched a fearsome strike.
+OPTA: Defend!
 
 Defender pretends to leave an opening and gets attacked:
 (Sent to Winner)
+I let my sword drop for a moment in the hopes of drawing an incautious attack. [From.GetBestName] immediately struck at me with a powerful blow.
+OPTA: Counterattack!
 
 Outcome:
 Aggressor disarms Defender:
