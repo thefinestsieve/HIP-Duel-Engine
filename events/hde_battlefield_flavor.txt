@@ -220,6 +220,7 @@ character_event = {
 		# Send cleanup event to prevent loose flags from screwing things up
 		# Disabled for now, since I want to find bugs
 		# I'm still a touch skeptical about this; how much faith do I have that the game will do everything in the cleanup event before flags are set again below?
+		# Maybe fire this from the previous event instead?
 		# character_event = { id = hde_core.11 }
 		# Remove initial targeting information
 		remove_opinion = { who = FROM modifier = opinion_battle_duel_target }

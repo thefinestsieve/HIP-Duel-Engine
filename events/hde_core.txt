@@ -51,9 +51,16 @@ namespace = hde_core
 # Perhaps change to the red background version of the trait icons?
 # Add an event which replicates the PB startup assignment of traits for use without PB and/or on newly generated characters (such as in employment decisions)
 # Review battlefield duel targeting code
+# Tournaments with duels
 # Trial by combat?
 # Duels when sieging?
 # Duels for escaping prison?
+# Duels during pagan raiding
+# Plug duels into bandit events
+# Duels with students when mentoring (to replace the current lame guardian teaches you to fight events)
+# Invite master to teach you fighting
+# Duels related to lifestyle traits, including duelist and impaler
+# Honor duels between husband and wife's lover
 
 # Some THOUGHTS on other flavor stuff:
 # My current plan is to write specific flavor for every duel flavor option. While this has some drawbacks, I like the idea of being able to flavor text customized to the setting.
@@ -101,6 +108,7 @@ character_event = {
 	trigger = {
 		has_landed_title = e_rebels
 		# Probably should move everything below out of the event trigger and instead move it to the trigger of a special option which will fire failure and cleanup events
+		# I also want to have the failure option fire a custom_tooltip event w/ special localization to the player for debugging purposes, so hopefully I can track down reasons for failure
 		FROM = { is_alive = yes }
 		FROMFROM = { is_alive = yes }
 		NOT = {

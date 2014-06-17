@@ -19,8 +19,7 @@ I saw my mortal enemy as soon as I stepped into [Root.Liege.GetTitledFirstName]'
 When [From.GetTitledFirstName] challenged me to a duel in front of everyone at the feast I felt almost ashamed for [From.GetHerHim], to challenge someone when both are guests in another man's house is unheard of!
 
 Initial:
-Aggressor:
-(FROM and FROMFROM versions needed)
+Aggressor: (FROM and FROMFROM versions needed)
 I was prepared to do battle right there in front of [Root.Liege.GetTitledFirstName]'s guests, but [FromFrom.GetBestName] held up [FromFrom.GetHerHis] hand and suggested we move outside first.
 OPTA: Very well.
 
@@ -42,8 +41,7 @@ With our contest relocated to the gardens outside the castle, we drew our swords
 OPTA: I'm ready.
 
 Sizing up:
-Aggressor advances, looks for weakness:
-(FROM and FROMFROM versions needed)
+Aggressor advances, looks for weakness: (FROM and FROMFROM versions needed)
 I advanced towards [FromFrom.GetBestName] with my blade raised and ready, watching [FromFrom.GetHerHim] for any sign of weakness. [FromFrom.GetSheHeCap] responded by taking a defensive posture and waiting.
 OPTA: I will surely be victorious.
 
@@ -52,19 +50,16 @@ Defender adopts defensive posture:
 OPTA: Overconfidence is surely [From.GetHerHis] weakness.
 
 Combat:
-Aggressor thinks he sees an opening:
-(FROM and FROMFROM versions needed)
+Aggressor thinks he sees an opening: (FROM and FROMFROM versions needed)
 The very moment I was within range to strike, [FromFrom.GetBestName] appeared to falter. [FromFrom.GetHerHisCap] sword wavered and left [FromFrom.GetHerHim] momentarily unprotected.
 OPTA: Attack!
 
-Defender makes a mistake and gets attacked:
-(Sent to Loser)
-My sword dropped for but a moment, a brief mistake, but [From.GetBestName] promptly took advantage and launched a fearsome strike.
+Defender makes a mistake and gets attacked: (Sent to Loser)
+My sword dropped for but a moment, a brief mistake, but before I could recover [From.GetBestName] launched a fearsome strike.
 OPTA: Defend!
 
-Defender pretends to leave an opening and gets attacked:
-(Sent to Winner)
-I let my sword drop for a moment in the hopes of drawing an incautious attack. [From.GetBestName] immediately struck at me with a powerful blow.
+Defender pretends to leave an opening and gets attacked: (Sent to Winner)
+I let my sword drop for a moment in the hopes of drawing an incautious attack, and [From.GetBestName] struck at me with a powerful blow.
 OPTA: Counterattack!
 
 Outcome:
@@ -77,14 +72,37 @@ Loser informed of being spared:
 Loser informed of own death
 Winner injures subdued, unyielding Loser
 
-Aggressor injures Defender:
-Defender injures Aggressor:
-Loser is injured:
-Loser is maimed:
+Aggressor injures Defender: (ROOT = Winner, Opponent = FROMFROM)
+My attack caught [FromFrom.GetBestName] unprepared. [FromFrom.GetSheHe] managed to turn away in time to avoid death, but my blade slashed [FromFrom.GetHerHim] deeply. I heard [FromFrom.GetHerHim] grunt in pain, and many in the crowd around us groaned in sympathy.
+OPTA: A wounding blow.
+OPTB: A maiming blow.
 
-Aggressor kills Defender:
-Defender kills Aggressor:
-Loser is killed:
+Defender injures Aggressor: (ROOT = Winner, Opponent = FROMFROM)
+[FromFrom.GetBestName]'s attack missed, and though [FromFrom.GetSheHe] turned away from my counter in time to save [FromFrom.GetHerHis] neck, I scored [FromFrom.GetHerHim] deeply. [FromFrom.GetSheHe] cried out, and a few of the onlookers whimpered.
+OPTA: A wounding blow.
+OPTB: A maiming blow.
+
+Loser is injured: (FROM = Winner)
+I turned away from [From.GetBestName]'s blow in time to avoid the worst of it, but I nonetheless felt the sting of [From.GetHerHis] blade. I recovered as quickly as I could and held my weapon ready once again.
+OPTA: That was merely luck.
+OPTB: I yield!
+
+Loser is maimed: (FROM = Winner)
+With my previous injury slowing me down, I couldn't fully avoid [From.GetBestName]'s blow. [From.GetSheHeCap] cut me again, more deeply this time, and though I readied my weapon once more, I could hardly keep my grip on it.
+OPTA: I will not surrender.
+OPTB: I yield! I must...
+
+Aggressor kills Defender: (ROOT = Winner, Opponent = FROMFROM)
+[FromFrom.GetBestName] made an admirable effort to defend [FromFrom.GetHerselfHimself], but [FromFrom.GetSheHe] was too late, too slow. My sword cut [FromFrom.GetHerHim] deep, and the crowd gasped as [FromFrom.GetSheHe] slumped to the ground, lifeless.
+
+Defender kills Aggressor: (ROOT = Winner, Opponent = FROMFROM)
+I easily parried [FromFrom.GetBestName]'s attack, leaving [FromFrom.GetHerHim] off balance and unable to defend [FromFrom.GetHerselfHimself] from my counter. My sword slashed [FromFrom.GetHerHim] deeply, and the crowd cried out as [FromFrom.GetSheHe] fell.
+
+Loser is killed: (FROM = Winner)
+I struggled to deflect the attack, but I was too slow. [From.GetBestName]'s blade sunk deep into my flesh, and I heard someone in the crowd scream, then nothing.
+OPTA (?): No.
+OPTB (?): Why did we fight?
+OPTC (Zealous?): [Root.Religion.GetRandomGodName] save me.
 
 ### Initial Flavor;;;;;;;;;;;;;;x
 # Aggressor wants to fight (ROOT = Winner, FROMFROM = Loser)
