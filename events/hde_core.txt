@@ -38,34 +38,13 @@ namespace = hde_core
 # hde_core.10	Output handler
 # hde_core.11	Cleanup handler
 
-# Idea: If you the event fails, mark any viable character we can still find with a tag that makes them more likely to get another duel in the future?
-
 # Still TODO:
-# Possibly add the ability to have battlefield fights end with disengagement? Perhaps giving the previous round's winner a chance to disengage?
-# Flavor type events with special circumstances that could crop up sometimes? (For example, random event where duelists are about to get trampled; they can either stay in the fight and risk getting trampled to death or disengage and end the fight but avoid the chance of instant death)
-# Update/change/improve event pictures
-# Add in flavor for other kinds of duels
+# Finish feast flavor
+# Plug in regency duels
+# Add flavor for regency duels
 # Update the battlefield flavor (Locate it on the battlefield and change it to first person) (Should it also be changed to past tense? The rest of the game seems to fairly consistently use past tense.)
-# Hook other duel types into output event (feast is done)
-# Update the trait modifiers to include any new VIET traits in PB and VIET
 # Perhaps change to the red background version of the trait icons?
-# Add an event which replicates the PB startup assignment of traits for use without PB and/or on newly generated characters (such as in employment decisions)
 # Review battlefield duel targeting code
-# Tournaments with duels
-# Trial by combat?
-# Duels when sieging?
-# Duels for escaping prison?
-# Duels during pagan raiding
-# Plug duels into bandit events
-# Duels with students when mentoring (to replace the current lame guardian teaches you to fight events)
-# Invite master to teach you fighting
-# Duels related to lifestyle traits, including duelist and impaler
-# Honor duels between husband and wife's lover
-
-# Some THOUGHTS on other flavor stuff:
-# My current plan is to write specific flavor for every duel flavor option. While this has some drawbacks, I like the idea of being able to flavor text customized to the setting.
-# Remember that some flavor sets will never be friendly, nor to the death (like battlefield), so certain assumptions can be made; while the tournament and practice sets will always be friendly; and the indoor set needs to be adaptable, so it should have different options flavor throughout (controlled with option triggers) and also different outcomes flavor depending on what type of duel it is.
-# I'd also like customized options to reflect personality characteristics and such, so that patient characters won't be yelling and so forth
 
 # Notes on tournament stuff:
 # I'm no longer as worried about calling tournament flavor from inside the main events here, but that does depend on exactly what kind of functionality the tournament events end up needing.
@@ -78,6 +57,12 @@ namespace = hde_core
 # This is so the localization always works out properly
 # But generally they'll be very short; don't want to be sending participants a forest of events
 # The exception is the outcome chains, which are written as one self-consistent chain. So when Chain 1 subdued is chosen, if the Loser doesn't yield, it refers to the Chain 1 wounded event. That same Chain 1 wounded event might be called more directly as part of the wounded outcome, and so forth.
+
+# Some further thoughts on other flavor stuff:
+# My current plan is to write specific flavor for every duel flavor option. While this has some drawbacks, I like the idea of being able to flavor text customized to the setting.
+# Remember that some flavor sets will never be friendly, nor to the death (like battlefield), so certain assumptions can be made; while the tournament and practice sets will always be friendly; and the indoor set needs to be adaptable, so it should have different options flavor throughout (controlled with option triggers) and also different outcomes flavor depending on what type of duel it is.
+# I'd also like customized options to reflect personality characteristics and such, so that patient characters won't be yelling and so forth
+
 
 ### MAIN EVENTS
 # Hideous forwarder hack due to issues with setting the targeting opinions in the referee event

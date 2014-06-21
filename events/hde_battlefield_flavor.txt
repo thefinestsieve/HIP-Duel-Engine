@@ -337,7 +337,7 @@ character_event = {
 		}
 		
 		FROM = { # Send to Aggressor
-			character_event = { id = hde_battle.103 tooltip = hde_battle.103.tt }
+			character_event = { id = hde_battle.103 tooltip = hde.reacts }
 		}
 	}
 	
@@ -768,8 +768,6 @@ character_event = {
 	desc = hde_battle.201.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
-	hide_from = yes
-	show_from_from = yes
 	is_triggered_only = yes
 	
 	option = {
@@ -833,8 +831,6 @@ character_event = {
 	desc = hde_battle.204.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
-	hide_from = yes
-	show_from_from = yes
 	is_triggered_only = yes
 	
 	option = {
@@ -898,8 +894,6 @@ character_event = {
 	desc = hde_battle.207.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
-	hide_from = yes
-	show_from_from = yes
 	is_triggered_only = yes
 	
 	option = {
@@ -951,14 +945,14 @@ character_event = {
 	picture = GFX_evt_duel1
 	border = GFX_event_normal_frame_war
 	hide_from = yes
-	
+	show_from_from = yes
 	is_triggered_only = yes
 	
 	option = {
 		name = hde_battle.300.a
 
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_battle.302 tooltip = hde_battle.302.tt }
+			character_event = { id = hde_battle.302 tooltip = hde.defends }
 		}
 	}
 }
@@ -968,15 +962,13 @@ character_event = {
 	desc = hde_battle.301.desc
 	picture = GFX_evt_duel1
 	border = GFX_event_normal_frame_war
-	hide_from = yes
-	
 	is_triggered_only = yes
 	
 	option = {
 		name = hde_battle.301.a
 		
 		FROM = { # Send to Winner
-			character_event = { id = hde_battle.303 tooltip = hde_battle.303.tt }
+			character_event = { id = hde_battle.303 tooltip = hde.defends }
 		}
 	}
 }
@@ -986,7 +978,6 @@ character_event = {
 	desc = hde_battle.302.desc
 	picture = GFX_evt_duel2
 	border = GFX_event_normal_frame_war
-	
 	is_triggered_only = yes
 
 	option = {
@@ -1007,7 +998,6 @@ character_event = {
 	desc = hde_battle.303.desc
 	picture = GFX_evt_duel2
 	border = GFX_event_normal_frame_war
-	
 	is_triggered_only = yes
 
 	option = {
@@ -1045,7 +1035,7 @@ character_event = {
 		name = hde_battle.400.a
 		
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_battle.402 tooltip = hde_battle.402.tt }
+			character_event = { id = hde_battle.402 tooltip = hde.reacts }
 		}
 	}
 }
@@ -1064,11 +1054,11 @@ character_event = {
 		name = hde_battle.401.a
 		
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_battle.403 tooltip = hde_battle.403.tt }
+			character_event = { id = hde_battle.403 tooltip = hde.reacts }
 		}
 	}
 }
-# Defender gets overwhelmed! (Loser = FROM)
+# Defender gets overwhelmed! (Winner = FROM)
 character_event = {
 	id = hde_battle.402
 	desc = hde_battle.402.desc
@@ -1137,7 +1127,7 @@ character_event = {
 		}
 
 		FROM = { # Winner considers yield
-			character_event = { id = hde_battle.404 tooltip = hde_battle.404.tt }
+			character_event = { id = hde_battle.404 tooltip = hde.consider_yield }
 		}
 	}
 	
@@ -1149,11 +1139,11 @@ character_event = {
 		ai_chance = { factor = 50 }
 		
 		FROM = { # Send to Winner
-			character_event = { id = hde_battle.407 tooltip = hde_battle.407.tt }
+			character_event = { id = hde_battle.407 tooltip = hde.reacts }
 		}
 	}
 }
-# Aggressor gets overwhelmed! (Loser = FROM)
+# Aggressor gets overwhelmed! (Winner = FROM)
 character_event = {
 	id = hde_battle.403
 	desc = hde_battle.403.desc
@@ -1222,7 +1212,7 @@ character_event = {
 		}
 
 		FROM = { # Winner considers yield
-			character_event = { id = hde_battle.404 tooltip = hde_battle.404.tt }
+			character_event = { id = hde_battle.404 tooltip = hde.consider_yield }
 		}
 	}
 	
@@ -1234,7 +1224,7 @@ character_event = {
 		ai_chance = { factor = 50 }
 		
 		FROM = { # Send to Winner
-			character_event = { id = hde_battle.407 tooltip = hde_battle.407.tt }
+			character_event = { id = hde_battle.407 tooltip = hde.reacts }
 		}
 	}
 }
@@ -1443,7 +1433,7 @@ character_event = {
 		set_character_flag = flag_duel_spared_opponent
 		prestige = 15
 		FROM = { # Send to Loser
-			character_event = { id = hde_battle.405 tooltip = hde_battle.405.tt }
+			character_event = { id = hde_battle.405 tooltip = hde.is_defeated }
 		}
 	}
 	option = { # Kill Loser
@@ -1497,7 +1487,7 @@ character_event = {
 		
 		set_character_flag = flag_duel_killed_opponent
 		FROM = { # Send to Loser
-			character_event = { id = hde_battle.406 tooltip = hde_battle.406.tt }
+			character_event = { id = hde_battle.406 tooltip = hde.is_slain }
 		}
 	}
 }
@@ -1560,14 +1550,14 @@ character_event = {
 			NOT = { FROMFROM = { trait = maimed } }
 		}
 		name = hde_battle.407.a
-		FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt } }
+		FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde.is_wounded } }
 	}
 	option = {
 		trigger = {
 			FROMFROM = { trait = wounded }
 		}
 		name = hde_battle.407.a
-		FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt } }
+		FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde.is_maimed } }
 	}
 }
 
@@ -1597,14 +1587,14 @@ character_event = {
 			NOT = { FROMFROM = { trait = maimed } }
 		}
 		name = hde_battle.501.a
-		FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt } }
+		FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde.is_wounded } }
 	}
 	option = {
 		trigger = {
 			FROMFROM = { trait = wounded }
 		}
 		name = hde_battle.501.a
-		FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt } }
+		FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde.is_maimed } }
 	}
 }
 # Defender injures Aggressor! (ROOT = Winner, Opponent = FROMFROM)
@@ -1623,14 +1613,14 @@ character_event = {
 			NOT = { FROMFROM = { trait = maimed } }
 		}
 		name = hde_battle.501.a
-		FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde_battle.502.tt } }
+		FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde.is_wounded } }
 	}
 	option = {
 		trigger = {
 			FROMFROM = { trait = wounded }
 		}
 		name = hde_battle.501.a
-		FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde_battle.503.tt } }
+		FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde.is_maimed } }
 	}
 }
 # Loser is injured (FROM = Winner)
@@ -1656,7 +1646,7 @@ character_event = {
 		add_trait = wounded
 		# Restart the fight
 		custom_tooltip = {
-			text = battle_continues_tt
+			text = hde.battle_continues
 			hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
 		}
 	}
@@ -1722,7 +1712,7 @@ character_event = {
 		add_trait = wounded
 		prestige = -10
 		FROM = { # Winner considers yield
-			character_event = { id = hde_battle.404 tooltip = hde_battle.404.tt }
+			character_event = { id = hde_battle.404 tooltip = hde.consider_yield }
 		}
 	}
 }
@@ -1749,7 +1739,7 @@ character_event = {
 		add_trait = maimed
 		# Restart the fight
 		custom_tooltip = {
-			text = battle_continues_tt
+			text = hde.battle_continues
 			hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
 		}
 	}
@@ -1815,7 +1805,7 @@ character_event = {
 		add_trait = maimed
 		prestige = -10
 		FROM = { # Winner considers yield
-			character_event = { id = hde_battle.404 tooltip = hde_battle.404.tt }
+			character_event = { id = hde_battle.404 tooltip = hde.consider_yield }
 		}
 	}
 }
@@ -1842,7 +1832,7 @@ character_event = {
 		name = hde_battle.600.a
 
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_battle.602 tooltip = hde_battle.602.tt }
+			character_event = { id = hde_battle.602 tooltip = hde.is_slain }
 		}
 	}
 }
@@ -1861,7 +1851,7 @@ character_event = {
 		name = hde_battle.601.a
 
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_battle.602 tooltip = hde_battle.602.tt }
+			character_event = { id = hde_battle.602 tooltip = hde.is_slain }
 		}
 	}
 }
