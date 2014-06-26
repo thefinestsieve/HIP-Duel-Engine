@@ -1,0 +1,8 @@
+namespace = hde_tourny
+
+# Ideas:
+# Elimination playoff handled through recursive event
+# Winners move on, losers knocked out
+# Last match winner = 1st place, loser = 2nd place, losers of semifinals get runners up awards
+# Eligible characters will be limited to powers of 2 (2, 4, 8, 16, 32, whatever)
+# Losers get prestige (maybe a little gold?) awarded in proportion to how many wins they managed to get (if any) before losing

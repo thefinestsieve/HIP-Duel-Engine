@@ -46,6 +46,8 @@ namespace = hde_core
 # Perhaps change to the red background version of the trait icons?
 # Review battlefield duel targeting code
 
+# Idea: Choosing how you deal with yields should have an effect on traits?
+
 # Notes on tournament stuff:
 # I'm no longer as worried about calling tournament flavor from inside the main events here, but that does depend on exactly what kind of functionality the tournament events end up needing.
 # I also need to investigate whether I want to add the tournament version of the targeting trait. I'm currently leaning towards doing so just to avoid any potential issues.
@@ -609,7 +611,7 @@ character_event = {
 
 ### HANDLER EVENTS
 ## Initial Handler
-# Gives the duelists a chance to run away
+# Usually gives the duelists a chance to run away
 # Winner = ROOT, loser = FROM
 # These events can be sent to the winner or the loser
 # If sent to the winner, the subsequent event will be winner (ROOT) and loser (FROMFROM)
@@ -654,16 +656,16 @@ character_event = {
 			if = { # Winner is Aggressor
 				limit = { has_character_flag = flag_duel_aggressor }
 				random_list = {
-					50 = { character_event = { id = hde_x.x } } # Chain 1
-					50 = { character_event = { id = hde_x.x } } # Chain 1
+					50 = { character_event = { id = hde_feast.100 } } # Chain 1
+					50 = { character_event = { id = hde_feast.100 } } # Chain 1
 					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
 			if = { # Loser is Aggressor
 				limit = { has_character_flag = flag_duel_defender }
 				random_list = {
-					50 = { FROM = { character_event = { id = hde_x.x } } } # Chain 1
-					50 = { FROM = { character_event = { id = hde_x.x } } } # Chain 1
+					50 = { FROM = { character_event = { id = hde_feast.101 } } } # Chain 1
+					50 = { FROM = { character_event = { id = hde_feast.101 } } } # Chain 1
 					# Add new flavor events here. Make sure to adjust weights!
 				}
 			}
@@ -693,14 +695,7 @@ character_event = {
 			limit = { has_character_flag = flag_duel_battlefield }
 			if = { # Round 1 Flavor
 				limit = {
-					OR = {
-						NOT = { check_variable = { which = duel_rounds value = 1 } } # Round 1
-						AND = {
-							check_variable = { which = duel_rounds value = 3 } # Round 4
-							NOT = { check_variable = { which = duel_rounds value = 4 } }
-						}
-						check_variable = { which = duel_rounds value = 6 } # Round 7 or later
-					}
+					NOT = { check_variable = { which = duel_rounds value = 1 } } # Round 1
 				}
 				if = { # Winner is Aggressor
 					limit = { has_character_flag = flag_duel_aggressor }
@@ -721,16 +716,8 @@ character_event = {
 			}
 			if = { # Round 2 Flavor
 				limit = {
-					OR = {
-						AND = {
-							check_variable = { which = duel_rounds value = 1 } # Round 2
-							NOT = { check_variable = { which = duel_rounds value = 2 } }
-						}
-						AND = {
-							check_variable = { which = duel_rounds value = 4 } # Round 5
-							NOT = { check_variable = { which = duel_rounds value = 5 } }
-						}
-					}
+					check_variable = { which = duel_rounds value = 1 } # Round 2
+					NOT = { check_variable = { which = duel_rounds value = 2 } }
 				}
 				if = { # Winner is Aggressor
 					limit = { has_character_flag = flag_duel_aggressor }
@@ -751,16 +738,7 @@ character_event = {
 			}
 			if = { # Round 3 Flavor
 				limit = {
-					OR = {
-						AND = {
-							check_variable = { which = duel_rounds value = 2 } # Round 3
-							NOT = { check_variable = { which = duel_rounds value = 3 } }	
-						}
-						AND = {
-							check_variable = { which = duel_rounds value = 5 } # Round 6
-							NOT = { check_variable = { which = duel_rounds value = 6 } }
-						}
-					}
+					check_variable = { which = duel_rounds value = 2 } # Round 3 or later
 				}
 				if = { # Winner is Aggressor
 					limit = { has_character_flag = flag_duel_aggressor }
@@ -775,6 +753,74 @@ character_event = {
 					random_list = {
 						50 = { FROM = { character_event = { id = hde_battle.207 } } } # Chain 1
 						50 = { FROM = { character_event = { id = hde_battle.207 } } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
+				}
+			}
+		}
+		# Feast Flavor
+		if = {
+			limit = { has_character_flag = flag_duel_feast }
+			if = { # Round 1 Flavor
+				limit = {
+					NOT = { check_variable = { which = duel_rounds value = 1 } } # Round 1
+				}
+				if = { # Winner is Aggressor
+					limit = { has_character_flag = flag_duel_aggressor }
+					random_list = {
+						50 = { character_event = { id = hde_feast.200 } } # Chain 1
+						50 = { character_event = { id = hde_feast.200 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
+				}
+				if = { # Loser is Aggressor
+					limit = { has_character_flag = flag_duel_defender }
+					random_list = {
+						50 = { FROM = { character_event = { id = hde_feast.201 } } } # Chain 1
+						50 = { FROM = { character_event = { id = hde_feast.201 } } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
+				}
+			}
+			if = { # Round 2 Flavor
+				limit = {
+					check_variable = { which = duel_rounds value = 1 } # Round 2
+					NOT = { check_variable = { which = duel_rounds value = 2 } }
+				}
+				if = { # Winner is Aggressor
+					limit = { has_character_flag = flag_duel_aggressor }
+					random_list = {
+						50 = { character_event = { id = hde_feast.203 } } # Chain 1
+						50 = { character_event = { id = hde_feast.203 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
+				}
+				if = { # Loser is Aggressor
+					limit = { has_character_flag = flag_duel_defender }
+					random_list = {
+						50 = { FROM = { character_event = { id = hde_feast.204 } } } # Chain 1
+						50 = { FROM = { character_event = { id = hde_feast.204 } } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
+				}
+			}
+			if = { # Round 3 Flavor
+				limit = {
+					check_variable = { which = duel_rounds value = 2 } # Round 3 or later
+				}
+				if = { # Winner is Aggressor
+					limit = { has_character_flag = flag_duel_aggressor }
+					random_list = {
+						50 = { character_event = { id = hde_feast.206 } } # Chain 1
+						50 = { character_event = { id = hde_feast.206 } } # Chain 1
+						# Add new flavor events here. Make sure to adjust weights!
+					}
+				}
+				if = { # Loser is Aggressor
+					limit = { has_character_flag = flag_duel_defender }
+					random_list = {
+						50 = { FROM = { character_event = { id = hde_feast.207 } } } # Chain 1
+						50 = { FROM = { character_event = { id = hde_feast.207 } } } # Chain 1
 						# Add new flavor events here. Make sure to adjust weights!
 					}
 				}

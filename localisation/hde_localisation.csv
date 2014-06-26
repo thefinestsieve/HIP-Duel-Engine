@@ -133,7 +133,6 @@ hde_feast.104.a;You would have if you weren't always running away!;;;;;;;;;;;;;x
 # Defender responds to OPTB (Sent to Winner or Loser)
 hde_feast.105.desc;With our contest relocated to the gardens outside the castle, we drew our swords. I swung my own blade several times, testing its weight in my hand. [From.GetBestName] seemed impatient with my delay and urged me to begin the duel.;;;;;;;;;;;;;x
 hde_feast.105.a;I'm ready.;;;;;;;;;;;;;x
-
 ### Sizing Up Flavor;;;;;;;;;;;;;;x
 ## Chain 1
 # Round 1
@@ -148,7 +147,6 @@ hde_feast.202.desc;[From.GetBestName] looked eager for battle as [From.GetSheHe]
 hde_feast.202.a;Overconfidence is surely [From.GetHerHis] weakness.;;;;;;;;;;;;;x
 # Round 2
 # Round 3
-
 ### Combat Flavor;;;;;;;;;;;;;;x
 ## Chain 1
 Combat:

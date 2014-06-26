@@ -141,6 +141,7 @@ character_event = {
 ### INITIAL FLAVOR
 ### 100-199 reserved
 ### Since choosing whether to run or not is done in the introduction events, these are pure flavor
+## Chain 1
 # Aggressor wants to fight (ROOT = Winner, FROMFROM = Loser)
 character_event = {
 	id = hde_feast.100
@@ -198,13 +199,154 @@ character_event = {
 	}
 }
 # Aggressor taunts (Sent to Winner or Loser)
+character_event = {
+	id = hde_feast.103
+	desc = hde_feast.103.desc
+	picture = GFX_evt_melee
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_feast.103.a
+		
+		FROM = { # Send event to Winner or Loser
+			character_event = { id = hde_feast.104 tooltip = hde_feast.104.tt }
+		}
+	}
+	option = {
+		name = hde_feast.103.b
+		
+		FROM = { # Send event to Winner or Loser
+			character_event = { id = hde_feast.105 tooltip = hde.readies }
+		}
+	}
+}
 # Defender responds to OPTA (Sent to Winner or Loser)
+character_event = {
+	id = hde_feast.104
+	desc = hde_feast.104.desc
+	picture = GFX_evt_melee
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_feast.104.a
+		
+		if = {
+			limit = { has_character_flag = flag_duel_loser }
+			FROM = { # Send handler to Winner
+				character_event = { id = hde_core.4 tooltip = hde_core.4.tt }
+			}
+		}
+		if = {
+			limit = { has_character_flag = flag_duel_winner }
+			FROM = { # Send handler bounce to Loser
+				character_event = { id = hde_core.5 tooltip = hde_core.5.tt }
+			}
+		}
+	}
+}
 # Defender responds to OPTB (Sent to Winner or Loser)
-(tooltip = hde.readies)
+character_event = {
+	id = hde_feast.105
+	desc = hde_feast.105.desc
+	picture = GFX_evt_melee
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_feast.105.a
+		
+		if = {
+			limit = { has_character_flag = flag_duel_loser }
+			FROM = { # Send handler to Winner
+				character_event = { id = hde_core.4 tooltip = hde_core.4.tt }
+			}
+		}
+		if = {
+			limit = { has_character_flag = flag_duel_winner }
+			FROM = { # Send handler bounce to Loser
+				character_event = { id = hde_core.5 tooltip = hde_core.5.tt }
+			}
+		}
+	}
+}
+
+## Chain 2
+# Would be here, if Chain 2 existed
 
 #####################
 ### SIZING UP FLAVOR
 ### 200-299 reserved
+## Chain 1
+## First Round
+# Aggressor advances, looks for weakness (ROOT = Winner, FROMFROM = Loser)
+character_event = {
+	id = hde_feast.200
+	desc = hde_feast.200.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	hide_from = yes
+	show_from_from = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_feast.200.a
+		
+		hidden_tooltip = {
+			FROMFROM = { # Send to Loser
+				character_event = { id = hde_feast.202 }
+			}
+		}
+	}
+}
+# Aggressor advances, looks for weakness (ROOT = Loser, FROM = Winner)
+character_event = {
+	id = hde_feast.201
+	desc = hde_feast.201.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_feast.201.a
+		
+		hidden_tooltip = {
+			FROM = { # Send to Winner
+				character_event = { id = hde_feast.202 }
+			}
+		}
+	}
+}
+# Defender adopts defensive posture (Sent to Winner or Loser)
+character_event = {
+	id = hde_feast.202
+	desc = hde_feast.202.desc
+	picture = GFX_evt_duel0
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_feast.202.a
+		if = {
+			limit = { has_character_flag = flag_duel_loser }
+			FROM = { # Send handler to Winner
+				character_event = { id = hde_core.6 tooltip = hde_core.6.tt }
+			}
+		}
+		if = {
+			limit = { has_character_flag = flag_duel_winner }
+			FROM = { # Send handler bounce to Loser
+				character_event = { id = hde_core.7 tooltip = hde_core.7.tt }
+			}
+		}
+	}
+}
+## Second Round
+## Third Round
+
+## Chain 2
+# Would be here, if Chain 2 existed
 
 #####################
 ### COMBAT FLAVOR
