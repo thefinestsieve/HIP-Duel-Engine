@@ -1571,9 +1571,7 @@ character_event = {
 	hide_from = yes
 	show_from_from = yes
 	is_triggered_only = yes
-	
-	# Eventually I need to add a special case where you've already wounded and maimed your opponent
-	# Either you automatically subdue or you render them incapable or something
+
 	option = {
 		trigger = {
 			NOT = { FROMFROM = { trait = wounded } }
@@ -1827,7 +1825,7 @@ character_event = {
 		
 		add_trait = incapable
 		FROM = {
-			set_character_flag = flag_duel_incapacitated_opponent
+			set_character_flag = flag_duel_neutralized_opponent
 			character_event = { id = hde_core.10 tooltip = hde_core.10.tt }
 		}
 	}
@@ -1968,7 +1966,7 @@ character_event = {
 		}
 	}
 }
-# Winner incapacitated Loser (Loser = FROMFROM)
+# Winner mortally wounded Loser (Loser = FROMFROM)
 character_event = {
 	id = hde_battle.703
 	desc = hde_battle.703.desc

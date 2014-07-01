@@ -16,7 +16,7 @@ namespace = hde_core
 # flag_duel_spared_opponent
 # flag_duel_wounded_opponent
 # flag_duel_maimed_opponent
-# flag_duel_incapacitated_opponent
+# flag_duel_neutralized_opponent
 # flag_duel_killed_opponent
 
 ### MAIN EVENTS
@@ -1167,6 +1167,28 @@ character_event = {
 				}
 			}
 		}
+		# Feast Flavor
+		if = {
+			limit = { FROMFROM = { has_character_flag = flag_duel_feast } }
+			# Winner is Aggressor
+			if = {
+				limit = { FROMFROM = { has_character_flag = flag_duel_aggressor } }
+				random_list = {
+					50 = { FROMFROM = { character_event = { id = hde_feast.500 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_feast.500 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
+				}
+			}
+			# Winner is Defender
+			if = {
+				limit = { FROMFROM = { has_character_flag = flag_duel_defender } }
+				random_list = {
+					50 = { FROMFROM = { character_event = { id = hde_feast.501 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_feast.501 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
+				}
+			}
+		}
 	}
 	
 	option = { # Killing Blow
@@ -1225,6 +1247,28 @@ character_event = {
 				}
 			}
 		}
+		# Feast Flavor
+		if = {
+			limit = { FROMFROM = { has_character_flag = flag_duel_feast } }
+			# Winner is Aggressor
+			if = {
+				limit = { FROMFROM = { has_character_flag = flag_duel_aggressor } }
+				random_list = {
+					50 = { FROMFROM = { character_event = { id = hde_feast.600 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_feast.600 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
+				}
+			}
+			# Winner is Defender
+			if = {
+				limit = { FROMFROM = { has_character_flag = flag_duel_defender } }
+				random_list = {
+					50 = { FROMFROM = { character_event = { id = hde_feast.601 } } } # Chain 1
+					50 = { FROMFROM = { character_event = { id = hde_feast.601 } } } # Chain 1
+					# Add new flavor events here. Make sure to adjust weights!
+				}
+			}
+		}
 	}
 	
 	# Add outcome for losing track of opponent in battle
@@ -1278,7 +1322,7 @@ character_event = {
 				}
 			}
 			if = {
-				limit = { has_character_flag = flag_duel_incapacitated_opponent }
+				limit = { has_character_flag = flag_duel_neutralized_opponent }
 				random_list = {
 					50 = { character_event = { id = hde_battle.703 } } # Chain 1
 					50 = { character_event = { id = hde_battle.703 } } # Chain 1
@@ -1322,7 +1366,7 @@ character_event = {
 			clr_character_flag = flag_duel_spared_opponent
 			clr_character_flag = flag_duel_wounded_opponent
 			clr_character_flag = flag_duel_maimed_opponent
-			clr_character_flag = flag_duel_incapacitated_opponent
+			clr_character_flag = flag_duel_neutralized_opponent
 			clr_character_flag = flag_duel_killed_opponent
 			# Aggressor/Defender flags
 			clr_character_flag = flag_duel_aggressor
@@ -1347,7 +1391,7 @@ character_event = {
 			clr_character_flag = flag_duel_spared_opponent
 			clr_character_flag = flag_duel_wounded_opponent
 			clr_character_flag = flag_duel_maimed_opponent
-			clr_character_flag = flag_duel_incapacitated_opponent
+			clr_character_flag = flag_duel_neutralized_opponent
 			clr_character_flag = flag_duel_killed_opponent
 			# Aggressor/Defender flags
 			clr_character_flag = flag_duel_aggressor
@@ -1371,7 +1415,7 @@ character_event = {
 		clr_character_flag = flag_duel_spared_opponent
 		clr_character_flag = flag_duel_wounded_opponent
 		clr_character_flag = flag_duel_maimed_opponent
-		clr_character_flag = flag_duel_incapacitated_opponent
+		clr_character_flag = flag_duel_neutralized_opponent
 		clr_character_flag = flag_duel_killed_opponent
 		# Aggressor/Defender flags
 		clr_character_flag = flag_duel_aggressor

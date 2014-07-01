@@ -21,47 +21,10 @@ hde.is_wounded;[This.GetBestName] is wounded;;;;;;;;;;;;;x
 hde.is_maimed;[This.GetBestName] is maimed;;;;;;;;;;;;;x
 hde.is_incapable;[This.GetBestName] is incapacitated;;;;;;;;;;;;;x
 hde.battle_continues;The battle continues;;;;;;;;;;;;;x
-
 ############ Feast Flavor;;;;;;;;;;;;;;x
-Basic pattern of flavor, to be followed by all alternatives, initial flavor probably exempt:
-Sizing Up: Aggressor advances on Defender
-Combat: Aggressor thinks he sees an opening, Defender either screws up or sets a trap
-
-I saw my mortal enemy as soon as I stepped into [Root.Liege.GetTitledFirstName]'s castle. His presence was almost more than I could bear and I longed to pick up my sword and impale him with it!
-
-When [From.GetTitledFirstName] challenged me to a duel in front of everyone at the feast I felt almost ashamed for [From.GetHerHim], to challenge someone when both are guests in another man's house is unheard of!
-
-
-
-Outcome:
-
-
-Loser is injured: (FROM = Winner)
-I turned away from [From.GetBestName]'s blow in time to avoid the worst of it, but I nonetheless felt the sting of [From.GetHerHis] blade. I recovered as quickly as I could and held my weapon ready once again.
-OPTA: That was merely luck.
-OPTB: I yield!
-
-Loser is maimed: (FROM = Winner)
-With my previous injury slowing me down, I couldn't fully avoid [From.GetBestName]'s blow. [From.GetSheHeCap] cut me again, more deeply this time, and though I readied my weapon once more, I could hardly keep my grip on it.
-OPTA: I will not surrender.
-OPTB: I yield! I must...
-
-Aggressor kills Defender: (ROOT = Winner, Opponent = FROMFROM)
-[FromFrom.GetBestName] made an admirable effort to defend [FromFrom.GetHerselfHimself], but [FromFrom.GetSheHe] was too late, too slow. My sword cut [FromFrom.GetHerHim] deep, and the crowd gasped as [FromFrom.GetSheHe] slumped to the ground, lifeless.
-OPTA (cruel): No less than what you deserve.
-OPTB (kind): Perhaps I have erred...
-
-Defender kills Aggressor: (ROOT = Winner, Opponent = FROMFROM)
-I easily parried [FromFrom.GetBestName]'s attack, leaving [FromFrom.GetHerHim] off balance and unable to defend [FromFrom.GetHerselfHimself] from my riposte. My sword slashed [FromFrom.GetHerHim] deeply, and the crowd cried out as [FromFrom.GetSheHe] fell.
-OPTA (cruel): No less than you deserve.
-OPTB (kind): Perhaps I have erred...
-
-Loser is killed: (FROM = Winner)
-I struggled to deflect the attack, but I was too slow. [From.GetBestName]'s blade sunk deep into my flesh, and I heard someone in the crowd scream, then nothing.
-OPTA (?): No.
-OPTB (married): I pray [Root.Spouse.GetFirstName] remembers me fondly.
-OPTC (Zealous?): [Root.Religion.GetRandomGodName] save me.
-
+# Basic pattern of flavor, to be followed by all alternatives, initial flavor probably exempt:
+# Sizing Up: Aggressor advances on Defender
+# Combat: Aggressor thinks he sees an opening, Defender either screws up or sets a trap
 ### Initial Flavor;;;;;;;;;;;;;;x
 ## Chain 1
 # Aggressor wants to fight (ROOT = Winner, FROMFROM = Loser)
@@ -100,7 +63,6 @@ hde_feast.202.a;Overconfidence is surely [From.GetHerHis] weakness.;;;;;;;;;;;;;
 # Round 3
 ### Combat Flavor;;;;;;;;;;;;;;x
 ## Chain 1
-Combat:
 # Aggressor thinks he sees an opening (ROOT = Winner, FROMFROM = Loser)
 hde_feast.300.desc;The very moment I was within range to strike, [FromFrom.GetBestName] appeared to falter. [FromFrom.GetHerHisCap] sword wavered and left [FromFrom.GetHerHim] momentarily unprotected.;;;;;;;;;;;;;x
 hde_feast.300.a;Attack!;;;;;;;;;;;;;x
@@ -157,23 +119,46 @@ hde_feast.501.desc;[FromFrom.GetBestName]'s attack missed, and though [FromFrom.
 hde_feast.501.a;[FromFrom.GetSheHe] has been wounded.;;;;;;;;;;;;;x
 hde_feast.501.b;[FromFrom.GetSheHe] has been maimed.;;;;;;;;;;;;;x
 hde_feast.501.c;[FromFrom.GetSheHe] has been mortally wounded.;;;;;;;;;;;;;x
-
-hde_feast.502.desc;
-hde_feast.502.a;
-
+# Loser is injured (FROM = Winner)
+hde_feast.502.desc;I turned away from [From.GetBestName]'s blow in time to avoid the worst of it, but I nonetheless felt the sting of [From.GetHerHis] blade. I recovered as quickly as I could and held my weapon ready once again.;;;;;;;;;;;;;x
+hde_feast.502.a;That was merely luck.;;;;;;;;;;;;;x
+hde_feast.502.b;I yield!;;;;;;;;;;;;;x
+# Loser is maimed (FROM = Winner)
+hde_feast.503.desc;With my previous injury slowing me down, I couldn't fully avoid [From.GetBestName]'s blow. [From.GetSheHeCap] cut me again, more deeply this time, and though I readied my weapon once more, I could hardly keep my grip on it.;;;;;;;;;;;;;x
+hde_feast.503.a;I will not surrender.;;;;;;;;;;;;;x
+hde_feast.503.b;I yield! I must...;;;;;;;;;;;;;x
+# Loser is mortally wounded, fight is over (FROM = Winner)
+hde_feast.504.desc;I saw [From.GetBestName]'s attack coming, but my grievously injured body wouldn't respond. [From.GetSheHeCap] struck, and I fell. Somehow there was no pain, which puzzled me.;;;;;;;;;;;;;x
+hde_feast.504.a;Am I dying?;;;;;;;;;;;;;x
 # Killed Outcomes Flavor;;;;;;;;;;;;;;x
 ## Chain 1
-
+# Aggressor kills Defender! (ROOT = Winner, Opponent = FROMFROM)
+hde_feast.600.desc;[FromFrom.GetBestName] made an admirable effort to defend [FromFrom.GetHerselfHimself], but [FromFrom.GetSheHe] was too late, too slow. My sword cut [FromFrom.GetHerHim] deep, and the crowd gasped as [FromFrom.GetSheHe] slumped to the ground, lifeless.;;;;;;;;;;;;;x
+hde_feast.600.a;No less than what you deserve.;;;;;;;;;;;;;x
+hde_feast.600.b;Perhaps I have erred...;;;;;;;;;;;;;x
+# Defender kills Aggressor! (ROOT = Winner, Opponent = FROMFROM)
+hde_feast.601.desc;I easily parried [FromFrom.GetBestName]'s attack, leaving [FromFrom.GetHerHim] off balance and unable to defend [FromFrom.GetHerselfHimself] from my riposte. My sword slashed [FromFrom.GetHerHim] deeply, and the crowd cried out as [FromFrom.GetSheHe] fell.;;;;;;;;;;;;;x
+hde_feast.601.a;No less than you deserve.;;;;;;;;;;;;;x
+hde_feast.601.b;Perhaps I have erred...;;;;;;;;;;;;;x
+# Loser is killed (FROM = Winner)
+hde_feast.602.desc;I struggled to deflect the attack, but I was too slow. [From.GetBestName]'s blade sunk deep into my flesh, and I heard someone in the crowd scream.;;;;;;;;;;;;;x
+hde_feast.602.a;No.;;;;;;;;;;;;;x
+hde_feast.602.b;I pray [Root.Spouse.GetFirstName] remembers me fondly.;;;;;;;;;;;;;x
+hde_feast.602.c;[Root.Religion.GetRandomGodName] save me.;;;;;;;;;;;;;x
 # Output Flavor;;;;;;;;;;;;;;x
 ## Chain 1
 # Winner duel outcomes (Winner = ROOT, Loser = FROMFROM)
 hde_feast.700.desc;The duel is over and my opponent [FromFrom.GetTitledFirstName] lies...;Le duel est terminé et mon adversaire, [FromFrom.GetTitledFirstName], ...;Das Duell ist vorbei, und mein Gegner [FromFrom.GetTitledFirstName] liegt ...;;El duelo ha acabado y mi rival, [FromFrom.GetTitledFirstName], yace...;;;;;;;;;x
 hde_feast.700.d;...not on the ground, but still defeated;;;;;;;;;;;;;x
+hde_feast.700.e;on the ground, alive, but mortally wounded;;;;;;;;;;;;;x
 # Liege reacts to nobody being hurt (Winner = FROM)
 hde_feast.701.tt;[This.GetTitledFirstName] is notified about the duel;;;;;;;;;;;;;x
 hde_feast.701.desc;By the time I arrived, the duel was already over and [From.GetTitledFirstName]'s opponent had yielded.;;;;;;;;;;;;;x
+# Liege reacts to Loser being mortally wounded (Winner = FROM)
+hde_feast.702.tt;[This.GetTitledFirstName] is notified about the duel;;;;;;;;;;;;;x
+hde_feast.702.desc;By the time I arrived, the duel was already over and [From.GetTitledFirstName]'s opponent was lying on the ground, still alive, but mortally wounded.;;;;;;;;;;;;;x
 ############ Battlefield Flavor;;;;;;;;;;;;;;x
-# All the event localization here might eventually need to be reworked to reflect the new system
+# All the event localization here needs to be reworked to reflect the new system
 ### Initial Flavor;;;;;;;;;;;;;;x
 # These events always start with meeting on the battlefield and end with either charge/chicken
 ## Chain 1
