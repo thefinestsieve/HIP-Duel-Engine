@@ -1028,7 +1028,6 @@ character_event = {
 	border = GFX_event_normal_frame_war
 	hide_from = yes
 	show_from_from = yes
-	
 	is_triggered_only = yes
 	
 	option = {
@@ -1047,7 +1046,6 @@ character_event = {
 	border = GFX_event_normal_frame_war
 	hide_from = yes
 	show_from_from = yes
-	
 	is_triggered_only = yes
 	
 	option = {
@@ -1064,7 +1062,6 @@ character_event = {
 	desc = hde_battle.402.desc
 	picture = GFX_evt_duel4
 	border = GFX_event_normal_frame_war
-	
 	is_triggered_only = yes
 	
 	option = { # Yield
@@ -1149,7 +1146,6 @@ character_event = {
 	desc = hde_battle.403.desc
 	picture = GFX_evt_duel4
 	border = GFX_event_normal_frame_war
-	
 	is_triggered_only = yes
 	
 	option = { # Yield
@@ -1234,7 +1230,6 @@ character_event = {
 	desc = hde_battle.404.desc
 	picture = GFX_evt_duel4
 	border = GFX_event_normal_frame_war
-
 	is_triggered_only = yes
 	
 	option = { # Spare Loser
@@ -1497,7 +1492,6 @@ character_event = {
 	desc = hde_battle.405.desc
 	picture = GFX_evt_duel4
 	border = GFX_event_normal_frame_war
-
 	is_triggered_only = yes
 	
 	option = {
@@ -1514,7 +1508,6 @@ character_event = {
 	id = hde_battle.406
 	desc = hde_battle.406.desc
 	picture = GFX_evt_duel5
-
 	is_triggered_only = yes
 	
 	option = {
@@ -1586,15 +1579,22 @@ character_event = {
 			NOT = { FROMFROM = { trait = wounded } }
 			NOT = { FROMFROM = { trait = maimed } }
 		}
-		name = hde_battle.501.a
+		name = hde_battle.500.a
 		FROMFROM = { character_event = { id = hde_battle.502 tooltip = hde.is_wounded } }
 	}
 	option = {
 		trigger = {
 			FROMFROM = { trait = wounded }
 		}
-		name = hde_battle.501.a
+		name = hde_battle.500.a
 		FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde.is_maimed } }
+	}
+	option = {
+		trigger = {
+			FROMFROM = { trait = maimed }
+		}
+		name = hde_battle.500.a
+		FROMFROM = { character_event = { id = hde_battle.504 tooltip = hde.is_incapable } }
 	}
 }
 # Defender injures Aggressor! (ROOT = Winner, Opponent = FROMFROM)
@@ -1622,6 +1622,13 @@ character_event = {
 		name = hde_battle.501.a
 		FROMFROM = { character_event = { id = hde_battle.503 tooltip = hde.is_maimed } }
 	}
+	option = {
+		trigger = {
+			FROMFROM = { trait = maimed }
+		}
+		name = hde_battle.501.a
+		FROMFROM = { character_event = { id = hde_battle.504 tooltip = hde.is_incapable } }
+	}
 }
 # Loser is injured (FROM = Winner)
 character_event = {
@@ -1629,7 +1636,6 @@ character_event = {
 	desc = hde_battle.502.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
-
 	is_triggered_only = yes
 	
 	immediate = {
@@ -1722,7 +1728,6 @@ character_event = {
 	desc = hde_battle.503.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
-
 	is_triggered_only = yes
 	
 	immediate = {
@@ -1809,6 +1814,24 @@ character_event = {
 		}
 	}
 }
+# Loser is mortally wounded, fight is over (FROM = Winner)
+character_event = {
+	id = hde_battle.504
+	desc = hde_battle.504.desc
+	picture = GFX_evt_duel3
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.504.a
+		
+		add_trait = incapable
+		FROM = {
+			set_character_flag = flag_duel_incapacitated_opponent
+			character_event = { id = hde_core.10 tooltip = hde_core.10.tt }
+		}
+	}
+}
 
 ## Chain 2
 # Would be here, if Chain 2 existed
@@ -1825,7 +1848,6 @@ character_event = {
 	border = GFX_event_normal_frame_war
 	hide_from = yes
 	show_from_from = yes
-
 	is_triggered_only = yes
 	
 	option = {
@@ -1844,7 +1866,6 @@ character_event = {
 	border = GFX_event_normal_frame_war
 	hide_from = yes
 	show_from_from = yes
-
 	is_triggered_only = yes
 	
 	option = {
@@ -1860,7 +1881,6 @@ character_event = {
 	id = hde_battle.602
 	desc = hde_battle.602.desc
 	picture = GFX_evt_duel3
-
 	is_triggered_only = yes
 	
 	option = {
@@ -1893,14 +1913,13 @@ character_event = {
 # Winner killed Loser (Loser = FROMFROM)
 character_event = {
 	id = hde_battle.700
-	desc = "EVTDESC5556100"
+	desc = hde_battle.700.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
-
 	is_triggered_only = yes
 	
 	option = {
-		name = "EVTOPTA5556100"
+		name = hde_battle.700.a
 		
 		prestige = 25
 		random_current_enemy = {
@@ -1915,7 +1934,6 @@ character_event = {
 	desc = hde_battle.701.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
-
 	is_triggered_only = yes
 	
 	option = {
@@ -1934,7 +1952,6 @@ character_event = {
 	desc = hde_battle.702.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
-
 	is_triggered_only = yes
 	
 	option = {
@@ -1948,6 +1965,24 @@ character_event = {
 					id = 50020 # "imprisoned_events.txt"
 				}
 			}
+		}
+	}
+}
+# Winner incapacitated Loser (Loser = FROMFROM)
+character_event = {
+	id = hde_battle.703
+	desc = hde_battle.703.desc
+	picture = GFX_evt_battle
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	
+	option = {
+		name = hde_battle.703.a
+		
+		prestige = 25
+		random_current_enemy = {
+			limit = { at_location = ROOT }
+			morale = -0.2
 		}
 	}
 }
