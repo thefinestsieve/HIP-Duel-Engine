@@ -1,25 +1,20 @@
 #CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
 ######################################5_EVENTS;;;;;;;;;;;;;;x
-############ Core;;;;;;;;;;;;;;x
-# Initial Flavor;;;;;;;;;;;;;;x
-hde_core.4.tt;steels [This.GetHerselfHimself] for combat;;;;;;;;;;;;;x
-hde_core.5.tt;visibly gathers [This.GetHerHis] courage;;;;;;;;;;;;;x
-# Sizing Up Flavor;;;;;;;;;;;;;;x
-hde_core.6.tt;prepares to attack;;;;;;;;;;;;;x
-hde_core.7.tt;readies [This.GetHerselfHimself] to strike;;;;;;;;;;;;;x
-# Output Flavor;;;;;;;;;;;;;;x
-hde_core.10.tt;is victorious!;est victorieux !;;;¡sale victorioso!;;;;;;;;;x
 ############ General Purpose Tooltips;;;;;;;;;;;;;;x
 hde.reacts;[This.GetBestName] reacts;;;;;;;;;;;;;x
 hde.responds;[This.GetBestName] responds;;;;;;;;;;;;;x
 hde.defends;[This.GetBestName] tries to defend [This.GetHerselfHimself];;;;;;;;;;;;;x
 hde.readies;[This.GetBestName] readies [This.GetHerselfHimself] for battle;;;;;;;;;;;;;x
+hde.prepares;[This.GetBestName] prepares to attack;;;;;;;;;;;;;x
+hde.courage;[This.GetBestName] visibly gathers [This.GetHerHis] courage;;;;;;;;;;;;;x
+hde.steels;[This.GetBestName] steels [This.GetHerselfHimself] for combat;;;;;;;;;;;;;x
 hde.consider_yield;[This.GetBestName] considers your yield;;;;;;;;;;;;;x
 hde.is_defeated;[This.GetBestName] is defeated;;;;;;;;;;;;;x
 hde.is_slain;[This.GetBestName] is slain;;;;;;;;;;;;;x
 hde.is_wounded;[This.GetBestName] is wounded;;;;;;;;;;;;;x
 hde.is_maimed;[This.GetBestName] is maimed;;;;;;;;;;;;;x
 hde.is_incapable;[This.GetBestName] is incapacitated;;;;;;;;;;;;;x
+hde.is_victorious;[This.GetBestName] is victorious!;;;;;;;;;;;;;x
 hde.battle_continues;The battle continues;;;;;;;;;;;;;x
 ############ Feast Flavor;;;;;;;;;;;;;;x
 # Basic pattern of flavor, to be followed by all alternatives, initial flavor probably exempt:
@@ -60,7 +55,25 @@ hde_feast.201.a;I will surely be victorious.;;;;;;;;;;;;;x
 hde_feast.202.desc;[From.GetBestName] looked eager for battle as [From.GetSheHe] approached me, [From.GetHerHis] weapon ready to strike. I adopted a guarded stance and prepared myself for the inevitable attack.;;;;;;;;;;;;;x
 hde_feast.202.a;Overconfidence is surely [From.GetHerHis] weakness.;;;;;;;;;;;;;x
 # Round 2
+# Aggressor wearily advances (ROOT = Winner, FROMFROM = Loser)
+hde_feast.203.desc;I advanced towards [FromFrom.GetBestName] with my blade raised and ready, watching [FromFrom.GetHerHim] for any sign of weakness. [FromFrom.GetSheHeCap] responded by taking a defensive posture and waiting for me.;;;;;;;;;;;;;x
+hde_feast.203.a;I will surely be victorious.;;;;;;;;;;;;;x
+# Aggressor wearily advances (ROOT = Loser, FROM = Winner)
+hde_feast.204.desc;I advanced towards [From.GetBestName] with my blade raised and ready, watching [From.GetHerHim] for any sign of weakness. [From.GetSheHeCap] responded by taking a defensive posture and waiting for me.;;;;;;;;;;;;;x
+hde_feast.204.a;I will surely be victorious.;;;;;;;;;;;;;x
+# Defender wearily adopts defensive posture (Sent to Winner or Loser)
+hde_feast.205.desc;[From.GetBestName] looked eager for battle as [From.GetSheHe] approached me, [From.GetHerHis] weapon ready to strike. I adopted a guarded stance and prepared myself for the inevitable attack.;;;;;;;;;;;;;x
+hde_feast.205.a;Overconfidence is surely [From.GetHerHis] weakness.;;;;;;;;;;;;;x
 # Round 3
+# Aggressor advances, exhausted (ROOT = Winner, FROMFROM = Loser)
+hde_feast.206.desc;I advanced towards [FromFrom.GetBestName] with my blade raised and ready, watching [FromFrom.GetHerHim] for any sign of weakness. [FromFrom.GetSheHeCap] responded by taking a defensive posture and waiting for me.;;;;;;;;;;;;;x
+hde_feast.206.a;I will surely be victorious.;;;;;;;;;;;;;x
+# Aggressor advances, exhausted (ROOT = Loser, FROM = Winner)
+hde_feast.207.desc;I advanced towards [From.GetBestName] with my blade raised and ready, watching [From.GetHerHim] for any sign of weakness. [From.GetSheHeCap] responded by taking a defensive posture and waiting for me.;;;;;;;;;;;;;x
+hde_feast.207.a;I will surely be victorious.;;;;;;;;;;;;;x
+# Defender adopts defensive posture, almost exhausted (Sent to Winner or Loser)
+hde_feast.208.desc;[From.GetBestName] looked eager for battle as [From.GetSheHe] approached me, [From.GetHerHis] weapon ready to strike. I adopted a guarded stance and prepared myself for the inevitable attack.;;;;;;;;;;;;;x
+hde_feast.208.a;Overconfidence is surely [From.GetHerHis] weakness.;;;;;;;;;;;;;x
 ### Combat Flavor;;;;;;;;;;;;;;x
 ## Chain 1
 # Aggressor thinks he sees an opening (ROOT = Winner, FROMFROM = Loser)
@@ -155,8 +168,7 @@ hde_feast.700.e;on the ground, alive, but mortally wounded;;;;;;;;;;;;;x
 hde_feast.701.tt;[This.GetTitledFirstName] is notified about the duel;;;;;;;;;;;;;x
 hde_feast.701.desc;By the time I arrived, the duel was already over and [From.GetTitledFirstName]'s opponent had yielded.;;;;;;;;;;;;;x
 # Liege reacts to Loser being mortally wounded (Winner = FROM)
-hde_feast.702.tt;[This.GetTitledFirstName] is notified about the duel;;;;;;;;;;;;;x
-hde_feast.702.desc;By the time I arrived, the duel was already over and [From.GetTitledFirstName]'s opponent was lying on the ground, still alive, but mortally wounded.;;;;;;;;;;;;;x
+hde_feast.703.desc;By the time I arrived, the duel was already over and [From.GetTitledFirstName]'s opponent was lying on the ground, still alive, but mortally wounded.;;;;;;;;;;;;;x
 ############ Battlefield Flavor;;;;;;;;;;;;;;x
 # All the event localization here needs to be reworked to reflect the new system
 ### Initial Flavor;;;;;;;;;;;;;;x

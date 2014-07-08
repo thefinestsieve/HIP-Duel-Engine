@@ -219,8 +219,6 @@ character_event = {
 	immediate = {
 		# Send cleanup event to prevent loose flags from screwing things up
 		# Disabled for now, since I want to find bugs
-		# I'm still a touch skeptical about this; how much faith do I have that the game will do everything in the cleanup event before flags are set again below?
-		# Maybe fire this from the previous event instead?
 		# character_event = { id = hde_core.11 }
 		# Remove initial targeting information
 		remove_opinion = { who = FROM modifier = opinion_battle_duel_target }
@@ -539,13 +537,13 @@ character_event = {
 		if = {
 			limit = { has_character_flag = flag_duel_loser }
 			FROM = { # Send handler to Winner
-				character_event = { id = hde_core.4 tooltip = hde_core.4.tt }
+				character_event = { id = hde_core.4 tooltip = hde.steels }
 			}
 		}
 		if = {
 			limit = { has_character_flag = flag_duel_winner }
 			FROM = { # Send handler bounce to Loser
-				character_event = { id = hde_core.5 tooltip = hde_core.5.tt }
+				character_event = { id = hde_core.5 tooltip = hde.steels }
 			}
 		}
 	}
@@ -793,13 +791,13 @@ character_event = {
 		if = {
 			limit = { has_character_flag = flag_duel_loser }
 			FROM = { # Send handler to Winner
-				character_event = { id = hde_core.6 tooltip = hde_core.6.tt }
+				character_event = { id = hde_core.6 tooltip = hde.prepares }
 			}
 		}
 		if = {
 			limit = { has_character_flag = flag_duel_winner }
 			FROM = { # Send handler bounce to Loser
-				character_event = { id = hde_core.7 tooltip = hde_core.7.tt }
+				character_event = { id = hde_core.7 tooltip = hde.prepares }
 			}
 		}
 	}
@@ -856,13 +854,13 @@ character_event = {
 		if = {
 			limit = { has_character_flag = flag_duel_loser }
 			FROM = { # Send handler to Winner
-				character_event = { id = hde_core.6 tooltip = hde_core.6.tt }
+				character_event = { id = hde_core.6 tooltip = hde.prepares }
 			}
 		}
 		if = {
 			limit = { has_character_flag = flag_duel_winner }
 			FROM = { # Send handler bounce to Loser
-				character_event = { id = hde_core.7 tooltip = hde_core.7.tt }
+				character_event = { id = hde_core.7 tooltip = hde.prepares }
 			}
 		}
 	}
@@ -919,13 +917,13 @@ character_event = {
 		if = {
 			limit = { has_character_flag = flag_duel_loser }
 			FROM = { # Send handler to Winner
-				character_event = { id = hde_core.6 tooltip = hde_core.6.tt }
+				character_event = { id = hde_core.6 tooltip = hde.prepares }
 			}
 		}
 		if = {
 			limit = { has_character_flag = flag_duel_winner }
 			FROM = { # Send handler bounce to Loser
-				character_event = { id = hde_core.7 tooltip = hde_core.7.tt }
+				character_event = { id = hde_core.7 tooltip = hde.prepares }
 			}
 		}
 	}
@@ -1499,7 +1497,7 @@ character_event = {
 
 		prestige = -10
 		FROM = { # Send Output to Winner
-			character_event = { id = hde_core.10 tooltip = hde_core.10.tt }
+			character_event = { id = hde_core.10 tooltip = hde.is_victorious }
 		}
 	}
 }
@@ -1524,7 +1522,7 @@ character_event = {
 			killer = FROM
 		}
 		FROM = { # Send Output to Winner
-			character_event = { id = hde_core.10 tooltip = hde_core.10.tt }
+			character_event = { id = hde_core.10 tooltip = hde.is_victorious }
 		}
 	}
 }
@@ -1826,7 +1824,7 @@ character_event = {
 		add_trait = incapable
 		FROM = {
 			set_character_flag = flag_duel_neutralized_opponent
-			character_event = { id = hde_core.10 tooltip = hde_core.10.tt }
+			character_event = { id = hde_core.10 tooltip = hde.is_victorious }
 		}
 	}
 }
@@ -1896,7 +1894,7 @@ character_event = {
 		}
 		FROM = { # Send Output to Winner
 			set_character_flag = flag_duel_killed_opponent
-			character_event = { id = hde_core.10 tooltip = hde_core.10.tt }
+			character_event = { id = hde_core.10 tooltip = hde.is_victorious }
 		}
 	}
 }
