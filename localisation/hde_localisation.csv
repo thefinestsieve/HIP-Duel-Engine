@@ -56,24 +56,24 @@ hde_feast.202.desc;[From.GetBestName] looked eager for battle as [From.GetSheHe]
 hde_feast.202.a;Overconfidence is surely [From.GetHerHis] weakness.;;;;;;;;;;;;;x
 # Round 2
 # Aggressor wearily advances (ROOT = Winner, FROMFROM = Loser)
-hde_feast.203.desc;I advanced towards [FromFrom.GetBestName] with my blade raised and ready, watching [FromFrom.GetHerHim] for any sign of weakness. [FromFrom.GetSheHeCap] responded by taking a defensive posture and waiting for me.;;;;;;;;;;;;;x
-hde_feast.203.a;I will surely be victorious.;;;;;;;;;;;;;x
+hde_feast.203.desc;I moved towards [FromFrom.GetBestName] again, eager to bring our fight to an end. My movements were slower this time, the exertion of the fight wearing me down. My opponent also seemed slower as [FromFrom.GetSheHe] took up a guarded stance.;;;;;;;;;;;;;x
+hde_feast.203.a;This fight must end soon.;;;;;;;;;;;;;x
 # Aggressor wearily advances (ROOT = Loser, FROM = Winner)
-hde_feast.204.desc;I advanced towards [From.GetBestName] with my blade raised and ready, watching [From.GetHerHim] for any sign of weakness. [From.GetSheHeCap] responded by taking a defensive posture and waiting for me.;;;;;;;;;;;;;x
-hde_feast.204.a;I will surely be victorious.;;;;;;;;;;;;;x
+hde_feast.204.desc;I moved towards [From.GetBestName] again, eager to bring our fight to an end. My movements were slower this time, the exertion of the fight wearing me down. My opponent also seemed slower as [From.GetSheHe] took up a guarded stance.;;;;;;;;;;;;;x
+hde_feast.204.a;This fight must end soon.;;;;;;;;;;;;;x
 # Defender wearily adopts defensive posture (Sent to Winner or Loser)
-hde_feast.205.desc;[From.GetBestName] looked eager for battle as [From.GetSheHe] approached me, [From.GetHerHis] weapon ready to strike. I adopted a guarded stance and prepared myself for the inevitable attack.;;;;;;;;;;;;;x
-hde_feast.205.a;Overconfidence is surely [From.GetHerHis] weakness.;;;;;;;;;;;;;x
+hde_feast.205.desc;Though we both moved more slowly this time, [From.GetBestName] still found the energy to raise [From.GetHerHis] weapon and advance upon me. I readied myself and willed my tired arms to hold out against the coming assault.;;;;;;;;;;;;;x
+hde_feast.205.a;I still have the advantage, I think.;;;;;;;;;;;;;x
 # Round 3
 # Aggressor advances, exhausted (ROOT = Winner, FROMFROM = Loser)
-hde_feast.206.desc;I advanced towards [FromFrom.GetBestName] with my blade raised and ready, watching [FromFrom.GetHerHim] for any sign of weakness. [FromFrom.GetSheHeCap] responded by taking a defensive posture and waiting for me.;;;;;;;;;;;;;x
-hde_feast.206.a;I will surely be victorious.;;;;;;;;;;;;;x
+hde_feast.206.desc;I could no longer hide my exhaustion. Every movement was a struggle, but I mustered enough strength to go at [FromFrom.GetBestName] again. Surely [FromFrom.GetSheHe] was feeling no better than I? Still, [FromFrom.GetSheHe] found the energy to prepare [FromFrom.GetHerselfHimself] for my assault.;;;;;;;;;;;;;x
+hde_feast.206.a;I don't know if I can go another round.;;;;;;;;;;;;;x
 # Aggressor advances, exhausted (ROOT = Loser, FROM = Winner)
-hde_feast.207.desc;I advanced towards [From.GetBestName] with my blade raised and ready, watching [From.GetHerHim] for any sign of weakness. [From.GetSheHeCap] responded by taking a defensive posture and waiting for me.;;;;;;;;;;;;;x
-hde_feast.207.a;I will surely be victorious.;;;;;;;;;;;;;x
+hde_feast.207.desc;I could no longer hide my exhaustion. Every movement was a struggle, but I mustered enough strength to go at [From.GetBestName] again. Surely [From.GetSheHe] was feeling no better than I? Still, [From.GetSheHe] found the energy to prepare [From.GetHerselfHimself] for my assault.;;;;;;;;;;;;;x
+hde_feast.207.a;I don't know if I can go another round.;;;;;;;;;;;;;x
 # Defender adopts defensive posture, almost exhausted (Sent to Winner or Loser)
-hde_feast.208.desc;[From.GetBestName] looked eager for battle as [From.GetSheHe] approached me, [From.GetHerHis] weapon ready to strike. I adopted a guarded stance and prepared myself for the inevitable attack.;;;;;;;;;;;;;x
-hde_feast.208.a;Overconfidence is surely [From.GetHerHis] weakness.;;;;;;;;;;;;;x
+hde_feast.208.desc;With exhaustion nagging at us both and our movements sluggish, [From.GetBestName] and I prepared to tangle again. [From.GetSheHe] came at me, aggressive despite everything. I mustered whatever strength I had left, ready to defend myself to the very end.;;;;;;;;;;;;;x
+hde_feast.208.a;Can I hold out again? I must.;;;;;;;;;;;;;x
 ### Combat Flavor;;;;;;;;;;;;;;x
 ## Chain 1
 # Aggressor thinks he sees an opening (ROOT = Winner, FROMFROM = Loser)
@@ -177,6 +177,7 @@ hde_feast.703.desc;By the time I arrived, the duel was already over and [From.Ge
 # Aggressor sees Defender across the field (ROOT = Winner, Opponent = FROMFROM)
 # Aggressor sees Defender across the field (ROOT = Loser, Opponent = FROM)
 # These can share localization due to their unique nature (no dynamic localization)
+# BUG!! Referencing capital breaks when you end up fighting a rebel
 hde_battle.100.desc;Fighting across the field, you see an enemy soldier cut off from the others. While you can't tell who, it's clear that they must be a highborn noble.;Alors que vous vous battez sur le champ de bataille, vous apercevez un soldat ennemi s'extirper des rangs. Si vous n'arrivez pas à voir de qui il s'agit, vous êtes par contre sûr qu'il s'agit d'un noble de haute naissance.;;;Durante la batalla, ves a un soldado enemigo separado del resto. Aunque no sabes quién pueda ser, está claro que es de sangre noble.;;;;;;;;;x
 hde_battle.100.a;Charge!;A l'assaut !;;;¡A la carga!;;;;;;;;;x
 # Defender fights or not! (Sent to Winner or Loser, Opponent = FROM)
