@@ -10,8 +10,8 @@ namespace = hde_core
 ## Duel Flavor
 # flag_duel_battlefield
 # flag_duel_feast
+# flag_duel_regent
 # flag_duel_tourney (eventually)
-# flag_duel_regent (eventually)
 ## Output flags
 # flag_duel_spared_opponent
 # flag_duel_wounded_opponent
@@ -1382,6 +1382,7 @@ character_event = {
 			# Duel Flavor
 			clr_character_flag = flag_duel_battlefield
 			clr_character_flag = flag_duel_feast
+			clr_character_flag = flag_duel_regent
 			# Add new Duel Type or Flavor flags here
 		}
 		FROM = {
@@ -1407,6 +1408,7 @@ character_event = {
 			# Duel Flavor
 			clr_character_flag = flag_duel_battlefield
 			clr_character_flag = flag_duel_feast
+			clr_character_flag = flag_duel_regent
 			# Add new Duel Type or Flavor flags here
 		}
 		# Variable
@@ -1431,6 +1433,7 @@ character_event = {
 		# Duel Flavor
 		clr_character_flag = flag_duel_battlefield
 		clr_character_flag = flag_duel_feast
+		clr_character_flag = flag_duel_regent
 		# Add new Duel Type or Flavor flags here
 	}
 	

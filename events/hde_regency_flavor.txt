@@ -1,135 +1,97 @@
-namespace = hde_feast
+namespace = hde_regent
 
 #####################
 ### SETUP
 ### 0-99 reserved
-# This event is called from the event 72030 and hijacks the event chain
-# I believe the craven stuff in this is possibly too harsh?
-#Duel: Accept or Decline
+# These events are called from events 61215 and 61216 and hijack the chains
+## Regent informed courtier has challenged him to duel over regency.
 character_event = {
-	id = hde_feast.0
-	desc = "EVTDESC72031"
-	picture = GFX_evt_melee
+	id = hde_regent.0
+	desc = EVTDESC61221
+	picture = GFX_evt_shadowy_cabal
+	
 	is_triggered_only = yes
-
-	option = {
-		name = EVTOPTA72031 #Accept
-		ai_chance = {
-			factor = 100
-			modifier = {
-				factor = 2
-				trait = poor_warrior
-			}
-			modifier = {
-				factor = 3
-				trait = trained_warrior
-			}
-			modifier = {
-				factor = 4
-				trait = skilled_warrior
-			}
-			modifier = {
-				factor = 5
-				trait = master_warrior
-			}
-			modifier = {
-				factor = 5
-				trait = duelist
-			}
-			modifier = {
-				factor = 2
-				trait = brave
-			}
-			modifier = {
-				factor = 2
-				trait = proud
-			}
-			modifier = {
-				factor = 1.5
-				trait = wroth
-			}
-			modifier = {
-				factor = 1.5
-				trait = strong
-			}
+	
+	option = { # Accept
+		name = EVTOPTA61221
+		ai_chance = { factor = 80 }
+		FROM = {
+			# character_event = { id = 61223 tooltip = EVTTOOLTIP61223 }
+			set_character_flag = duelist_courtier
 		}
+		set_character_flag = duelist_courtier
 
 		# Set Duel Type
-		set_character_flag = flag_duel_feast
-		FROM = { set_character_flag = flag_duel_feast }
+		set_character_flag = flag_duel_regent
+		FROM = { set_character_flag = flag_duel_regent }
+		# Set Options
+		set_character_flag = flag_duel_to_the_death
+		FROM = { set_character_flag = flag_duel_to_the_death }
+		# Start this thing!
+		FROM = { character_event = { id = hde_core.0 } }
+	}
+	option = { # Refuse
+		name = EVTOPTB61221
+		ai_chance = { factor = 0 }
+		prestige = -60
+		liege = {
+			any_courtier = {
+				opinion = {
+					who = ROOT
+					modifier = opinion_coward
+					years = 1
+				}
+			}
+		}
+		hidden_tooltip = {
+			FROM = {
+				character_event = {	id = 61245 }
+			}
+		}
+	}
+	option = { # Surrender regency
+		name = EVTOPTC61221
+		ai_chance = { factor = 20 }
+		prestige = -20
+		FROM = { give_minor_title = title_regent }
+		hidden_tooltip = {
+			FROM = {
+				character_event = {	id = 61246 }
+			}
+		}
+	}
+}
+## Courtier informed Regent challenges to duel.	
+character_event = {
+	id = hde_regent.1
+	desc = EVTDESC61222
+	picture = GFX_evt_shadowy_cabal
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = EVTOPTA61222
+		ai_chance = { factor = 100 }
+		set_character_flag = duelist_courtier
+		liege = {
+			random_courtier = {
+				limit = { has_minor_title = title_regent }
+				set_character_flag = duelist_courtier
+			}
+		}
+		# Set Duel Type
+		set_character_flag = flag_duel_regent
+		FROM = { set_character_flag = flag_duel_regent }
+		# Set Options
+		set_character_flag = flag_duel_to_the_death
+		FROM = { set_character_flag = flag_duel_to_the_death }
 		# Start this thing!
 		FROM = { character_event = { id = hde_core.0 } }
 	}
 	option = {
-		name = EVTOPTB72031 #Decline
-		ai_chance = {
-			factor = 100
-			modifier = {
-				factor = 2
-				FROM = { trait = poor_warrior }
-			}
-			modifier = {
-				factor = 3
-				FROM = { trait = trained_warrior }
-			}
-			modifier = {
-				factor = 4
-				FROM = { trait = skilled_warrior }
-			}
-			modifier = {
-				factor = 5
-				FROM = { trait = master_warrior }
-			}
-			modifier = {
-				factor = 5
-				FROM = { trait = duelist }
-			}
-			modifier = {
-				factor = 2
-				FROM = { trait = strong }
-			}
-			modifier = {
-				factor = 2
-				trait = craven
-			}
-			modifier = {
-				factor = 2
-				trait = paranoid
-			}
-			modifier = {
-				factor = 2
-				trait = weak
-			}
-			modifier = {
-				factor = 2
-				trait = dwarf
-			}
-			modifier = {
-				factor = 2
-				trait = hunchback
-			}
-			modifier = {
-				factor = 2
-				trait = leper
-			}
-			modifier = {
-				factor = 2
-				trait = wounded
-			}
-			modifier = {
-				factor = 4
-				trait = maimed
-			}
-		}
-		
-		prestige = -10
-		if = {
-			limit = { NOT = { trait = craven } }
-			random = {
-				chance = 25
-				add_trait = craven
-			}
-		}
+		name = EVTOPTB61222
+		ai_chance = { factor = 0 }
+		prestige = -40
 	}
 }
 

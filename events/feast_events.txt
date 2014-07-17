@@ -2062,7 +2062,7 @@ character_event = {
 					}
 				}
 				character_event = {
-					id = hde_vanilla.0 # HDE: Hijack the event chain
+					id = hde_feast.0 # HDE: Hijack the event chain
 					tooltip = "EVTTOOLTIP72031"
 				}
 			}
