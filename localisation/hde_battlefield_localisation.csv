@@ -1,0 +1,150 @@
+#CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+######################################5_EVENTS;;;;;;;;;;;;;;x
+############ Battlefield Flavor;;;;;;;;;;;;;;x
+# All the event localization here needs to be reworked to reflect the new system
+### Initial Flavor;;;;;;;;;;;;;;x
+# These events always start with meeting on the battlefield and end with either charge/chicken
+## Chain 1
+# Aggressor sees Defender across the field (ROOT = Winner, Opponent = FROMFROM)
+# Aggressor sees Defender across the field (ROOT = Loser, Opponent = FROM)
+# These can share localization due to their unique nature (no dynamic localization)
+# BUG!! Referencing capital breaks when you end up fighting a rebel
+hde_battle.100.desc;Fighting across the field, you see an enemy soldier cut off from the others. While you can't tell who, it's clear that they must be a highborn noble.;Alors que vous vous battez sur le champ de bataille, vous apercevez un soldat ennemi s'extirper des rangs. Si vous n'arrivez pas à voir de qui il s'agit, vous êtes par contre sûr qu'il s'agit d'un noble de haute naissance.;;;Durante la batalla, ves a un soldado enemigo separado del resto. Aunque no sabes quién pueda ser, está claro que es de sangre noble.;;;;;;;;;x
+hde_battle.100.a;Charge!;A l'assaut !;;;¡A la carga!;;;;;;;;;x
+# Defender fights or not! (Sent to Winner or Loser, Opponent = FROM)
+hde_battle.102.desc;You were separated from your men in the chaos of battle, and now find yourself in the midst of war. As you scan the field and try to rejoin your forces, you see [From.GetBestName] break through the enemy ranks and charge you!;Dans le chaos des combats, vous avez été séparé de vos hommes et vous trouvez désormais en plein milieu de la bataille. Alors que vous tentez de rejoindre vos forces, vous apercevez [From.GetBestName] qui se fraye un chemin à travers les rangs ennemis avant de vous charger !;;;Fuiste separado de tus hombres en el caos de la batalla, y ahora te encuentras en el centro de la batalla. ¡Mientras buscas la forma de reunirte con tus hombres, ves a [From.GetBestName] abrirse paso entre el enemigo y cargar contra ti!;;;;;;;;;x
+hde_battle.102.a;Prepare to die, [From.GetOnlyDynastyName] scum!;Prépare toi à mourir, pourriture de [From.GetOnlyDynastyName]!;;;¡Prepárate a morir, escoria [From.GetOnlyDynastyName]!;;;;;;;;;x
+hde_battle.102.b;I need to get out of here!;Je dois foutre le camp d'ici !;;;¡Tengo que salir de aquí!;;;;;;;;;x
+# Aggressor fights or not! (Sent to Winner or Loser, Opponent = FROM)
+hde_battle.103.tt;reacts;réagit;;;reacciona;;;;;;;;;x
+hde_battle.103.desc;As you get closer, you realize the enemy soldier is [From.GetBestName].;En vous rapprochant, vous réalisez que le soldat ennemi n'est autre que [From.GetBestName].;;;Al acercarte, te das cuenta de que el soldado enemigo es [From.GetBestName].;;;;;;;;;x
+hde_battle.103.a;Prepare to die, [From.GetOnlyDynastyName] scum!;Prépare toi à mourir, pourriture de [From.GetOnlyDynastyName]!;;;¡Prepárate a morir, escoria [From.GetOnlyDynastyName]!;;;;;;;;;x
+hde_battle.103.b;I need to get out of here!;Je dois foutre le camp d'ici !;;;¡Tengo que salir de aquí!;;;;;;;;;x
+# Defender chickens out
+hde_battle.104.desc;As you get closer, you realize the enemy soldier is [From.GetBestName]. Seeing you charge across the field toward [From.GetHerHim], [From.GetSheHe] turns and flees. You pursue, but lose track of [From.GetHerHim] in the chaos.;En vous rapprochant, vous réalisez que le soldat est ennemi n'est autre que [From.GetBestName]. Remarquant votre charge à travers le champs de bataille pour l'affronter, [From.GetSheHe] se retourne et fuit. Vous le(a) poursuivez, mais perdez sa trace dans le chaos des combats. ;;;Al acercarte, te das cuenta de que el soldado enemigo es [From.GetBestName]. Al verte avanzar de ese modo, se da la vuelta y huye. Le persigues, pero pierdes el rastro en el caos.;;;;;;;;;x
+hde_battle.104.a;That's right, coward, run back to [From.Capital.GetName]!;C'est ça, couard ! Retourne à [From.Capital.GetName] !;;;¡Está bien, cobarde! ¡Corre hasta [From.Capital.GetName]!;;;;;;;;;x
+# Aggressor chickens out
+hde_battle.105.desc;You turn to face [From.GetTitle] [From.GetFirstName]… and [From.GetSheHe] breaks [From.GetHerHis] charge and flees. You pursue, but lose track of [From.GetHerHim] in the chaos.;Vous vous retournez pour faire face à [From.GetTitle] [From.GetFirstName] lorsqu' [From.GetSheHe] stoppe sa charge et s'enfuit. Vous le(a) poursuivez, mais perdez sa trace dans le chaos des combats.;;;Te giras para enfrentarte a [From.GetTitle] [From.GetFirstName]... cuando [From.GetSheHe] detiene su carga y huye. Le persigues, pero pierdes el rastro en el caos.;;;;;;;;;x
+hde_battle.105.a;That's right, coward, run back to [From.Capital.GetName]!;C'est ça, couard ! Retourne à [From.Capital.GetName] !;;;¡Está bien, cobarde! ¡Corre hasta [From.Capital.GetName]!;;;;;;;;;x
+### Sizing Up Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Round 1
+# Aggressor circles (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.200.desc;You and [FromFrom.GetBestName] slowly circle each other, tense and focused. You scan [FromFrom.GetHerHim] for any sign of weakness, any opening in [FromFrom.GetHerHis] defense that you could possibly exploit.;Avec [FromFrom.GetBestName] vous vous tournez lentement autour, raidis et concentrés. Vous tentez de percevoir le moindre signe de faiblesse chez lui, la moindre ouverture dans sa défense que vous pourriez peut-être exploiter.;;;[FromFrom.GetBestName] y tú tanteáis lentamente al adversario, tensos y concentrados. Buscas cualquier signo de debilidad en [FromFrom.GetSheHe], cualquier apertura en su defensa que puedas aprovechar.;;;;;;;;;x
+hde_battle.200.a;One mistake is all [FromFrom.GetSheHe]'ll get…;Une erreur c'est tout ce qu'[FromFrom.GetSheHe] aura…;;;Un fallo es todo lo que conseguirá...;;;;;;;;;x
+# Aggressor circles (ROOT = Loser, Opponent = FROM)
+hde_battle.201.desc;You and [From.GetBestName] slowly circle each other, tense and focused. You scan [From.GetHerHim] for any sign of weakness, any opening in [From.GetHerHis] defense that you could possibly exploit.;Avec [From.GetBestName] vous vous tournez lentement autour, raidis et concentrés. Vous tentez de percevoir le moindre signe de faiblesse chez lui, la moindre ouverture dans sa défense que vous pourriez peut-être exploiter.;;;[From.GetBestName] y tú tanteáis lentamente al adversario, tensos y concentrados. Buscas cualquier signo de debilidad en [From.GetSheHe], cualquier apertura en su defensa que puedas aprovechar.;;;;;;;;;x
+hde_battle.201.a;One mistake is all [From.GetSheHe]'ll get…;Une erreur c'est tout ce qu'[From.GetSheHe] aura…;;;Un fallo es todo lo que conseguirá...;;;;;;;;;x
+# Defender circles
+hde_battle.202.desc;You and [From.GetBestName] slowly circle each other, tense and focused. You scan [From.GetHerHim] for any sign of weakness, any opening in [From.GetHerHis] defense that you could possibly exploit.;Avec [From.GetBestName] vous vous tournez lentement autour, raidis et concentrés. Vous tentez de percevoir le moindre signe de faiblesse chez lui, la moindre ouverture dans sa défense que vous pourriez peut-être exploiter.;;;[From.GetBestName] y tú tanteáis lentamente al adversario, tensos y concentrados. Buscas cualquier signo de debilidad en [From.GetSheHe], cualquier apertura en su defensa que puedas aprovechar.;;;;;;;;;x
+hde_battle.202.a;One mistake is all [From.GetSheHe]'ll get…;Une erreur c'est tout ce qu'[From.GetSheHe] aura…;;;Un fallo es todo lo que conseguirá...;;;;;;;;;x
+# Round 2
+# Aggressor wearily begins fight again (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.203.desc;You and [FromFrom.GetBestName] recover from the furious fight, and are ready for another round. You scan [FromFrom.GetHerHim] to see if [FromFrom.GetSheHe] is getting tired yet.;You and [FromFrom.GetBestName] recover from the furious fight, and are ready for another round. You scan [FromFrom.GetHerHim] to see if [FromFrom.GetSheHe] is getting tired yet.;;;[FromFrom.GetBestName] y tú os recuperáis del furioso combate, listos para el siguiente asalto. Le miras tratando de descubrir si se está cansando ya.;;;;;;;;;x
+hde_battle.203.a;Soon [From.GetSheHe]'ll make a mistake.;;;;;;;;;;;;;x
+# Aggressor wearily begins fight again (ROOT = Loser, Opponent = FROM)
+hde_battle.204.desc;You and [From.GetBestName] recover from the furious fight, and are ready for another round. You scan [From.GetHerHim] to see if [From.GetSheHe] is getting tired yet.;You and [From.GetBestName] recover from the furious fight, and are ready for another round. You scan [From.GetHerHim] to see if [From.GetSheHe] is getting tired yet.;;;[From.GetBestName] y tú os recuperáis del furioso combate, listos para el siguiente asalto. Le miras tratando de descubrir si se está cansando ya.;;;;;;;;;x
+hde_battle.204.a;Soon [From.GetSheHe]'ll make a mistake.;;;;;;;;;;;;;x
+# Defender wearily begins fight again
+hde_battle.205.desc;You and [From.GetBestName] recover from the furious fight, and are ready for another round. You scan [From.GetHerHim] to see if [From.GetSheHe] is getting tired yet.;You and [From.GetBestName] recover from the furious fight, and are ready for another round. You scan [From.GetHerHim] to see if [From.GetSheHe] is getting tired yet.;;;[From.GetBestName] y tú os recuperáis del furioso combate, listos para el siguiente asalto. Le miras tratando de descubrir si se está cansando ya.;;;;;;;;;x
+hde_battle.205.a;Soon [From.GetSheHe]'ll make a mistake.;;;;;;;;;;;;;x
+# Round 3
+# Aggressor getting exhausted (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.206.desc;You and [FromFrom.GetBestName] are getting ready to cross arms yet another time. Surely [FromFrom.GetSheHe] must be nearly beaten now?;You and [FromFrom.GetBestName] are getting ready to cross arms yet another time. Surely [FromFrom.GetSheHe] must be nearly beaten now?;;;[FromFrom.GetBestName] y tú os preparáis para cruzar las armas de nuevo. Está casi vencido, ¿verdad?;;;;;;;;;x
+hde_battle.206.a;How much longer can [From.GetSheHe] stand against me?;;;;;;;;;;;;;x
+# Aggressor getting exhausted (ROOT = Loser, Opponent = FROM)
+hde_battle.207.desc;You and [From.GetBestName] are getting ready to cross arms yet another time. Surely [From.GetSheHe] must be nearly beaten now?;You and [From.GetBestName] are getting ready to cross arms yet another time. Surely [From.GetSheHe] must be nearly beaten now?;;;[From.GetBestName] y tú os preparáis para cruzar las armas de nuevo. Está casi vencido, ¿verdad?;;;;;;;;;x
+hde_battle.207.a;How much longer can [From.GetSheHe] stand against me?;;;;;;;;;;;;;x
+# Defender getting exhausted
+hde_battle.208.desc;You and [From.GetBestName] are getting ready to cross arms yet another time. Surely [From.GetSheHe] must be nearly beaten now?;You and [From.GetBestName] are getting ready to cross arms yet another time. Surely [From.GetSheHe] must be nearly beaten now?;;;[From.GetBestName] y tú os preparáis para cruzar las armas de nuevo. Está casi vencido, ¿verdad?;;;;;;;;;x
+hde_battle.208.a;How much longer can [From.GetSheHe] stand against me?;;;;;;;;;;;;;x
+### Combat Flavor;;;;;;;;;;;;;;x
+# The localization here needs to be reworked a bit to reflect the new structure
+## Chain 1
+# Aggressor Attacks! (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.300.desc;You see a weak spot, a vulnerability. It's not much, but it's all you need.;Vous apercevez une minuscule faille. Ce n'est pas grand-chose, mais c'est une erreur que [FromFrom.GetBestName] va payer cher…;;;Ves un punto débil. No es mucho, pero es todo lo que necesitas.;;;;;;;;;x
+hde_battle.300.a;Strike!;Prends ça, ordure !;;;¡Golpea!;;;;;;;;;x
+# Aggressor Attacks! (ROOT = Loser, Opponent = FROM)
+hde_battle.301.desc;You see a weak spot, a vulnerability. It's not much, but it's all you need.;Vous apercevez une minuscule faille. Ce n'est pas grand-chose, mais c'est une erreur que [From.GetBestName] va payer cher…;;;Ves un punto débil. No es mucho, pero es todo lo que necesitas.;;;;;;;;;x
+hde_battle.301.a;Strike!;Prends ça, ordure !;;;¡Golpea!;;;;;;;;;x
+# Defender fails save roll (Sent to Loser)
+hde_battle.302.desc;Before you have a chance to spot an opening, [From.GetBestName] launches a furious, frenzied attack!;Avant d'avoir eu la chance de trouver une ouverture, [From.GetBestName] se rue sur vous !;;;Antes de que puedas detectar una oportunidad, [From.GetBestName] lanza un furioso y frenético ataque.;;;;;;;;;x
+hde_battle.302.a;Defend yourself!;Vous défendre !;;;¡Defiéndete!;;;;;;;;;x
+# Defender wins save roll (Sent to Winner)
+hde_battle.303.desc;Before you have a chance to spot an opening, [From.GetBestName] launches a furious, frenzied attack!;Avant d'avoir eu la chance de trouver une ouverture, [From.GetBestName] se rue sur vous !;;;Antes de que puedas detectar una oportunidad, [From.GetBestName] lanza un furioso y frenético ataque.;;;;;;;;;x
+hde_battle.303.a;Defend yourself!;Vous défendre !;;;¡Defiéndete!;;;;;;;;;x
+### Subdued Outcomes Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Aggressor subdues Defender! (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.400.desc;You easily break through [FromFrom.GetBestName]'s guard and knock [FromFrom.GetHerHim] to the ground. [FromFrom.GetSheHeCap] lies sprawled at your feet, completely at your mercy.;Vous brisez facilement la garde de [FromFrom.GetBestName] et le mettez à terre. [FromFrom.GetSheHeCap] est à vos pieds, complètement à votre merci.;;;Consigues fácilmente atravesar la guardia de [FromFrom.GetBestName] y abatirle. [FromFrom.GetSheHeCap] yace despatarrado a tus pies, completamente a tu merced.;;;;;;;;;x
+hde_battle.400.a;It's all over now!;Tout est fini maintenant !;;;¡Todo ha terminado!;;;;;;;;;x
+# Defender subdues Aggressor! (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.401.desc;Despite the fury of [FromFrom.GetBestName]'s attacks, you manage to parry each one and, when an opening presents itself, knock [FromFrom.GetHerHim] to the ground. Now [FromFrom.GetSheHe] lies sprawled at your feet, wholly at your mercy.;;;;;;;;;;;;;x
+hde_battle.401.a;It's all over now!;Tout est fini maintenant !;;;¡Todo ha terminado!;;;;;;;;;x
+# Defender gets overwhelmed! (FROM = Winner)
+hde_battle.402.desc;[From.GetBestName] overwhelms your defense and, with a mighty blow, sends you sprawling to the ground. You look up at [From.GetHerHim] towering above you, ready to deliver the finishing blow…;[From.GetBestName] déborde votre défense et, d'un coup puissant, vous projette à terre. Vous levez les yeux vers lui. Sa silhouette imposante se dresse au dessus de vous, prête à vous donner le coup de grâce…;;;[From.GetBestName] arrolla tu defensa y, con un poderoso golpe, te envía despatarrado al suelo. Ves cómo se alza imponente sobre ti, listo para asestar el golpe final...;;;;;;;;;x
+hde_battle.402.a;Yield! Yield!;Je me rends! Je me rends!;;;¡Me rindo! ¡Me rindo!;;;;;;;;;x
+hde_battle.402.b;I'm not finished yet!;Je n'ai pas encore dit mon dernier mot!;;;¡Aún no he acabado!;;;;;;;;;x
+# Aggressor gets overwhelmed! (FROM = Winner)
+hde_battle.403.desc;[From.GetBestName] skillfully counters your attacks and, with a mighty blow, sends you sprawling to the ground. You look up at [From.GetHerHim] standing above you, ready to deliver the final blow…;;;;;;;;;;;;;x
+hde_battle.403.a;Yield! Yield!;Je me rends! Je me rends!;;;¡Me rindo! ¡Me rindo!;;;;;;;;;x
+hde_battle.403.b;I'm not finished yet!;Je n'ai pas encore dit mon dernier mot!;;;¡Aún no he acabado!;;;;;;;;;x
+# Winner considers Loser's yield (Sent from Loser to Winner)
+hde_battle.404.desc;[From.GetBestName] drops [From.GetHerHis] weapon and throws up [From.GetHerHis] hands. "Yield! I yield!";[From.GetBestName] lâche son arme et lève ses mains. "Je me rends! Je me rends!";;;[From.GetBestName] arroja su arma y levanta sus brazos. “¡Me rindo! ¡Me rindo!”;;;;;;;;;x
+hde_battle.404.a;I accept. Back on your feet..;J'accepte. Relève toi…;;;De acuerdo. Puedes levantarte.;;;;;;;;;x
+hde_battle.404.b;No mercy for the vanquished.;Pas de pitié pour les vaincus.;;;Sin piedad para los vencidos.;;;;;;;;;x
+# Loser informed of being spared (FROM = Winner)
+hde_battle.405.desc;[From.GetFirstName] lowers the point of [From.GetHerHis] weapon and extends a hand. "I accept," [From.GetSheHe] says, "back on your feet.";[From.GetFirstName] abaisse son arme et tend sa main. "J'accepte", dit-[From.GetSheHe], "Relève toi". ;;;[From.GetFirstName] baja el arma y te ofrece la mano. “Acepto -dice.- Póngase en pie”.;;;;;;;;;x
+hde_battle.405.a;Your battle, fairly won.;Votre bataille, remportée honorablement.;;;Has vencido justamente.;;;;;;;;;x
+# Loser informed of own death (FROM = Winner)
+hde_battle.406.desc;[From.GetFirstName] looks down at you without a hint of emotion on [From.GetHerHis] face.\n"No."\nAll goes dark.;[From.GetFirstName] vous regarde de haut sans la moindre émotion sur son visage.\n"La mort pour seule récompense !"\nTout devient noir.;;;[From.GetFirstName] te mira sin emoción en su cara.\n“No.” \nDe repente, todo se vuelve oscuro.;;;;;;;;;x
+hde_battle.406.a;Aaargh!;Aaargh!;;;¡Aaargh!;;;;;;;;;x
+# Winner injures subdued, unyielding Loser (FROM = Loser)
+hde_battle.407.desc;[From.GetBestName] is beaten to the ground, unable to withstand your attack. You have wounded [From.GetHerHim], but [From.GetBestName] stands back up, determined to fight on.;[From.GetBestName] est au sol, incapable de résister à votre attaque. Vous l'avez blessé, mais [From.GetBestName] se relève, déterminé à combattre.;;;[From.GetBestName] es derribado al suelo, incapaz de hacer frente a tu ataque. Le has herido, pero se vuelve a levantar, dispuesto a continuar.;;;;;;;;;x
+hde_battle.407.a;You should have yielded when you had the chance…;Vous auriez du vous rendre quand vous en aviez la possibilité…;;;Rendirse no fue una buena idea...;;;;;;;;;x
+# Wounded Outcomes Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Aggressor injures Defender! (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.500.desc;You strike, but [FromFrom.GetBestName] rolls to the side, wounded but still very much alive. [FromFrom.GetSheHeCap] rises to [FromFrom.GetHerHis] feet and readies [FromFrom.GetHerHis] weapon once again.;Vous frappez, mais [FromFrom.GetBestName] roule sur le côté, blessé mais toujours bien vivant. [FromFrom.GetSheHeCap] se remet sur ses jambes et empoigne à nouveau son arme.;;;Golpeas, pero [FromFrom.GetBestName] rueda por el suelo evitando parte del golpe. Se pone en pie con el arma lista de nuevo.;;;;;;;;;x
+hde_battle.500.a;Why won't you just DIE?!;Mais vas-tu CREVER ?!;;;¿Por qué no te mueres de una vez?;;;;;;;;;x
+# Eventually should be different options here to reflect all outcomes
+# Defender injures Aggressor! (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.501.desc;[FromFrom.GetBestName]'s last attack narrowly misses, leaving [FromFrom.GetHerHim] off-balance. You strike, but [FromFrom.GetBestName] rolls to the side, wounded though still quite alive. [FromFrom.GetSheHeCap] staggers to [FromFrom.GetHerHis] feet and readies [FromFrom.GetHerHis] weapon once again.;;;;;;;;;;;;;x
+hde_battle.501.a;Why won't you just DIE?!;Mais vas-tu CREVER ?!;;;¿Por qué no te mueres de una vez?;;;;;;;;;x
+# Eventually should be different options here to reflect all outcomes
+# Loser is injured (FROM = Winner)
+hde_battle.502.desc;[From.GetBestName] strikes, but you roll to dodge just in time, taking no more than a flesh wound. You force yourself back to your feet and hold your weapon ready.;[From.GetBestName] frappe, mais vous roulez juste à temps pour esquiver le coup et ne recevez qu'une très légère blessure. Vous vous relevez et empoignez votre arme avec force.;;;[From.GetBestName] golpea, pero ruedas por el suelo justo a tiempo, esquivando el golpe salvo por un arañazo. Te obligas a ponerte en pie con el arma lista.;;;;;;;;;x
+hde_battle.502.a;You won't get another chance!;Tu n'auras pas de deuxième chance!;;;¡No habrá otra oportunidad!;;;;;;;;;x
+hde_battle.502.b;Yield! Yield!;Je me rends! Je me rends!;;;¡Me rindo! ¡Me rindo!;;;;;;;;;x
+# Loser is maimed (FROM = Winner)
+hde_battle.503.desc;Slowed by your injury, you still manage to dodge away from [From.GetBestName]'s attack just in time to avoid a deathblow, but not quickly enough to escape further injury. You force yourself back to your feet and hold your weapon in shaking hands. (To continue this battle would likely be suicide. Which I should mention when I rewrite this.);;;;;;;;;;;;;x
+hde_battle.503.a;I will not surrender to the likes of you!;;;;;;;;;;;;;x
+hde_battle.503.b;Yield! Yield! I am through!;;;;;;;;;;;;;x
+# Loser is mortally wounded, fight is over (FROM = Winner)
+hde_battle.504.desc;REPLACE WITH APPROPRIATE STUFF;;;;;;;;;;;;;x
+hde_battle.504.a;REPLACE WITH APPROPRIATE STUFF;;;;;;;;;;;;;x
+# Killed Outcomes Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Aggressor kills Defender! (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.600.desc;[FromFrom.GetBestName] tries to fight back, but you force your way through, easily overpowering [FromFrom.GetHerHis] pathetic defense. You strike for [FromFrom.GetHerHis] heart with all your might!;[FromFrom.GetBestName] tente de résister, mais vous imposez votre rythme, passant facilement à travers sa pathétique défense. De toute votre force, vous frappez droit vers son coeur !;;;[FromFrom.GetBestName] intenta contraatacar, pero encuentras un hueco, y fácilmente sobrepasas su patética defensa. ¡Golpeas al corazón con toda tu fuerza!;;;;;;;;;x
+hde_battle.600.a;DIE!;MEURS !;;;¡MUERE!;;;;;;;;;x
+# Defender kills Aggressor! (ROOT = Winner, Opponent = FROMFROM)
+hde_battle.601.desc;[FromFrom.GetBestName] tries to overcome your defenses, but you easily turn aside each of [FromFrom.GetHerHis] increasingly feeble attacks. Frustrated, [From.GetSheHe] momentarily lowers [FromFrom.GetHerHis] weapon, and you strike at [FromFrom.GetHerHis] chest with everything you have!;;;;;;;;;;;;;x
+hde_battle.601.a;DIE!;MEURS !;;;¡MUERE!;;;;;;;;;x
+# Loser is killed (FROM = Winner)
+hde_battle.602.desc;You try to hold [From.GetBestName] back, but [From.GetHerHis] onslaught is unstoppable! You only slip once, but once is all [From.GetSheHe] needs...;Vous essayez de repousser [From.GetBestName], mais son attaque est imparable ! Vous êtes déstabilisé pendant une seconde, et une seconde c'est tout ce dont [From.GetSheHe] a besoin...;;;¡Intentas mantener a [From.GetBestName] a raya, pero su hostigamiento es imparable! Sólo te descuidas una vez, pero un fallo es todo lo que necesita...;;;;;;;;;x
+hde_battle.602.a;Aaaaargh!;Aaaaargh!;;;¡Aaaaargh!;;;;;;;;;x
+# Output Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Winner killed Loser (Loser = FROMFROM)
+hde_battle.700.desc;[FromFrom.GetBestName] crumples to the ground, lifeless. You wipe [FromFrom.GetHerHis] blood from your weapon. The deed is done. [FromFrom.GetSheHeCap] is dead, and all around [FromFrom.GetHerHis] soldiers look on and begin to lose hope.;;;;;;;;;;;;;x
+hde_battle.700.a;Now's our chance!;C'est notre chance!;;;¡Ahora es nuestra oportunidad!;;;;;;;;;x
+# Winner spared Loser (Loser = FROMFROM)
+hde_battle.701.desc;[FromFrom.GetBestName] lies helpless at your feet, [FromFrom.GetHerHis] weapon discarded and yours at [FromFrom.GetHerHis] throat.;[FromFrom.GetBestName] est étendu impuissant à vos pieds, son arme brisée et la votre à sa gorge. ;;;[FromFrom.GetBestName] yace impotente a tus pies, su arma rendida y la tuya en su garganta.;;;;;;;;;x
+hde_battle.701.a;Come with me, and walk fast. It's a long way to [Root.Capital.GetName].;Venez avec moi, et marchez rapidement. Le chemin est long jusqu'à [Root.Capital.GetName].;;;Ven conmigo y camina raudo. Hay un largo camino hasta [Root.Capital.GetName].;;;;;;;;;x
+# Loser is imprisoned (Winner = FROM)
+hde_battle.702.desc;You are defeated. [From.GetBestName] takes you prisoner.;Vous êtes défait. [From.GetBestName] vous garde prisonnier.;;;Has sido vencido. [From.GetBestName] te toma prisionero.;;;;;;;;;x
+hde_battle.702.a;I'll remember this, [From.GetOnlyDynastyName].;Je m'en souviendrai, [From.GetOnlyDynastyName].;;;Recordaré esto, [From.GetOnlyDynastyName].;;;;;;;;;x
+# Winner incapacitated Loser (Loser = FROMFROM)
+hde_battle.703.desc;REPLACE WITH APPROPRIATE STUFF;;;;;;;;;;;;;x
+hde_battle.703.a;REPLACE WITH APPROPRIATE STUFF;;;;;;;;;;;;;x

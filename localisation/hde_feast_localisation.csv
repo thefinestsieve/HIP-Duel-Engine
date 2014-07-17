@@ -1,0 +1,155 @@
+#CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+######################################5_EVENTS;;;;;;;;;;;;;;x
+############ Feast Flavor;;;;;;;;;;;;;;x
+# Basic pattern of flavor, to be followed by all alternatives, initial flavor probably exempt:
+# Sizing Up: Aggressor advances on Defender
+# Combat: Aggressor thinks he sees an opening, Defender either screws up or sets a trap
+### Initial Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Aggressor wants to fight (ROOT = Winner, FROMFROM = Loser)
+hde_feast.100.desc;I was prepared to do battle right there in front of [Root.Liege.GetTitledFirstName]'s guests, but [FromFrom.GetBestName] held up [FromFrom.GetHerHis] hand and suggested we move outside first.;;;;;;;;;;;;;x
+hde_feast.100.a;Very well.;;;;;;;;;;;;;x
+# Aggressor wants to fight (ROOT = Loser, FROM = Winner)
+hde_feast.101.desc;I was prepared to do battle right there in front of [Root.Liege.GetTitledFirstName]'s guests, but [From.GetBestName] held up [From.GetHerHis] hand and suggested we move outside first.;;;;;;;;;;;;;x
+hde_feast.101.a;Very well.;;;;;;;;;;;;;x
+# Defender delays (Sent to Winner or Loser)
+hde_feast.102.desc;[From.GetBestName] seemed ready to attack me immediately, but I raised my hand against it.\n\n"Surely we should not blacken [Root.Liege.GetTitledFirstName]'s hall with our spat?";;;;;;;;;;;;;x
+hde_feast.102.a;Perhaps we should move outside?;;;;;;;;;;;;;x
+# Aggressor taunts (Sent to Winner or Loser)
+hde_feast.103.desc;With several curious onlookers trailing behind us, [From.GetBestName] and I went out to the gardens near the castle. Neither of us wasted any time in drawing our swords, and my opponent took a few experimental swings.;;;;;;;;;;;;;x
+hde_feast.103.a;I have never seen such clumsy swordplay.;;;;;;;;;;;;;x
+hde_feast.103.b;Enough delays. Let us begin.;;;;;;;;;;;;;x
+# Defender responds to OPTA (Sent to Winner or Loser)
+hde_feast.104.tt;[This.GetTitledFirstName] bristles at your insult;;;;;;;;;;;;;x
+hde_feast.104.desc;With our contest relocated to the gardens outside the castle, we drew our swords, and I swung mine through the air several times as I tested its weight. [From.GetBestName] responded by saying that [From.GetSheHe]'d never seen such clumsy swordplay.;;;;;;;;;;;;;x
+hde_feast.104.a;You would have if you weren't always running away!;;;;;;;;;;;;;x
+# Defender responds to OPTB (Sent to Winner or Loser)
+hde_feast.105.desc;With our contest relocated to the gardens outside the castle, we drew our swords. I swung my own blade several times, testing its weight in my hand. [From.GetBestName] seemed impatient with my delay and urged me to begin the duel.;;;;;;;;;;;;;x
+hde_feast.105.a;I'm ready.;;;;;;;;;;;;;x
+### Sizing Up Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Round 1
+# Aggressor advances, looks for weakness (ROOT = Winner, FROMFROM = Loser)
+hde_feast.200.desc;I advanced towards [FromFrom.GetBestName] with my blade raised and ready, watching [FromFrom.GetHerHim] for any sign of weakness. [FromFrom.GetSheHeCap] responded by taking a defensive posture and waiting for me.;;;;;;;;;;;;;x
+hde_feast.200.a;I will surely be victorious.;;;;;;;;;;;;;x
+# Aggressor advances, looks for weakness (ROOT = Loser, FROM = Winner)
+hde_feast.201.desc;I advanced towards [From.GetBestName] with my blade raised and ready, watching [From.GetHerHim] for any sign of weakness. [From.GetSheHeCap] responded by taking a defensive posture and waiting for me.;;;;;;;;;;;;;x
+hde_feast.201.a;I will surely be victorious.;;;;;;;;;;;;;x
+# Defender adopts defensive posture (Sent to Winner or Loser)
+hde_feast.202.desc;[From.GetBestName] looked eager for battle as [From.GetSheHe] approached me, [From.GetHerHis] weapon ready to strike. I adopted a guarded stance and prepared myself for the inevitable attack.;;;;;;;;;;;;;x
+hde_feast.202.a;Overconfidence is surely [From.GetHerHis] weakness.;;;;;;;;;;;;;x
+# Round 2
+# Aggressor wearily advances (ROOT = Winner, FROMFROM = Loser)
+hde_feast.203.desc;I moved towards [FromFrom.GetBestName] again, eager to bring our fight to an end. My movements were slower this time, the exertion of the fight wearing me down. My opponent also seemed slower as [FromFrom.GetSheHe] took up a guarded stance.;;;;;;;;;;;;;x
+hde_feast.203.a;This fight must end soon.;;;;;;;;;;;;;x
+# Aggressor wearily advances (ROOT = Loser, FROM = Winner)
+hde_feast.204.desc;I moved towards [From.GetBestName] again, eager to bring our fight to an end. My movements were slower this time, the exertion of the fight wearing me down. My opponent also seemed slower as [From.GetSheHe] took up a guarded stance.;;;;;;;;;;;;;x
+hde_feast.204.a;This fight must end soon.;;;;;;;;;;;;;x
+# Defender wearily adopts defensive posture (Sent to Winner or Loser)
+hde_feast.205.desc;Though we both moved more slowly this time, [From.GetBestName] still found the energy to raise [From.GetHerHis] weapon and advance upon me. I readied myself and willed my tired arms to hold out against the coming assault.;;;;;;;;;;;;;x
+hde_feast.205.a;I still have the advantage, I think.;;;;;;;;;;;;;x
+# Round 3
+# Aggressor advances, exhausted (ROOT = Winner, FROMFROM = Loser)
+hde_feast.206.desc;I could no longer hide my exhaustion. Every movement was a struggle, but I mustered enough strength to go at [FromFrom.GetBestName] again. Surely [FromFrom.GetSheHe] was feeling no better than I? Still, [FromFrom.GetSheHe] found the energy to prepare [FromFrom.GetHerselfHimself] for my assault.;;;;;;;;;;;;;x
+hde_feast.206.a;I don't know if I can go another round.;;;;;;;;;;;;;x
+# Aggressor advances, exhausted (ROOT = Loser, FROM = Winner)
+hde_feast.207.desc;I could no longer hide my exhaustion. Every movement was a struggle, but I mustered enough strength to go at [From.GetBestName] again. Surely [From.GetSheHe] was feeling no better than I? Still, [From.GetSheHe] found the energy to prepare [From.GetHerselfHimself] for my assault.;;;;;;;;;;;;;x
+hde_feast.207.a;I don't know if I can go another round.;;;;;;;;;;;;;x
+# Defender adopts defensive posture, almost exhausted (Sent to Winner or Loser)
+hde_feast.208.desc;With exhaustion nagging at us both and our movements sluggish, [From.GetBestName] and I prepared to tangle again. [From.GetSheHe] came at me, aggressive despite everything. I mustered whatever strength I had left, ready to defend myself to the very end.;;;;;;;;;;;;;x
+hde_feast.208.a;Can I hold out again? I must.;;;;;;;;;;;;;x
+### Combat Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Aggressor thinks he sees an opening (ROOT = Winner, FROMFROM = Loser)
+hde_feast.300.desc;The very moment I was within range to strike, [FromFrom.GetBestName] appeared to falter. [FromFrom.GetHerHisCap] sword wavered and left [FromFrom.GetHerHim] momentarily unprotected.;;;;;;;;;;;;;x
+hde_feast.300.a;Attack!;;;;;;;;;;;;;x
+# Aggressor thinks he sees an opening (ROOT = Loser, FROM = Winner)
+hde_feast.301.desc;The very moment I was within range to strike, [FromFrom.GetBestName] appeared to falter. [FromFrom.GetHerHisCap] sword wavered and left [FromFrom.GetHerHim] momentarily unprotected.;;;;;;;;;;;;;x
+hde_feast.301.a;Attack!;;;;;;;;;;;;;x
+# Defender makes a mistake and gets attacked (Sent to Loser)
+hde_feast.302.desc;Distracted by my opponent's advance, my sword dropped for but an instant, a brief mistake, but before I could recover [From.GetBestName] launched a fearsome strike.;;;;;;;;;;;;;x
+hde_feast.302.a;Defend!;;;;;;;;;;;;;x
+# Defender pretends to leave an opening and gets attacked (Sent to Winner)
+hde_feast.303.desc;Seeing my opponent's aggressive approach, I let my sword drop for a moment in the hopes of drawing an incautious attack, and [From.GetBestName] struck at me with a powerful blow.;;;;;;;;;;;;;x
+hde_feast.303.a;Counterattack!;;;;;;;;;;;;;x
+### Subdued Outcomes Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Aggressor disarms Defender (ROOT = Winner, Opponent = FROMFROM)
+hde_feast.400.desc;[FromFrom.GetBestName] barely parried my attack, but in [FromFrom.GetHerHis] haste to defend [FromFrom.GetSheHe] let me get too close. I lashed out with the pommel of my sword, striking [FromFrom.GetHerHis] hand and knocking [FromFrom.GetHerHis] weapon to the ground. [FromFrom.GetSheHeCap] regained [FromFrom.GetHerHis] balance with the point of my blade at [FromFrom.GetHerHis] throat.;;;;;;;;;;;;;x
+hde_feast.400.a;Surrender! You've lost.;;;;;;;;;;;;;x
+# Defender disarms Aggressor (ROOT = Winner, Opponent = FROMFROM)
+hde_feast.401.desc;I easily diverted [FromFrom.GetBestName]'s foolish attack, stepped closer, and struck [From.GetHerHis] hand with the pommel of my sword. The hit knocked [From.GetHerHis] sword from [From.GetHerHis] grip and by the time [From.GetSheHe] recovered I had my own sword at [From.GetHerHis] throat.;;;;;;;;;;;;;x
+hde_feast.401.a;You've lost. Submit!;;;;;;;;;;;;;x
+# Defender gets overwhelmed (FROM = Winner)
+hde_feast.402.desc;I deflected [From.GetBestName]'s attack, but only barely. As I struggled to recover, [From.GetSheHe] leaped on me and knocked away my weapon with a hard rap from the pommel of [From.GetHerHis] sword. I regained my balance to find [From.GetHerHis] blade at my throat.;;;;;;;;;;;;;x
+hde_feast.402.a;I yield!;;;;;;;;;;;;;x
+hde_feast.402.b;This is far from over!;;;;;;;;;;;;;x
+# Aggressor gets overwhelmed (FROM = Winner)
+hde_feast.403.desc;[From.GetBestName] diverted my attack even as [From.GetSheHe] stepped closer and slammed my hand with pommel of [From.GetHerHis] sword. The blow knocked my sword out of my grip and, before I could recover, [From.GetFirstName] leveled [From.GetHerHis] own weapon at my throat.;;;;;;;;;;;;;x
+hde_feast.403.a;Yield! I yield!;;;;;;;;;;;;;x
+hde_feast.403.v;This is not over yet!;;;;;;;;;;;;;x
+# Winner considers Loser's yield (FROM = Loser)
+hde_feast.404.desc;[From.GetBestName] raised [From.GetHerHis] hands above [From.GetHerHis] head and admitted defeat. The folks in the crowd cheered us both and many congratulated me on my victory.;;;;;;;;;;;;;x
+hde_feast.404.a;Your yield is accepted.;;;;;;;;;;;;;x
+hde_feast.404.b;This can only end with blood!;;;;;;;;;;;;;x
+# Loser informed of being spared (FROM = Winner)
+hde_feast.405.desc;[From.GetFirstName] lowered [From.GetHerHis] weapon and accepted my surrender. Many in the crowd cheered, congratulating my opponent on [From.GetHerHis] success.;;;;;;;;;;;;;x
+hde_feast.405.a;A splendid match.;;;;;;;;;;;;;x
+hde_feast.405.b;Next time you won't be so lucky.;;;;;;;;;;;;;x
+# Loser informed of own death (FROM = Winner)
+hde_feast.406.desc;Ignoring my yield, [From.GetFirstName] again struck at me. Without my weapon I could do nothing to defend myself except try to dodge the blow, but it was not to be.;;;;;;;;;;;;;x
+hde_feast.406.a;You bastard.;;;;;;;;;;;;;x
+hde_feast.406.b;I hope [Root.Spouse.GetFirstName] forgives me.;;;;;;;;;;;;;x
+hde_feast.406.c;[Root.Religion.GetRandomGodName] save me.;;;;;;;;;;;;;x
+# Winner injures subdued, unyielding Loser (FROM = Loser)
+hde_feast.407.desc;[From.GetBestName] refused to submit. Instead [From.GetSheHe] dove for [From.GetHerHis] sword, and though I cut [From.GetHerHim], [From.GetSheHe] managed to regain [From.GetHerHis] feet with weapon in hand.;;;;;;;;;;;;;x
+hde_feast.407.a;You'll regret your tenacity!;;;;;;;;;;;;;x
+# Wounded Outcomes Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Aggressor injures Defender (ROOT = Winner, Opponent = FROMFROM)
+hde_feast.500.desc;My attack caught [FromFrom.GetBestName] unprepared. [FromFrom.GetSheHeCap] managed to turn away in time to avoid death, but my blade slashed [FromFrom.GetHerHim] deeply. I heard [FromFrom.GetHerHim] grunt in pain, and many in the crowd around us groaned.;;;;;;;;;;;;;x
+hde_feast.500.a;A wounding blow.;;;;;;;;;;;;;x # Rewrite all of these, they're kind of lifeless
+hde_feast.500.b;A maiming blow.;;;;;;;;;;;;;x
+hde_feast.500.c;A mortal blow.;;;;;;;;;;;;;x
+# Defender injures Aggressor (ROOT = Winner, Opponent = FROMFROM)
+hde_feast.501.desc;[FromFrom.GetBestName]'s attack missed, and though [FromFrom.GetSheHe] turned away from my counter in time to save [FromFrom.GetHerHis] neck, I scored [FromFrom.GetHerHim] deeply. [FromFrom.GetSheHe] cried out, and a few of the onlookers whimpered.;;;;;;;;;;;;;x
+hde_feast.501.a;[FromFrom.GetSheHe] has been wounded.;;;;;;;;;;;;;x
+hde_feast.501.b;[FromFrom.GetSheHe] has been maimed.;;;;;;;;;;;;;x
+hde_feast.501.c;[FromFrom.GetSheHe] has been mortally wounded.;;;;;;;;;;;;;x
+# Loser is injured (FROM = Winner)
+hde_feast.502.desc;I turned away from [From.GetBestName]'s blow in time to avoid the worst of it, but I nonetheless felt the sting of [From.GetHerHis] blade. I recovered as quickly as I could and held my weapon ready once again.;;;;;;;;;;;;;x
+hde_feast.502.a;That was merely luck.;;;;;;;;;;;;;x
+hde_feast.502.b;I yield!;;;;;;;;;;;;;x
+# Loser is maimed (FROM = Winner)
+hde_feast.503.desc;With my previous injury slowing me down, I couldn't fully avoid [From.GetBestName]'s blow. [From.GetSheHeCap] cut me again, more deeply this time, and though I readied my weapon once more, I could hardly keep my grip on it.;;;;;;;;;;;;;x
+hde_feast.503.a;I will not surrender.;;;;;;;;;;;;;x
+hde_feast.503.b;I yield! I must...;;;;;;;;;;;;;x
+# Loser is mortally wounded, fight is over (FROM = Winner)
+hde_feast.504.desc;I saw [From.GetBestName]'s attack coming, but my grievously injured body wouldn't respond. [From.GetSheHeCap] struck, and I fell. Somehow there was no pain, which puzzled me.;;;;;;;;;;;;;x
+hde_feast.504.a;Am I dying?;;;;;;;;;;;;;x
+# Killed Outcomes Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Aggressor kills Defender! (ROOT = Winner, Opponent = FROMFROM)
+hde_feast.600.desc;[FromFrom.GetBestName] made an admirable effort to defend [FromFrom.GetHerselfHimself], but [FromFrom.GetSheHe] was too late, too slow. My sword cut [FromFrom.GetHerHim] deep, and the crowd gasped as [FromFrom.GetSheHe] slumped to the ground, lifeless.;;;;;;;;;;;;;x
+hde_feast.600.a;No less than what you deserve.;;;;;;;;;;;;;x
+hde_feast.600.b;Perhaps I have erred...;;;;;;;;;;;;;x
+# Defender kills Aggressor! (ROOT = Winner, Opponent = FROMFROM)
+hde_feast.601.desc;I easily parried [FromFrom.GetBestName]'s attack, leaving [FromFrom.GetHerHim] off balance and unable to defend [FromFrom.GetHerselfHimself] from my riposte. My sword slashed [FromFrom.GetHerHim] deeply, and the crowd cried out as [FromFrom.GetSheHe] fell.;;;;;;;;;;;;;x
+hde_feast.601.a;No less than you deserve.;;;;;;;;;;;;;x
+hde_feast.601.b;Perhaps I have erred...;;;;;;;;;;;;;x
+# Loser is killed (FROM = Winner)
+hde_feast.602.desc;I struggled to deflect the attack, but I was too slow. [From.GetBestName]'s blade sunk deep into my flesh, and I heard someone in the crowd scream.;;;;;;;;;;;;;x
+hde_feast.602.a;No.;;;;;;;;;;;;;x
+hde_feast.602.b;I pray [Root.Spouse.GetFirstName] remembers me fondly.;;;;;;;;;;;;;x
+hde_feast.602.c;[Root.Religion.GetRandomGodName] save me.;;;;;;;;;;;;;x
+# Output Flavor;;;;;;;;;;;;;;x
+## Chain 1
+# Winner duel outcomes (Winner = ROOT, Loser = FROMFROM)
+hde_feast.700.desc;The duel is over and my opponent [FromFrom.GetTitledFirstName] lies...;Le duel est terminé et mon adversaire, [FromFrom.GetTitledFirstName], ...;Das Duell ist vorbei, und mein Gegner [FromFrom.GetTitledFirstName] liegt ...;;El duelo ha acabado y mi rival, [FromFrom.GetTitledFirstName], yace...;;;;;;;;;x
+hde_feast.700.d;...not on the ground, but still defeated;;;;;;;;;;;;;x
+hde_feast.700.e;on the ground, alive, but mortally wounded;;;;;;;;;;;;;x
+# Liege reacts to nobody being hurt (Winner = FROM)
+hde_feast.701.tt;[This.GetTitledFirstName] is notified about the duel;;;;;;;;;;;;;x
+hde_feast.701.desc;By the time I arrived, the duel was already over and [From.GetTitledFirstName]'s opponent had yielded.;;;;;;;;;;;;;x
+# Liege reacts to Loser being mortally wounded (Winner = FROM)
+hde_feast.703.desc;By the time I arrived, the duel was already over and [From.GetTitledFirstName]'s opponent was lying on the ground, still alive, but mortally wounded.;;;;;;;;;;;;;x
