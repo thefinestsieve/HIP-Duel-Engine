@@ -15,18 +15,18 @@ character_event = {
 	option = { # Accept
 		name = EVTOPTA61221
 		ai_chance = { factor = 80 }
-		FROM = {
+		# FROM = {
 			# character_event = { id = 61223 tooltip = EVTTOOLTIP61223 }
-			set_character_flag = duelist_courtier
-		}
-		set_character_flag = duelist_courtier
+			# set_character_flag = duelist_courtier
+		# }
+		# set_character_flag = duelist_courtier
 
 		# Set Duel Type
 		set_character_flag = flag_duel_regent
 		FROM = { set_character_flag = flag_duel_regent }
 		# Set Options
-		set_character_flag = flag_duel_to_the_death
-		FROM = { set_character_flag = flag_duel_to_the_death }
+		# set_character_flag = flag_duel_to_the_death
+		# FROM = { set_character_flag = flag_duel_to_the_death }
 		# Start this thing!
 		FROM = { character_event = { id = hde_core.0 } }
 	}
@@ -72,19 +72,19 @@ character_event = {
 	option = {
 		name = EVTOPTA61222
 		ai_chance = { factor = 100 }
-		set_character_flag = duelist_courtier
-		liege = {
-			random_courtier = {
-				limit = { has_minor_title = title_regent }
-				set_character_flag = duelist_courtier
-			}
-		}
+		# set_character_flag = duelist_courtier
+		# liege = {
+			# random_courtier = {
+				# limit = { has_minor_title = title_regent }
+				# set_character_flag = duelist_courtier
+			# }
+		# }
 		# Set Duel Type
 		set_character_flag = flag_duel_regent
 		FROM = { set_character_flag = flag_duel_regent }
 		# Set Options
-		set_character_flag = flag_duel_to_the_death
-		FROM = { set_character_flag = flag_duel_to_the_death }
+		# set_character_flag = flag_duel_to_the_death
+		# FROM = { set_character_flag = flag_duel_to_the_death }
 		# Start this thing!
 		FROM = { character_event = { id = hde_core.0 } }
 	}
@@ -102,8 +102,8 @@ character_event = {
 ## Chain 1
 # Aggressor wants to fight (ROOT = Winner, FROMFROM = Loser)
 character_event = {
-	id = hde_feast.100
-	desc = hde_feast.100.desc
+	id = hde_regent.100
+	desc = hde_regent.100.desc
 	picture = GFX_evt_melee
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -111,84 +111,84 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.100.a
+		name = hde_regent.100.a
 		
 		hidden_tooltip = {
 			FROMFROM = { # Send event to Loser
-				character_event = { id = hde_feast.102 }
+				character_event = { id = hde_regent.102 }
 			}
 		}
 	}
 }
 # Aggressor wants to fight (ROOT = Loser, FROM = Winner)
 character_event = {
-	id = hde_feast.101
-	desc = hde_feast.101.desc
+	id = hde_regent.101
+	desc = hde_regent.101.desc
 	picture = GFX_evt_melee
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.101.a
+		name = hde_regent.101.a
 		
 		hidden_tooltip = {
 			FROM = { # Send event to Loser
-				character_event = { id = hde_feast.102 }
+				character_event = { id = hde_regent.102 }
 			}
 		}
 	}
 }
 # Defender delays (Sent to Winner or Loser)
 character_event = {
-	id = hde_feast.102
-	desc = hde_feast.102.desc
+	id = hde_regent.102
+	desc = hde_regent.102.desc
 	picture = GFX_evt_melee
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.102.a
+		name = hde_regent.102.a
 		
 		hidden_tooltip = {
 			FROM = { # Send event to Winner or Loser
-				character_event = { id = hde_feast.103 }
+				character_event = { id = hde_regent.103 }
 			}
 		}
 	}
 }
 # Aggressor taunts (Sent to Winner or Loser)
 character_event = {
-	id = hde_feast.103
-	desc = hde_feast.103.desc
+	id = hde_regent.103
+	desc = hde_regent.103.desc
 	picture = GFX_evt_melee
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.103.a
+		name = hde_regent.103.a
 		
 		FROM = { # Send event to Winner or Loser
-			character_event = { id = hde_feast.104 tooltip = hde_feast.104.tt }
+			character_event = { id = hde_regent.104 tooltip = hde_regent.104.tt }
 		}
 	}
 	option = {
-		name = hde_feast.103.b
+		name = hde_regent.103.b
 		
 		FROM = { # Send event to Winner or Loser
-			character_event = { id = hde_feast.105 tooltip = hde.readies }
+			character_event = { id = hde_regent.105 tooltip = hde.readies }
 		}
 	}
 }
 # Defender responds to OPTA (Sent to Winner or Loser)
 character_event = {
-	id = hde_feast.104
-	desc = hde_feast.104.desc
+	id = hde_regent.104
+	desc = hde_regent.104.desc
 	picture = GFX_evt_melee
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.104.a
+		name = hde_regent.104.a
 		
 		if = {
 			limit = { has_character_flag = flag_duel_loser }
@@ -206,14 +206,14 @@ character_event = {
 }
 # Defender responds to OPTB (Sent to Winner or Loser)
 character_event = {
-	id = hde_feast.105
-	desc = hde_feast.105.desc
+	id = hde_regent.105
+	desc = hde_regent.105.desc
 	picture = GFX_evt_melee
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.105.a
+		name = hde_regent.105.a
 		
 		if = {
 			limit = { has_character_flag = flag_duel_loser }
@@ -240,8 +240,8 @@ character_event = {
 ## First Round
 # Aggressor advances, looks for weakness (ROOT = Winner, FROMFROM = Loser)
 character_event = {
-	id = hde_feast.200
-	desc = hde_feast.200.desc
+	id = hde_regent.200
+	desc = hde_regent.200.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -249,43 +249,43 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.200.a
+		name = hde_regent.200.a
 		
 		hidden_tooltip = {
 			FROMFROM = { # Send to Loser
-				character_event = { id = hde_feast.202 }
+				character_event = { id = hde_regent.202 }
 			}
 		}
 	}
 }
 # Aggressor advances, looks for weakness (ROOT = Loser, FROM = Winner)
 character_event = {
-	id = hde_feast.201
-	desc = hde_feast.201.desc
+	id = hde_regent.201
+	desc = hde_regent.201.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.201.a
+		name = hde_regent.201.a
 		
 		hidden_tooltip = {
 			FROM = { # Send to Winner
-				character_event = { id = hde_feast.202 }
+				character_event = { id = hde_regent.202 }
 			}
 		}
 	}
 }
 # Defender adopts defensive posture (Sent to Winner or Loser)
 character_event = {
-	id = hde_feast.202
-	desc = hde_feast.202.desc
+	id = hde_regent.202
+	desc = hde_regent.202.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.202.a
+		name = hde_regent.202.a
 		if = {
 			limit = { has_character_flag = flag_duel_loser }
 			FROM = { # Send handler to Winner
@@ -303,8 +303,8 @@ character_event = {
 ## Second Round
 # Aggressor wearily advances (ROOT = Winner, FROMFROM = Loser)
 character_event = {
-	id = hde_feast.203
-	desc = hde_feast.203.desc
+	id = hde_regent.203
+	desc = hde_regent.203.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -312,43 +312,43 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.203.a
+		name = hde_regent.203.a
 		
 		hidden_tooltip = {
 			FROMFROM = { # Send to Loser
-				character_event = { id = hde_feast.205 }
+				character_event = { id = hde_regent.205 }
 			}
 		}
 	}
 }
 # Aggressor wearily advances (ROOT = Loser, FROM = Winner)
 character_event = {
-	id = hde_feast.204
-	desc = hde_feast.204.desc
+	id = hde_regent.204
+	desc = hde_regent.204.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.204.a
+		name = hde_regent.204.a
 		
 		hidden_tooltip = {
 			FROM = { # Send to Winner
-				character_event = { id = hde_feast.205 }
+				character_event = { id = hde_regent.205 }
 			}
 		}
 	}
 }
 # Defender wearily adopts defensive posture (Sent to Winner or Loser)
 character_event = {
-	id = hde_feast.205
-	desc = hde_feast.205.desc
+	id = hde_regent.205
+	desc = hde_regent.205.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.205.a
+		name = hde_regent.205.a
 		if = {
 			limit = { has_character_flag = flag_duel_loser }
 			FROM = { # Send handler to Winner
@@ -366,8 +366,8 @@ character_event = {
 ## Third Round
 # Aggressor advances, exhausted (ROOT = Winner, FROMFROM = Loser)
 character_event = {
-	id = hde_feast.206
-	desc = hde_feast.206.desc
+	id = hde_regent.206
+	desc = hde_regent.206.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -375,43 +375,43 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.206.a
+		name = hde_regent.206.a
 		
 		hidden_tooltip = {
 			FROMFROM = { # Send to Loser
-				character_event = { id = hde_feast.208 }
+				character_event = { id = hde_regent.208 }
 			}
 		}
 	}
 }
 # Aggressor advances, exhausted (ROOT = Loser, FROM = Winner)
 character_event = {
-	id = hde_feast.207
-	desc = hde_feast.207.desc
+	id = hde_regent.207
+	desc = hde_regent.207.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.207.a
+		name = hde_regent.207.a
 		
 		hidden_tooltip = {
 			FROM = { # Send to Winner
-				character_event = { id = hde_feast.208 }
+				character_event = { id = hde_regent.208 }
 			}
 		}
 	}
 }
 # Defender adopts defensive posture, almost exhausted (Sent to Winner or Loser)
 character_event = {
-	id = hde_feast.208
-	desc = hde_feast.208.desc
+	id = hde_regent.208
+	desc = hde_regent.208.desc
 	picture = GFX_evt_duel0
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.208.a
+		name = hde_regent.208.a
 		if = {
 			limit = { has_character_flag = flag_duel_loser }
 			FROM = { # Send handler to Winner
@@ -436,8 +436,8 @@ character_event = {
 ## Chain 1
 # Aggressor thinks he sees an opening (ROOT = Winner, FROMFROM = Loser)
 character_event = {
-	id = hde_feast.300
-	desc = hde_feast.300.desc
+	id = hde_regent.300
+	desc = hde_regent.300.desc
 	picture = GFX_evt_duel1
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -445,39 +445,39 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.300.a
+		name = hde_regent.300.a
 
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_feast.302 tooltip = hde.defends }
+			character_event = { id = hde_regent.302 tooltip = hde.defends }
 		}
 	}
 }
 # Aggressor thinks he sees an opening (ROOT = Loser, FROM = Winner)
 character_event = {
-	id = hde_feast.301
-	desc = hde_feast.301.desc
+	id = hde_regent.301
+	desc = hde_regent.301.desc
 	picture = GFX_evt_duel1
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.301.a
+		name = hde_regent.301.a
 		
 		FROM = { # Send to Winner
-			character_event = { id = hde_feast.303 tooltip = hde.defends }
+			character_event = { id = hde_regent.303 tooltip = hde.defends }
 		}
 	}
 }
 # Defender makes a mistake and gets attacked (Sent to Loser)
 character_event = {
-	id = hde_feast.302
-	desc = hde_feast.302.desc
+	id = hde_regent.302
+	desc = hde_regent.302.desc
 	picture = GFX_evt_duel2
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 
 	option = {
-		name = hde_feast.302.a
+		name = hde_regent.302.a
 		
 		hidden_tooltip = {
 			e_rebels = { # Send handler to referee
@@ -490,14 +490,14 @@ character_event = {
 }
 # Defender pretends to leave an opening and gets attacked (Sent to Winner)
 character_event = {
-	id = hde_feast.303
-	desc = hde_feast.303.desc
+	id = hde_regent.303
+	desc = hde_regent.303.desc
 	picture = GFX_evt_duel2
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 
 	option = {
-		name = hde_feast.303.a
+		name = hde_regent.303.a
 		
 		hidden_tooltip = {
 			FROM = { # Send bounce event to Loser
@@ -516,8 +516,8 @@ character_event = {
 ## Chain 1
 # Aggressor disarms Defender (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
-	id = hde_feast.400
-	desc = hde_feast.400.desc
+	id = hde_regent.400
+	desc = hde_regent.400.desc
 	picture = GFX_evt_duel4
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -525,16 +525,16 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.400.a
+		name = hde_regent.400.a
 		
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_feast.402 tooltip = hde.reacts }
+			character_event = { id = hde_regent.402 tooltip = hde.reacts }
 		}
 	}
 }
 # Defender disarms Aggressor (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
-	id = hde_feast.401
+	id = hde_regent.401
 	desc = hde_east.401.desc
 	picture = GFX_evt_duel4
 	border = GFX_event_normal_frame_war
@@ -543,17 +543,17 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.401.a
+		name = hde_regent.401.a
 		
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_feast.403 tooltip = hde.reacts }
+			character_event = { id = hde_regent.403 tooltip = hde.reacts }
 		}
 	}
 }
 # Defender gets overwhelmed (FROM = Winner)
 character_event = {
-	id = hde_feast.402
-	desc = hde_feast.402.desc
+	id = hde_regent.402
+	desc = hde_regent.402.desc
 	picture = GFX_evt_duel4
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
@@ -565,7 +565,7 @@ character_event = {
 				NOT = { has_character_flag = flag_duel_to_the_death }
 			}
 		}
-		name = hde_feast.402.a
+		name = hde_regent.402.a
 		ai_chance = {
 			factor = 50
 			# Nearly Beaten!
@@ -618,7 +618,7 @@ character_event = {
 		}
 
 		FROM = { # Winner considers yield
-			character_event = { id = hde_feast.404 tooltip = hde.consider_yield }
+			character_event = { id = hde_regent.404 tooltip = hde.consider_yield }
 		}
 	}
 	
@@ -626,18 +626,18 @@ character_event = {
 		trigger = {
 			NOT = { has_character_flag = flag_duel_friendly }
 		}
-		name = hde_feast.402.b
+		name = hde_regent.402.b
 		ai_chance = { factor = 50 }
 		
 		FROM = { # Send to Winner
-			character_event = { id = hde_feast.407 tooltip = hde.reacts }
+			character_event = { id = hde_regent.407 tooltip = hde.reacts }
 		}
 	}
 }
 # Aggressor gets overwhelmed (FROM = Winner)
 character_event = {
-	id = hde_feast.403
-	desc = hde_feast.403.desc
+	id = hde_regent.403
+	desc = hde_regent.403.desc
 	picture = GFX_evt_duel4
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
@@ -649,7 +649,7 @@ character_event = {
 				NOT = { has_character_flag = flag_duel_to_the_death }
 			}
 		}
-		name = hde_feast.403.a
+		name = hde_regent.403.a
 		ai_chance = {
 			factor = 50
 			# Nearly Beaten!
@@ -702,7 +702,7 @@ character_event = {
 		}
 
 		FROM = { # Winner considers yield
-			character_event = { id = hde_feast.404 tooltip = hde.consider_yield }
+			character_event = { id = hde_regent.404 tooltip = hde.consider_yield }
 		}
 	}
 	
@@ -710,25 +710,25 @@ character_event = {
 		trigger = {
 			NOT = { has_character_flag = flag_duel_friendly }
 		}
-		name = hde_feast.403.b
+		name = hde_regent.403.b
 		ai_chance = { factor = 50 }
 		
 		FROM = { # Send to Winner
-			character_event = { id = hde_feast.407 tooltip = hde.reacts }
+			character_event = { id = hde_regent.407 tooltip = hde.reacts }
 		}
 	}
 }
 # Winner considers Loser's yield (FROM = Loser)
 character_event = {
-	id = hde_feast.404
-	desc = hde_feast.404.desc
+	id = hde_regent.404
+	desc = hde_regent.404.desc
 	picture = GFX_evt_duel4
 	border = GFX_event_normal_frame_war
 
 	is_triggered_only = yes
 	
 	option = { # Spare Loser
-		name = hde_feast.404.a
+		name = hde_regent.404.a
 		ai_chance = {
 			factor = 50
 			# Need Opponent Taken Alive
@@ -923,11 +923,11 @@ character_event = {
 		set_character_flag = flag_duel_spared_opponent
 		prestige = 15
 		FROM = { # Send to Loser
-			character_event = { id = hde_feast.405 tooltip = hde.is_defeated }
+			character_event = { id = hde_regent.405 tooltip = hde.is_defeated }
 		}
 	}
 	option = { # Kill Loser
-		name = hde_feast.404.b
+		name = hde_regent.404.b
 		ai_chance = {
 			factor = 50
 			# Friendly Duels
@@ -977,21 +977,21 @@ character_event = {
 		
 		set_character_flag = flag_duel_killed_opponent
 		FROM = { # Send to Loser
-			character_event = { id = hde_feast.406 tooltip = hde.is_slain }
+			character_event = { id = hde_regent.406 tooltip = hde.is_slain }
 		}
 	}
 }
 # Loser informed of being spared (FROM = Winner)
 character_event = {
-	id = hde_feast.405
-	desc = hde_feast.405.desc
+	id = hde_regent.405
+	desc = hde_regent.405.desc
 	picture = GFX_evt_duel4
 	border = GFX_event_normal_frame_war
 
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.405.a
+		name = hde_regent.405.a
 
 		prestige = -10
 		FROM = { # Send Output to Winner
@@ -999,7 +999,7 @@ character_event = {
 		}
 	}
 	option = {
-		name = hde_feast.405.b
+		name = hde_regent.405.b
 
 		prestige = -10
 		FROM = { # Send Output to Winner
@@ -1009,8 +1009,8 @@ character_event = {
 }
 # Loser informed of own death (FROM = Winner)
 character_event = {
-	id = hde_feast.406
-	desc = hde_feast.406.desc
+	id = hde_regent.406
+	desc = hde_regent.406.desc
 	picture = GFX_evt_duel5
 	is_triggered_only = yes
 	
@@ -1021,7 +1021,7 @@ character_event = {
 			}
 			NOT = { trait = zealous }
 		}
-		name = hde_feast.406.a
+		name = hde_regent.406.a
 
 		if = {
 			limit = {
@@ -1041,7 +1041,7 @@ character_event = {
 		trigger = {
 			spouse = { is_lover = ROOT }
 		}
-		name = hde_feast.406.b
+		name = hde_regent.406.b
 
 		if = {
 			limit = {
@@ -1059,7 +1059,7 @@ character_event = {
 	}
 	option = {
 		trigger = { trait = zealous }
-		name = hde_feast.406.c
+		name = hde_regent.406.c
 
 		if = {
 			limit = {
@@ -1078,8 +1078,8 @@ character_event = {
 }
 # Winner injures subdued, unyielding Loser (FROM = Loser)
 character_event = {
-	id = hde_feast.407
-	desc = hde_feast.407.desc
+	id = hde_regent.407
+	desc = hde_regent.407.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
 
@@ -1090,15 +1090,15 @@ character_event = {
 			NOT = { FROMFROM = { trait = wounded } }
 			NOT = { FROMFROM = { trait = maimed } }
 		}
-		name = hde_feast.407.a
-		FROMFROM = { character_event = { id = hde_feast.502 tooltip = hde.is_wounded } }
+		name = hde_regent.407.a
+		FROMFROM = { character_event = { id = hde_regent.502 tooltip = hde.is_wounded } }
 	}
 	option = {
 		trigger = {
 			FROMFROM = { trait = wounded }
 		}
-		name = hde_feast.407.a
-		FROMFROM = { character_event = { id = hde_feast.503 tooltip = hde.is_maimed } }
+		name = hde_regent.407.a
+		FROMFROM = { character_event = { id = hde_regent.503 tooltip = hde.is_maimed } }
 	}
 }
 
@@ -1111,8 +1111,8 @@ character_event = {
 ## Chain 1
 # Aggressor injures Defender (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
-	id = hde_feast.500
-	desc = hde_feast.500.desc
+	id = hde_regent.500
+	desc = hde_regent.500.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -1124,28 +1124,28 @@ character_event = {
 			NOT = { FROMFROM = { trait = wounded } }
 			NOT = { FROMFROM = { trait = maimed } }
 		}
-		name = hde_feast.500.a
-		FROMFROM = { character_event = { id = hde_feast.502 tooltip = hde.is_wounded } }
+		name = hde_regent.500.a
+		FROMFROM = { character_event = { id = hde_regent.502 tooltip = hde.is_wounded } }
 	}
 	option = {
 		trigger = {
 			FROMFROM = { trait = wounded }
 		}
-		name = hde_feast.500.b
-		FROMFROM = { character_event = { id = hde_feast.503 tooltip = hde.is_maimed } }
+		name = hde_regent.500.b
+		FROMFROM = { character_event = { id = hde_regent.503 tooltip = hde.is_maimed } }
 	}
 	option = {
 		trigger = {
 			FROMFROM = { trait = maimed }
 		}
-		name = hde_feast.500.c
-		FROMFROM = { character_event = { id = hde_feast.504 tooltip = hde.is_incapable } }
+		name = hde_regent.500.c
+		FROMFROM = { character_event = { id = hde_regent.504 tooltip = hde.is_incapable } }
 	}
 }
 # Defender injures Aggressor (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
-	id = hde_feast.501
-	desc = hde_feast.501.desc
+	id = hde_regent.501
+	desc = hde_regent.501.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -1157,28 +1157,28 @@ character_event = {
 			NOT = { FROMFROM = { trait = wounded } }
 			NOT = { FROMFROM = { trait = maimed } }
 		}
-		name = hde_feast.501.a
-		FROMFROM = { character_event = { id = hde_feast.502 tooltip = hde.is_wounded } }
+		name = hde_regent.501.a
+		FROMFROM = { character_event = { id = hde_regent.502 tooltip = hde.is_wounded } }
 	}
 	option = {
 		trigger = {
 			FROMFROM = { trait = wounded }
 		}
-		name = hde_feast.501.b
-		FROMFROM = { character_event = { id = hde_feast.503 tooltip = hde.is_maimed } }
+		name = hde_regent.501.b
+		FROMFROM = { character_event = { id = hde_regent.503 tooltip = hde.is_maimed } }
 	}
 	option = {
 		trigger = {
 			FROMFROM = { trait = maimed }
 		}
-		name = hde_feast.501.c
-		FROMFROM = { character_event = { id = hde_feast.504 tooltip = hde.is_incapable } }
+		name = hde_regent.501.c
+		FROMFROM = { character_event = { id = hde_regent.504 tooltip = hde.is_incapable } }
 	}
 }
 # Loser is injured (FROM = Winner)
 character_event = {
-	id = hde_feast.502
-	desc = hde_feast.502.desc
+	id = hde_regent.502
+	desc = hde_regent.502.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
 
@@ -1192,7 +1192,7 @@ character_event = {
 		trigger = {
 			NOT = { has_character_flag = flag_duel_friendly }
 		}
-		name = hde_feast.502.a
+		name = hde_regent.502.a
 		ai_chance = { factor = 70 }
 		
 		add_trait = wounded
@@ -1209,7 +1209,7 @@ character_event = {
 				NOT = { has_character_flag = flag_duel_to_the_death }
 			}
 		}
-		name = hde_feast.502.b
+		name = hde_regent.502.b
 		ai_chance = {
 			factor = 30
 			# Nearly Beaten!
@@ -1264,14 +1264,14 @@ character_event = {
 		add_trait = wounded
 		prestige = -10
 		FROM = { # Winner considers yield
-			character_event = { id = hde_feast.404 tooltip = hde.consider_yield }
+			character_event = { id = hde_regent.404 tooltip = hde.consider_yield }
 		}
 	}
 }
 # Loser is maimed (FROM = Winner)
 character_event = {
-	id = hde_feast.503
-	desc = hde_feast.503.desc
+	id = hde_regent.503
+	desc = hde_regent.503.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
 
@@ -1285,7 +1285,7 @@ character_event = {
 		trigger = {
 			NOT = { has_character_flag = flag_duel_friendly }
 		}
-		name = hde_feast.503.a
+		name = hde_regent.503.a
 		ai_chance = { factor = 70 }
 		
 		add_trait = maimed
@@ -1302,7 +1302,7 @@ character_event = {
 				NOT = { has_character_flag = flag_duel_to_the_death }
 			}
 		}
-		name = hde_feast.503.b
+		name = hde_regent.503.b
 		ai_chance = {
 			factor = 30
 			# Nearly Beaten!
@@ -1357,20 +1357,20 @@ character_event = {
 		add_trait = maimed
 		prestige = -10
 		FROM = { # Winner considers yield
-			character_event = { id = hde_feast.404 tooltip = hde.consider_yield }
+			character_event = { id = hde_regent.404 tooltip = hde.consider_yield }
 		}
 	}
 }
 # Loser is mortally wounded, fight is over (FROM = Winner)
 character_event = {
-	id = hde_feast.504
-	desc = hde_feast.504.desc
+	id = hde_regent.504
+	desc = hde_regent.504.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.504.a
+		name = hde_regent.504.a
 		
 		add_trait = incapable
 		FROM = {
@@ -1388,8 +1388,8 @@ character_event = {
 ### 600-699 reserved
 # Aggressor kills Defender! (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
-	id = hde_feast.600
-	desc = hde_feast.600.desc
+	id = hde_regent.600
+	desc = hde_regent.600.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -1397,24 +1397,24 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.600.a
+		name = hde_regent.600.a
 
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_feast.602 tooltip = hde.is_slain }
+			character_event = { id = hde_regent.602 tooltip = hde.is_slain }
 		}
 	}
 	option = {
-		name = hde_feast.600.b
+		name = hde_regent.600.b
 
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_feast.602 tooltip = hde.is_slain }
+			character_event = { id = hde_regent.602 tooltip = hde.is_slain }
 		}
 	}
 }
 # Defender kills Aggressor! (ROOT = Winner, Opponent = FROMFROM)
 character_event = {
-	id = hde_feast.601
-	desc = hde_feast.601.desc
+	id = hde_regent.601
+	desc = hde_regent.601.desc
 	picture = GFX_evt_duel3
 	border = GFX_event_normal_frame_war
 	hide_from = yes
@@ -1422,24 +1422,24 @@ character_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = hde_feast.601.a
+		name = hde_regent.601.a
 
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_feast.602 tooltip = hde.is_slain }
+			character_event = { id = hde_regent.602 tooltip = hde.is_slain }
 		}
 	}
 	option = {
-		name = hde_feast.601.b
+		name = hde_regent.601.b
 
 		FROMFROM = { # Send to Loser
-			character_event = { id = hde_feast.602 tooltip = hde.is_slain }
+			character_event = { id = hde_regent.602 tooltip = hde.is_slain }
 		}
 	}
 }
 # Loser is killed (FROM = Winner)
 character_event = {
-	id = hde_feast.602
-	desc = hde_feast.602.desc
+	id = hde_regent.602
+	desc = hde_regent.602.desc
 	picture = GFX_evt_duel3
 	is_triggered_only = yes
 	
@@ -1450,7 +1450,7 @@ character_event = {
 			}
 			NOT = { trait = zealous }
 		}
-		name = hde_feast.602.a
+		name = hde_regent.602.a
 
 		if = {
 			limit = {
@@ -1471,7 +1471,7 @@ character_event = {
 		trigger = {
 			spouse = { is_lover = ROOT }
 		}
-		name = hde_feast.602.b
+		name = hde_regent.602.b
 
 		if = {
 			limit = {
@@ -1490,7 +1490,7 @@ character_event = {
 	}
 	option = {
 		trigger = { trait = zealous }
-		name = hde_feast.602.c
+		name = hde_regent.602.c
 
 		if = {
 			limit = {
@@ -1515,172 +1515,9 @@ character_event = {
 #####################
 ### OUTPUT FLAVOR
 ### 700-799 reserved
+# Unlike the NDE version, there's no to_the_death flag, so we get the full variation of outcomes
+# These are all pulled from vanilla CK2
 ## Chain 1
-# Winner duel outcomes (Winner = ROOT, Loser = FROMFROM)
-# Send something to the loser?
-character_event = {
-	id = hde_feast.700
-	desc = hde_feast.700.desc
-	picture = GFX_evt_melee
-	is_triggered_only = yes
-
-	option = {
-		name = "EVTOPTA72033"
-		trigger = { has_character_flag = flag_duel_wounded_opponent }
-		any_liege = {
-			limit = {
-				has_character_flag = host_feast_started
-				has_character_modifier = holding_large_feast
-			}
-			character_event = { id = 72036 tooltip = "EVTTOOLTIP72036" }
-		}
-		change_martial = 1
-	}
-	option = {
-		name = "EVTOPTB72033"
-		trigger = { has_character_flag = flag_duel_maimed_opponent }
-		any_liege = {
-			limit = {
-				has_character_flag = host_feast_started
-				has_character_modifier = holding_large_feast
-			}
-			character_event = { id = 72037 tooltip = "EVTTOOLTIP72037" }
-		}
-		change_martial = 2
-	}
-	option = {
-		name = "EVTOPTC72033"
-		trigger = { has_character_flag = flag_duel_killed_opponent }
-		any_liege = {
-			limit = {
-				has_character_flag = host_feast_started
-				has_character_modifier = holding_large_feast
-			}
-			character_event = { id = 72035 tooltip = "EVTTOOLTIP72035" }
-		}
-		change_martial = 3
-	}
-	option = {
-		name = hde_feast.700.d
-		trigger = { has_character_flag = flag_duel_spared_opponent }
-		clr_character_flag = flag_duel_spared_opponent
-		FROMFROM = {
-			character_event = { id = hde_feast.701 tooltip = hde_feast.701.tt }
-		}
-		change_martial = 1
-	}
-	option = {
-		name = hde_feast.700.e
-		trigger = { has_character_flag = flag_duel_neutralized_opponent }
-		any_liege = {
-			limit = {
-				has_character_flag = host_feast_started
-				has_character_modifier = holding_large_feast
-			}
-			character_event = { id = hde_feast.703 tooltip = hde_feast.701.tt }
-		}
-		change_martial = 2
-	}
-}
-# Bounce event for spared outcome
-character_event = {
-	id = hde_feast.701
-	hide_window = yes
-	is_triggered_only = yes
-	
-	immediate = {
-		FROM = {
-			any_liege = {
-				limit = {
-					has_character_flag = host_feast_started
-					has_character_modifier = holding_large_feast
-				}
-				character_event = { id = hde_feast.702 }
-			}	
-		}
-	}
-	
-	option = { name = OK }
-}
-# Liege reacts to nobody being hurt (Loser = FROMFROM, Winner = FROM)
-character_event = {
-	id = hde_feast.702
-	desc = hde_feast.702.desc
-	picture = GFX_evt_melee
-	is_triggered_only = yes
-
-	option = {
-		name = "EVTOPTA72035"
-		opinion = {
-			modifier = opinion_dislike
-			who = FROMFROM
-			years = 10
-		}
-		opinion = {
-			modifier = opinion_dislike
-			who = FROM
-			years = 10
-		}
-	}
-	option = {
-		name = "EVTOPTB72035"
-		opinion = {
-			modifier = opinion_satisfied
-			who = FROMFROM
-			years = 10
-		}
-		opinion = {
-			modifier = opinion_satisfied
-			who = FROM
-			years = 10
-		}
-	}
-	option = {
-		name = "EVTOPTC72035"
-		reverse_opinion = {
-			modifier = opinion_dislike
-			who = FROMFROM
-			years = 10
-		}
-		reverse_opinion = {
-			modifier = opinion_dislike
-			who = FROM
-			years = 10
-		}
-	}
-}
-# Liege reacts to Loser being mortally wounded (Winner = FROM)
-character_event = {
-	id = hde_feast.703
-	desc = hde_feast.703.desc
-	picture = GFX_evt_melee
-	is_triggered_only = yes
-
-	option = {
-		name = "EVTOPTA72035"
-		opinion = {
-			modifier = opinion_dislike
-			who = FROM
-			years = 10
-		}
-	}
-	option = {
-		name = "EVTOPTB72035"
-		opinion = {
-			modifier = opinion_satisfied
-			who = FROM
-			years = 10
-		}
-	}
-	option = {
-		name = "EVTOPTC72035"
-		reverse_opinion = {
-			modifier = opinion_dislike
-			who = FROM
-			years = 10
-		}
-	}
-}
 
 ## Chain 2
 # Would be here, if Chain 2 existed
