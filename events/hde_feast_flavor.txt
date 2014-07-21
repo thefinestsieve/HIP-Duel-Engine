@@ -1564,7 +1564,10 @@ character_event = {
 
 	option = {
 		name = "EVTOPTA72033"
-		trigger = { has_character_flag = flag_duel_wounded_opponent }
+		trigger = {
+			has_character_flag = flag_duel_wounded_opponent
+			NOT = { has_character_flag = flag_duel_maimed_opponent }
+		}
 		any_liege = {
 			limit = {
 				has_character_flag = host_feast_started
@@ -1600,7 +1603,11 @@ character_event = {
 	}
 	option = {
 		name = hde_feast.700.d
-		trigger = { has_character_flag = flag_duel_spared_opponent }
+		trigger = {
+			has_character_flag = flag_duel_spared_opponent
+			NOT = { has_character_flag = flag_duel_wounded_opponent }
+			NOT = { has_character_flag = flag_duel_maimed_opponent }
+		}
 		clr_character_flag = flag_duel_spared_opponent
 		FROMFROM = {
 			character_event = { id = hde_feast.701 tooltip = hde_feast.701.tt }

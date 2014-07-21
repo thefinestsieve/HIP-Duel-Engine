@@ -1516,7 +1516,7 @@ character_event = {
 ### OUTPUT FLAVOR
 ### 700-799 reserved
 # Unlike the NDE version, there's no to_the_death flag, so we get the full variation of outcomes
-# These are all pulled from vanilla CK2
+# Due to vanilla structure, with events which are more like outcome than output, I'm probably going to have to do new stuff from scratch
 ## Chain 1
 
 ## Chain 2
