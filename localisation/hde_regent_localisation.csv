@@ -4,3 +4,10 @@
 # Note when I write flavor here: 1st person, present tense is what I think I'm going with
 # Setting: Field outside location at dawn
 # Work in location: Someone slips in dewy grass? Briefly blinded by sun?
+Lead up stuff happens, then vanilla normally hits you with this:
+
+[Root.Liege.Regent.GetTitledName] has accepted your terms. As dawn breaks, you meet on a field just outside [Root.Location.GetName]. The mist still lies thick on the ground and the brilliance of the early morning sun is reflected in the shining steel of your weapons and armor. It is a good day to die.
+
+So we'll pillage that for our own lead up events. (Unlike the feast duel, I expect less lead up.)
+
+Elements to include in duel: one participant circling so the sun is the other's eyes, one participant screwing up by slipping in the dewy grass, different options triggered by regent status

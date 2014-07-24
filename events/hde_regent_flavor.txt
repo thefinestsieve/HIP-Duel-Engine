@@ -12,6 +12,12 @@ character_event = {
 	
 	is_triggered_only = yes
 	
+	immediate = {
+		# Send cleanup event to prevent loose flags from screwing things up
+		# Disabled for now, since I want to find bugs
+		# character_event = { id = hde_core.11 }
+	}
+	
 	option = { # Accept
 		name = EVTOPTA61221
 		ai_chance = { factor = 80 }
@@ -28,7 +34,10 @@ character_event = {
 		# set_character_flag = flag_duel_to_the_death
 		# FROM = { set_character_flag = flag_duel_to_the_death }
 		# Start this thing!
-		FROM = { character_event = { id = hde_core.0 } }
+		custom_tooltip = {
+			text = hde.battle_begins
+			hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
+		}
 	}
 	option = { # Refuse
 		name = EVTOPTB61221
@@ -69,6 +78,12 @@ character_event = {
 	
 	is_triggered_only = yes
 	
+	immediate = {
+		# Send cleanup event to prevent loose flags from screwing things up
+		# Disabled for now, since I want to find bugs
+		# character_event = { id = hde_core.11 }
+	}
+	
 	option = {
 		name = EVTOPTA61222
 		ai_chance = { factor = 100 }
@@ -86,7 +101,10 @@ character_event = {
 		# set_character_flag = flag_duel_to_the_death
 		# FROM = { set_character_flag = flag_duel_to_the_death }
 		# Start this thing!
-		FROM = { character_event = { id = hde_core.0 } }
+		custom_tooltip = {
+			text = hde.battle_begins
+			hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
+		}
 	}
 	option = {
 		name = EVTOPTB61222

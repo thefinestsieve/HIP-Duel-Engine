@@ -1337,6 +1337,14 @@ character_event = {
 				50 = { character_event = { id = hde_feast.700 } } # Chain 1
 			}
 		}
+		# Regent Flavor
+		if = {
+			limit = { has_character_flag = flag_duel_regent }
+			# random_list = {
+				# 50 = { character_event = { id = hde_regent.700 } } # Chain 1
+				# 50 = { character_event = { id = hde_regent.700 } } # Chain 1
+			# }
+		}
 		# Insert additional flavor blocks here
 		
 		# CTA Victory forwarder
@@ -1351,6 +1359,7 @@ character_event = {
 }
 
 # Cleanup Event
+# This wipes out everything duel related, including all flags and variables
 # This only needs to be used directly in cases where the Output Handler isn't called instead
 # Characters should send this to themselves in an event where FROM is the other duelist
 character_event = {

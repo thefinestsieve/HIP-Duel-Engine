@@ -227,7 +227,10 @@ character_event = {
 		set_character_flag = flag_duel_battlefield
 		FROM = { set_character_flag = flag_duel_battlefield }
 		# Start this thing!
-		FROM = { character_event = { id = hde_core.0 } }
+		custom_tooltip = {
+			text = hde.battle_begins
+			hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
+		}
 	}
 	
 	option = { name = OK }

@@ -15,7 +15,8 @@ hde.is_wounded;[This.GetBestName] is wounded;;;;;;;;;;;;;x
 hde.is_maimed;[This.GetBestName] is maimed;;;;;;;;;;;;;x
 hde.is_incapable;[This.GetBestName] is incapacitated;;;;;;;;;;;;;x
 hde.is_victorious;[This.GetBestName] is victorious!;;;;;;;;;;;;;x
-hde.battle_continues;The battle continues;;;;;;;;;;;;;x
+hde.battle_continues;The battle continues!;;;;;;;;;;;;;x
+hde.battle_begins;The battle begins!;;;;;;;;;;;;;x
 ######################################20_TRAITS;;;;;;;;;;;;;;x
 master_warrior;Formidable Fighter;Combattant formidable;Formidable Fighter;;Luchador formidable;;;;;;;;;x
 master_warrior_desc;This character is one of the greatest warriors in the world, favored by God and dreaded on the battlefield.;Ce personnage est l'une des plus fines lames de le monde, il est favorisé par Dieu et redouté sur le champs de bataille. ;This character is one of the greatest warriors in the world, favored by God and dreaded on the battlefield.;;Este personaje es uno de los más grandes guerreros del mundo, favorecido por Dios y temido en el campo de batalla.;;;;;;;;;x

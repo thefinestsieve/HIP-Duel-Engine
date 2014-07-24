@@ -11,6 +11,12 @@ character_event = {
 	desc = "EVTDESC72031"
 	picture = GFX_evt_melee
 	is_triggered_only = yes
+	
+	immediate = {
+		# Send cleanup event to prevent loose flags from screwing things up
+		# Disabled for now, since I want to find bugs
+		# character_event = { id = hde_core.11 }
+	}
 
 	option = {
 		name = EVTOPTA72031 #Accept
@@ -58,7 +64,10 @@ character_event = {
 		set_character_flag = flag_duel_feast
 		FROM = { set_character_flag = flag_duel_feast }
 		# Start this thing!
-		FROM = { character_event = { id = hde_core.0 } }
+		custom_tooltip = {
+			text = hde.battle_begins
+			hidden_tooltip = { FROM = { character_event = { id = hde_core.0 } } }
+		}
 	}
 	option = {
 		name = EVTOPTB72031 #Decline
@@ -1565,6 +1574,7 @@ character_event = {
 	option = {
 		name = "EVTOPTA72033"
 		trigger = {
+			has_character_flag = flag_duel_spared_opponent
 			has_character_flag = flag_duel_wounded_opponent
 			NOT = { has_character_flag = flag_duel_maimed_opponent }
 		}
@@ -1579,7 +1589,10 @@ character_event = {
 	}
 	option = {
 		name = "EVTOPTB72033"
-		trigger = { has_character_flag = flag_duel_maimed_opponent }
+		trigger = {
+			has_character_flag = flag_duel_spared_opponent
+			has_character_flag = flag_duel_maimed_opponent
+		}
 		any_liege = {
 			limit = {
 				has_character_flag = host_feast_started
