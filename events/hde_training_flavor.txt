@@ -5,6 +5,7 @@
 # Also accidentally injuring/killing them, whoops.
 # And don't forget to lift the restriction on women for appropriate religions (Cathar, etc)
 # Also: Make sure to include fun flavor variants when women are involved, whether as guardians or wards
+# Note: The first, and possibly the second, rank up will be flavorful (and hopefully varied) single events; friendly duels don't kick in until the second, or possibly third, rank up.
 
 ###################################
 ######Combat Trait Events##########

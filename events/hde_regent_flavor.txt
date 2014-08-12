@@ -4,6 +4,7 @@ namespace = hde_regent
 ### SETUP
 ### 0-99 reserved
 # These events are called from events 61215 and 61216 and hijack the chains
+# Both of these need to have the chance to accept/decline duels modified like they are in other duel engine modified events; though in this case the regent should still be fairly likely to fight
 ## Regent informed courtier has challenged him to duel over regency.
 character_event = {
 	id = hde_regent.0
@@ -116,7 +117,7 @@ character_event = {
 #####################
 ### INITIAL FLAVOR
 ### 100-199 reserved
-### Since choosing whether to run or not is done in the introduction events, these are pure flavor
+### Since choosing whether to fight or not is done in the introduction events, these are pure flavor
 ## Chain 1
 # Aggressor wants to fight (ROOT = Winner, FROMFROM = Loser)
 character_event = {

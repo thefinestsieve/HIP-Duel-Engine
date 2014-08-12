@@ -244,7 +244,7 @@ character_event = {
 # Maybe soften up craven chances a bit, but steal some prestige?
 ## Chain 1
 # These first two events share localization for now, because in the NDE you didn't have access to the opponent
-# But that is no longer a requirement
+# But that is no longer a requirement, and will be changed when I rewrite the localization
 # Aggressor sees Defender across the field (ROOT = Winner, FROMFROM = Loser)
 character_event = {
 	id = hde_battle.100
@@ -252,6 +252,7 @@ character_event = {
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
 	hide_from = yes
+	show_from_from = yes
 	is_triggered_only = yes
 	
 	option = {
@@ -270,7 +271,6 @@ character_event = {
 	desc = hde_battle.100.desc
 	picture = GFX_evt_battle
 	border = GFX_event_normal_frame_war
-	hide_from = yes
 	is_triggered_only = yes
 	
 	option = {

@@ -11,3 +11,13 @@ Lead up stuff happens, then vanilla normally hits you with this:
 So we'll pillage that for our own lead up events. (Unlike the feast duel, I expect less lead up.)
 
 Elements to include in duel: one participant circling so the sun is the other's eyes, one participant screwing up by slipping in the dewy grass, different options triggered by regent status
+
+overall pattern:
+
+initial: challenging courtier wants regency, regent obviously not inclined to acquiesce, keep it short
+sizing: circling involved
+combat: trying to use sun to advantage, possible slip involved for mistake making party
+subdued: knocked down type
+wounded/killed: make sure to raid vanilla event text for stuff
+
+output: either regent wins and keeps regency, or courtier wins and takes it, should be flavored differently depending on whether wounded/maimed/spared, etc
